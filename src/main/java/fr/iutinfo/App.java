@@ -1,4 +1,4 @@
-package fr.iutinfo.2t;
+package fr.iutinfo;
 
 /**
  * Hello world!
