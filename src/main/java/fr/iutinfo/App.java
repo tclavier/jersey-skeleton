@@ -1,13 +1,15 @@
 package fr.iutinfo;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.ws.rs.core.Application;
+
+public class App extends Application{
+    @Override
+    public Set<Class<?>> getClasses() {
+    	Set<Class<?>> s = new HashSet<Class<?>>();
+    	s.add(User.class);
+    	return s;
     }
 }
