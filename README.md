@@ -16,4 +16,3 @@ git push -u origin master
 
 # Configurer Eclipse
 - plugin maven m2e depuis http://download.eclipse.org/releases/indigo/
-
