@@ -20,6 +20,11 @@
     git remote add origin git@github.com:tclavier/jersey-skeleton.git
     git push -u origin master
 
+## Conf spécifique pour l'IUT
+
+    git config --global credential.helper cache
+    git config http.sslVerify "false"
+
 modifier le pom 
 
 - pour avoir junit 4.11
@@ -34,3 +39,6 @@ Dans le pom ajouter :
 - la dépendance jersey
 - la dépendance jetty
 
+# Test du projet
+
+    

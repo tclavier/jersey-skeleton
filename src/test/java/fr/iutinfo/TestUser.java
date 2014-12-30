@@ -13,8 +13,14 @@ public class TestUser extends JerseyTest {
     }
 
 	@Test
-	public void testUserWithNameFoo() {
+	public void testUserWithNameFooAsJsonString() {
 		String json = target("/user/foo").request().get(String.class);
 		Assert.assertEquals("{\"name\":\"foo\"}", json);
+	}
+	
+	@Test
+	public void testUserWithNameFooAsObject() {
+		User utilisateur = target("/user/foo").request().get(User.class);
+		Assert.assertEquals("foo", utilisateur.getName());
 	}
 }
