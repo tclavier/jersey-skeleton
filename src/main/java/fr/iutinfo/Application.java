@@ -1,8 +1,11 @@
 package fr.iutinfo;
 
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.server.ServerProperties;
+import javax.ws.rs.ApplicationPath;
 
+import org.glassfish.jersey.server.ResourceConfig;
+
+
+@ApplicationPath("resources")
 public class Application extends ResourceConfig {
 	public  Application() {
 		packages("fr.iutinfo");
