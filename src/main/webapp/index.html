@@ -1,7 +1,29 @@
 <html>
 	<head>
+		<title>Jersey Skeleton</title>
+		<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	</head>
 	<body>
-		<h1> Jersey Skeleton !</h1>
+		Quel est ton nom ? <input type="text" name="user" id="user"/>
+		<button id="get">Get</button>
+		<div id="reponse">Vide</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#get").click(function () {
+					$.getJSON(
+						"v1/user/"+$("#user").val(), 
+						function (data) {
+							console.log(data);
+							$("#reponse").html(data.name);
+						}
+					);
+					}
+				);
+			});
+			
+			 			
+			
+  		</script>
 	</body>
 </html>
