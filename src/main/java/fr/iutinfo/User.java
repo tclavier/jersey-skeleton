@@ -1,5 +1,8 @@
 package fr.iutinfo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -8,6 +11,9 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/user")
 public class User {
+	
+	private static Map<String, User> users = new HashMap<>();
+	
 	private String name;
 	
 	public String getName() {
@@ -18,12 +24,20 @@ public class User {
 		this.name = name;
 	}
 
+	public boolean equals(Object u) {
+		return name.equals(((User) u).name);
+	}
+	
 	@GET
 	@Path("/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUser(@PathParam("name") String name ) {
-		User user = new User();
-		user.setName(name);
-		return user;
+		if (!users.containsKey(name)) {
+			User user = new User();
+			user.setName(name);
+			users.put(user.getName(), user);
+			return user;
+		}
+		return users.get(name);
 	}
 }
