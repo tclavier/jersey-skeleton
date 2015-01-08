@@ -47,7 +47,7 @@ public class User {
 	}
 	
 	@GET
-	@Path("/")
+	//@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getUsers(
 			@DefaultValue("10") @QueryParam("limit") int limit) {
