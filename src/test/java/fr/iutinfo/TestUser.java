@@ -23,4 +23,11 @@ public class TestUser extends JerseyTest {
 		User utilisateur = target("/user/foo").request().get(User.class);
 		assertEquals("foo", utilisateur.getName());
 	}
+	
+	@Test
+	public void testCreatingSameUserTwice() {
+		User user1 = target("/user/foo").request().get(User.class);
+		User user2 = target("/user/foo").request().get(User.class);
+		assertEquals(user1, user2);
+	}
 }
