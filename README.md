@@ -13,7 +13,10 @@ WTP : http://download.eclipse.org/webtools/repository/indigo/
   * Web Page Editor
 
 ## Doc
-http://coenraets.org/blog/2011/12/restful-services-with-jquery-and-java-using-jax-rs-and-jersey/
+
+* https://jersey.java.net/documentation/latest/index.html  
+* http://coenraets.org/blog/2011/12/restful-services-with-jquery-and-java-using-jax-rs-and-jersey/
+* http://thierry-leriche-dessirier.developpez.com/tutoriels/java/client-swing-menus-filtres-rest-service/
 
 # création du projet depuis rien
 ## Maven
@@ -37,12 +40,9 @@ http://coenraets.org/blog/2011/12/restful-services-with-jquery-and-java-using-ja
     git remote add origin git@github.com:tclavier/jersey-skeleton.git
     git push -u origin master
 
-## Conf spécifique pour l'IUT
+## Init du projet
 
-    git config --global credential.helper cache
-    git config http.sslVerify "false"
-
-modifier le pom 
+modifier le pom pour avoir les bonnes versions de jUnit et java.
 
 - pour avoir junit 4.12
 - java 1.7
@@ -54,7 +54,9 @@ modifier le pom
 
 Dans le pom ajouter la dépendance jersey
 
-# Test du projet
+# Test du projet en local 
+
+Pour lancer le projet sur la machine du développeur et visiter les pages web sur http://localhost:8080/
 
 modifier le pom pour ajouter jetty-maven-plugin :
     <project>
