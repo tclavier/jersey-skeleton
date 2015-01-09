@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
-public class TestUser extends JerseyTest {
+public class UserTest extends JerseyTest {
 	@Override
     protected Application configure() {
         return new App();
