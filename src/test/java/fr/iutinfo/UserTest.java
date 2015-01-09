@@ -1,17 +1,16 @@
 package fr.iutinfo;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import javax.validation.constraints.AssertTrue;
-import javax.ws.rs.WebApplicationException;
+import java.util.List;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Before;
 import org.junit.Test;
 
 
@@ -25,7 +24,7 @@ public class UserTest extends JerseyTest {
 	public void testReadUserWithNameFooAsJsonString() {
 		createUser("foo");
 		String json = target("/user/foo").request().get(String.class);
-		assertEquals("{\"id\":2,\"name\":\"foo\"}", json);
+		assertEquals("{\"id\":4,\"name\":\"foo\"}", json);
 	}
 
 	@Test
@@ -53,13 +52,13 @@ public class UserTest extends JerseyTest {
 		assertEquals(404, status);
 	}
 	
+	@Test
 	public void tesListAllUsers() {
-		User user1 = target("/user/foo1").request().get(User.class);
-		User user2 = target("/user/foo2").request().get(User.class);
-		//List<User> users = target("/user/").request().get(List.class);
-		String userS = target("/user/").request().get(String.class);
-		System.out.println(userS);
-		//assertTrue(users.size() == 2);
+		createUser("toto");
+		createUser("titi");
+		List<User> users = target("/user/").request().get(new GenericType<List<User>>(){});
+		System.out.println(users.size());
+		assertTrue(users.size() >= 2);
 	}
 
 	private User createUser(String name) {
