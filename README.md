@@ -1,6 +1,19 @@
 # Création d'un projet en mode étudiant
 
-Sur gitlab, faire un fork du projet puis modifier le nom du projet dans le pom
+Sur github :
+- faire un fork du projet 
+- ajouter ses camarades dans le projet
+- cloner le projet dans /tmp/$USER/workspace
+- modifier le nom du projet dans le pom
+
+## Eclipse
+WTP : http://download.eclipse.org/webtools/repository/indigo/
+* Web Tools Plateform 3.3.2 
+  * JavaScript Development Tools
+  * Web Page Editor
+
+## Doc
+http://coenraets.org/blog/2011/12/restful-services-with-jquery-and-java-using-jax-rs-and-jersey/
 
 # création du projet depuis rien
 ## Maven
