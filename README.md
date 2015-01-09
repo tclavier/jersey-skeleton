@@ -77,4 +77,6 @@ Pour lancer un serveur local
 
     mvn jetty:run
     
-
+# Pour aller plus loing
+* Moteur de template : http://www.stringtemplate.org/
+* framework HTML/CSS/JS : http://getbootstrap.com/
