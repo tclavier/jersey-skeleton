@@ -5,22 +5,56 @@
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	</head>
 	<body>
-		Quel est ton nom ? <input type="text" name="user" id="user"/>
-		<button id="get">Get</button>
+		<input type="text" name="user" id="user" placeholder="Nom ?"/>
+		<button id="get">Lire</button>
+		<button id="post">Sauver</button>
+		<button id="list">Lister</button>
 		<div id="reponse">Vide</div>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#get").click(function () {
-					$.getJSON(
-						"v1/user/"+$("#user").val(), 
-						function (data) {
-							console.log(data);
-							$("#reponse").html(data.name);
-						}
-					);
-					}
-				);
+				$("#get").click(function () {getUser($('#user').val())});
+				$("#post").click(function () {postUser($('#user').val())});
+				$("#list").click(function () {listUsers()});
 			});
+			
+			function getUser(name) {
+				$.getJSON("v1/user/"+name, function (data) {afficheUser(data)});
+			}
+			
+			function afficheUser(data) {
+				console.log(data);
+				$("#reponse").html(data.id +" : "+data.name);
+			}
+			
+			function postUser(name) {
+				    $.ajax({
+        				type: 'POST',
+        				contentType: 'application/json',
+        				url: "v1/user/",
+        				dataType: "json",
+        				data: JSON.stringify ({"name" : name, "id" : 0}),
+        				success: function(data, textStatus, jqXHR){
+            				afficheUser(data);
+        					},
+        				error: function(jqXHR, textStatus, errorThrown){
+            				alert('postUser error: ' + textStatus);
+        					}
+        				});
+			}
+			
+			function listUsers() {
+				$.getJSON("v1/user/", function (data) {afficheListUsers(data)});
+			}
+			
+			function afficheListUsers (data) {
+				var html = '<ul>';
+				var index = 0;
+				for (index = 0; index < data.length; ++index) {					
+					html = html + "<li>" + data[index].name + "</li>";
+				}
+				html = html + "</ul>";
+				$("#reponse").html(html);
+			}
   		</script>
 	</body>
 </html>
