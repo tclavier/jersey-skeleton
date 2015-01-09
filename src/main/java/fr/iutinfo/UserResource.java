@@ -10,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 @Path("/user")
@@ -28,9 +29,16 @@ public class UserResource {
 	@GET
 	@Path("/{name}")
 	public User getUser(@PathParam("name") String name ) {
-		User user = new User();
-		user.setName(name);
-		return user;
+		User out = null;
+		for (User user : users) {
+			if (user.getName().equals(name)) {
+				out = user;
+			}
+		}
+		if (out == null) {
+			throw new WebApplicationException(404);
+		} 
+		return out;
 	}
 	
 	@GET

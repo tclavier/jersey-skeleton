@@ -4,12 +4,14 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 import javax.validation.constraints.AssertTrue;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.test.JerseyTest;
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -21,10 +23,11 @@ public class UserTest extends JerseyTest {
 
 	@Test
 	public void testReadUserWithNameFooAsJsonString() {
+		createUser("foo");
 		String json = target("/user/foo").request().get(String.class);
-		assertEquals("{\"id\":0,\"name\":\"foo\"}", json);
+		assertEquals("{\"id\":2,\"name\":\"foo\"}", json);
 	}
-	
+
 	@Test
 	public void testReadUserWithNameFooAsObject() {
 		User utilisateur = target("/user/foo").request().get(User.class);
@@ -33,12 +36,7 @@ public class UserTest extends JerseyTest {
 	
 	@Test
 	public void testCreateUserMustReturnUserWithId() {
-		User user = new User();
-		user.setName("thomas");
-		user.setId(0);
-	    Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
-		User savedUser = target("/user").request().post(userEntity).readEntity(User.class);
-		System.out.println(savedUser);
+		User savedUser = createUser("thomas");
 		assertTrue(savedUser.getId() > 0);
 	}
 	
@@ -49,6 +47,11 @@ public class UserTest extends JerseyTest {
 		assertEquals(user1, user2);
 	}
 	
+	@Test
+	public void testReadUnavailableUser () {
+		int status = target("/user/bar").request().get().getStatus();
+		assertEquals(404, status);
+	}
 	
 	public void tesListAllUsers() {
 		User user1 = target("/user/foo1").request().get(User.class);
@@ -58,4 +61,12 @@ public class UserTest extends JerseyTest {
 		System.out.println(userS);
 		//assertTrue(users.size() == 2);
 	}
+
+	private User createUser(String name) {
+		User user = new User(0, name);
+	    Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
+		User savedUser = target("/user").request().post(userEntity).readEntity(User.class);
+		return savedUser;
+	}
+	
 }
