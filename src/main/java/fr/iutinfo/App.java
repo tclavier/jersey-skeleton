@@ -11,7 +11,7 @@ public class App extends Application{
     @Override
     public Set<Class<?>> getClasses() {
     	Set<Class<?>> s = new HashSet<Class<?>>();
-    	s.add(User.class);
+    	s.add(UserResource.class);
     	return s;
     }
 }

@@ -1,26 +1,31 @@
 package fr.iutinfo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("/user")
 public class User {
-	
-	private static Map<String, User> users = new HashMap<>();
-	
 	private String name;
+	private int id=0;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -33,24 +38,8 @@ public class User {
 		return name.equals(((User) u).name);
 	}
 	
-	@GET
-	@Path("/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public User getUser(@PathParam("name") String name ) {
-		if (!users.containsKey(name)) {
-			User user = new User();
-			user.setName(name);
-			users.put(user.getName(), user);
-			return user;
-		}
-		return users.get(name);
+	public String toString() {
+		return id +": " + name;
 	}
 	
-	@GET
-	//@Path("/")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<User> getUsers(
-			@DefaultValue("10") @QueryParam("limit") int limit) {
-		return new ArrayList<User>(users.values());
-	}
 }
