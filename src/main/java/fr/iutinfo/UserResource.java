@@ -1,9 +1,7 @@
 package fr.iutinfo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -15,11 +13,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("/user")
+@Produces(MediaType.APPLICATION_JSON)
 public class UserResource {
 	private static ArrayList<User> users = new ArrayList<>();
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public User createUser(User user) {
 		int id = users.size();
 		user.setId(id+1);
@@ -29,7 +27,6 @@ public class UserResource {
 	
 	@GET
 	@Path("/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public User getUser(@PathParam("name") String name ) {
 		User user = new User();
 		user.setName(name);
@@ -37,10 +34,7 @@ public class UserResource {
 	}
 	
 	@GET
-	//@Path("/")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<User> getUsers(
-			@DefaultValue("10") @QueryParam("limit") int limit) {
+	public List<User> getUsers(@DefaultValue("10") @QueryParam("limit") int limit) {
 		return users;
 	}
 
