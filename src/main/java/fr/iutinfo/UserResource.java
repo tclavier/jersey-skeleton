@@ -37,7 +37,7 @@ public class UserResource {
 	@Path("{id}")
 	public Response deleteUser(@PathParam("id") Integer id) {
 		if (users.containsKey(id)) {
-			return Response.accepted().build();
+			return Response.accepted().status(Status.ACCEPTED).build();
 		}
 	    return Response.accepted().status(Status.NOT_FOUND).build();
 	}
