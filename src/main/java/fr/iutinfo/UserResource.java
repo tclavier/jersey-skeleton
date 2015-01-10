@@ -1,7 +1,9 @@
 package fr.iutinfo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -19,19 +21,19 @@ import javax.ws.rs.core.Response;
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource {
-	private static ArrayList<User> users = new ArrayList<>();
+	private static Map<Integer, User> users = new HashMap<>();
 	
 	@POST
 	public User createUser(User user) {
 		int id = users.size();
 		user.setId(id+1);
-		users.add(user);
+		users.put(user.getId(), user);
 		return user;
 	}
 	
 	protected User find(String name) {
 		User out = null;
-		for (User user : users) {
+		for (User user : users.values()) {
 			if (user.getName().equals(name)) {
 				return user;
 			}
@@ -39,13 +41,7 @@ public class UserResource {
 		return out;
 	}
 	protected User find(int id) {
-		User out = null;
-		for (User user : users) {
-			if (id == user.getId()) {
-				return user;
-			}
-		}
-		return out;
+		return users.get(id);
 	}
 	
 	@PUT
@@ -76,7 +72,7 @@ public class UserResource {
 	
 	@GET
 	public List<User> getUsers(@DefaultValue("10") @QueryParam("limit") int limit) {
-		return users;
+		return new ArrayList<User>(users.values());
 	}
 
 }
