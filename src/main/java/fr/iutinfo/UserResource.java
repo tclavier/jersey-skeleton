@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,6 +18,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
@@ -29,6 +31,15 @@ public class UserResource {
 		user.setId(id+1);
 		users.put(user.getId(), user);
 		return user;
+	}
+	
+	@DELETE
+	@Path("{id}")
+	public Response deleteUser(@PathParam("id") Integer id) {
+		if (users.containsKey(id)) {
+			return Response.accepted().build();
+		}
+	    return Response.accepted().status(Status.NOT_FOUND).build();
 	}
 	
 	protected User find(String name) {
