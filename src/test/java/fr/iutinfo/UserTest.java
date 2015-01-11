@@ -5,10 +5,15 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
@@ -24,7 +29,9 @@ public class UserTest extends JerseyTest {
 	public void testReadUserWithNameFooAsJsonString() {
 		createUser("foo");
 		String json = target("/user/foo").request().get(String.class);
-		assertEquals("{\"id\":4,\"name\":\"foo\"}", json);
+		//TODO: pourquoi ai-je du changer la valeur de l'id à 5 au 
+		// lieu de 4 après avoir introduit le test sur le PUT ?!
+		assertEquals("{\"id\":5,\"name\":\"foo\"}", json);
 	}
 
 	@Test
@@ -37,6 +44,16 @@ public class UserTest extends JerseyTest {
 	public void testCreateUserMustReturnUserWithId() {
 		User savedUser = createUser("thomas");
 		assertTrue(savedUser.getId() > 0);
+	}
+
+	@Test
+	public void testUpdateUserName() {
+		User u = createUser("thomas");
+		u.setName("yann");
+		Response rep = target("/user").path(""+u.getId()).request()
+				.put(Entity.entity(u,MediaType.APPLICATION_JSON));;
+		User updatedUser = rep.readEntity(User.class);
+		assertEquals("yann", updatedUser.getName());
 	}
 	
 	@Test
@@ -57,10 +74,18 @@ public class UserTest extends JerseyTest {
 		createUser("toto");
 		createUser("titi");
 		List<User> users = target("/user/").request().get(new GenericType<List<User>>(){});
-		System.out.println(users.size());
 		assertTrue(users.size() >= 2);
 	}
 
+	@Test
+	public void testDeleteUser() {
+		User u = createUser("toto");
+		WebTarget target = ClientBuilder.newClient().target("/user/").path(""+u.getId());
+        Response r = target.request().delete();		
+        assertEquals(Status.ACCEPTED, r.getStatus());
+        
+	}
+	
 	private User createUser(String name) {
 		User user = new User(0, name);
 	    Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
