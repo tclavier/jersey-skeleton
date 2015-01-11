@@ -12,13 +12,38 @@ WTP : http://download.eclipse.org/webtools/repository/indigo/
   * JavaScript Development Tools
   * Web Page Editor
 
-## Doc
+## Liens divers
 
 * https://jersey.java.net/documentation/latest/index.html  
 * http://coenraets.org/blog/2011/12/restful-services-with-jquery-and-java-using-jax-rs-and-jersey/
 * http://thierry-leriche-dessirier.developpez.com/tutoriels/java/client-swing-menus-filtres-rest-service/
+* framework HTML/CSS/JS : http://getbootstrap.com/
+* Moteur de template : http://www.stringtemplate.org/
 
-# création du projet depuis rien
+# Test du projet en local 
+
+Pour lancer le projet sur la machine du développeur et visiter les pages web sur http://localhost:8080/
+
+modifier le pom pour ajouter jetty-maven-plugin :
+    <project>
+      ...
+      <build>
+        ...
+        <plugins>
+          ...
+          <plugin>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-maven-plugin</artifactId>
+            <version>9.3.0.M1</version>
+          </plugin>
+        </plugins>
+      </build>
+
+Pour lancer un serveur local
+
+    mvn jetty:run
+    
+# Création du projet depuis rien
 ## Maven
     
     mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DgroupId=fr.iutinfo -DartifactId=jersey-skeleton
@@ -54,29 +79,3 @@ modifier le pom pour avoir les bonnes versions de jUnit et java.
 
 Dans le pom ajouter la dépendance jersey
 
-# Test du projet en local 
-
-Pour lancer le projet sur la machine du développeur et visiter les pages web sur http://localhost:8080/
-
-modifier le pom pour ajouter jetty-maven-plugin :
-    <project>
-      ...
-      <build>
-        ...
-        <plugins>
-          ...
-          <plugin>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
-            <version>9.3.0.M1</version>
-          </plugin>
-        </plugins>
-      </build>
-
-Pour lancer un serveur local
-
-    mvn jetty:run
-    
-# Pour aller plus loing
-* Moteur de template : http://www.stringtemplate.org/
-* framework HTML/CSS/JS : http://getbootstrap.com/
