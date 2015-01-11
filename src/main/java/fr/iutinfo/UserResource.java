@@ -57,7 +57,6 @@ public class UserResource {
 	
 	@PUT
     @Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
 	public Response updateUser(@PathParam("id") int id, 
 			User user) {

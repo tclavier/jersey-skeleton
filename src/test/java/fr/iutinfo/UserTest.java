@@ -80,9 +80,8 @@ public class UserTest extends JerseyTest {
 	@Test
 	public void testDeleteUser() {
 		User u = createUser("toto");
-		WebTarget target = ClientBuilder.newClient().target("/user/").path(""+u.getId());
-        Response r = target.request().delete();		
-        assertEquals(Status.ACCEPTED, r.getStatus());
+		int status = target("/user/"+u.getId()).request().delete().getStatus();
+        assertEquals(202, status);
         
 	}
 	
