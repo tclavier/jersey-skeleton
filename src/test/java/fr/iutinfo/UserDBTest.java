@@ -45,7 +45,7 @@ public class UserDBTest extends JerseyTest {
 		User user = new User(0, "thomas");
 	    Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
 		String json = target("/userdb").request().post(userEntity).readEntity(String.class);
-		assertEquals("{\"id\":1,\"name\":\"thomas\"}", json);
+		assertEquals("{\"id\":2,\"name\":\"thomas\"}", json);
 		
 	}
 

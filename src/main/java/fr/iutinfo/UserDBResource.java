@@ -13,6 +13,10 @@ import javax.ws.rs.core.MediaType;
 public class UserDBResource {
 	private static UserDao dao = App.dbi.open(UserDao.class);
 
+	public UserDBResource() {
+		dao.insert("foo");
+	}
+	
 	@POST
 	public User createUser(User user) {
 		int id = dao.insert(user.getName());
