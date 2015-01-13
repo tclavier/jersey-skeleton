@@ -37,7 +37,6 @@ public class UserDBTest extends JerseyTest {
 		createUser("foo");
 		User utilisateur = target("/userdb/foo").request().get(User.class);
 		assertEquals("foo", utilisateur.getName());
-	
 	}
 
 	@Test

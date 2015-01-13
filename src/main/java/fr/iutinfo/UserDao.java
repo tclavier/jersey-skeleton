@@ -19,7 +19,7 @@ public interface UserDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	User findByName(@Bind("name") String name);
 
-	@SqlUpdate("drop table users")
+	@SqlUpdate("drop table if exists users")
 	void dropUserTable(); 
 	
 	void close();
