@@ -76,7 +76,7 @@ public class UserResource {
 		User out = find(name);
 		if (out == null) {
 			throw new WebApplicationException(404);
-		} 
+		}
 		return out;
 	}
 	
