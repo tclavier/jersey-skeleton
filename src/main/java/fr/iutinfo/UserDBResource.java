@@ -14,6 +14,11 @@ public class UserDBResource {
 	private static UserDao dao = App.dbi.open(UserDao.class);
 
 	public UserDBResource() {
+		try {
+			dao.createUserTable();
+		} catch (Exception e) {
+			System.out.println("Table déjà là !");
+		}
 		dao.insert("foo");
 	}
 	
