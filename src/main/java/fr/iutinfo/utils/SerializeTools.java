@@ -10,7 +10,7 @@ import fr.iutinfo.bins.Level;
 public class SerializeTools {
 
 
-	public static String serializeLevel(Level level) {
+	/*public static String serializeLevel(Level level) {
 		try {
 			ByteArrayOutputStream bo = new ByteArrayOutputStream();
 			ObjectOutputStream so = new ObjectOutputStream(bo);
@@ -33,6 +33,6 @@ public class SerializeTools {
 		     System.out.println(e);
 		 }
 		return null;
-	}
+	}*/
 	
 }

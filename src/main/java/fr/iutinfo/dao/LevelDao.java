@@ -28,7 +28,7 @@ public interface LevelDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<Level> getAll();
 
-	@SqlUpdate("drop table if exists users")
+	@SqlUpdate("drop table if exists levels")
 	void dropLevelsTable(); 
 	
 	void close();

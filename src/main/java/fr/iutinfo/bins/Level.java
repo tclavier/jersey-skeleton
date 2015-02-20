@@ -6,40 +6,33 @@ import java.util.ArrayList;
 public class Level implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int levelId;
+	private int id;
 	private String name;
 	private String author;
-	private ArrayList<ArrayList<Integer>> content;
+	private String content;
 	
 	public Level() {
 		this(0);
 	}
 	
-	public Level(int levelId) {
-		this.levelId = levelId;
-		setContent(new ArrayList<ArrayList<Integer>>());
-		for(int i = 0 ; i < 4 ; i++) {
-			content.add(new ArrayList<Integer>());
-			for(int j = 0 ; j < 4 ; j++) {
-				content.get(i).add(0);
-			}
-		}
+	public Level(int id) {
+		this.id = id;
 	}
 
-	public ArrayList<ArrayList<Integer>> getContent() {
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(ArrayList<ArrayList<Integer>> level) {
+	public void setContent(String level) {
 		this.content = level;
 	}
 
-	public int getLevelId() {
-		return levelId;
+	public int getId() {
+		return id;
 	}
 
-	public void setLevelId(int levelId) {
-		this.levelId = levelId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {

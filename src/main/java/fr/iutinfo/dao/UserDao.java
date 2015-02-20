@@ -22,13 +22,13 @@ public interface UserDao {
 	@SqlQuery("select * from users where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	User findById(@Bind("id") int id);
-
-	@SqlUpdate("drop table if exists users")
-	void dropUserTable(); 
 	
-	void close();
-
 	@SqlQuery("select * from users")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<User> getAll();
+	
+	@SqlUpdate("drop table if exists users")
+	void dropUserTable(); 
+
+	void close();
 }
