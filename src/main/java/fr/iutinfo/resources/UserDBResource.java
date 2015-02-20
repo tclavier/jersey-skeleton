@@ -21,6 +21,7 @@ public class UserDBResource {
 
 	public UserDBResource() {
 		try {
+			dao.dropUserTable();
 			dao.createUserTable();
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
@@ -37,9 +38,9 @@ public class UserDBResource {
 	}
 
 	@GET
-	@Path("/{name}")
-	public User getUser(@PathParam("name") String name) {
-		User out = dao.findByName(name);
+	@Path("/{id}")
+	public User getUser(@PathParam("id") int id) {
+		User out = dao.findById(id);
 		if (out == null) {
 			throw new WebApplicationException(404);
 		}
