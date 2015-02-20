@@ -30,7 +30,7 @@ public class LevelResource {
 		Level l = new Level();
 		l.setAuthor("toto");
 		l.setName("niveau de toto");
-		l.setContent("contenue du niveau");
+		l.setContent("0 0 0 0,0 0 0 0,0 0 0 0,0 0 0 0");
 		levelDao.insert(l.getName(), l.getContent(), l.getAuthor());
 	}
 	
