@@ -8,6 +8,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
+import fr.iutinfo.bins.User;
+
 public class RestClient {
 	
 	public String getUrlAsString (String url) {
