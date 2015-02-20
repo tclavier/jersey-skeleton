@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -7,6 +7,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+
+import fr.iutinfo.App;
+import fr.iutinfo.bins.User;
+import fr.iutinfo.dao.UserDao;
 
 @Path("/userdb")
 @Produces(MediaType.APPLICATION_JSON)

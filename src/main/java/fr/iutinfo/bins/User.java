@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.bins;
 
 public class User {
 	private String name;

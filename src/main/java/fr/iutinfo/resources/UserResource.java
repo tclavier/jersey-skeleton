@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.resources;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +19,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+import fr.iutinfo.bins.User;
 
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "testServlet", urlPatterns = { "/hello" }, initParams = { @WebInitParam(name = "simpleParam", value = "paramValue") })
 public class Hello extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

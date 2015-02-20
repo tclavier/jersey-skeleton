@@ -1,0 +1,48 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Ludicode 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> jetty-maven-plugin:9.3.0.M1:run (default-cli) > test-compile @ Ludicode >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ Ludicode ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ Ludicode ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 11 source files to D:\Documents\Louis\Documents\Programmation\Java\Desktop\Cours\Ludicode-web\target\classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ Ludicode ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory D:\Documents\Louis\Documents\Programmation\Java\Desktop\Cours\Ludicode-web\src\test\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ Ludicode ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< jetty-maven-plugin:9.3.0.M1:run (default-cli) < test-compile @ Ludicode <<<
+[INFO] 
+[INFO] --- jetty-maven-plugin:9.3.0.M1:run (default-cli) @ Ludicode ---
+[INFO] Configuring Jetty for project: Ludicode
+[INFO] webAppSourceDirectory not set. Trying src\main\webapp
+[INFO] Reload Mechanic: automatic
+[INFO] Classes = D:\Documents\Louis\Documents\Programmation\Java\Desktop\Cours\Ludicode-web\target\classes
+[INFO] Context path = /
+[INFO] Tmp directory = D:\Documents\Louis\Documents\Programmation\Java\Desktop\Cours\Ludicode-web\target\tmp
+[INFO] Web defaults = org/eclipse/jetty/webapp/webdefault.xml
+[INFO] Web overrides =  none
+[INFO] web.xml file = null
+[INFO] Webapp directory = D:\Documents\Louis\Documents\Programmation\Java\Desktop\Cours\Ludicode-web\src\main\webapp
+[INFO] Started Jetty Server
+[INFO] Starting scanner at interval of 5 seconds.
+Table levels déjà là !
+[INFO] Jetty server exiting.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 01:54 min
+[INFO] Finished at: 2015-02-18T16:00:51+01:00
+[INFO] Final Memory: 97M/760M
+[INFO] ------------------------------------------------------------------------
+Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? Terminer le programme de commandes (O/N)ÿ? 

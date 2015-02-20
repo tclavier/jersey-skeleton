@@ -5,3 +5,5 @@
 .settings
 target/
 data.db
+/build/
+/bin/

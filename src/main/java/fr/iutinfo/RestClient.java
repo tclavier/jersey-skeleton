@@ -1,12 +1,13 @@
 package fr.iutinfo;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+
+import fr.iutinfo.bins.User;
 
 public class RestClient {
 	
