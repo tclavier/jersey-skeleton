@@ -1,5 +1,7 @@
 package fr.iutinfo.dao;
 
+
+import java.util.List;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -17,12 +19,16 @@ public interface UserDao {
 	@GetGeneratedKeys
 	int insert(@Bind("name") String name);
 
-	@SqlQuery("select * from users where name = :name")
+	@SqlQuery("select * from users where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)
-	User findByName(@Bind("name") String name);
+	User findById(@Bind("id") int id);
 
 	@SqlUpdate("drop table if exists users")
 	void dropUserTable(); 
 	
 	void close();
+
+	@SqlQuery("select * from users")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+	List<User> getAll();
 }

@@ -9,6 +9,7 @@ import javax.ws.rs.core.Application;
 import org.skife.jdbi.v2.DBI;
 import org.sqlite.SQLiteDataSource;
 
+import fr.iutinfo.resources.FriendsRelationsResource;
 import fr.iutinfo.resources.LevelResource;
 import fr.iutinfo.resources.UserResource;
 
@@ -19,6 +20,7 @@ public class App extends Application {
     	Set<Class<?>> s = new HashSet<Class<?>>();
     	s.add(LevelResource.class);
     	s.add(UserResource.class);
+    	s.add(FriendsRelationsResource.class);
     	return s;
     }
     

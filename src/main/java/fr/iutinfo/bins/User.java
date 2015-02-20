@@ -1,9 +1,11 @@
 package fr.iutinfo.bins;
 
 public class User {
-	private String name;
+	
 	private int id = 0;
-
+	private String name;
+	
+	
 	public User(int id, String name) {
 		this.id = id;
 		this.name = name;
