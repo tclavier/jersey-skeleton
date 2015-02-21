@@ -6,16 +6,17 @@ define(["jquery"],  function($) {
 
 		var Grid = require("grid");
 		var Player = require("player");
+		var GraphicalPlayer = require("graphical_player");
 		
 		this.grid = new Grid(this, this.tiles, this.width, this.height);
-		this.player = new Player(this, 0, 0);
+		this.player = new GraphicalPlayer(this, 0, 0);
 
 		this.render = function render() {
 			var c = document.getElementById("grid");
 			var ctx = c.getContext("2d");
 			
 			this.grid.render(ctx);
-			//this.player.render(ctx);
+			this.player.render(ctx);
 		}
 
 		this.update = function update(delta) {
