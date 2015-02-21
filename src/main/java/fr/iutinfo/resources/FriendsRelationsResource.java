@@ -22,13 +22,10 @@ public class FriendsRelationsResource {
 	
 	public FriendsRelationsResource() {
 		try {
-			dao.dropFriendsRelationsTable();
 			dao.createFriendsRelationsTable();
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
 		}
-		dao.createRelation(2, 1);
-		dao.createRelation(1, 2);
 	}
 	
 	@GET

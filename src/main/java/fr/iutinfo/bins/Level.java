@@ -27,7 +27,7 @@ public class Level implements Serializable {
 		this.content = content;
 	}
 	
-	private ArrayList<ArrayList<Integer>> parseLevel(String content) {
+	private Integer[][] parseLevel(String content) {
 		ArrayList<ArrayList<Integer>> structuredContent = new ArrayList<ArrayList<Integer>>();
 		String[] lines = content.split(",");
 		for(String line : lines) {
@@ -38,28 +38,32 @@ public class Level implements Serializable {
 			}
 			structuredContent.add(list);
 		}
-		return structuredContent;
+		Integer[][] array = new Integer[structuredContent.size()][structuredContent.get(0).size()];
+		for(int i = 0 ; i < structuredContent.size() ; i++) {
+			structuredContent.get(i).toArray(array[i]);
+		}
+		return array;
 	}
 	
-	private String serializeContent(ArrayList<ArrayList<Integer>> structuredContent) {
+	private String serializeContent(Integer[][] structuredContent) {
 		String content = "";
-		for(int i = 0 ; i < structuredContent.size() ; i++) {
+		for(int i = 0 ; i < structuredContent.length ; i++) {
 			if(i != 0)
 				content += ",";
-			for(int j = 0 ; j < structuredContent.size() ; j++) {
+			for(int j = 0 ; j < structuredContent.length ; j++) {
 				if(j != 0)
 					content += " ";
-				content += structuredContent.get(i).get(j);
+				content += structuredContent[i][j];
 			}
 		}
 		return content;
 	}
 	
-	public void setStructuredContent(ArrayList<ArrayList<Integer>> structuredContent) {
+	public void setStructuredContent(Integer[][] structuredContent) {
 		content = serializeContent(structuredContent);
 	}
 
-	public ArrayList<ArrayList<Integer>> getStructuredContent() {
+	public Integer[][] getStructuredContent() {
 		return parseLevel(content);
 	}
 	

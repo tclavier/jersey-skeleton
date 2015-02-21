@@ -11,8 +11,10 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
+import fr.iutinfo.bins.Feedback;
 import fr.iutinfo.bins.User;
 import fr.iutinfo.dao.UserDao;
+import fr.iutinfo.utils.Utils;
 
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
@@ -21,20 +23,27 @@ public class UserResource {
 
 	public UserResource() {
 		try {
-			dao.dropUserTable();
 			dao.createUserTable();
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
 		}
-		dao.insert("toto");
-		dao.insert("titi");
 	}
 	
 	@POST
-	public User createUser(User user) {
-		int id = dao.insert(user.getName());
-		user.setId(id);
-		return user;
+	public Feedback createUser(User user) {
+		String hashedPassword = Utils.hashMD5(user.getPassword());
+		if(hashedPassword == null)
+			return new Feedback(false, "An error occurs during hashing");
+		
+		user.setPassword(hashedPassword);
+		try {
+			System.out.println(user.getName() + " " + user.getPassword() + " " + user.getEmail());
+			dao.insert(user.getName(), user.getPassword(), user.getEmail());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Feedback(false, "An error occurs during insertion to database");
+		}
+		return new Feedback(true, "OK");
 	}
 
 	@GET
