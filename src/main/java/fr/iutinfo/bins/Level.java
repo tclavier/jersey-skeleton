@@ -10,7 +10,6 @@ public class Level implements Serializable {
 	private String name;
 	private String author;
 	private String content;
-	//private ArrayList<ArrayList<Integer>> structuredContent;
 	
 	public Level() {
 		this(0);
@@ -26,34 +25,7 @@ public class Level implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
-		//syncrhonizeContents(content);
 	}
-	
-	/*private void syncrhonizeContents(String content) {
-		this.content = content;
-		structuredContent = new ArrayList<ArrayList<Integer>>();
-		String[] lines = content.split(",");
-		for(String line : lines) {
-			String[] cells = line.split("\\s+");
-			ArrayList<Integer> list = new ArrayList<Integer>();
-			for(String cell : cells) {
-				list.add(Integer.parseInt(cell));
-			}
-			structuredContent.add(list);
-		}
-	}
-	
-	private void syncrhonizeContents(ArrayList<ArrayList<Integer>> structuredContent) {
-		this.structuredContent = structuredContent;
-		content = "";
-		for(int i = 0 ; i < structuredContent.size() ; i++) {
-			if(i != 0)
-				content += ",";
-			for(Integer cell : structuredContent.get(i)) {
-				content += " " + cell;
-			}
-		}
-	}*/
 	
 	private ArrayList<ArrayList<Integer>> parseLevel(String content) {
 		ArrayList<ArrayList<Integer>> structuredContent = new ArrayList<ArrayList<Integer>>();
@@ -74,8 +46,10 @@ public class Level implements Serializable {
 		for(int i = 0 ; i < structuredContent.size() ; i++) {
 			if(i != 0)
 				content += ",";
-			for(Integer cell : structuredContent.get(i)) {
-				content += " " + cell;
+			for(int j = 0 ; j < structuredContent.size() ; j++) {
+				if(j != 0)
+					content += " ";
+				content += structuredContent.get(i).get(j);
 			}
 		}
 		return content;
