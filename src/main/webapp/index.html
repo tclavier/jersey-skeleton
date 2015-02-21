@@ -1,17 +1,47 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<title>Ludicode</title>
-		<meta charset='utf-8'>
+<head>
+<title>Ludicode</title>
+<meta charset='utf-8'>
 
-        <!-- bootstrap -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-		
-		<!-- Code local -->
-        <script data-main="scripts/main" src="libs/require.js"></script>
-	</head>
-	<body>
-        <canvas id="map">Votre navigateur ne supporte pas le HTML5 :(</canvas>
-	</body>
+<!-- bootstrap -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Code local -->
+<script data-main="scripts/main" src="libs/require.js"></script>
+<script data-main="scripts/main" src="libs/jquery.js"></script>
+<script data-main="scripts/main" src="scripts/page_controller.js"></script>
+
+</head>
+<body>
+	<div id="menu_bar">
+		<ul>
+			<li class="menu_bar_element" id="login_bar" for="login_pane">Login</li>
+			<li class="menu_bar_element" id="register_bar" for="register_pane">Register</li>
+			<li class="menu_bar_element" id="profile_bar" for="profile_pane">Profile</li>
+			<li class="menu_bar_element" id="levels_bar" for="levels_pane">Jouer</li>
+			<li class="menu_bar_element" id="editor_bar" for="editor_pane">Editeur</li>
+			<li class="menu_bar_element" id="leaderboard_bar" for="leaderboard_pane">Classement</li>
+		</ul>
+	</div>
+	<div id="main_content">
+		<div class="main_panel" id="login_pane">
+			<label for="login">Pseudo : </label><input type="text" name="login" id="login" /><br />
+			<label for="password">Mot de passe : </label><input type="password" name="password" id="password" />
+		</div>
+		<div class="main_panel" id="register_pane">Inscription</div>
+		<div class="main_panel" id="profile_pane">Profil du joueur</div>
+		<div class="main_panel" id="levels_pane">
+			Choix du niveau : 
+			<a class="level_preview" id="level_1" href="#">Niveau 1</a>
+		</div>
+		<div class="main_panel" id="game_pane">
+			<canvas id="map">Votre navigateur ne supporte pas le HTML5 :(</canvas>
+		</div>
+		<div class="main_panel" id="editor_pane">Editeur de niveau</div>
+		<div class="main_panel" id="leaderboard_pane">Leaderboard</div>
+	</div>
+</body>
 </html>

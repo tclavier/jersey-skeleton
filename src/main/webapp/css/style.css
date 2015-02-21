@@ -1,0 +1,7 @@
+.main_panel {
+	display: none;
+}
+
+.active_bar {
+	background-color: grey;
+}
