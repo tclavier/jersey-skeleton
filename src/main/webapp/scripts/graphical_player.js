@@ -6,16 +6,27 @@ define(["jquery"],  function(require) {
 
 		var goToX = x;
 		var goToY = y;
+		var goToAngle = 0;
 		var moving = false;
+		var turning = false;
+		var angle = 0;
+		var dirX = 0;
+		var dirY = 1;
 
 		this.render = function render(context) {
+			context.save();
 			context.beginPath();
+			context.translate(this.x + this.game.grid.tile_size/2, this.y + this.game.grid.tile_size/2);
+			context.rotate(angle);
+			context.translate(-(this.x + this.game.grid.tile_size/2), -(this.y + this.game.grid.tile_size/2));
 			var margin = 3;
 			context.moveTo(this.x + margin, this.y + margin);
 			context.lineTo(this.x + this.game.grid.tile_size - margin, this.y + margin);
 			context.lineTo(this.x + this.game.grid.tile_size/2 - margin, this.y + this.game.grid.tile_size - margin);
+			
 			context.fillStyle = "#FF0000";
 			context.fill();
+			context.restore();
 		}
 
 		this.update = function update(delta) {
@@ -39,12 +50,26 @@ define(["jquery"],  function(require) {
 					moving = false;
 				}
 			}
+			
+			if (Math.abs(goToAngle - angle) > Math.PI/20) {
+				var sign = 1;
+				if (goToAngle < angle) sign = -1;
+				angle += Math.PI/20 * sign;
+			} else {
+				angle = goToAngle;
+				turning = false;
+			}
 		}
 
 		this.moveTo = function moveTo(x, y) {
 			moving = true;
 			goToX = x;
 			goToY = y;
+		}
+		
+		this.rotateTo = function rotateTo(a) {
+			turning = true;
+			goToAngle = a;
 		}
 
 		this.moveToTile = function moveToTile(x, y) {
@@ -60,9 +85,39 @@ define(["jquery"],  function(require) {
 		}
 
 		this.isDoingSomething = function isDoingSomething() {
-			return moving;
+			return moving || turning;
 		}
 		
+		
+		this.turnLeft = function turnLeft() {
+			this.rotateTo(angle - Math.PI/2);
+			if (dirX == 0) {
+				dirX = dirY;
+				dirY = 0;
+			} else {
+				dirY = -dirX;
+				dirX = 0;
+			}
+		}
+		
+		this.turnRight = function turnRight() {
+			this.rotateTo(angle + Math.PI/2);
+			if (dirX == 0) {
+				dirX = -dirY;
+				dirY = 0;
+			} else {
+				dirY = dirX;
+				dirX = 0;
+			}
+		}
+		
+		this.moveForward = function moveForward() {
+			this.moveToTile(this.tileX() + dirX, this.tileY() + dirY);
+		}
+		
+		this.moveBackward = function moveBackward() {
+			this.moveToTile(this.tileX() - dirX, this.tileY() - dirY);
+		}
 	}
 
 });

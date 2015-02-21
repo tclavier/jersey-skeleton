@@ -5,6 +5,8 @@ define(["jquery"],  function(require) {
 		this.game = game;
 		this.events = [];
 		var locked = false;
+		var dirX = 0;
+		var dirY = 1;
 
 		this.moveTo = function moveTo(x, y) {
 			if (locked) return;
@@ -27,6 +29,34 @@ define(["jquery"],  function(require) {
 
 		this.tileY = function tileY() {
 			return Math.round(this.y/this.game.grid.tile_size);
+		}
+		
+		this.turnLeft = function turnLeft() {
+			if (dirX == 0) {
+				dirX = dirY;
+				dirY = 0;
+			} else {
+				dirY = -dirX;
+				dirX = 0;
+			}
+		}
+		
+		this.turnRight = function turnRight() {
+			if (dirX == 0) {
+				dirX = -dirY;
+				dirY = 0;
+			} else {
+				dirY = dirX;
+				dirX = 0;
+			}
+		}
+		
+		this.moveForward = function moveForward() {
+			this.moveToTile(this.tileX() + dirX, this.tileY() + dirY);
+		}
+		
+		this.moveBackward = function moveBackward() {
+			this.moveToTile(this.tileX() - dirX, this.tileY() - dirY);
 		}
 	}
 
