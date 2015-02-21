@@ -30,21 +30,51 @@ public class UserResource {
 	}
 	
 	@POST
+	@Path("/register")
 	public Feedback createUser(User user) {
-		String hashedPassword = Utils.hashMD5(user.getPassword());
-		if(hashedPassword == null)
-			return new Feedback(false, "An error occurs during hashing");
-		
-		user.setPassword(hashedPassword);
 		try {
-			System.out.println(user.getName() + " " + user.getPassword() + " " + user.getEmail());
+			User u = dao.isNameExist(user.getName());
+			if(u != null)
+				return new Feedback(false, "Le pseudo est déjà utilisé");
+			
+			u = dao.isEmailExist(user.getEmail());
+			if(u != null)
+				return new Feedback(false, "L'adresse email est déjà utilisée");
+			
+			
+			String hashedPassword = Utils.hashMD5(user.getPassword());
+			if(hashedPassword == null)
+				return new Feedback(false, "An error occurs during hashing");
+			user.setPassword(hashedPassword);
+			
 			dao.insert(user.getName(), user.getPassword(), user.getEmail());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Feedback(false, "An error occurs during insertion to database");
 		}
-		return new Feedback(true, "OK");
+		return new Feedback(true, "Register OK");
 	}
+	
+	
+	@POST
+	@Path("/login")
+	public Feedback logUser(User user) {
+		String hashedPassword = Utils.hashMD5(user.getPassword());
+		if(hashedPassword == null)
+			return new Feedback(false, "An error occurs during hashing");
+		user.setPassword(hashedPassword);
+		
+		try {
+			User u = dao.userIsCorrect(user.getName(), user.getPassword());
+			if(u == null) 
+				return new Feedback(false, "user doesn't exist");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Feedback(false, "An error occurs during query to database");
+		}
+		return new Feedback(true, "Login OK");
+	}
+	
 
 	@GET
 	@Path("/{id}")

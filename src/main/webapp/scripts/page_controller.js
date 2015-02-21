@@ -39,11 +39,19 @@ $(document).ready(function() {
 	
 	// Enregistrer un utilisateur
 	$("#button_register").click(function() {
-		var name = $("#login_register").val();
+		var name = $("#name_register").val();
 		var passwd = $("#password_register").val();
 		var email = $("#email_register").val();
 		
 		registerUser(name, passwd, email);
+	});
+	
+	
+	// Log l'utilisateur
+	$("#button_login").click(function() {
+		var name = $("#name_login").val();
+		var passwd = $("#password_login").val();
+		loginUser(name, passwd);
 	});
 
 });
