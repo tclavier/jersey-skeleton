@@ -1,5 +1,5 @@
 define(["jquery"],  function(require) {
-    return function Map(game, tiles, width, height) {
+    return function Grid(game, tiles, width, height) {
         this.game = game;
         this.tiles = tiles;
         this.width = width;

@@ -3,7 +3,7 @@ requirejs.config({
     paths: {
         "jquery": "libs/jquery",
         "libs/boostrap": "libs/bootstrap",
-        "map": "scripts/map"
+        "grid": "scripts/grid"
     },
 
     shim: {
@@ -13,12 +13,12 @@ requirejs.config({
     }
 });
 
-require(["jquery", "libs/bootstrap", "map"], function ($) {
-    var Map = require("map");
+require(["jquery", "libs/bootstrap", "grid"], function ($) {
+    var Grid = require("grid");
 
-    var map = new Map(null, [[0, 0],[1, 0]], 100, 100);
+    var grid = new Grid(null, [[0, 0],[1, 0]], 100, 100);
 
-    map.render($("#map")[0].getContext('2d'));
+    grid.render($("#grid")[0].getContext('2d'));
 
 
     console.log("main loaded");
