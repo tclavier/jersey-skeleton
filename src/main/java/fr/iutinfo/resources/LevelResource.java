@@ -22,16 +22,10 @@ public class LevelResource {
 	
 	public LevelResource() {
 		try {
-			levelDao.dropLevelsTable();
 			levelDao.createLevelsTable();
 		} catch (Exception e) {
 			System.out.println("Table levels déjà là !");
 		}
-		Level l = new Level();
-		l.setAuthor("toto");
-		l.setName("niveau de toto");
-		l.setContent("0 0 0 0,0 0 0 0,0 0 0 0,0 0 0 0");
-		levelDao.insert(l.getName(), l.getContent(), l.getAuthor());
 	}
 	
 	@GET
@@ -45,13 +39,6 @@ public class LevelResource {
 	
 	@GET
 	public List<Level> getLevels() {
-		/*Level lvl1 = new Level();
-		Level lvl2 = new Level();
-		Level lvl3 = new Level();
-		List<Level> levels = new ArrayList<Level>();
-		levels.add(lvl1);
-		levels.add(lvl2);
-		levels.add(lvl3);*/
 		List<Level> levels = levelDao.getAll();
 		if(levels == null)
 			throw new WebApplicationException(404);

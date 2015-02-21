@@ -13,6 +13,7 @@
 <script data-main="scripts/main" src="libs/require.js"></script>
 <script data-main="scripts/main" src="libs/jquery.js"></script>
 <script data-main="scripts/main" src="scripts/levels_query.js"></script>
+<script data-main="scripts/main" src="scripts/users_query.js"></script>
 <script data-main="scripts/main" src="scripts/page_controller.js"></script>
 
 </head>
@@ -30,9 +31,17 @@
 	<div id="main_content">
 		<div class="main_panel" id="login_pane">
 			<label for="login">Pseudo : </label><input type="text" name="login" id="login" /><br />
-			<label for="password">Mot de passe : </label><input type="password" name="password" id="password" />
+			<label for="password">Mot de passe : </label><input type="password" name="password" id="password" /><br />
+			<button type="button" class="btn btn-default">Login</button>
 		</div>
-		<div class="main_panel" id="register_pane">Inscription</div>
+		
+		<div class="main_panel" id="register_pane">
+			<label for="login_register">Pseudo : </label><input type="text" name="login_register" id="login_register" /><br />
+			<label for="email_register">Email : </label><input type="text" name="email_register" id="email_register" /><br />
+			<label for="password_register">Mot de passe : </label><input type="password" name="password_register" id="password_register" /><br />
+			<button id="button_register" type="button" class="btn btn-default">M'enregistrer</button>
+		</div>
+		
 		<div class="main_panel" id="profile_pane">Profil du joueur</div>
 		<div class="main_panel" id="levels_pane">
 			Choix du niveau : 

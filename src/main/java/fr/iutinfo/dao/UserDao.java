@@ -12,12 +12,12 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 import fr.iutinfo.bins.User;
 
 public interface UserDao {
-	@SqlUpdate("create table users (id integer primary key autoincrement, name varchar(100))")
+	@SqlUpdate("create table users (id integer primary key autoincrement, name varchar(100), password text, email varchar(50))")
 	void createUserTable();
 
-	@SqlUpdate("insert into users (name) values (:name)")
+	@SqlUpdate("insert into users (name, password, email) values (:name, :password, :email)")
 	@GetGeneratedKeys
-	int insert(@Bind("name") String name);
+	int insert(@Bind("name") String name, @Bind("password") String password, @Bind("email") String email);
 
 	@SqlQuery("select * from users where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)

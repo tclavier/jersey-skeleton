@@ -35,5 +35,15 @@ $(document).ready(function() {
 		newElement.show();
 		activeElement = newElement;
 	});
+	
+	
+	// Enregistrer un utilisateur
+	$("#button_register").click(function() {
+		var name = $("#login_register").val();
+		var passwd = $("#password_register").val();
+		var email = $("#email_register").val();
+		
+		registerUser(name, passwd, email);
+	});
 
 });
