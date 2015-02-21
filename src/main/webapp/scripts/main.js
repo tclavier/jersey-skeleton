@@ -3,7 +3,9 @@ requirejs.config({
     paths: {
         "jquery": "libs/jquery",
         "libs/boostrap": "libs/bootstrap",
-        "grid": "scripts/grid"
+        "grid": "scripts/grid",
+		"player": "scripts/player",
+		"game": "scripts/game"
     },
 
     shim: {
@@ -13,12 +15,12 @@ requirejs.config({
     }
 });
 
-require(["jquery", "libs/bootstrap", "grid"], function ($) {
-    var Grid = require("grid");
-
-    var grid = new Grid(null, [[0, 0],[1, 0]], 100, 100);
-
-    grid.render($("#grid")[0].getContext('2d'));
+require(["jquery", "libs/bootstrap", "game", "grid", "player"], function ($) {
+    var Game = require("game");
+	
+	var game = new Game(100, 100, [[0, 0],[1, 0]]);
+	
+	game.render();
 
 
     console.log("main loaded");
