@@ -5,3 +5,11 @@
 .active_bar {
 	background-color: grey;
 }
+
+.menu_bar_element:hover {
+	background-color: lightgrey;
+}
+
+.active_bar:hover {
+	background-color: grey;
+}
