@@ -11,8 +11,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
-import fr.iutinfo.bins.Feedback;
-import fr.iutinfo.bins.User;
+import fr.iutinfo.beans.Feedback;
+import fr.iutinfo.beans.User;
 import fr.iutinfo.dao.UserDao;
 import fr.iutinfo.utils.Utils;
 
@@ -22,11 +22,11 @@ public class UserResource {
 	private static UserDao dao = App.dbi.open(UserDao.class);
 
 	public UserResource() {
-		try {
+		/*try {
 			dao.createUserTable();
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
-		}
+		}*/
 	}
 	
 	@POST

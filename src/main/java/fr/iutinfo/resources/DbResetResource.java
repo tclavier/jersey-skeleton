@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
-import fr.iutinfo.bins.Level;
+import fr.iutinfo.beans.Level;
 import fr.iutinfo.dao.FriendsRelationsDao;
 import fr.iutinfo.dao.LevelDao;
 import fr.iutinfo.dao.UserDao;

@@ -9,7 +9,7 @@ import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
 import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
-import fr.iutinfo.bins.Level;
+import fr.iutinfo.beans.Level;
 
 public interface LevelDao {
 

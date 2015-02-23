@@ -9,7 +9,7 @@ import javax.ws.rs.core.Application;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
-import fr.iutinfo.bins.User;
+import fr.iutinfo.beans.User;
 
 public class RestClientTest extends JerseyTest {
 	@Override

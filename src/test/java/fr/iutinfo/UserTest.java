@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response.Status;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
-import fr.iutinfo.bins.User;
+import fr.iutinfo.beans.User;
 
 
 public class UserTest extends JerseyTest {

@@ -10,7 +10,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
-import fr.iutinfo.bins.Level;
+import fr.iutinfo.beans.Level;
 import fr.iutinfo.dao.LevelDao;
 
 
@@ -21,11 +21,11 @@ public class LevelResource {
 
 	
 	public LevelResource() {
-		try {
+		/*try {
 			levelDao.createLevelsTable();
 		} catch (Exception e) {
 			System.out.println("Table levels déjà là !");
-		}
+		}*/
 	}
 	
 	@GET

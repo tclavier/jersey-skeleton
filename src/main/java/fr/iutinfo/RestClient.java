@@ -7,7 +7,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
-import fr.iutinfo.bins.User;
+import fr.iutinfo.beans.User;
 
 public class RestClient {
 	

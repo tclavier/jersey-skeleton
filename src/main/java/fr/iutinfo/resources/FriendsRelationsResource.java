@@ -10,7 +10,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
-import fr.iutinfo.bins.User;
+import fr.iutinfo.beans.User;
 import fr.iutinfo.dao.FriendsRelationsDao;
 
 
@@ -21,11 +21,11 @@ public class FriendsRelationsResource {
 	private static FriendsRelationsDao dao = App.dbi.open(FriendsRelationsDao.class);
 	
 	public FriendsRelationsResource() {
-		try {
+		/*try {
 			dao.createFriendsRelationsTable();
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
-		}
+		}*/
 	}
 	
 	@GET

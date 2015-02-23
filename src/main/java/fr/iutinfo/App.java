@@ -31,5 +31,9 @@ public class App extends Application {
 		SQLiteDataSource ds = new SQLiteDataSource();
 		ds.setUrl("jdbc:sqlite:"+System.getProperty("java.io.tmpdir")+System.getProperty("file.separator")+"data.db");
 		dbi = new DBI(ds);
+		
+		// Crée la DB à vide au début
+		DbResetResource dbRessource = new DbResetResource();
+		dbRessource.resetDatabase();
     }
 }
