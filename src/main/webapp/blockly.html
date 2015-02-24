@@ -6,7 +6,9 @@
     <script src="libs/blocks_compressed.js"></script>
     <script src="libs/blockly_msg.js"></script>
 	<script src="scripts/custom_blocks.js"></script>
-	
+    <script src="libs/javascript_compressed.js"></script>
+
+
     <style>
       html, body {
         background-color: #fff;
@@ -23,8 +25,8 @@
     <script>
       function init() {
 		loadCustomBlocks(Blockly);
-        Blockly.inject(document.body, {toolbox: document.getElementById('toolbox')});
-        window.parent.blocklyLoaded(Blockly);
+        Blockly.inject(document.body, {scrollbars: false, toolbox: document.getElementById('toolbox')});
+        blocklyLoaded(Blockly);
       }
     </script>
   </head>
