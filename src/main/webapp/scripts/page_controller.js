@@ -1,12 +1,12 @@
 $(document).ready(function() {
 
 	// On affiche la page de login par défaut
-	var activeMenu = $("#login_bar");
-	var activeElement = $("#login_pane");
-	activeMenu.addClass("active_bar")
+	var activeMenu = $("#levels_bar");
+	var activeElement = $("#levels_pane");
+	activeMenu.addClass("active")
 	activeElement.show();
 
-
+	
 
 	// affichage de la page lors d'un clique
 	$(".menu_bar_element").click(function() {
@@ -15,8 +15,8 @@ $(document).ready(function() {
 		activeElement.hide();
 		newElement.show();
 
-		activeMenu.removeClass("active_bar");
-		$(this).addClass("active_bar");
+		activeMenu.removeClass("active");
+		$(this).addClass("active");
 
 		activeElement = newElement;
 		activeMenu = $(this);
@@ -53,5 +53,6 @@ $(document).ready(function() {
 		var passwd = $("#password_login").val();
 		loginUser(name, passwd);
 	});
+	
 
 });

@@ -14,6 +14,7 @@ function registerUser(name, password, email) {
 		}),
 		success : function(data, textStatus, jqXHR) {
 			console.log(data);
+			openPage($("#login_bar"));
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('postUser error: ' + textStatus);
