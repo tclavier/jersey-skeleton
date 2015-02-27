@@ -12,7 +12,7 @@ function loadCustomBlocks(Blockly) {
 	};
 
 	Blockly.JavaScript['move_forward'] = function(block) {
-	  var code = 'player.moveForward();';
+	  var code = 'player.moveForward();\n';
 	  return code;
 	};
 	
@@ -29,7 +29,7 @@ function loadCustomBlocks(Blockly) {
 	};
 
     Blockly.JavaScript['move_backward'] = function(block) {
-	  var code = 'player.moveBackward();';
+	  var code = 'player.moveBackward();\n';
 	  return code;
 	};
 
@@ -75,7 +75,10 @@ function loadCustomBlocks(Blockly) {
 function blocklyLoaded(blockly) {
     window.Blockly = blockly;
     window.parent.document.getElementById('execute').onclick = function () {
-        alert(blockly.JavaScript.workspaceToCode());
-
+        if (window.parent.execute != null) {
+            window.parent.execute(blockly.JavaScript.workspaceToCode());
+        } else {
+            alert("Not loaded yet :(");
+        }
     };
 }

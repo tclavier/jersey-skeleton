@@ -9,7 +9,8 @@ requirejs.config({
         "grid": "scripts/grid",
 		"player": "scripts/player",
 		"graphical_player": "scripts/graphical_player",
-		"game": "scripts/game"
+		"game": "scripts/game",
+        "interpreter": "scripts/interpreter"
     },
 
     shim: {
@@ -30,9 +31,9 @@ requirejs.config({
 var game;
 var speed = 10;
 
-require(["jquery", "libs/bootstrap", "game", "grid", "player", "graphical_player"], function ($) {
+require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "graphical_player"], function ($) {
 	var Game = require("game");
-	
+
 	game = new Game(100, 100, [[0, 0],[1, 0]]);
 
 	var time;
@@ -48,3 +49,9 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "graphical_player
 	mainLoop();
     console.log("main loaded");
 });
+
+// Fonction pour executer le code de l'algo
+function execute(code) {
+
+    alert(code);
+}
