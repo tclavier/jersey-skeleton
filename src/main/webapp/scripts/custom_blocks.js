@@ -47,7 +47,7 @@ function loadCustomBlocks(Blockly) {
 	};
 
     Blockly.JavaScript['turn_left'] = function(block) {
-	  var code = 'player.turnLeft();';
+	  var code = 'player.turnLeft();\n';
 	  return code;
 	};
 
@@ -66,7 +66,7 @@ function loadCustomBlocks(Blockly) {
 
 
     Blockly.JavaScript['turn_right'] = function(block) {
-	  var code = 'player.turnRight();';
+	  var code = 'player.turnRight();\n';
 	  return code;
 	};
 
