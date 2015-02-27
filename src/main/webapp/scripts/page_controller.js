@@ -1,13 +1,28 @@
 $(document).ready(function() {
 
-	// On affiche la page de login par défaut
-	var activeMenu = $("#levels_bar");
-	var activeElement = $("#levels_pane");
+	// On affiche la page d'accueil par défaut
+	var activeMenu = $("#home_bar");
+	var activeElement = $("#home_pane");
 	activeMenu.addClass("active")
 	activeElement.show();
 
 	
 
+	// affichage de la page lors d'un clique
+	$(".navbar-brand").click(function() {
+		// récupérer l'élément panel attaché à l'élément du menu
+		
+		var newElement = $("#" + $(this).attr("for"));
+		activeElement.hide();
+		newElement.show();
+
+		activeMenu.removeClass("active");
+		$(this).addClass("active");
+
+		activeElement = newElement;
+		activeMenu = $(this);
+	});
+	
 	// affichage de la page lors d'un clique
 	$(".menu_bar_element").click(function() {
 		// récupérer l'élément panel attaché à l'élément du menu
@@ -20,6 +35,19 @@ $(document).ready(function() {
 
 		activeElement = newElement;
 		activeMenu = $(this);
+	});
+	
+	$("#reg_button").click(function() {
+		var newElement = $("#" + $(this).attr("for"));
+		activeElement.hide();
+		newElement.show();
+
+		activeMenu.removeClass("active");
+		//$(this).addClass("active");
+
+		activeElement = newElement;
+		activeMenu = $(this);
+	
 	});
 
 
