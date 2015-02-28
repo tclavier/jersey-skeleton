@@ -8,6 +8,21 @@ define(["jquery"],  function(require) {
 
         var tilesColors = ["#EEEEEE", "#222222", "#EEEEEE", "#FFFF00", "#55FF55"];
 
+        // Genere la grille (place le joueur...)
+        this.generate = function() {
+            for (var xx = 0; xx < tiles.length; ++xx) {
+                for (var yy = 0; yy < tiles[0].length; ++yy) {
+                    var tileId = tiles[yy][xx];
+
+                    if (tileId == 2) {
+                        this.game.createPlayer(xx, yy);
+                    }
+                }
+            }
+
+        }
+
+        // Dessine les carreaux de la grille
         this.render = function render(context) {
             for (var xx = 0; xx < tiles.length; ++xx) {
                 for (var yy = 0; yy < tiles[0].length; ++yy) {

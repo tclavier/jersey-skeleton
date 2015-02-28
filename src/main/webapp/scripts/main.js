@@ -34,7 +34,7 @@ var speed = 10;
 require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "graphical_player"], function ($) {
 	var Game = require("game");
 
-	game = new Game(100, 100, [[0, 0],[1, 0]]);
+	game = new Game(100, 100, [[2, 0],[1, 0]]);
 
 	var time;
 	function mainLoop() {
