@@ -24,6 +24,7 @@
     </style>
     <script>
       function init() {
+	    window.parent.Blockly = Blockly;
 		loadCustomBlocks(Blockly);
         Blockly.inject(document.body, {scrollbars: false, toolbox: document.getElementById('toolbox')});
         blocklyLoaded(Blockly);

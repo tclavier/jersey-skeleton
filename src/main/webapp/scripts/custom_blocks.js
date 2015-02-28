@@ -1,5 +1,8 @@
 function loadCustomBlocks(Blockly) {
-	Blockly.Blocks['move_forward'] = {
+	
+    Blockly.JavaScript.STATEMENT_PREFIX = "game.interpreter.executedBlock = %1;\n";
+    
+    Blockly.Blocks['move_forward'] = {
 	  init: function() {
 		this.setHelpUrl('http://www.example.com/');
 		this.setColour(65);
