@@ -52,6 +52,13 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "g
 
 // Fonction pour executer le code de l'algo
 function execute(code) {
-
-    alert(code);
+    // On regenere la grille pour la remettre a son etat initial
+    game.grid.generate()
+    // On prepare l'interpreteur
+    game.interpreter.setup();
+    // On execute les actions sur le joueur invisible permettant juste de remplir l'interpreteur
+    var player = game.player;
+    // On execute le code
+    eval(code);
+    // Si tous c'est bien passé, l'interpreteur devrait etre rempli de commande qui vont maintenant pouvoir etre affiché graphiquement
 }
