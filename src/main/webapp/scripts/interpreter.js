@@ -1,5 +1,8 @@
 define(["jquery"],  function(require) {
     return function Interpreter(game) {
+        this.stack = [];
+        this.exited = false;
+
 
         this.setup = function() {
             this.stack = [];
@@ -15,10 +18,13 @@ define(["jquery"],  function(require) {
             this.exited = true;
         }
 
+        this.hasSteps = function() {
+            return this.stack.length > 0;
+        }
+
         this.nextStep = function() {
             if (this.stack.length > 0) {
-                eval(this.stack.shift());
-                return true;
+                return this.stack.shift();
             }
 
             return false;

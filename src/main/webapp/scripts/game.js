@@ -25,6 +25,13 @@ define(["jquery"],  function($) {
 		}
 
 		this.update = function update(delta) {
+            // Si le joueur n'est pas dans une animation, on execute la commande suivante
+            if (!this.gplayer.isDoingSomething() && this.interpreter.hasSteps()) {
+                // On précise que c'est le joueur graphique
+                var player = this.gplayer;
+                eval(this.interpreter.nextStep());
+            }
+
 			this.grid.update(delta);
 			if (this.gplayer) this.gplayer.update(delta);
 			this.render();
