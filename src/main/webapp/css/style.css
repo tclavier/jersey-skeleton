@@ -1,3 +1,25 @@
+.popover {
+    background-color: #f2dede;
+    color: #a94442;
+    border-color: #ebccd1;
+}
+
+.popover-title{
+    background-color: #f2dede;
+    color: #a94442;
+    border-color: #ebccd1;
+    font-weight: bold;
+}
+
+.popover.bottom .arrow:after {
+    border-bottom-color: #f2dede;
+}
+
+
+#info_profil_navbar {
+ 	display: none;	
+}
+
 .main_panel {
 	display: none;
 }
@@ -5,4 +27,10 @@
 #register_pane td {
 	padding-right: 20px;
 	padding-top: 5px;
+}
+
+.glyphicon {
+	font-size: 1.7em;
+	color: white;
+	margin-right: 20px;
 }

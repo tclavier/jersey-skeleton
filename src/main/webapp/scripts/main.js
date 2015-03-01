@@ -10,7 +10,10 @@ requirejs.config({
 		"player": "scripts/player",
 		"graphical_player": "scripts/graphical_player",
 		"game": "scripts/game",
-        "interpreter": "scripts/interpreter"
+        "interpreter": "scripts/interpreter",
+        "menu_bar_controller": "scripts/page_controllers/menu_bar_controller",
+        "users_query": "scripts/queries/users_query",
+        "levels_query": "scripts/queries/levels_query"
     },
 
     shim: {
@@ -24,9 +27,16 @@ requirejs.config({
 		
 		"blockly_msg": {
 			deps: ["blocks", "blockly"]
+		},
+		
+		"menu_bar_controller": {
+			deps: ["users_query", "levels_query"]
 		}
     }
 });
+
+require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "graphical_player"], function ($) {});
+
 
 var game;
 var speed = 10;

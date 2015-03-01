@@ -1,6 +1,7 @@
 package fr.iutinfo.resources;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,6 +15,7 @@ import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
 import fr.iutinfo.beans.User;
 import fr.iutinfo.dao.UserDao;
+import fr.iutinfo.utils.Session;
 import fr.iutinfo.utils.Utils;
 
 @Path("/users")
@@ -101,12 +103,28 @@ public class UserResource {
 		try {
 			User u = dao.userIsCorrect(user.getName(), user.getPassword());
 			if(u == null) 
-				return new Feedback(false, "user doesn't exist");
+				return new Feedback(false, "Mauvais pseudo/mot de passe !");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Feedback(false, "An error occurs during query to database");
 		}
-		return new Feedback(true, "Login OK");
+		
+		if(Session.isLogged(user))
+			return new Feedback(false, "Vous êtes déjà enregistré !");
+		// User logged
+		// générate uniq id
+		UUID id = UUID.randomUUID();
+		// add to logged users
+		Session.addUser(id.toString(), user);
+		
+		return new Feedback(true, id.toString());
+	}
+	
+	@GET
+	@Path("/logout/{cookie}")
+	public Feedback logout(@PathParam("cookie") String cookie) {
+		Session.removeUser(cookie);
+		return new Feedback(true, "Vous avez bien été déconnecté");
 	}
 
 

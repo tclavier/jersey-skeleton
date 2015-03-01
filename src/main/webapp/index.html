@@ -19,8 +19,6 @@
 <!-- Code local -->
 <script data-main="scripts/main" src="libs/require.js"></script>
 <script src="libs/jquery.js"></script>
-<script src="scripts/levels_query.js"></script>
-<script src="scripts/users_query.js"></script>
 <script src="scripts/page_controller.js"></script>
 
 </head>
@@ -37,33 +35,45 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" id="home_bar" for="home_pane" href="#">Ludicode</a>
+				<a class="navbar-brand menu_bar_element" id="home_bar"
+					for="home_pane" href="#">Ludicode</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 
 				<ul class="nav navbar-nav">
-		
-					<li class="menu_bar_element" id="levels_bar"
-						for="levels_pane"><a href="#">Jouer</a></li>
+
+					<li class="menu_bar_element" id="levels_bar" for="levels_pane"><a
+						href="#">Jouer</a></li>
 					<li class="menu_bar_element" id="editor_bar" for="editor_pane"><a
 						href="#">Editeur</a></li>
 					<li class="menu_bar_element" id="leaderboard_bar"
 						for="leaderboard_pane"><a href="#">Classement</a></li>
-					
+
 				</ul>
 
 				<div class="navbar-form navbar-right">
-					<div class="form-group">
-						<input id="name_login" type="text" placeholder="Pseudo" class="form-control">
+					<div id="login_navbar">
+						<div class="form-group">
+							<input id="name_login" type="text" placeholder="Pseudo"
+								class="form-control" /> <input id="password_login"
+								type="password" placeholder="Mot de passe" class="form-control" />
+							<button id="button_login" type="submit" class="btn btn-success"
+							data-toggle="popover">Envoyer</button>
+						</div>
+						<div class="form-group">
+							<button id="reg_button" type="button" class="btn btn-info"
+								for="register_pane">S'enregistrer</button>
+						</div>
 					</div>
-					<div class="form-group">
-						<input id="password_login" type="password" placeholder="Mot de passe"
-							class="form-control">
+					<div id="info_profil_navbar">
+						<a href="#"><span class="glyphicon glyphicon-user"
+							aria-hidden="true"></span></a> <a href="#"><span
+							class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> <a
+							href="#"><span class="glyphicon glyphicon-exclamation-sign"
+							aria-hidden="true"></span></a> <a id="logout_icon" href="#"><span
+							class="glyphicon glyphicon-off" aria-hidden="true"></span></a>
 					</div>
-					<button id="button_login" type="submit" class="btn btn-success">Envoyer</button>
-					<button id="reg_button" type="button" class="btn btn-info" for="register_pane">S'enregistrer</button>
-
-				</div 	>
+				</div>
 			</div>
 			<!--/.navbar-collapse -->
 		</div>
@@ -72,76 +82,78 @@
 
 	<div class="container main_panel" id="home_pane">
 		<div class="row">
-		<!-- http://www.dailymotion.com/embed/video/x2af6o0?autoplay=1 -->
-		<h1> Bienvenue sur Ludicode ! </h1> <br>
-		
-		
-		
-		<embed width="420" height="315" id="video" src="http://www.dailymotion.com/embed/video/x2af6o0" frameborder="0" allowfullscreen="true" allowscriptaccess="always"></embed>		</div>
+			<!-- http://www.dailymotion.com/embed/video/x2af6o0?autoplay=1 -->
+			<h1>Bienvenue sur Ludicode !</h1>
+			<br>
+
+
+
+			<embed width="420" height="315" id="video"
+				src="http://www.dailymotion.com/embed/video/x2af6o0" frameborder="0"
+				allowfullscreen="true" allowscriptaccess="always"></embed>
+		</div>
 	</div>
 	<!-- container home page -->
-	
+
 
 	<div class="container main_panel" id="register_pane">
 		<div class="row">
 			<table>
 				<tr>
-					<td> <label for="name_register">Pseudo : </label> </td>
-					<td> <input type="text" name="name_register" id="name_register" placeholder="Votre pseudo" /> </td>
+					<td><label for="name_register">Pseudo : </label></td>
+					<td><input type="text" name="name_register" id="name_register"
+						placeholder="Votre pseudo" /></td>
 				</tr>
 				<tr>
-					<td> <label for="email_register">Email : </label> </td>
-					<td> <input type="text" name="email_register" id="email_register" placeholder="Votre email"/> </td>
+					<td><label for="email_register">Email : </label></td>
+					<td><input type="text" name="email_register"
+						id="email_register" placeholder="Votre email" /></td>
 				</tr>
 				<tr>
-					<td> <label for="password_register">Mot de passe : </label> </td>
-					<td> <input type="password" name="password_register" id="password_register" placeholder="Votre mot de passe" /> </td>
+					<td><label for="password_register">Mot de passe : </label></td>
+					<td><input type="password" name="password_register"
+						id="password_register" placeholder="Votre mot de passe" /></td>
 				</tr>
-			</table> <br>
-			<button id="button_register" type="button" class="btn btn-default" >M'enregistrer</button>
+			</table>
+			<br>
+			<button id="button_register" type="button" class="btn btn-default">M'enregistrer</button>
 		</div>
 	</div>
 	<!-- /container register -->
-	
+
 	<div class="container main_panel" id="profile_pane">
-		<div class="row">
-			Profil du joueur
-		</div>
+		<div class="row">Profil du joueur</div>
 	</div>
 	<!-- /container profil -->
-	
+
 	<div class="container main_panel" id="levels_pane">
 		<div class="row">
-			Choix du niveau : 
-			<a class="level_preview" id="1" href="#">Niveau 1</a>
+			Choix du niveau : <a class="level_preview" id="1" href="#">Niveau
+				1</a>
 		</div>
 	</div>
 	<!-- /container levels -->
-	
-	<div class="container main_panel"  id="game_pane">
+
+	<div class="container main_panel" id="game_pane">
 		<div class="row">
 			<canvas id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
 			<iframe src="blockly.html" width="90%" height="100%"></iframe>
-	        <button id="execute" type="button">Executer</button>
+			<button id="execute" type="button">Executer</button>
 		</div>
 	</div>
 	<!-- /container game -->
-	
+
 	<div class="container main_panel" id="editor_pane">
-		<div class="row">
-			Editeur de niveau
-		</div>
+		<div class="row">Editeur de niveau</div>
 	</div>
 	<!-- /container editor -->
-	
+
 	<div class="container main_panel" id="leaderboard_pane">
-		<div class="row">
-			Leaderboard
-		</div>
+		<div class="row">Leaderboard</div>
 	</div>
 	<!-- /container Leaderboard -->
-	
-	
+
+
 	<footer class="container">
 		<div class="row">
 			<hr />

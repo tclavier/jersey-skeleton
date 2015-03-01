@@ -33,10 +33,6 @@ public class User {
 		this.name = name;
 	}
 
-	public boolean equals(Object u) {
-		return name.equals(((User) u).name);
-	}
-
 	public String toString() {
 		return id + ": " + name;
 	}
@@ -55,6 +51,11 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	@Override
+	public boolean equals(Object other){
+		return this.id == ((User)other).id;
 	}
 
 }
