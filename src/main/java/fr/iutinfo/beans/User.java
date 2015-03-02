@@ -3,9 +3,11 @@ package fr.iutinfo.beans;
 public class User {
 	
 	private int id = 0;
+	private long facebookId = 0;
 	private String name;
 	private String password;
 	private String email;
+	private String cookie;
 	
 	
 	public User(int id, String name) {
@@ -56,6 +58,22 @@ public class User {
 	@Override
 	public boolean equals(Object other){
 		return this.id == ((User)other).id;
+	}
+
+	public long getFacebookId() {
+		return facebookId;
+	}
+
+	public void setFacebookId(long facebookId) {
+		this.facebookId = facebookId;
+	}
+
+	public String getCookie() {
+		return cookie;
+	}
+
+	public void setCookie(String cookie) {
+		this.cookie = cookie;
 	}
 
 }

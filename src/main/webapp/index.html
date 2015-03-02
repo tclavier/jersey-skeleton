@@ -24,7 +24,7 @@
 </head>
 
 <body>
-
+<div id="fb-root"></div>
 	<nav class="navbar navbar-inverse">
 		<div class="container">
 			<div class="navbar-header">
@@ -54,24 +54,20 @@
 				<div class="navbar-form navbar-right">
 					<div id="login_navbar">
 						<div class="form-group">
-							<input id="name_login" type="text" placeholder="Pseudo"
-								class="form-control" /> <input id="password_login"
-								type="password" placeholder="Mot de passe" class="form-control" />
-							<button id="button_login" type="submit" class="btn btn-success"
-							data-toggle="popover">Envoyer</button>
+							<button id="login_button" type="button"
+								class="menu_bar_element btn btn-success" for="login_pane">Me
+								connecter</button>
 						</div>
 						<div class="form-group">
-							<button id="reg_button" type="button" class="btn btn-info"
-								for="register_pane">S'enregistrer</button>
+							<button id="reg_button" type="button"
+								class="menu_bar_element btn btn-info" for="register_pane">M'enregistrer</button>
 						</div>
 					</div>
 					<div id="info_profil_navbar">
-						<a href="#"><span class="glyphicon glyphicon-user"
-							aria-hidden="true"></span></a> <a href="#"><span
-							class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> <a
-							href="#"><span class="glyphicon glyphicon-exclamation-sign"
-							aria-hidden="true"></span></a> <a id="logout_icon" href="#"><span
-							class="glyphicon glyphicon-off" aria-hidden="true"></span></a>
+						<a id="user_icon" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+						<a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
+						<a href="#"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></a>
+						<a id="logout_icon" href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>
 					</div>
 				</div>
 			</div>
@@ -83,9 +79,11 @@
 	<div class="container main_panel" id="home_pane">
 		<div class="row">
 			<!-- http://www.dailymotion.com/embed/video/x2af6o0?autoplay=1 -->
+			<div class="fb-like" data-send="true" data-width="450"
+				data-show-faces="true"></div>
 			<h1>Bienvenue sur Ludicode !</h1>
 			<br>
-
+			
 
 
 			<embed width="420" height="315" id="video"
@@ -95,9 +93,30 @@
 	</div>
 	<!-- container home page -->
 
+	<div class="container main_panel" id="login_pane">
+		<div class="row">
+			<div class="form-group">
+				<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-auto-logout-link="false"></div>
+			</div>
+			
+			<div class="form-group">
+				<input id="name_login" type="text" placeholder="Pseudo"
+					class="form-control" /> <input id="password_login" type="password"
+					placeholder="Mot de passe" class="form-control" />
+				<button id="login_send" type="submit" class="btn btn-success"
+					data-toggle="popover">Envoyer</button>
+			</div>
+		</div>
+	</div>
+	<!-- container login -->
+
 
 	<div class="container main_panel" id="register_pane">
 		<div class="row">
+			<div class="form-group">
+				<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="checkLoginState();"></div>
+			</div>
+		
 			<table>
 				<tr>
 					<td><label for="name_register">Pseudo : </label></td>

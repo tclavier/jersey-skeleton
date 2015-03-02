@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
@@ -99,9 +101,9 @@ public class UserResource {
 		if(hashedPassword == null)
 			return new Feedback(false, "An error occurs during hashing");
 		user.setPassword(hashedPassword);
-
+		User u = null;
 		try {
-			User u = dao.userIsCorrect(user.getName(), user.getPassword());
+			u = dao.userIsCorrect(user.getName(), user.getPassword());
 			if(u == null) 
 				return new Feedback(false, "Mauvais pseudo/mot de passe !");
 		} catch (Exception e) {
@@ -110,14 +112,32 @@ public class UserResource {
 		}
 		
 		if(Session.isLogged(user))
-			return new Feedback(false, "Vous êtes déjà enregistré !");
+			return new Feedback(false, "Vous êtes déjà connecté !");
 		// User logged
 		// générate uniq id
 		UUID id = UUID.randomUUID();
 		// add to logged users
-		Session.addUser(id.toString(), user);
+		Session.addUser(id.toString(), u);
 		
 		return new Feedback(true, id.toString());
+	}
+	
+	@POST
+	@Path("/linkFb")
+	public Feedback linkFacebookAccount(User user) {
+		
+		int userId = Session.getUser(user.getCookie()).getId();
+		dao.linkAccount(user.getFacebookId(), userId);
+		return new Feedback(true, "Facebook account linked");
+	}
+	
+	
+	@GET
+	@Path("/isLogged/{cookie}")
+	public Feedback isLogged(@PathParam("cookie") String cookie) {
+		if(Session.isLogged(cookie))
+			return new Feedback(true, "connected");
+		return new Feedback(false, "not connected");
 	}
 	
 	@GET
