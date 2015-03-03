@@ -33,7 +33,7 @@ public class App extends Application {
 		dbi = new DBI(ds);
 		
 		// Crée la DB à vide au début
-		DbResetResource dbRessource = new DbResetResource();
-		dbRessource.resetDatabase();
+		/*DbResetResource dbRessource = new DbResetResource();
+		dbRessource.resetDatabase();*/
     }
 }

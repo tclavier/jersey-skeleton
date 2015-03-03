@@ -1,23 +1,22 @@
 .popover {
-    background-color: #f2dede;
-    color: #a94442;
-    border-color: #ebccd1;
+	background-color: #f2dede;
+	color: #a94442;
+	border-color: #ebccd1;
 }
 
-.popover-title{
-    background-color: #f2dede;
-    color: #a94442;
-    border-color: #ebccd1;
-    font-weight: bold;
+.popover-title {
+	background-color: #f2dede;
+	color: #a94442;
+	border-color: #ebccd1;
+	font-weight: bold;
 }
 
 .popover.bottom .arrow:after {
-    border-bottom-color: #f2dede;
+	border-bottom-color: #f2dede;
 }
 
-
 #info_profil_navbar {
- 	display: none;	
+	display: none;
 }
 
 .main_panel {
@@ -33,4 +32,23 @@
 	font-size: 1.7em;
 	color: white;
 	margin-right: 20px;
+}
+
+#grid-container {
+	height: 60vh;
+}
+
+#control-container {
+	height: 60vh;
+}
+
+#control-container iframe {
+	width: 100%;
+	height: 100%;
+}
+
+.level-list .panel-body  {
+	position: relative;
+	height: 50vh;
+	overflow: auto
 }

@@ -262,5 +262,14 @@ $(document).ready(function() {
 	$("#logout_icon").click(function() {
 		logoutUser();
 	});
+	
+	
+	
+	/* PAGE DES OPTIONS */
+	
+	// Activation de facebook
+	$("#facebook_checkbox").change(function() {
+		enableFacebook($(this).prop("checked"));
+	})
 
 });
