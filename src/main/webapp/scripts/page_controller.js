@@ -122,7 +122,23 @@ $(document).ready(function() {
 			}
 		});
 	}
-
+	
+	/*
+	 * Fonction permettant d'afficher les informations de l'utilisateur
+	 */
+	function showProfile(userCookie) {
+		$.ajax({
+			type : 'GET',
+			dataType : 'application/json', 
+			url : 'v1/users/'+userCookie,
+			
+			succes : function(json, statut) {
+				console.log("DATA : "+json);
+				var page = $("#profil_pane");
+				page.append(json+"");
+			}
+		})
+	
 	function logoutUser() {
 		if(document.cookie == "")
 			setConnected(false);
@@ -263,6 +279,12 @@ $(document).ready(function() {
 		logoutUser();
 	});
 	
+	
+	// Affichage du profil de l'utilisateur
+	$("#user_icon").click(function() {
+		var userCookie = document.cookie;
+		showProfile(userCookie);
+	});
 	
 	
 	/* PAGE DES OPTIONS */
