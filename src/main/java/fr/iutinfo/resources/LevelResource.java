@@ -31,7 +31,7 @@ public class LevelResource {
 		if(level == null)
 			throw new WebApplicationException(404);
 		
-		level.setInstructionsList(instructionsDao.getAllId(level.getStructuredInstructions()));
+		level.setInstructionsList(instructionsDao.getAllId(level.structuredInstructions()));
 		
 		return level;
 	}

@@ -52,7 +52,7 @@ public class DbResetResource {
 		l.setContent("0 0 0 0,0 0 0 0,0 0 0 0,0 0 0 0");
 		l.setInstructions("1,2");
 		l.setMaxInstructions(1);
-		levelDao.insert(l.getName(), l.getContent(), l.getInstructions(), l.getMaxInstructions(), l.getAuthor());
+		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthor());
 		
 		
 		Instruction i = new Instruction();

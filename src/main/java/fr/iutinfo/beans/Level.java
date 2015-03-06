@@ -24,7 +24,7 @@ public class Level implements Serializable {
 		instructionsList = new ArrayList<Instruction>();
 	}
 
-	public String getContent() {
+	public String content() {
 		return content;
 	}
 
@@ -96,7 +96,7 @@ public class Level implements Serializable {
 		this.author = author;
 	}
 
-	public String getInstructions() {
+	public String instructions() {
 		return instructions;
 	}
 
@@ -126,7 +126,7 @@ public class Level implements Serializable {
 		return instructions;
 	}
 	
-	public List<Integer> getStructuredInstructions() {
+	public List<Integer> structuredInstructions() {
 		return parseInstructions(instructions);
 	}
 
