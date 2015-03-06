@@ -16,10 +16,12 @@ $(document).ready(function() {
 			$("#login_navbar").hide();
 			$("#info_profil_navbar").show();
 
-			onClickMenu("#home_bar");
+			//window.location.replace("/");
 		} else {
 			$("#info_profil_navbar").hide();
 			$("#login_navbar").show();
+			
+			//window.location.replace("/");
 		}
 	}
 
