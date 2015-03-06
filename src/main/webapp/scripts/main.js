@@ -45,15 +45,24 @@ function createBlocklyInstruction(instruction) {
 	Blockly.Blocks[instruction.name] = {
 	  init: function() {
 		this.setColour(instruction.color);
-		this.appendDummyInput()
-			.appendField(instruction.name);
+		// Si l'instruction est un bloque
+		if (instruction.block == 1) {
+			this.appendStatementInput("block").appendField(instruction.name);
+		} else {
+			this.appendDummyInput().appendField(instruction.name);
+		}
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
 	  }
 	};
 
 	Blockly.JavaScript[instruction.name] = function(block) {
-	  return instruction.code;
+		// Si c'est un bloque, on rajoute les {}
+		if (instruction.block == 1) {
+			// TODO: Le code pour compter le nombre de répétition du bloque et ainsi eviter les boucles infinies
+			return instruction.code + " {\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+		}
+		return instruction.code + "\n";
 	};
 }
 
