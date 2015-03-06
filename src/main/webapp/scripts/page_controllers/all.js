@@ -11,7 +11,8 @@ $(document).ready(function() {
 	 */
 	function setConnected(connected) {
 		isConnected = connected;
-
+		sessionStorage.setItem("isConnected", connected);
+		
 		if(isConnected) {
 			$("#login_navbar").hide();
 			$("#info_profil_navbar").show();
