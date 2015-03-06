@@ -7,12 +7,24 @@ var TILE_HEIGHT = 50;
 var gridWidth = 8;
 var gridHeight = 6;
 
+var PICKER_TILE_WIDTH = 90;
+var PICKER_TILE_HEIGHT = 90;
+var FONT_SIZE = 14;
+var PICKER_HIGHLIHT_OFFSET = 5;
+var HIGHLIGHT_COLOR = "#0000FF";
+
 var COLORS = ["#424242", "#000000", "#FF0000", "#FFFF00"];
+var NAMES = ["Vide", "Mur", "Départ", "Arrivée"];
 
 var grid = [[]];
 
-var canvas = document.getElementById("editorCanvas");
-var ctx = canvas.getContext("2d");
+var selectedType = 0;
+
+var gridCanvas = document.getElementById("editorCanvas");
+var gridCtx = gridCanvas.getContext("2d");
+
+var pickerCanvas = document.getElementById("pickerCanvas");
+var pickerCtx = pickerCanvas.getContext("2d");
 
 function initGrid(width, height) {
 	grid = [[]];
@@ -26,16 +38,17 @@ function initGrid(width, height) {
 	
 	grid[0][0] = 2;
 	grid[width - 1][height - 1] = 3;
+	resizeGridCanvas();
 }
 
 function drawGrid() {
-	ctx.strokeStyle = "#000000";
+	gridCtx.strokeStyle = "#000000";
 	
 	for (var i = 0; i < gridWidth; i++) {
 		for (var j = 0; j < gridHeight; j++) {
-			ctx.fillStyle = COLORS[grid[i][j]];
-			ctx.fillRect(i * TILE_WIDTH, j * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
-			ctx.strokeRect(i * TILE_WIDTH, j * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
+			gridCtx.fillStyle = COLORS[grid[i][j]];
+			gridCtx.fillRect(i * TILE_WIDTH, j * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
+			gridCtx.strokeRect(i * TILE_WIDTH, j * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
 		}
 	}
 }
@@ -44,26 +57,73 @@ function setTileType(x, y, type) {
 	if (x < 0 || x >= gridWidth || y < 0 || y >= gridHeight) 
 		return;
 	
-	grid[x][y] = (grid[x][y] + 1) % 4;
+	grid[x][y] = type;
 }
 
-canvas.addEventListener("mousedown", doClick, false);
-
-function doClick(event) {
-	// position sur le canvas
-	var canvasX = event.pageX - canvas.offsetLeft;
-	var canvasY = event.pageY - canvas.offsetTop;
+function doGridClick(event) {
+	// position sur le gridCanvas
+	var canvasX = event.pageX - gridCanvas.offsetLeft;
+	var canvasY = event.pageY - gridCanvas.offsetTop;
 	// position dans la grille
 	var gridX = Math.floor(canvasX / TILE_WIDTH);
 	var gridY = Math.floor(canvasY / TILE_HEIGHT);
-	
-	console.log(canvasY / TILE_HEIGHT);
-	
-	console.log(canvasX + ", " + canvasY + " : " + gridX + ", " + gridY);
-	
-	setTileType(gridX, gridY, 42);
+		
+	setTileType(gridX, gridY, selectedType);
 	drawGrid();
 }
 
+
+function doPickerClick(event) {
+	// position sur le canvas
+	var canvasY = event.pageY - pickerCanvas.offsetTop;
+	// position dans la grille
+	var gridY = Math.floor(canvasY / PICKER_TILE_HEIGHT);
+			
+	highLightSelectedTile(selectedType, "#FFFFFF");
+	selectedType = gridY;
+	highLightSelectedTile(selectedType, HIGHLIGHT_COLOR);
+}
+
+function initPicker() {
+	pickerCanvas.addEventListener("mousedown", doPickerClick, false);
+	
+	pickerCanvas.width = PICKER_TILE_WIDTH;
+	pickerCanvas.height = PICKER_TILE_HEIGHT * COLORS.length;
+	pickerCtx.strokeStyle = "#000000";
+	pickerCtx.font = FONT_SIZE + "px Arial";
+	pickerCtx.textAlign = "center";
+	
+	for (var i = 0; i < COLORS.length; i++) {
+		var rectX = (PICKER_TILE_WIDTH - TILE_WIDTH) / 2;
+		var verticalMargin = (PICKER_TILE_HEIGHT - TILE_HEIGHT - FONT_SIZE) / 3;
+		var rectY = i * PICKER_TILE_HEIGHT + verticalMargin;
+		var textY = rectY + verticalMargin + TILE_HEIGHT + FONT_SIZE;
+		
+		pickerCtx.fillStyle = COLORS[i];
+		pickerCtx.fillRect(rectX, rectY, TILE_WIDTH, TILE_HEIGHT);
+		pickerCtx.strokeRect(rectX, rectY, TILE_WIDTH, TILE_HEIGHT);
+		
+		pickerCtx.fillStyle ="#000000";
+		pickerCtx.fillText(NAMES[i], PICKER_TILE_WIDTH / 2, textY);
+	}
+}
+
+function resizeGridCanvas() {
+	gridCanvas.width = TILE_WIDTH * gridWidth;
+	gridCanvas.height = TILE_HEIGHT * gridHeight;
+	
+	drawGrid();
+}
+
+function highLightSelectedTile(index, color) {
+	pickerCtx.strokeStyle = color;
+	// j'ajoute 0.5 aux coord pour effacer la ligne précédente (sinon js fait un mélange des deux couleurs)
+	pickerCtx.strokeRect(PICKER_HIGHLIHT_OFFSET + 0.5, index * PICKER_TILE_HEIGHT + PICKER_HIGHLIHT_OFFSET + 0.5
+			, PICKER_TILE_WIDTH - 2 * PICKER_HIGHLIHT_OFFSET, PICKER_TILE_HEIGHT - 2 * PICKER_HIGHLIHT_OFFSET);
+}
+
+
+gridCanvas.addEventListener("mousedown", doGridClick, false);
+
 initGrid(gridWidth, gridHeight);
-drawGrid();
+initPicker();
