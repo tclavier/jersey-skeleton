@@ -213,8 +213,21 @@ function saveLevel() {
 		alert("Niveau invalide");
 }
 
+function initSpinners() {
+	var widthSpinner = document.getElementById("gridWidth");
+	var heightSpinner = document.getElementById("gridHeight");
+	
+	heightSpinner.min = MIN_GRID_HEIGHT;
+	heightSpinner.max = MAX_GRID_HEIGHT;
+	heightSpinner.value = gridHeight;
+	widthSpinner.min = MIN_GRID_WIDTH;
+	widthSpinner.max = MAX_GRID_WITH;
+	widthSpinner.value = gridWidth;
+}
+
 gridCanvas.addEventListener("mousedown", doGridClick, false);
 
 initGrid(gridWidth, gridHeight);
 initPicker();
+initSpinners();
 highLightSelectedTile(selectedType, HIGHLIGHT_COLOR);
