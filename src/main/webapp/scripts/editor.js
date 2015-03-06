@@ -4,8 +4,11 @@
 
 var TILE_WIDTH = 50;
 var TILE_HEIGHT = 50;
-var gridWidth = 8;
-var gridHeight = 6;
+
+var MIN_GRID_WIDTH = 3;
+var MAX_GRID_WITH = 10;
+var MIN_GRID_HEIGHT = 3;
+var MAX_GRID_HEIGHT = 10;
 
 var PICKER_TILE_WIDTH = 90;
 var PICKER_TILE_HEIGHT = 90;
@@ -16,9 +19,11 @@ var HIGHLIGHT_COLOR = "#0000FF";
 var COLORS = ["#424242", "#000000", "#FF0000", "#FFFF00"];
 var NAMES = ["Vide", "Mur", "Départ", "Arrivée"];
 
+var gridWidth = 8;
+var gridHeight = 6;
 var grid = [[]];
-
 var selectedType = 0;
+var modified = 0;
 
 var gridCanvas = document.getElementById("editorCanvas");
 var gridCtx = gridCanvas.getContext("2d");
@@ -38,6 +43,9 @@ function initGrid(width, height) {
 	
 	grid[0][0] = 2;
 	grid[width - 1][height - 1] = 3;
+	
+	modified = 0;
+	
 	resizeGridCanvas();
 }
 
@@ -58,6 +66,7 @@ function setTileType(x, y, type) {
 		return;
 	
 	grid[x][y] = type;
+	modified = 1;
 }
 
 function doGridClick(event) {
@@ -122,8 +131,28 @@ function highLightSelectedTile(index, color) {
 			, PICKER_TILE_WIDTH - 2 * PICKER_HIGHLIHT_OFFSET, PICKER_TILE_HEIGHT - 2 * PICKER_HIGHLIHT_OFFSET);
 }
 
+function changeSize() {
+	var width = parseInt(document.getElementById("gridWidth").value);
+	var height = parseInt(document.getElementById("gridHeight").value);
+		
+	if (isNaN(width) || isNaN(height)
+			|| width < MIN_GRID_WIDTH || width > MAX_GRID_WITH 
+			|| height < MIN_GRID_HEIGHT || height > MAX_GRID_HEIGHT) {
+		alert("Dimensions invalides\nLes dimensions doivent être comprises entre"
+				+ MIN_GRID_WIDTH + "x" + MIN_GRID_HEIGHT + " et " + MAX_GRID_WITH + "x" + MAX_GRID_HEIGHT);
+		return;
+	}
+		
+	if (modified === 1 && !confirm("Vos modifications vont être effacées, voulez vous continuer?"))
+		return;
+	
+	gridWidth = width;
+	gridHeight = height;
+	initGrid(gridWidth, gridHeight);
+}
 
 gridCanvas.addEventListener("mousedown", doGridClick, false);
 
 initGrid(gridWidth, gridHeight);
 initPicker();
+highLightSelectedTile(selectedType, HIGHLIGHT_COLOR);
