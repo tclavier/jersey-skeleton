@@ -40,8 +40,8 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.3.0.M1</version>
 				<configuration>
-   						 <scanIntervalSeconds>5</scanIntervalSeconds>
-  				</configuration>
+					<scanIntervalSeconds>5</scanIntervalSeconds>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -91,5 +91,12 @@
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>3.8.7</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>stringtemplate</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
 	</dependencies>
 </project>

@@ -10,37 +10,34 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
-import fr.iutinfo.beans.Level;
+import fr.iutinfo.beans.Instruction;
 import fr.iutinfo.dao.InstructionsDao;
-import fr.iutinfo.dao.LevelDao;
 
 
-@Path("/levels")
+@Path("/instructions")
 @Produces(MediaType.APPLICATION_JSON)
-public class LevelResource {
-	private static LevelDao levelDao = App.dbi.open(LevelDao.class);
+public class InstructionsResource {
+
 	private static InstructionsDao instructionsDao = App.dbi.open(InstructionsDao.class);
 
-	
-	public LevelResource() {}
-	
+
+	public InstructionsResource() {}
+
 	@GET
 	@Path("{id}")
-	public Level getLevel(@PathParam("id") Integer id) {
-		Level level = levelDao.findById(id);
-		if(level == null)
+	public Instruction getLevel(@PathParam("id") Integer id) {
+		Instruction instruction = instructionsDao.findById(id);
+		if(instruction == null)
 			throw new WebApplicationException(404);
 		
-		level.setInstructionsList(instructionsDao.getAllId(level.getStructuredInstructions()));
-		
-		return level;
+		return instruction;
 	}
-	
+
 	@GET
-	public List<Level> getLevels() {
-		List<Level> levels = levelDao.getAll();
-		if(levels == null)
+	public List<Instruction> getLevels() {
+		List<Instruction> instructions = instructionsDao.getAll();
+		if(instructions == null)
 			throw new WebApplicationException(404);
-		return levels;
+		return instructions;
 	}
 }

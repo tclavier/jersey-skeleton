@@ -2,6 +2,7 @@ package fr.iutinfo.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Level implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -10,13 +11,17 @@ public class Level implements Serializable {
 	private String name;
 	private String author;
 	private String content;
-	
+	private String instructions;
+	private int maxInstructions;
+	private List<Instruction> instructionsList;
+
 	public Level() {
 		this(0);
 	}
-	
+
 	public Level(int id) {
 		this.id = id;
+		instructionsList = new ArrayList<Instruction>();
 	}
 
 	public String getContent() {
@@ -26,7 +31,7 @@ public class Level implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
 	private Integer[][] parseLevel(String content) {
 		ArrayList<ArrayList<Integer>> structuredContent = new ArrayList<ArrayList<Integer>>();
 		String[] lines = content.split(",");
@@ -44,7 +49,7 @@ public class Level implements Serializable {
 		}
 		return array;
 	}
-	
+
 	private String serializeContent(Integer[][] structuredContent) {
 		String content = "";
 		for(int i = 0 ; i < structuredContent.length ; i++) {
@@ -58,7 +63,7 @@ public class Level implements Serializable {
 		}
 		return content;
 	}
-	
+
 	public void setStructuredContent(Integer[][] structuredContent) {
 		content = serializeContent(structuredContent);
 	}
@@ -66,7 +71,7 @@ public class Level implements Serializable {
 	public Integer[][] getStructuredContent() {
 		return parseLevel(content);
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -89,5 +94,60 @@ public class Level implements Serializable {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public String getInstructions() {
+		return instructions;
+	}
+
+	public void setInstructions(String instructions) {
+		this.instructions = instructions;
+	}
+
+
+	private List<Integer> parseInstructions(String instructions) {
+		ArrayList<Integer> structuredInstructions = new ArrayList<Integer>();
+		String[] cells = instructions.split(",");
+		for(String cell : cells) {
+			structuredInstructions.add(Integer.parseInt(cell));
+		}
+		
+		return structuredInstructions;
+	}
+
+	
+	private String serializeInstructions(List<Integer> structuredInstructions) {
+		String instructions = "";
+		for(int i = 0 ; i < structuredInstructions.size() ; i++) {
+			if(i != 0)
+				instructions += ",";
+			instructions += structuredInstructions.get(i);
+		}
+		return instructions;
+	}
+	
+	public List<Integer> getStructuredInstructions() {
+		return parseInstructions(instructions);
+	}
+
+	public void setStructuredInstructions(List<Integer> structuredInstructions) {
+		this.instructions = serializeInstructions(structuredInstructions);
+	}
+
+
+	public List<Instruction> getInstructionsList() {
+		return instructionsList;
+	}
+
+	public void setInstructionsList(List<Instruction> list) {
+		this.instructionsList = list;
+	}
+	
+	public int getMaxInstructions() {
+		return maxInstructions;
+	}
+
+	public void setMaxInstructions(int maxInstructions) {
+		this.maxInstructions = maxInstructions;
 	}
 }

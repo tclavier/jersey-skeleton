@@ -11,6 +11,7 @@ import org.sqlite.SQLiteDataSource;
 
 import fr.iutinfo.resources.DbResetResource;
 import fr.iutinfo.resources.FriendsRelationsResource;
+import fr.iutinfo.resources.InstructionsResource;
 import fr.iutinfo.resources.LevelResource;
 import fr.iutinfo.resources.UserResource;
 
@@ -23,6 +24,7 @@ public class App extends Application {
     	s.add(UserResource.class);
     	s.add(FriendsRelationsResource.class);
     	s.add(DbResetResource.class);
+    	s.add(InstructionsResource.class);
     	return s;
     }
     
