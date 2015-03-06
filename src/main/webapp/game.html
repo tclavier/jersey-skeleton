@@ -18,6 +18,11 @@
 <link rel="stylesheet" href="css/style.css">
 
 <!-- Code local -->
+<script src="libs/blockly_compressed.js"></script>
+<script src="libs/blocks_compressed.js"></script>
+<script src="libs/blockly_msg.js"></script>
+<script src="libs/javascript_compressed.js"></script>
+
 <script data-main="scripts/main" src="libs/require.js"></script>
 <script type="text/javascript" src="libs/jquery.js"></script>
 <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
@@ -94,7 +99,16 @@
 				<canvas id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
 			</div>
 			<div id="control-container" class="col-md-7">
-				<iframe src="blockly.html"></iframe>
+				<div id="blocklyDiv" style="height: 200px; width: 600px;"></div>
+				<xml id="toolbox" style="display: none">
+				  <block type="controls_if"></block>
+				  <block type="controls_repeat_ext"></block>
+				  <block type="logic_compare"></block>
+				  <block type="math_number"></block>
+				  <block type="math_arithmetic"></block>
+				  <block type="text"></block>
+				  <block type="text_print"></block>
+				</xml>
 			</div>
 			<div id="exec button">
 				<button id="execute" type="button"  class="col-md-offset-5">Executer</button>

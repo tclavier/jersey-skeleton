@@ -5,6 +5,7 @@ requirejs.config({
 		"blockly": "libs/blockly_compressed",
 		"blockly_msg": "libs/blockly_msg",
 		"blocks": "libs/blocks_compressed",
+		"blockly_js" : "libs/javascript_compressed.js",
 		"libs/boostrap": "libs/bootstrap",
 		"grid": "scripts/grid",
 		"player": "scripts/player",
@@ -29,14 +30,32 @@ requirejs.config({
 			deps: ["blocks", "blockly"]
 		},
 		
+		"blockly_js": {
+			deps: ["blocks", "blockly", "blockly_msg"]
+		},
+		
 		"menu_bar_controller": {
 			deps: ["users_query", "levels_query"]
 		}
 	}
 });
 
-require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "graphical_player"], function ($) {});
 
+function createBlocklyInstruction(instruction) {
+	Blockly.Blocks[instruction.name] = {
+	  init: function() {
+		this.setColour(instruction.color);
+		this.appendDummyInput()
+			.appendField(instruction.name);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+	  }
+	};
+
+	Blockly.JavaScript[instruction.name] = function(block) {
+	  return instruction.code;
+	};
+}
 
 var game;
 var speed = 10;
@@ -60,6 +79,18 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "g
 			}
 			game = new Game(200, 200, tiles);
 			
+			// On crée les instructions
+			Blockly.JavaScript.STATEMENT_PREFIX = "game.interpreter.executedBlock = %1;\n";
+			var toolbox = '<xml>';
+			for (var i = 0; i < window.levelData.instructionsList.length; ++i) {
+				createBlocklyInstruction(window.levelData.instructionsList[i]);
+				toolbox += '  <block type="' + window.levelData.instructionsList[i].name + '"></block>';
+			}
+			toolbox += '</xml>';
+			
+			// On crée la zone pour blockly
+			Blockly.inject(document.getElementById('blocklyDiv'), {trashcan: true, toolbox: toolbox, maxBlocks: window.levelData.maxInstructions});
+			
 			console.log(window.levelData);
 			window.levelData = null;
 		}
@@ -82,3 +113,11 @@ function execute(code) {
 	eval(code);
 	// Si tous c'est bien passé, l'interpreteur devrait etre rempli de commande qui vont maintenant pouvoir etre affiché graphiquement
 }
+
+document.getElementById('execute').onclick = function () {
+	if (Blockly != null) {
+		execute(Blockly.JavaScript.workspaceToCode());
+	} else {
+		alert("Not loaded yet :(");
+	}
+ };
