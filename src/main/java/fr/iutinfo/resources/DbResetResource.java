@@ -49,7 +49,7 @@ public class DbResetResource {
 		Level l = new Level();
 		l.setAuthor("toto");
 		l.setName("niveau de toto");
-		l.setContent("0 0 0 0,0 0 0 0,0 0 0 0,0 0 0 0");
+		l.setContent("1 2 0 0,0 0 0 0,0 0 0 0,0 0 0 0");
 		l.setInstructions("1,2");
 		l.setMaxInstructions(1);
 		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthor());
