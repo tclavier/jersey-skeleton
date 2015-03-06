@@ -21,7 +21,7 @@
 <script type="text/javascript" src="libs/jquery.js"></script>
 <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
-<script type="text/javascript" src="scripts/page_controllers/editor.js"></script>
+<script type="text/javascript" src="scripts/page_controllers/options.js"></script>
 
 </head>
 
@@ -43,9 +43,12 @@
 
 				<ul class="nav navbar-nav">
 
-					<li class="menu_bar_element" id="levels_bar"><a href="levels.html">Jouer</a></li>
-					<li class="menu_bar_element active" id="editor_bar"><a href="editor.html">Editeur</a></li>
-					<li class="menu_bar_element" id="leaderboard_bar"><a href="leaderboard.html">Classement</a></li>
+					<li class="menu_bar_element" id="levels_bar"><a
+						href="levels.html">Jouer</a></li>
+					<li class="menu_bar_element" id="editor_bar"><a
+						href="editor.html">Editeur</a></li>
+					<li class="menu_bar_element" id="leaderboard_bar"><a
+						href="leaderboard.html">Classement</a></li>
 
 				</ul>
 
@@ -59,24 +62,21 @@
 								data-toggle="popover">Envoyer</button>
 						</div>
 						<div class="form-group">
-							<a href="register.html" type="button" class="menu_bar_element btn btn-info">M'enregistrer</a>
+							<a href="register.html" type="button"
+								class="menu_bar_element btn btn-info">M'enregistrer</a>
 						</div>
 					</div>
 					<div id="info_profil_navbar">
 						<a id="user_icon" href="profile.html" class="menu_bar_element">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a>
-						<a href="#">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
-						</a> 
-						<a href="#">
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-						</a>
-						<a id="options_icon" class="menu_bar_element" href="options.html">
+						</a> <a href="#"> <span class="glyphicon glyphicon-comment"
+							aria-hidden="true"> </span>
+						</a> <a href="#"> <span
+							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						</a> <a id="options_icon" class="menu_bar_element" href="options.html">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a>
-						<a id="logout_icon" href="#"> 
-							<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+						</a> <a id="logout_icon" href="#"> <span
+							class="glyphicon glyphicon-off" aria-hidden="true"></span>
 						</a>
 					</div>
 				</div>
@@ -86,25 +86,16 @@
 	</nav>
 
 
-	<div class="container main_panel" id="home_pane">
+	<div class="container main_panel" id="options_pane">
 		<div class="row">
-			<canvas id="pickerCanvas" width="0" height="0"
-				style="border: 1px solid #000000;">
-			</canvas>
-
-			<canvas id="editorCanvas" width="500" height="500"
-				style="border: 1px solid #000000;">
-			</canvas>
-
-			<br> Dimensions: <input type="text" id="gridWidth"
-				onkeypress="handleKeyPress(event)"> x <input type="text"
-				id="gridHeight" onkeypress="handleKeyPress(event)"">
-			<button onclick="changeSize()">Redimensionner</button>
-			<ul id="errors" style="color: #FF0000;"></ul>
-			<button id="saveButton" onclick="saveLevel()">Enregistrer niveau</button>
+			<label class="checkbox-inline" for="facebook_checkbox">
+				Activer Facebook : <input id="facebook_checkbox" type="checkbox"
+				name="facebook_checkbox" data-toggle="toggle" data-on="Oui"
+				data-off="Non">
+			</label>
 		</div>
 	</div>
-	<!-- container Editor page -->
+	<!-- container option_pane -->
 
 
 	<footer class="container">
