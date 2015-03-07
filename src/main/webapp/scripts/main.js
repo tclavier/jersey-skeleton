@@ -130,3 +130,9 @@ document.getElementById('execute').onclick = function () {
 		alert("Not loaded yet :(");
 	}
  };
+
+ 
+ // On intercepte les changements de dimension pour adapter le canvas
+$(window).resize(function() {
+	if (game) game.updateDimensions();
+});

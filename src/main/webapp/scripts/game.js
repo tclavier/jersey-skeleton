@@ -1,15 +1,36 @@
 define(["jquery"],  function($) {
     return function Game(tiles) {
 		var canvas = document.getElementById("grid");
-		this.width = Math.min(canvas.height, canvas.width);
-		this.height = this.width;
 		this.tiles = tiles
 
 		var Grid = require("grid");
         var Interpreter = require("interpreter");
         var Player = require("player");
 		var GraphicalPlayer = require("graphical_player");
-	
+		
+		
+		this.updateDimensions = function updateDimensions() {
+			canvas.width = $("canvas").parent().width();
+			canvas.height = $("canvas").parent().height();
+			this.width = Math.min(canvas.height, canvas.width);
+			this.height = this.width;
+			// Voir si on garde cette partie la
+			// Oblige a re-calculer la position de tous les objets
+			// On met a jour la grille
+			if (this.grid) {
+				var oldTileSize = this.grid.tile_size
+				this.grid.updateDimensions(this.width, this.height);
+				// On replace correctement le joueur
+				if (this.gplayer && this.player) {
+					console.log(Math.floor(this.player.x / oldTileSize));
+					this.player.x = this.gplayer.x = Math.floor(this.player.x / oldTileSize) * this.grid.tile_size;
+					this.player.y = this.gplayer.y = Math.floor(this.player.y / oldTileSize) * this.grid.tile_size;
+					this.gplayer.moveTo(this.gplayer.x, this.gplayer.y);
+				}
+			}
+		}
+		
+		this.updateDimensions();
 
         this.createPlayer = function createPlayer(tileX, tileY) {
             this.gplayer = new GraphicalPlayer(this, tileX * this.grid.tile_size, tileY * this.grid.tile_size);

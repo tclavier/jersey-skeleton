@@ -12,14 +12,18 @@ define(["jquery"],  function(require) {
 		this.game = game;
 		this.tiles = tiles;
 		
-		// Calcul de la taille des carreaux en fonction de la taille de la zone dessinable
-		this.tile_size = Math.min(width/this.tiles.length, width/this.tiles[0].length);
-		
-		this.width = this.tile_size * this.tiles[0].length;
-		this.height = this.tile_size * this.tiles.length;
-		
 		// Tableau correspondant au couleur des carreaux en fonction de leur id (voir wiki)
 		var tilesColors = ["#EEEEEE", "#222222", "#EEEEEE", "#FFFF00", "#55FF55"];
+		
+		this.updateDimensions = function updateDimensions(width, height) {
+			// Calcul de la taille des carreaux en fonction de la taille de la zone dessinable
+			this.tile_size = Math.min(width/this.tiles.length, width/this.tiles[0].length);
+			
+			this.width = this.tile_size * this.tiles[0].length;
+			this.height = this.tile_size * this.tiles.length;
+		}
+		
+		this.updateDimensions(width, height);
 
 		// Genere la grille (place le joueur...)
 		this.generate = function() {
