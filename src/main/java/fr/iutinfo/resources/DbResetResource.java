@@ -47,12 +47,12 @@ public class DbResetResource {
 		friendDao.createRelation(1, 2);
 		
 		Level l = new Level();
-		l.setAuthor("toto");
+		l.setAuthorId(1);
 		l.setName("niveau de toto");
 		l.setContent("1 2 0 0,0 0 0 0,0 0 0 0,0 0 0 0");
 		l.setInstructions("1,2,3,4,5");
 		l.setMaxInstructions(5);
-		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthor());
+		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthorId());
 		
 		
 		instructionsDao.insert("Avancer", "player.moveForward();", 65, 0);

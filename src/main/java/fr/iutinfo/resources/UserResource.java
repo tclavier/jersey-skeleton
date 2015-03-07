@@ -155,6 +155,16 @@ public class UserResource {
 		}
 		return out;
 	}
+	
+	
+	@GET
+	@Path("/me/{cookie}")
+	public User getUser(@PathParam("cookie") String cookie) {
+		if(Session.isLogged(cookie))
+			return Session.getUser(cookie);
+		
+		throw new WebApplicationException(404);
+	}
 
 
 	@GET

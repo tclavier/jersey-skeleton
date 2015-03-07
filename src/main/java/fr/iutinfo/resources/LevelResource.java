@@ -43,4 +43,13 @@ public class LevelResource {
 			throw new WebApplicationException(404);
 		return levels;
 	}
+	
+	@GET
+	@Path("author/{authorId}")
+	public List<Level> getLevelsByAuthor(@PathParam("authorId") int authorId) {
+		List<Level> levels = levelDao.getAllByAuthor(authorId);
+		if(levels == null)
+			throw new WebApplicationException(404);
+		return levels;
+	}
 }

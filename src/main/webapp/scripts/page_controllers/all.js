@@ -1,30 +1,39 @@
+	/**
+	 * Liste toutes les pages à protéger (nécessitant d'être loggé)
+	 */
+	function isLoginRequiredPage() {
+		var page = location.pathname;
+		
+		return page == "/options.html";/* || 
+				page == "/editor.html";*/
+	}
+
+
 $(document).ready(function() {
 	
 	/****************************************
 	 **** CHARGEMENT AVANT TOUT LE RESTE ****
 	 ****************************************/
 	
-	var isConnected;
-
 	/*
 	 * When the user connect or disconnect
 	 */
 	function setConnected(connected) {
-		isConnected = connected;
 		sessionStorage.setItem("isConnected", connected);
 		
-		if(isConnected) {
+		if(sessionStorage.getItem("isConnected") == "true") {
 			$("#login_navbar").hide();
 			$("#info_profil_navbar").show();
-
-			//window.location.replace("/");
 		} else {
 			$("#info_profil_navbar").hide();
 			$("#login_navbar").show();
 			
-			//window.location.replace("/");
+			if(isLoginRequiredPage()) {
+				location.replace("/");
+			}
 		}
 	}
+	
 
 	function checkConnection() {
 
@@ -157,6 +166,10 @@ $(document).ready(function() {
 		FB.getLoginStatus(function(response) {
 			statusChangeCallback(response);
 		});
+	}
+	
+	function enableFacebook(enable) {
+		
 	}
 	
 	
