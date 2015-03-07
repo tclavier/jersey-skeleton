@@ -19,7 +19,7 @@
 	display: none;
 }
 
-.main_panel {
+#login_navbar {
 	display: none;
 }
 
@@ -38,11 +38,15 @@
 	height: 60vh;
 }
 
+#grid {
+	width: 100%;
+}
+
 #control-container {
 	height: 60vh;
 }
 
-#control-container iframe {
+#control-container div {
 	width: 100%;
 	height: 100%;
 }

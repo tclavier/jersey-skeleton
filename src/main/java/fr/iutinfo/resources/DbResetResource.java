@@ -47,27 +47,19 @@ public class DbResetResource {
 		friendDao.createRelation(1, 2);
 		
 		Level l = new Level();
-		l.setAuthor("toto");
+		l.setAuthorId(1);
 		l.setName("niveau de toto");
-		l.setContent("0 0 0 0,0 0 0 0,0 0 0 0,0 0 0 0");
-		l.setInstructions("1,2");
-		l.setMaxInstructions(1);
-		levelDao.insert(l.getName(), l.getContent(), l.getInstructions(), l.getMaxInstructions(), l.getAuthor());
+		l.setContent("1 2 0 0,0 0 0 0,0 0 0 0,0 0 0 0");
+		l.setInstructions("1,2,3,4,5");
+		l.setMaxInstructions(5);
+		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthorId());
 		
 		
-		Instruction i = new Instruction();
-		i.setBlock(0);
-		i.setColor(42);
-		i.setCode("codeJsIci");
-		i.setId(1);
-		i.setName("block de test");
-		instructionsDao.insert(i.getName(), i.getCode(), i.getColor(), i.getBlock());
-		i.setBlock(1);
-		i.setColor(133);
-		i.setCode("codeJsIciv2");
-		i.setId(2);
-		i.setName("block de test 2");
-		instructionsDao.insert(i.getName(), i.getCode(), i.getColor(), i.getBlock());
+		instructionsDao.insert("Avancer", "player.moveForward();", 65, 0);
+		instructionsDao.insert("Reculer", "player.moveBackward();", 65, 0);
+		instructionsDao.insert("Tourner à gauche", "player.turnLeft();", 65, 0);
+		instructionsDao.insert("Tourner à droite", "player.turnRight();", 65, 0);
+		instructionsDao.insert("Répeter 3 fois", "for (var i = 0; i < 3; ++i)", 100, 1);
 		
 		return "Database Reset.";
 	}

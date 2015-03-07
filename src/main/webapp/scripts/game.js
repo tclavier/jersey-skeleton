@@ -1,7 +1,8 @@
 define(["jquery"],  function($) {
-    return function Game(width, height, tiles) {
-		this.width = width;
-		this.height = height;
+    return function Game(tiles) {
+		var canvas = document.getElementById("grid");
+		this.width = Math.min(canvas.height, canvas.width);
+		this.height = this.width;
 		this.tiles = tiles
 
 		var Grid = require("grid");
@@ -17,11 +18,12 @@ define(["jquery"],  function($) {
 
 
 		this.render = function render() {
-			var c = document.getElementById("grid");
-			var ctx = c.getContext("2d");
-			
+			var ctx = canvas.getContext("2d");
+			ctx.save();
+			ctx.translate((canvas.width - this.grid.width)/2, (canvas.height - this.grid.height)/2);
 			this.grid.render(ctx);
 			if (this.gplayer) this.gplayer.render(ctx);
+			ctx.restore();
 		}
 
 		this.update = function update(delta) {

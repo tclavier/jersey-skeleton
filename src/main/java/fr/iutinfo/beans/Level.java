@@ -9,7 +9,7 @@ public class Level implements Serializable {
 
 	private int id;
 	private String name;
-	private String author;
+	private int authorId;
 	private String content;
 	private String instructions;
 	private int maxInstructions;
@@ -24,7 +24,7 @@ public class Level implements Serializable {
 		instructionsList = new ArrayList<Instruction>();
 	}
 
-	public String getContent() {
+	public String content() {
 		return content;
 	}
 
@@ -88,15 +88,15 @@ public class Level implements Serializable {
 		this.name = name;
 	}
 
-	public String getAuthor() {
-		return author;
+	public int getAuthorId() {
+		return authorId;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setAuthorId(int i) {
+		this.authorId = i;
 	}
 
-	public String getInstructions() {
+	public String instructions() {
 		return instructions;
 	}
 
@@ -126,7 +126,7 @@ public class Level implements Serializable {
 		return instructions;
 	}
 	
-	public List<Integer> getStructuredInstructions() {
+	public List<Integer> structuredInstructions() {
 		return parseInstructions(instructions);
 	}
 

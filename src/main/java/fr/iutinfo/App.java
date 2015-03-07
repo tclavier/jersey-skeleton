@@ -9,10 +9,12 @@ import javax.ws.rs.core.Application;
 import org.skife.jdbi.v2.DBI;
 import org.sqlite.SQLiteDataSource;
 
+import fr.iutinfo.beans.ProfileInfo;
 import fr.iutinfo.resources.DbResetResource;
 import fr.iutinfo.resources.FriendsRelationsResource;
 import fr.iutinfo.resources.InstructionsResource;
 import fr.iutinfo.resources.LevelResource;
+import fr.iutinfo.resources.ProfileInfoResource;
 import fr.iutinfo.resources.UserResource;
 
 @ApplicationPath("/v1/")
@@ -25,6 +27,7 @@ public class App extends Application {
     	s.add(FriendsRelationsResource.class);
     	s.add(DbResetResource.class);
     	s.add(InstructionsResource.class);
+    	s.add(ProfileInfoResource.class);
     	return s;
     }
     
