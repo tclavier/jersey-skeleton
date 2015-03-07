@@ -136,8 +136,8 @@ $(document).ready(function() {
 	}
 
 	function changeSize() {
-		var width = parseInt(document.getElementById("gridWidth").value);
-		var height = parseInt(document.getElementById("gridHeight").value);
+		var width = parseInt($("#gridWidth").val());
+		var height = parseInt($("#gridHeight").val());
 
 		if (isNaN(width) || isNaN(height)
 				|| width < MIN_GRID_WIDTH || width > MAX_GRID_WITH 
@@ -156,10 +156,10 @@ $(document).ready(function() {
 	}
 
 	function addError(message) {
-		var list = document.getElementById("errors");
-		var entry = document.createElement('li');
-		entry.appendChild(document.createTextNode(message));
-		list.appendChild(entry);
+		var list = $("#errors");
+		var entry = $('<li></li>');
+		entry.append(message);
+		list.append(entry);
 	}
 
 	function checkLevel() {
@@ -195,7 +195,7 @@ $(document).ready(function() {
 			validity = false;
 		}
 
-		document.getElementById("saveButton").disabled = !validity;
+		$("#save_button").prop("disabled", !validity);;
 
 		return validity;
 	}
@@ -206,12 +206,35 @@ $(document).ready(function() {
 			changeSize();
 		}
 	}
+	
+	function sendLevel() {
+		$.ajax({
+			type : 'POST',
+			contentType : 'application/json',
+			url : "v1/levels/add/" + document.cookie,
+			dataType : "json",
+			data : JSON.stringify({
+				// TODO : Ajouter les données
+			}),
+			success : function(data, textStatus, jqXHR) {
+				console.log(data);
+				if(data.success) {
+					// TODO : afficher message de succés
+				} else {
+					// TODO : Afficher mesage d'erreur
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert('postUser error: ' + textStatus);
+			}
+		});
+	}
 
 	function saveLevel() {
 		// TODO : enregistrement db
 		var validity = checkLevel();
 		if (validity)
-			alert("Envoi du niveau");
+			sendLevel();
 		else 
 			alert("Niveau invalide");
 	}
@@ -221,5 +244,13 @@ $(document).ready(function() {
 	initGrid(gridWidth, gridHeight);
 	initPicker();
 	highLightSelectedTile(selectedType, HIGHLIGHT_COLOR);
-
+	
+	
+	$("#save_button").click(function() {
+		saveLevel();
+	});
+	
+	$("#change_size").click(function() {
+		changeSize();
+	});
 });

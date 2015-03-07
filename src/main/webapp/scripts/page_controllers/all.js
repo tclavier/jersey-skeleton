@@ -1,46 +1,53 @@
-	/**
-	 * Liste toutes les pages à protéger (nécessitant d'être loggé)
-	 */
-	function isLoginRequiredPage() {
-		var page = location.pathname;
-		
-		return page == "/options.html";/* || 
+/**
+ * Liste toutes les pages à protéger (nécessitant d'être loggé)
+ */
+function isLoginRequiredPage() {
+	var page = location.pathname;
+
+	return page == "/options.html";/* || 
 				page == "/editor.html";*/
-	}
+}
+
+
 
 
 $(document).ready(function() {
-	
+
 	/****************************************
 	 **** CHARGEMENT AVANT TOUT LE RESTE ****
 	 ****************************************/
-	
+
 	/*
 	 * When the user connect or disconnect
 	 */
 	function setConnected(connected) {
 		sessionStorage.setItem("isConnected", connected);
-		
+
 		if(sessionStorage.getItem("isConnected") == "true") {
 			$("#login_navbar").hide();
 			$("#info_profil_navbar").show();
 		} else {
 			$("#info_profil_navbar").hide();
 			$("#login_navbar").show();
-			
+
 			if(isLoginRequiredPage()) {
 				location.replace("/");
 			}
 		}
 	}
-	
 
 	function checkConnection() {
-
-		checkNormalConnection();
+		if(document.cookie == "")
+			setConnected(false);
+		else
+			$.getJSON("v1/users/isLogged/" + document.cookie, function(data) {
+				setConnected(data.success);
+			});
 	}
-	
-	
+
+	checkConnection();
+
+
 	/*****************************
 	 **** REQUETES AJAX USERS ****
 	 *****************************/
@@ -79,7 +86,7 @@ $(document).ready(function() {
 			}
 		});
 	}
-	
+
 	/*
 	 * Fonction permettant d'afficher les informations de l'utilisateur
 	 */
@@ -88,7 +95,7 @@ $(document).ready(function() {
 			type : 'GET',
 			dataType : 'application/json', 
 			url : 'v1/users/'+userCookie,
-			
+
 			succes : function(json, statut) {
 				console.log("DATA : "+json);
 				var page = $("#profil_pane");
@@ -96,7 +103,7 @@ $(document).ready(function() {
 			}
 		})
 	}
-	
+
 	function logoutUser() {
 		if(document.cookie == "")
 			setConnected(false);
@@ -107,16 +114,9 @@ $(document).ready(function() {
 			});
 	}
 
-	function checkNormalConnection() {
-		if(document.cookie == "")
-			setConnected(false);
-		else
-			$.getJSON("v1/users/isLogged/" + document.cookie, function(data) {
-				setConnected(data.success);
-			});
-	}
-	
-	
+
+
+
 	function linkFacebookAccount(facebookId) {
 		$.ajax({
 			type : 'POST',
@@ -137,49 +137,14 @@ $(document).ready(function() {
 	}
 
 
-	/**********************
-	 **** API FACEBOOK ****
-	 **********************/
 
-	/**
-	 * INIT FB SDK
-	 */
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId      : '1550153965266129',
-			xfbml      : true,
-			version    : 'v2.1'
-		});
 
-		checkConnection();
-	};
-
-	(function(d, s, id){
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {return;}
-		js = d.createElement(s); js.id = id;
-		js.src = "http://connect.facebook.net/fr_FR/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-
-	function checkLoginState() {
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-		});
-	}
-	
-	function enableFacebook(enable) {
-		
-	}
-	
-	
-	
 	/****************************
 	 **** CONTROLE DES PAGES ****
 	 ****************************/
 
 
-	
+
 
 
 	// Login l'utilisateur
@@ -190,13 +155,13 @@ $(document).ready(function() {
 		$("#name_login").val("");
 		$("#password_login").val("");
 	});
-	
+
 	//Logout l'utilisateur
 	$("#logout_icon").click(function() {
 		logoutUser();
 	});
-	
-	
-	
-	
+
+
+
+
 });
