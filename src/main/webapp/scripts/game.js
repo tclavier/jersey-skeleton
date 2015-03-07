@@ -22,7 +22,6 @@ define(["jquery"],  function($) {
 				this.grid.updateDimensions(this.width, this.height);
 				// On replace correctement le joueur
 				if (this.gplayer && this.player) {
-					console.log(Math.floor(this.player.x / oldTileSize));
 					this.player.x = this.gplayer.x = Math.floor(this.player.x / oldTileSize) * this.grid.tile_size;
 					this.player.y = this.gplayer.y = Math.floor(this.player.y / oldTileSize) * this.grid.tile_size;
 					this.gplayer.moveTo(this.gplayer.x, this.gplayer.y);
