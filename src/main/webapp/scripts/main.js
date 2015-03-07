@@ -86,7 +86,7 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "g
 			for (var i = 0; i < window.levelData.structuredContent.length; ++i) {
 				tiles.push(window.levelData.structuredContent[i].item);
 			}
-			game = new Game(200, 200, tiles);
+			game = new Game(tiles);
 			
 			// On crée les instructions
 			Blockly.JavaScript.STATEMENT_PREFIX = "game.interpreter.executedBlock = %1;\n";

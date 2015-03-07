@@ -11,20 +11,21 @@ define(["jquery"],  function(require) {
 	return function Grid(game, tiles, width, height) {
 		this.game = game;
 		this.tiles = tiles;
-		this.width = width;
-		this.height = height;
 		
 		// Calcul de la taille des carreaux en fonction de la taille de la zone dessinable
-		this.tile_size = (width/tiles.length);
+		this.tile_size = Math.min(width/this.tiles.length, width/this.tiles[0].length);
+		
+		this.width = this.tile_size * this.tiles[0].length;
+		this.height = this.tile_size * this.tiles.length;
 		
 		// Tableau correspondant au couleur des carreaux en fonction de leur id (voir wiki)
 		var tilesColors = ["#EEEEEE", "#222222", "#EEEEEE", "#FFFF00", "#55FF55"];
 
 		// Genere la grille (place le joueur...)
 		this.generate = function() {
-			for (var xx = 0; xx < tiles.length; ++xx) {
-				for (var yy = 0; yy < tiles[0].length; ++yy) {
-					var tileId = tiles[yy][xx];
+			for (var yy = 0; yy < this.tiles.length; ++yy) {
+				for (var xx = 0; xx < this.tiles[yy].length; ++xx) {
+					var tileId = this.tiles[yy][xx];
 
 					if (tileId == 2) {
 						this.game.createPlayer(xx, yy);
@@ -36,9 +37,9 @@ define(["jquery"],  function(require) {
 
 		// Dessine les carreaux de la grille
 		this.render = function render(context) {
-			for (var xx = 0; xx < tiles.length; ++xx) {
-				for (var yy = 0; yy < tiles[0].length; ++yy) {
-					var id = tiles[yy][xx];
+			for (var yy = 0; yy < this.tiles.length; ++yy) {
+				for (var xx = 0; xx < this.tiles[yy].length; ++xx) {
+					var id = this.tiles[yy][xx];
 					context.fillStyle = "#EEEEEE";
 					
 					// Si le carreaux a une couleur particuliere defini dans tilesColor
