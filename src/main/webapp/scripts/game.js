@@ -39,6 +39,8 @@ define(["jquery"],  function($) {
 
 		this.render = function render() {
 			var ctx = canvas.getContext("2d");
+            // On nettoie toute la zone du canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.save();
 			ctx.translate((canvas.width - this.grid.width)/2, (canvas.height - this.grid.height)/2);
 			this.grid.render(ctx);
