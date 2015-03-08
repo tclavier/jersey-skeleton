@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -13,11 +14,9 @@ import javax.ws.rs.core.MediaType;
 import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
 import fr.iutinfo.beans.Level;
-import fr.iutinfo.beans.User;
 import fr.iutinfo.dao.InstructionsDao;
 import fr.iutinfo.dao.LevelDao;
 import fr.iutinfo.utils.Session;
-import fr.iutinfo.utils.Utils;
 
 
 @Path("/levels")
@@ -31,7 +30,7 @@ public class LevelResource {
 	
 	@GET
 	@Path("{id}")
-	public Level getLevel(@PathParam("id") Integer id) {
+	public Level getLevel(@PathParam("id") int id) {
 		Level level = levelDao.findById(id);
 		if(level == null)
 			throw new WebApplicationException(404);
@@ -59,9 +58,21 @@ public class LevelResource {
 	}
 	
 	
+	@PUT
+	@Path("{id}/nextLevel/{nextLevelId}")
+	public Feedback setNextLevel(@PathParam("id") int id, @PathParam("idNextLevel") int nextLevelId) {
+		if(levelDao.findById(nextLevelId) == null)
+			return new Feedback(false, "Le niveau suivant n'existe pas !");
+		if(levelDao.findById(id) == null)
+			return new Feedback(false, "Le niveau actuel n'existe pas !");
+		levelDao.setNextLevel(nextLevelId, id);
+		return new Feedback(true, "La modification à été apportée !");
+	}
+	
+	
 	/**
-	 * Insert l'utilisateur si celui ci est valide.
-	 * @param user
+	 * Insert le niveau si celui ci est valide.
+	 * @param level
 	 * @return
 	 */
 	@POST

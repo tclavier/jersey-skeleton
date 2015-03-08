@@ -51,6 +51,9 @@ public interface LevelDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	LevelInfo getLevelInfoById(@Bind("id") int id);
 	
+	@SqlUpdate("update levels set nextLevelId=:nextLevelId where id=:id")
+	void setNextLevel(@Bind("nextLevelId") int nextLevelId, @Bind("id") int id);
+	
 	@SqlUpdate("drop table if exists levels")
 	void dropLevelsTable(); 
 	
