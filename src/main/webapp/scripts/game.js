@@ -7,7 +7,7 @@ define(["jquery"],  function($) {
         var Interpreter = require("interpreter");
         var Player = require("player");
 		var GraphicalPlayer = require("graphical_player");
-		
+		var Events = require("events");
 		
 		this.updateDimensions = function updateDimensions() {
 			canvas.width = $("canvas").parent().width();
@@ -58,8 +58,8 @@ define(["jquery"],  function($) {
 			if (this.gplayer) this.gplayer.update(delta);
 			this.render();
 		}
-
-
+        
+        this.events = new Events(this);
         this.grid = new Grid(this, this.tiles, this.width, this.height);
         this.grid.generate();
         this.interpreter = new Interpreter(this);

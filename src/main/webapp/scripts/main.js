@@ -12,6 +12,7 @@ requirejs.config({
 		"graphical_player": "scripts/graphical_player",
 		"game": "scripts/game",
 		"interpreter": "scripts/interpreter",
+        "events" : "scripts/events",
 		"menu_bar_controller": "scripts/page_controllers/menu_bar_controller",
 		"users_query": "scripts/queries/users_query",
 		"levels_query": "scripts/queries/levels_query"
@@ -69,7 +70,7 @@ function createBlocklyInstruction(instruction) {
 var game;
 var speed = 10;
 
-require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "graphical_player"], function ($) {
+require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "graphical_player","events"], function ($) {
 	var Game = require("game");
 	
 	var time;

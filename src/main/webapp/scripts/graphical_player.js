@@ -80,13 +80,9 @@ define(["jquery"],  function(require) {
 					this.y += 10 * delta * speed * ysign;
 				} else {
 					this.y = goToY;
-					// Pas très jolie de l'avoir mis la (a changer, ne pas le faire dans le code java)
-					// Detecte la case sur laquelle le joueur est, si c'est l'arrivée, met un message pour indiquer que le niveau est réussi
-					if (moving && this.game.grid.tiles[this.tileY()][this.tileX()] == 3) {
-						alert("Bravo ! Vous avez réussi le niveau !\n\nVous allez être redirigé vers le niveau suivant.");
-					}
-					
-					// On indique la fin du deplacement puisque la destination a été atteinte
+                    // On prévient le gestionnaire d'evenement que le joueur vient d'atteindre une nouvelle case
+                    if (moving) this.game.events.onPlayerArrivalOn(this.game.grid.tiles[this.tileY()][this.tileX()]);
+                    // On indique la fin du deplacement puisque la destination a été atteinte
 					moving = false;
 				}
 			}

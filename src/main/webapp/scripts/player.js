@@ -3,7 +3,6 @@ define(["jquery"],  function(require) {
 		this.x = x;
 		this.y = y;
 		this.game = game;
-		this.events = [];
 		var dirX = 0;
 		var dirY = 1;
 
