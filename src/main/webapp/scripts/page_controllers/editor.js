@@ -222,11 +222,17 @@ $(document).ready(function() {
 	}
 	
 	function sendLevel() {
+		
+		var structuredContent = [];
+		for(var i = 0 ; i < grid.length ; i++) {
+			structuredContent[i] = {item : grid[i]};
+		}
+		
 		var json = JSON.stringify({
-			structuredContent: grid,
-			structuredInstructions: getInstructions(),
-			name: $("#levelName").val(),
-			maxInstructions: $("#instructionsNumber").val()
+			"structuredContent": structuredContent,
+			"structuredInstructions": getInstructions(),
+			"name": $("#levelName").val(),
+			"maxInstructions": $("#instructionsNumber").val()
 		});
 		
 		console.log(json);
