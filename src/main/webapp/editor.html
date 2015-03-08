@@ -49,9 +49,12 @@ canvas {
 
 				<ul class="nav navbar-nav">
 
-					<li class="menu_bar_element" id="levels_bar"><a href="levels.html">Jouer</a></li>
-					<li class="menu_bar_element active" id="editor_bar"><a href="editor.html">Editeur</a></li>
-					<li class="menu_bar_element" id="leaderboard_bar"><a href="leaderboard.html">Classement</a></li>
+					<li class="menu_bar_element" id="levels_bar"><a
+						href="levels.html">Jouer</a></li>
+					<li class="menu_bar_element active" id="editor_bar"><a
+						href="editor.html">Editeur</a></li>
+					<li class="menu_bar_element" id="leaderboard_bar"><a
+						href="leaderboard.html">Classement</a></li>
 
 				</ul>
 
@@ -65,24 +68,21 @@ canvas {
 								data-toggle="popover">Envoyer</button>
 						</div>
 						<div class="form-group">
-							<a href="register.html" type="button" class="menu_bar_element btn btn-info">M'enregistrer</a>
+							<a href="register.html" type="button"
+								class="menu_bar_element btn btn-info">M'enregistrer</a>
 						</div>
 					</div>
 					<div id="info_profil_navbar">
 						<a id="user_icon" href="profile.html" class="menu_bar_element">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a>
-						<a href="#">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
-						</a> 
-						<a href="#">
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-						</a>
-						<a id="options_icon" class="menu_bar_element" href="options.html">
+						</a> <a href="#"> <span class="glyphicon glyphicon-comment"
+							aria-hidden="true"> </span>
+						</a> <a href="#"> <span
+							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						</a> <a id="options_icon" class="menu_bar_element" href="options.html">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a>
-						<a id="logout_icon" href="#"> 
-							<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+						</a> <a id="logout_icon" href="#"> <span
+							class="glyphicon glyphicon-off" aria-hidden="true"></span>
 						</a>
 					</div>
 				</div>
@@ -93,22 +93,40 @@ canvas {
 
 
 	<div class="container main_panel" id="home_pane">
+		Nom du niveau: <input type="text" id="levelName"> <br>
+		Nombre max d'instructions: <input type="number"
+			id="instructionsNumber" value="3" min="1">
 		<div class="row">
-			<canvas id="pickerCanvas" width="0" height="0"
-				style="border: 1px solid #000000;">
+			<div class="col-md-6" id="canvasContainer">
+				<canvas id="pickerCanvas" width="0" height="0"
+					style="border: 1px solid #000000;">
 			</canvas>
 
-			<canvas id="editorCanvas" width="500" height="500"
-				style="border: 1px solid #000000;">
+				<canvas id="editorCanvas" width="500" height="500"
+					style="border: 1px solid #000000;">
 			</canvas>
+			</div>
+			<div class="col-md-3">
+				<form id="instructionsList">
+					<input type="checkbox" value="1" checked> Avancer <br>
+					<input type="checkbox" value="2" checked> Reculer <br>
+					<input type="checkbox" value="3" checked> Tourner à gauche
+					<br> <input type="checkbox" value="4" checked> Tourner
+					à droite <br> <input type="checkbox" value="5" checked>
+					Répéter 3 fois <br>
+				</form>
+			</div>
 
-			<br> Dimensions: <input type="number" id="gridWidth"
-				onkeypress="handleKeyPress(event)"> x <input type="number"
-				id="gridHeight" onkeypress="handleKeyPress(event)"">
-			<button id="change_size">Redimensionner</button>
-			<ul id="errors" style="color: #FF0000;"></ul>
-			<button id="save_button">Enregistrer niveau</button>
+			<ul id="errors" style="color: #FF0000;" class="col-md-3">
+			</ul>
 		</div>
+
+		<br> Dimensions: <input type="number" id="gridWidth"
+			onkeypress="handleKeyPress(event)"> x <input type="number"
+			id="gridHeight" onkeypress="handleKeyPress(event)"">
+		<button id="change_size">Redimensionner</button>
+		<button id="save_button">Enregistrer niveau</button>
+
 	</div>
 	<!-- container Editor page -->
 
