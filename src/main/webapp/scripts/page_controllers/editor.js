@@ -292,8 +292,9 @@ $(document).ready(function() {
 		return out;
 	}
 
-	gridCanvas.addEventListener("mousedown", function() {
+	gridCanvas.addEventListener("mousedown", function(event) {
 		gridCanvas.addEventListener("mousemove", doGridClick, false)
+		doGridClick(event);
 	}, false);
 	
 	document.getElementsByTagName("body")[0].addEventListener("mouseup", function() {
