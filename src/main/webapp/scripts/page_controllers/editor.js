@@ -33,6 +33,8 @@ $(document).ready(function() {
 
 	var pickerCanvas = document.getElementById("pickerCanvas");
 	var pickerCtx = pickerCanvas.getContext("2d");
+	
+	var canvasContainer = document.getElementById("canvasContainer");
 
 	function initGrid(width, height) {
 		grid = [[]];
@@ -75,8 +77,9 @@ $(document).ready(function() {
 
 	function doGridClick(event) {
 		// position sur le gridCanvas
-		var canvasX = event.pageX - gridCanvas.offsetLeft;
-		var canvasY = event.pageY - gridCanvas.offsetTop;
+		var canvasX = event.pageX- gridCanvas.offsetLeft - canvasContainer.offsetLeft;
+		var canvasY = event.pageY - gridCanvas.offsetTop - canvasContainer.offsetTop;
+		
 		// position dans la grille
 		var gridX = Math.floor(canvasX / TILE_WIDTH);
 		var gridY = Math.floor(canvasY / TILE_HEIGHT);
@@ -85,10 +88,9 @@ $(document).ready(function() {
 		drawGrid();
 	}
 
-
 	function doPickerClick(event) {
 		// position sur le canvas
-		var canvasY = event.pageY - pickerCanvas.offsetTop;
+		var canvasY = event.pageY - pickerCanvas.offsetTop - canvasContainer.offsetTop;
 		// position dans la grille
 		var gridY = Math.floor(canvasY / PICKER_TILE_HEIGHT);
 
@@ -194,13 +196,25 @@ $(document).ready(function() {
 			addError("Le niveau ne peut contenir qu'une case d'arrivée");
 			validity = false;
 		}
+		if ($("#levelName").val().length === 0) {
+			addError("Le niveau doit avoir un nom");
+			validity = false;
+		}
+		if (!($("#instructionsNumber").val() > 0)) {
+			addError("Nombre maximum d'instructions invalide");
+			validity = false;
+		}
+		if (getInstructions().length === 0) {
+			addError("Le niveau doit avoir au moins une instruction autorisée");
+			validity = false;
+		}			
 
 		$("#save_button").prop("disabled", !validity);;
 
 		return validity;
 	}
 
-	function handleKeyPress(e){
+	function handleKeyPress(e) {
 		var key = e.keyCode || e.which;
 		if (key === 13) {
 			changeSize();
@@ -208,20 +222,29 @@ $(document).ready(function() {
 	}
 	
 	function sendLevel() {
+		var json = JSON.stringify({
+			structuredContent: grid,
+			structuredInstructions: getInstructions(),
+			name: $("#levelName").val(),
+			maxInstructions: $("#instructionsNumber").val()
+		});
+		
+		console.log(json);
+		
 		$.ajax({
 			type : 'POST',
 			contentType : 'application/json',
 			url : "v1/levels/add/" + document.cookie,
 			dataType : "json",
-			data : JSON.stringify({
-				// TODO : Ajouter les données
-			}),
+			data : json ,
 			success : function(data, textStatus, jqXHR) {
 				console.log(data);
 				if(data.success) {
 					// TODO : afficher message de succés
+					alert("Success!");
 				} else {
 					// TODO : Afficher mesage d'erreur
+					alert("Oh mince...");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -250,8 +273,26 @@ $(document).ready(function() {
 		widthSpinner.max = MAX_GRID_WITH;
 		widthSpinner.value = gridWidth;
 	}
+	
+	function getInstructions() {
+		var out = [];
+		var checkBoxes = $("#instructionsList").children();
+		
+		for (var i = 0; i < checkBoxes.length; i++) {
+			if (checkBoxes[i].checked === true)
+				out.push(checkBoxes[i].value);
+		}
+		
+		return out;
+	}
 
-	gridCanvas.addEventListener("mousedown", doGridClick, false);
+	gridCanvas.addEventListener("mousedown", function() {
+		gridCanvas.addEventListener("mousemove", doGridClick, false)
+	}, false);
+	
+	document.getElementsByTagName("body")[0].addEventListener("mouseup", function() {
+		gridCanvas.removeEventListener("mousemove", doGridClick);
+	}, false);
 
 	initGrid(gridWidth, gridHeight);
 	initPicker();
@@ -265,4 +306,6 @@ $(document).ready(function() {
 	$("#change_size").click(function() {
 		changeSize();
 	});
+	
+	console.log(getInstructions());
 });
