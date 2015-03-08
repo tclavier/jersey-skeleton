@@ -101,6 +101,46 @@ public class DbResetResource {
 				3,					// max number of instructions
 				1,					// author id
 				3);					// next level id
+		
+		
+		levelDao.insert("Niveau 3", // name
+				"1 2 1," + 			//
+				"1 0 1," + 			// Level content
+				"1 0 1," +
+				"1 3 1", 			//
+				"1,5", 				// instructions id list
+				2,					// max number of instructions
+				1,					// author id
+				4);					// next level id
+		
+		levelDao.insert("Niveau 4", // name
+				"2 1 3," + 			//
+				"0 1 0," + 			// Level content
+				"0 0 0", 			//
+				"1,3,5", 				// instructions id list
+				4,					// max number of instructions
+				1,					// author id
+				5);					// next level id
+		
+		levelDao.insert("Niveau 5", // name
+				"2 1 1 1," + 			//
+				"0 0 1 1," + 			// Level content
+				"1 0 0 1," +
+				"1 1 0 3", 			//
+				"1,3,4,5", 				// instructions id list
+				5,					// max number of instructions
+				1,					// author id
+				6);					// next level id
+		
+		levelDao.insert("Niveau 6", // name
+				"2 1 1 1," + 			//
+				"0 1 1 1," + 			// Level content
+				"0 1 1 1," +
+				"0 0 0 3", 			//
+				"1,2,4,5", 				// instructions id list
+				5,					// max number of instructions
+				1,					// author id
+				-1);					// next level id
 
 		return "Table levels Reseted";
 	}
