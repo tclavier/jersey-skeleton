@@ -7,7 +7,7 @@ define(["jquery"],  function($) {
         var Interpreter = require("interpreter");
         var Player = require("player");
 		var GraphicalPlayer = require("graphical_player");
-		
+		var Events = require("events");
 		
 		this.updateDimensions = function updateDimensions() {
 			canvas.width = $("canvas").parent().width();
@@ -39,6 +39,8 @@ define(["jquery"],  function($) {
 
 		this.render = function render() {
 			var ctx = canvas.getContext("2d");
+            // On nettoie toute la zone du canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.save();
 			ctx.translate((canvas.width - this.grid.width)/2, (canvas.height - this.grid.height)/2);
 			this.grid.render(ctx);
@@ -58,8 +60,8 @@ define(["jquery"],  function($) {
 			if (this.gplayer) this.gplayer.update(delta);
 			this.render();
 		}
-
-
+        
+        this.events = new Events(this);
         this.grid = new Grid(this, this.tiles, this.width, this.height);
         this.grid.generate();
         this.interpreter = new Interpreter(this);
