@@ -1,5 +1,6 @@
 package fr.iutinfo.resources;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -35,7 +36,7 @@ public class LevelResource {
 		if(level == null)
 			throw new WebApplicationException(404);
 		
-		level.setInstructionsList(instructionsDao.getAllId(level.structuredInstructions()));
+		level.setInstructionsList(instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())));
 		
 		return level;
 	}
@@ -82,6 +83,7 @@ public class LevelResource {
 			// User enregistré, l'envoie du niveau peux être effectué
 			if(isValidLevel(level)) {
 				// -1 comme prochain niveau de la série = dernier niveau
+			
 				levelDao.insert(level.getName(), level.content(), level.instructions(), level.getMaxInstructions(), Session.getUser(cookie).getId(), -1);
 				
 				return new Feedback(true, "Le niveau a bien été enregistré !");

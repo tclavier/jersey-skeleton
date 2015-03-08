@@ -31,8 +31,8 @@ public class Level {
 		this.content = content;
 	}
 
-	private List<List<Integer>> parseLevel(String content) {
-		List<List<Integer>> structuredContent = new ArrayList<List<Integer>>();
+	private Integer[][] parseLevel(String content) {
+		ArrayList<ArrayList<Integer>> structuredContent = new ArrayList<ArrayList<Integer>>();
 		String[] lines = content.split(",");
 		for(String line : lines) {
 			String[] cells = line.split("\\s+");
@@ -42,28 +42,33 @@ public class Level {
 			}
 			structuredContent.add(list);
 		}
-		return structuredContent;
+		
+		Integer[][] array = new Integer[structuredContent.size()][structuredContent.get(0).size()];
+		for(int i = 0 ; i < structuredContent.size() ; i++) {
+			structuredContent.get(i).toArray(array[i]);
+		}
+		return array;
 	}
 
-	private String serializeContent(List<List<Integer>> structuredContent) {
+	private String serializeContent(Integer[][] structuredContent) {
 		String content = "";
-		for(int i = 0 ; i < structuredContent.size() ; i++) {
+		for(int i = 0 ; i < structuredContent.length ; i++) {
 			if(i != 0)
 				content += ",";
-			for(int j = 0 ; j < structuredContent.get(i).size() ; j++) {
+			for(int j = 0 ; j < structuredContent[i].length ; j++) {
 				if(j != 0)
 					content += " ";
-				content += structuredContent.get(i).get(j);
+				content += structuredContent[i][j];
 			}
 		}
 		return content;
 	}
 
-	public void setStructuredContent(List<List<Integer>> structuredContent) {
+	public void setStructuredContent(Integer[][] structuredContent) {
 		content = serializeContent(structuredContent);
 	}
 
-	public List<List<Integer>> getStructuredContent() {
+	public Integer[][] getStructuredContent() {
 		return parseLevel(content);
 	}
 
@@ -100,32 +105,33 @@ public class Level {
 	}
 
 
-	private List<Integer> parseInstructions(String instructions) {
+	private Integer[] parseInstructions(String instructions) {
 		ArrayList<Integer> structuredInstructions = new ArrayList<Integer>();
 		String[] cells = instructions.split(",");
 		for(String cell : cells) {
 			structuredInstructions.add(Integer.parseInt(cell));
 		}
-		
-		return structuredInstructions;
+		Integer[] array = new Integer[structuredInstructions.size()];
+		structuredInstructions.toArray(array);
+		return array;
 	}
 
 	
-	private String serializeInstructions(List<Integer> structuredInstructions) {
+	private String serializeInstructions(Integer[] structuredInstructions) {
 		String instructions = "";
-		for(int i = 0 ; i < structuredInstructions.size() ; i++) {
+		for(int i = 0 ; i < structuredInstructions.length ; i++) {
 			if(i != 0)
 				instructions += ",";
-			instructions += structuredInstructions.get(i);
+			instructions += structuredInstructions[i];
 		}
 		return instructions;
 	}
 	
-	public List<Integer> structuredInstructions() {
+	public Integer[] getStructuredInstructions() {
 		return parseInstructions(instructions);
 	}
 
-	public void setStructuredInstructions(List<Integer> structuredInstructions) {
+	public void setStructuredInstructions(Integer[] structuredInstructions) {
 		this.instructions = serializeInstructions(structuredInstructions);
 	}
 

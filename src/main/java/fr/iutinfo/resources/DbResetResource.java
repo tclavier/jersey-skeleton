@@ -6,7 +6,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
-import fr.iutinfo.beans.Instruction;
 import fr.iutinfo.beans.Level;
 import fr.iutinfo.dao.FriendsRelationsDao;
 import fr.iutinfo.dao.InstructionsDao;
@@ -16,7 +15,7 @@ import fr.iutinfo.utils.Utils;
 
 
 @Path("/resetDb")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.TEXT_HTML)
 public class DbResetResource {
 
 	private static FriendsRelationsDao friendDao = App.dbi.open(FriendsRelationsDao.class);
@@ -24,52 +23,103 @@ public class DbResetResource {
 	private static LevelDao levelDao = App.dbi.open(LevelDao.class);
 	private static InstructionsDao instructionsDao = App.dbi.open(InstructionsDao.class);
 
+
 	
 	@GET
+	public String whichDatabase() {
+		return "<ul>"
+					+ "<li><a href='resetDb/users'>Reset users table</a></li>"
+					+ "<li><a href='resetDb/relations'>Reset relations table</a></li>"
+					+ "<li><a href='resetDb/levels'>Reset levels table</a></li>"
+					+ "<li><a href='resetDb/instructions'>Reset instructions table</a></li>"
+					+ "<li><a href='resetDb/all'>Reset ALL tables</a></li>"
+				+ "</ul>";
+	}
+	
+	
+	@GET
+	@Path("all")
 	public String resetDatabase() {
+
+		resetDbUsers();
+		resetDbInstructions();
+		resetDbLevels(); 
+		resetDbFriendsRelations();
 		
-		friendDao.dropFriendsRelationsTable();
+
+		return "All Tables Reseted";
+	}
+
+	@GET
+	@Path("users")
+	public String resetDbUsers() {
 		userDao.dropUserTable();
-		levelDao.dropLevelsTable();
-		instructionsDao.dropInstructionsTable();
-		
-		friendDao.createFriendsRelationsTable();
+
 		userDao.createUserTable();
-		levelDao.createLevelsTable();
-		instructionsDao.createInstructionsTable();
-		
-		
-		
+
 		userDao.insert("toto", Utils.hashMD5("toto"), "toto@toto.to");
-		userDao.insert("titi", Utils.hashMD5("titi"), "titi@titi.ti");	
-		
+		userDao.insert("titi", Utils.hashMD5("titi"), "titi@titi.ti");
+
+		return "Table user Reseted";
+	}
+
+
+	@GET
+	@Path("relations")
+	public String resetDbFriendsRelations() {
+		friendDao.dropFriendsRelationsTable();
+
+		friendDao.createFriendsRelationsTable();
+
 		friendDao.createRelation(2, 1);
 		friendDao.createRelation(1, 2);
-		
-		Level l = new Level();
-		l.setAuthorId(1);
-		l.setName("Niveau 1");
-		l.setContent("1 2 1,1 0 1,1 3 1");
-		l.setInstructions("1");
-		l.setMaxInstructions(2);
-		l.setNextLevelId(2);
-		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthorId(), l.getNextLevelId());
-		
-		l.setAuthorId(1);
-		l.setName("niveau de toto 2");
-		l.setContent("1 2 1 1,0 0 0 0,0 0 0 0,0 0 0 0");
-		l.setInstructions("1,2,3,4");
-		l.setMaxInstructions(4);
-		l.setNextLevelId(-1);
-		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthorId(), l.getNextLevelId());
-		
-		
-		instructionsDao.insert("Avancer", "player.moveForward();", 65, 0);
-		instructionsDao.insert("Reculer", "player.moveBackward();", 65, 0);
-		instructionsDao.insert("Tourner à gauche", "player.turnLeft();", 65, 0);
-		instructionsDao.insert("Tourner à droite", "player.turnRight();", 65, 0);
-		instructionsDao.insert("Répeter 3 fois", "for (var i = 0; i < 3; ++i)", 100, 1);
-		
-		return "Database Reset.";
+		return "Table friendsRelations Reseted";
 	}
+
+
+	@GET
+	@Path("levels")
+	public String resetDbLevels() {
+		levelDao.dropLevelsTable();
+		
+		levelDao.createLevelsTable();
+
+		levelDao.insert("Niveau 1", // name
+				"1 2 1," + 			//
+				"1 0 1," + 			// Level content
+				"1 3 1", 			//
+				"1", 				// instructions id list
+				2,					// max number of instructions
+				1,					// author id
+				2);					// next level id
+
+		levelDao.insert("Niveau 2", // name
+				"1 1 1," + 			//
+				"2 0 3," + 			// Level content
+				"1 1 1", 			//
+				"1,3", 				// instructions id list
+				3,					// max number of instructions
+				1,					// author id
+				3);					// next level id
+
+		return "Table levels Reseted";
+	}
+
+
+	@GET
+	@Path("instructions")
+	public String resetDbInstructions() {
+		instructionsDao.dropInstructionsTable();
+
+		instructionsDao.createInstructionsTable();
+
+		instructionsDao.insert("Avancer", "player.moveForward();", 65, 0);					// ID 1
+		instructionsDao.insert("Reculer", "player.moveBackward();", 65, 0);					// ID 2	
+		instructionsDao.insert("Tourner à gauche", "player.turnLeft();", 65, 0);			// ID 3
+		instructionsDao.insert("Tourner à droite", "player.turnRight();", 65, 0);			// ID 4
+		instructionsDao.insert("Répeter 3 fois", "for (var i = 0; i < 3; ++i)", 100, 1);	// ID 5
+
+		return "Table instructions Reseted";
+	}
+
 }
