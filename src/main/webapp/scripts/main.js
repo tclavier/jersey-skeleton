@@ -97,10 +97,16 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "g
 				toolbox += '  <block type="' + window.levelData.instructionsList[i].name + '"></block>';
 			}
 			toolbox += '</xml>';
-			
+
 			// On crée la zone pour blockly
 			Blockly.inject(document.getElementById('blocklyDiv'), {trashcan: true, toolbox: toolbox, maxBlocks: window.levelData.maxInstructions});
-			
+
+            // On met un message dynamique pour afficher le nombre de bloques restant
+            Blockly.addChangeListener(function() {
+                var remainingBlocks = Blockly.maxBlocks - Blockly.getMainWorkspace().getAllBlocks().length;
+                $("#max_instruction").text(remainingBlocks);
+                $("#max_instruction_s").text(remainingBlocks > 1 ? "s" : "");
+            });
 			console.log(window.levelData);
 			window.levelData = null;
 		}
