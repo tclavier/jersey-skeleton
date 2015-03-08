@@ -47,7 +47,7 @@ public class DbResetResource {
 		resetDbFriendsRelations();
 		
 
-		return "All Tables Reseted";
+		return "All Tables Reset";
 	}
 
 	@GET
@@ -60,7 +60,7 @@ public class DbResetResource {
 		userDao.insert("toto", Utils.hashMD5("toto"), "toto@toto.to");
 		userDao.insert("titi", Utils.hashMD5("titi"), "titi@titi.ti");
 
-		return "Table user Reseted";
+		return "Table user Reset";
 	}
 
 
@@ -73,7 +73,7 @@ public class DbResetResource {
 
 		friendDao.createRelation(2, 1);
 		friendDao.createRelation(1, 2);
-		return "Table friendsRelations Reseted";
+		return "Table friendsRelations Reset";
 	}
 
 
@@ -140,9 +140,19 @@ public class DbResetResource {
 				"1,2,4,5", 				// instructions id list
 				5,					// max number of instructions
 				1,					// author id
+				7);					// next level id
+		
+		levelDao.insert("Niveau 7", // name
+				"3 0 0," + 			//
+				"1 1 0," + 			// Level content
+				"0 0 0," +
+				"2 1 1", 			//
+				"1,2,3,5", 				// instructions id list
+				5,					// max number of instructions
+				1,					// author id
 				-1);					// next level id
 
-		return "Table levels Reseted";
+		return "Table levels Reset";
 	}
 
 
@@ -159,7 +169,7 @@ public class DbResetResource {
 		instructionsDao.insert("Tourner à droite", "player.turnRight();", 65, 0);			// ID 4
 		instructionsDao.insert("Répeter 3 fois", "for (var i = 0; i < 3; ++i)", 100, 1);	// ID 5
 
-		return "Table instructions Reseted";
+		return "Table instructions Reset";
 	}
 
 }
