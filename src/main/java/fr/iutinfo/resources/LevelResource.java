@@ -70,7 +70,8 @@ public class LevelResource {
 		if(Session.isLogged(cookie)) {
 			// User enregistré, l'envoie du niveau peux être effectué
 			if(isValidLevel(level)) {
-				levelDao.insert(level.getName(), level.content(), level.instructions(), level.getMaxInstructions(), Session.getUser(cookie).getId());
+				// -1 comme prochain niveau de la série = dernier niveau
+				levelDao.insert(level.getName(), level.content(), level.instructions(), level.getMaxInstructions(), Session.getUser(cookie).getId(), -1);
 				
 				return new Feedback(true, "Le niveau a bien été enregistré !");
 			}

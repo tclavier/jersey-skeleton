@@ -14,6 +14,7 @@ public class Level implements Serializable {
 	private String instructions;
 	private int maxInstructions;
 	private List<Instruction> instructionsList;
+	private int nextLevelId;
 
 	public Level() {
 		this(0);
@@ -149,5 +150,13 @@ public class Level implements Serializable {
 
 	public void setMaxInstructions(int maxInstructions) {
 		this.maxInstructions = maxInstructions;
+	}
+
+	public int getNextLevelId() {
+		return nextLevelId;
+	}
+
+	public void setNextLevelId(int nextLevelId) {
+		this.nextLevelId = nextLevelId;
 	}
 }

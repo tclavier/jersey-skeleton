@@ -52,7 +52,16 @@ public class DbResetResource {
 		l.setContent("1 2 0 0,0 0 0 0,0 0 0 0,0 0 0 0");
 		l.setInstructions("1,2,3,4,5");
 		l.setMaxInstructions(5);
-		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthorId());
+		l.setNextLevelId(2);
+		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthorId(), l.getNextLevelId());
+		
+		l.setAuthorId(1);
+		l.setName("niveau de toto 2");
+		l.setContent("1 2 1 1,0 0 0 0,0 0 0 0,0 0 0 0");
+		l.setInstructions("1,2,3,4");
+		l.setMaxInstructions(4);
+		l.setNextLevelId(-1);
+		levelDao.insert(l.getName(), l.content(), l.instructions(), l.getMaxInstructions(), l.getAuthorId(), l.getNextLevelId());
 		
 		
 		instructionsDao.insert("Avancer", "player.moveForward();", 65, 0);
