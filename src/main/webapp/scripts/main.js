@@ -124,13 +124,15 @@ function execute(code) {
 	// Si tous c'est bien passé, l'interpreteur devrait etre rempli de commande qui vont maintenant pouvoir etre affiché graphiquement
 }
 
-document.getElementById('execute').onclick = function () {
-	if (Blockly != null) {
-		execute(Blockly.JavaScript.workspaceToCode());
-	} else {
-		alert("Not loaded yet :(");
-	}
- };
+$(document).ready(function() {
+    document.getElementById('execute').onclick = function () {
+        if (Blockly != null) {
+            execute(Blockly.JavaScript.workspaceToCode());
+        } else {
+            alert("Not loaded yet :(");
+        }
+    }
+});
 
  
  // On intercepte les changements de dimension pour adapter le canvas
