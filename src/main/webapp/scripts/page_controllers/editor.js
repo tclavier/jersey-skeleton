@@ -280,6 +280,14 @@ $(document).ready(function() {
 		widthSpinner.value = gridWidth;
 	}
 	
+	function loadInstructions() {
+		$.getJSON("v1/instructions", function(data) {
+           for(var i = 0 ; i < data.length ; i++) {
+        	   $("#instructionsList").append('<input type="checkbox" value="' + data[i].id + '" checked> ' + data[i].name + '<br>');
+           }
+		});
+	}
+	
 	function getInstructions() {
 		var out = [];
 		var checkBoxes = $("#instructionsList").children();
@@ -314,5 +322,5 @@ $(document).ready(function() {
 		changeSize();
 	});
 	
-	console.log(getInstructions());
+	loadInstructions()
 });
