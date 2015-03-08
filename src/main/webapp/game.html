@@ -50,9 +50,12 @@
 
 				<ul class="nav navbar-nav">
 
-					<li class="menu_bar_element active" id="levels_bar"><a href="levels.html">Jouer</a></li>
-					<li class="menu_bar_element" id="editor_bar"><a href="editor.html">Editeur</a></li>
-					<li class="menu_bar_element" id="leaderboard_bar"><a href="leaderboard.html">Classement</a></li>
+					<li class="menu_bar_element active" id="levels_bar"><a
+						href="levels.html">Jouer</a></li>
+					<li class="menu_bar_element" id="editor_bar"><a
+						href="editor.html">Editeur</a></li>
+					<li class="menu_bar_element" id="leaderboard_bar"><a
+						href="leaderboard.html">Classement</a></li>
 
 				</ul>
 
@@ -66,24 +69,21 @@
 								data-toggle="popover">Envoyer</button>
 						</div>
 						<div class="form-group">
-							<a href="register.html" type="button" class="menu_bar_element btn btn-info">M'enregistrer</a>
+							<a href="register.html" type="button"
+								class="menu_bar_element btn btn-info">M'enregistrer</a>
 						</div>
 					</div>
 					<div id="info_profil_navbar">
 						<a id="user_icon" href="profile.html" class="menu_bar_element">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a>
-						<a href="#">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
-						</a> 
-						<a href="#">
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-						</a>
-						<a id="options_icon" class="menu_bar_element" href="options.html">
+						</a> <a href="#"> <span class="glyphicon glyphicon-comment"
+							aria-hidden="true"> </span>
+						</a> <a href="#"> <span
+							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						</a> <a id="options_icon" class="menu_bar_element" href="options.html">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a>
-						<a id="logout_icon" href="#"> 
-							<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+						</a> <a id="logout_icon" href="#"> <span
+							class="glyphicon glyphicon-off" aria-hidden="true"></span>
 						</a>
 					</div>
 				</div>
@@ -97,31 +97,47 @@
 		<div class="row">
 			<div id="grid-container" class="col-md-5">
 				<h2 id="level_title"></h2>
-				<canvas width="200" height="200"  id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
+				<canvas width="200" height="200" id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
 			</div>
-			
+
 			<div>
-				<h3>Vous pouvez déposer <span id="max_instruction"></span> blocs au maximum !</h3>
+				<h3>
+					Vous pouvez déposer <span id="max_instruction"></span> blocs au
+					maximum !
+				</h3>
 				<div id="control-container" class="col-md-7">
-					<div id="blocklyDiv" ></div>
-					<!-- <xml id="toolbox" style="display: none">
-					  <block type="controls_if"></block>
-					  <block type="controls_repeat_ext"></block>
-					  <block type="logic_compare"></block>
-					  <block type="math_number"></block>
-					  <block type="math_arithmetic"></block>
-					  <block type="text"></block>
-					  <block type="text_print"></block>
-					</xml> -->
+					<div id="blocklyDiv"></div>
 				</div>
 			</div>
-			<div id="exec_button"class="col-md-offset-5">
+			<div id="exec_button" class="col-md-offset-5">
 				<button id="execute" type="button">Executer</button>
 				<button id="skip_level" type="button">Passer le niveau</button>
 			</div>
 		</div>
 	</div>
 	<!-- /container game -->
+
+
+
+	<!-- Modal (popup) -->
+	<div class="modal fade" id="endLevelModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Félicitation !</h4>
+				</div>
+				<div class="modal-body">
+					Vous avez fini le niveau avec succés !<br />
+					Cliquez sur "Niveau suivant" pour accéder au prochain niveau.
+				</div>
+				<div class="modal-footer">
+					<button id="nextLevelButton" type="button" class="btn btn-primary"
+						data-dismiss="modal">Niveau suivant</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<footer class="container">

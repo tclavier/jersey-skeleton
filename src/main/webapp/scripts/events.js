@@ -3,16 +3,15 @@ define(["jquery"],  function(require) {
         this.game = game;
 
         /**
-         * Appelé lorsque le joueur arrive sur une nouvelle cellule
+         * Appelï¿½ lorsque le joueur arrive sur une nouvelle cellule
          * cellId : Id de la cellule
          */
         this.onPlayerArrivalOn = function(cellId) {
             console.log(cellId);
 
-            // Si c'est la cellule d'arrivée
+            // Si c'est la cellule d'arrivï¿½e
             if (cellId == 3) {
-                alert("Bravo ! Vous avez réussi le niveau !\n\nVous allez être redirigé vers le niveau suivant.");
-                // Faire la redirection
+            	levelFinished();
             }
         }
     }
