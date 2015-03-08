@@ -95,7 +95,7 @@ public class LevelResource {
 
 	private boolean isValidLevel(Level level) {
 		// TODO : Check the level
-		return false;
+		return true;
 	}
 	
 	

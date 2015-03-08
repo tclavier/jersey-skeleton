@@ -1,11 +1,9 @@
 package fr.iutinfo.beans;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Level {
 
 	private int id;
 	private String name;
@@ -33,8 +31,8 @@ public class Level implements Serializable {
 		this.content = content;
 	}
 
-	private Integer[][] parseLevel(String content) {
-		ArrayList<ArrayList<Integer>> structuredContent = new ArrayList<ArrayList<Integer>>();
+	private List<List<Integer>> parseLevel(String content) {
+		List<List<Integer>> structuredContent = new ArrayList<List<Integer>>();
 		String[] lines = content.split(",");
 		for(String line : lines) {
 			String[] cells = line.split("\\s+");
@@ -44,32 +42,28 @@ public class Level implements Serializable {
 			}
 			structuredContent.add(list);
 		}
-		Integer[][] array = new Integer[structuredContent.size()][structuredContent.get(0).size()];
-		for(int i = 0 ; i < structuredContent.size() ; i++) {
-			structuredContent.get(i).toArray(array[i]);
-		}
-		return array;
+		return structuredContent;
 	}
 
-	private String serializeContent(Integer[][] structuredContent) {
+	private String serializeContent(List<List<Integer>> structuredContent) {
 		String content = "";
-		for(int i = 0 ; i < structuredContent.length ; i++) {
+		for(int i = 0 ; i < structuredContent.size() ; i++) {
 			if(i != 0)
 				content += ",";
-			for(int j = 0 ; j < structuredContent.length ; j++) {
+			for(int j = 0 ; j < structuredContent.get(i).size() ; j++) {
 				if(j != 0)
 					content += " ";
-				content += structuredContent[i][j];
+				content += structuredContent.get(i).get(j);
 			}
 		}
 		return content;
 	}
 
-	public void setStructuredContent(Integer[][] structuredContent) {
+	public void setStructuredContent(List<List<Integer>> structuredContent) {
 		content = serializeContent(structuredContent);
 	}
 
-	public Integer[][] getStructuredContent() {
+	public List<List<Integer>> getStructuredContent() {
 		return parseLevel(content);
 	}
 
