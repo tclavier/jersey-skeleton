@@ -96,21 +96,26 @@
 	<div class="container main_panel" id="game_pane">
 		<div class="row">
 			<div id="grid-container" class="col-md-5">
+				<h2 id="level_title"></h2>
 				<canvas width="200" height="200"  id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
 			</div>
-			<div id="control-container" class="col-md-7">
-				<div id="blocklyDiv" ></div>
-				<!-- <xml id="toolbox" style="display: none">
-				  <block type="controls_if"></block>
-				  <block type="controls_repeat_ext"></block>
-				  <block type="logic_compare"></block>
-				  <block type="math_number"></block>
-				  <block type="math_arithmetic"></block>
-				  <block type="text"></block>
-				  <block type="text_print"></block>
-				</xml> -->
+			
+			<div>
+				<h3>Vous pouvez déposer <span id="max_instruction"></span> blocs au maximum !</h3>
+				<div id="control-container" class="col-md-7">
+					<div id="blocklyDiv" ></div>
+					<!-- <xml id="toolbox" style="display: none">
+					  <block type="controls_if"></block>
+					  <block type="controls_repeat_ext"></block>
+					  <block type="logic_compare"></block>
+					  <block type="math_number"></block>
+					  <block type="math_arithmetic"></block>
+					  <block type="text"></block>
+					  <block type="text_print"></block>
+					</xml> -->
+				</div>
 			</div>
-			<div id="exec button"class="col-md-offset-5">
+			<div id="exec_button"class="col-md-offset-5">
 				<button id="execute" type="button">Executer</button>
 				<button id="skip_level" type="button">Passer le niveau</button>
 			</div>

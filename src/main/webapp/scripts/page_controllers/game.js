@@ -11,6 +11,8 @@ $(document).ready(function() {
 		$.getJSON("v1/levels/" + levelId, function(data) {
             window.levelData = data;
             nextLevelId = data.nextLevelId;
+            $("#level_title").html(data.name);
+            $("#max_instruction").html(data.maxInstructions);
 		});
 	}
 	if(location.hash != "")
