@@ -20,8 +20,8 @@ $(document).ready(function() {
 	var COLORS = ["#424242", "#000000", "#FF0000", "#FFFF00"];
 	var NAMES = ["Vide", "Mur", "Départ", "Arrivée"];
 
-	var gridWidth = 10;
-	var gridHeight = 10;
+	var gridWidth = 6;
+	var gridHeight = 7;
 	var grid = [[]];
 	var selectedType = 0;
 	var modified = 0;
@@ -31,7 +31,7 @@ $(document).ready(function() {
 
 	var pickerCanvas = document.getElementById("pickerCanvas");
 	var pickerCtx = pickerCanvas.getContext("2d");
-	
+
 	var canvasContainer = document.getElementById("canvasContainer");
 
 	function initGrid(width, height) {
@@ -77,7 +77,7 @@ $(document).ready(function() {
 		// position sur le gridCanvas
 		var canvasX = event.pageX- gridCanvas.offsetLeft - canvasContainer.offsetLeft;
 		var canvasY = event.pageY - gridCanvas.offsetTop - canvasContainer.offsetTop;
-		
+
 		// position dans la grille
 		var gridX = Math.floor(canvasX / TILE_WIDTH);
 		var gridY = Math.floor(canvasY / TILE_HEIGHT);
@@ -152,7 +152,29 @@ $(document).ready(function() {
 
 		gridWidth = width;
 		gridHeight = height;
+		centerCanvas();
 		initGrid(gridWidth, gridHeight);
+	}
+
+	function centerCanvas() {
+		var gridCanvasHeight = gridHeight * TILE_HEIGHT;
+		var pickerCanvasHeight = PICKER_TILE_HEIGHT * COLORS.length;
+		var margin;
+		var containerWidth = $('#canvasContainer').width();
+
+		if (gridCanvasHeight < pickerCanvasHeight) {
+			margin = (pickerCanvasHeight - gridCanvasHeight) / 2;
+			$('#editorCanvas').css("margin-bottom", margin);
+			$('#pickerCanvas').css("margin-bottom", 0);
+		} else {
+			margin = (gridCanvasHeight - pickerCanvasHeight) / 2;
+			$('#pickerCanvas').css("margin-bottom", margin);
+			$('#editorCanvas').css("margin-bottom", 0);
+		}
+		
+		margin = (containerWidth - PICKER_TILE_WIDTH - gridWidth * TILE_WIDTH) / 2;
+		$('#editorCanvas').css("margin-left", margin);
+		console.log(margin);
 	}
 
 	function addError(message) {
@@ -218,23 +240,23 @@ $(document).ready(function() {
 			changeSize();
 		}
 	}
-	
+
 	function sendLevel() {
-		
+
 		var structuredContent = [];
 		for(var i = 0 ; i < grid.length ; i++) {
 			structuredContent[i] = {item : grid[i]};
 		}
-		
+
 		var json = JSON.stringify({
 			"structuredContent": structuredContent,
 			"structuredInstructions": getInstructions(),
 			"name": $("#levelName").val(),
 			"maxInstructions": $("#instructionsNumber").val()
 		});
-		
+
 		console.log(json);
-		
+
 		$.ajax({
 			type : 'POST',
 			contentType : 'application/json',
@@ -265,11 +287,11 @@ $(document).ready(function() {
 		else 
 			alert("Niveau invalide");
 	}
-	
+
 	function initSpinners() {
 		var widthSpinner = document.getElementById("gridWidth");
 		var heightSpinner = document.getElementById("gridHeight");
-		
+
 		heightSpinner.min = MIN_GRID_HEIGHT;
 		heightSpinner.max = MAX_GRID_HEIGHT;
 		heightSpinner.value = gridHeight;
@@ -277,23 +299,23 @@ $(document).ready(function() {
 		widthSpinner.max = MAX_GRID_WITH;
 		widthSpinner.value = gridWidth;
 	}
-	
+
 	function loadInstructions() {
 		$.getJSON("v1/instructions", function(data) {
-           for(var i = 0 ; i < data.length ; i++) {
-        	   $("#instructions").append('<li value="' + data[i].id + '"> ' + data[i].name + '</li>');
-           }
+			for(var i = 0 ; i < data.length ; i++) {
+				$("#instructions").append('<li value="' + data[i].id + '"> ' + data[i].name + '</li>');
+			}
 		});
 	}
-	
+
 	function getInstructions() {
 		var out = [];
 		var children = $("#selectedInstructions").children();
-		
+
 		for (var i = 0; i < children.length; i++) {
 			out.push(children[i].value);
 		}
-		
+
 		return out;
 	}
 
@@ -301,7 +323,7 @@ $(document).ready(function() {
 		gridCanvas.addEventListener("mousemove", doGridClick, false)
 		doGridClick(event);
 	}, false);
-	
+
 	document.getElementsByTagName("body")[0].addEventListener("mouseup", function() {
 		gridCanvas.removeEventListener("mousemove", doGridClick);
 	}, false);
@@ -310,18 +332,40 @@ $(document).ready(function() {
 	initPicker();
 	highLightSelectedTile(selectedType, HIGHLIGHT_COLOR);
 	initSpinners();
-	
+	centerCanvas();
+
 	$("#save_button").click(function() {
 		saveLevel();
 	});
-	
+
 	$("#change_size").click(function() {
 		changeSize();
 	});
+
+	$('input').change(function() {
+		checkLevel();
+	});
+
+	$('input').keyup(function() {
+		checkLevel();
+	});
 	
+	$('#gridWidth').keypress(function(e) {
+		handleKeyPress(e);
+	});
+	
+	$('#gridHeight').keypress(function(e) {
+		handleKeyPress(e);
+	});
+
 	loadInstructions();
-	
-	 $( "#instructions, #selectedInstructions" ).sortable({
-		 connectWith: ".instructionsList"
-		 }).disableSelection();
+
+	$( "#instructions, #selectedInstructions" ).sortable({
+		connectWith: ".instructionsList",
+		receive: function() {
+			checkLevel();
+		}
+	}).disableSelection();
+
+	checkLevel();
 });
