@@ -61,6 +61,11 @@ define(["jquery"],  function(require) {
 		
 		this.update = function update(delta) {
 		}
+
+        this.isTileSolid = function isTileSolid(tilex, tiley) {
+            if (tilex < 0 || tiley < 0 || tiley >= this.tiles.length || tilex >= this.tiles[0].length) return true;
+            return this.tiles[tiley][tilex] == 1;
+        }
 	}
 
 

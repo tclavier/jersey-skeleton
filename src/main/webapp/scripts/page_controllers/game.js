@@ -6,11 +6,20 @@ function levelFinished() {
 
 function goToNextLevel() {
 	if(nextLevelId > 0){
-		location.replace("game.html#" + nextLevelId);
-		location.reload();
+		location.replace("game.html?level=" + nextLevelId);
+		//location.reload();
 	} else {
 		// Afficher une fenêtre de félicitation ?
 	}
+}
+
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null) {
+       return null;
+    } else {
+       return results[1] || 0;
+    }
 }
 
 $(document).ready(function() {
@@ -30,8 +39,11 @@ $(document).ready(function() {
 			$("#max_instruction").html(data.maxInstructions);
 		});
 	}
-	if(location.hash != "") {
-		loadLevel(location.hash.substring(1));
+	
+	var level = urlParam("level");
+	console.log(level);
+	if( level != null) {
+		loadLevel(level);
 	} else {
 		location.replace("levels.html")
 	}
