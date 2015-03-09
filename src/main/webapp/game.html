@@ -95,24 +95,33 @@
 
 	<div class="container main_panel" id="game_pane">
 		<div class="row">
-			<div id="grid-container" class="col-md-5">
-				<h2 id="level_title"></h2>
-				<canvas width="200" height="200" id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
-			</div>
-
-			<div>
-				<h3>
-                    Il vous reste <span id="max_instruction">0</span> instruction<span id="max_instruction_s"></span>.
-				</h3>
-				<div id="control-container" class="col-md-7">
-					<div id="blocklyDiv"></div>
+			<div class="col-md-5 panel panel-default">
+				<div class="panel-body">
+					<h2 id="level_title"></h2>			
+					<div id="grid-container">
+						<canvas width="200" height="200" id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
+					</div>
 				</div>
 			</div>
-			<div id="exec_button" class="col-md-offset-5">
-				<button id="execute" type="button">Executer</button>
-				<button id="skip_level" type="button">Passer le niveau</button>
+
+			<div class="col-md-7 panel panel-default">
+				<div class="panel-body">
+					<h3>
+						Il vous reste <span id="max_instruction">0</span> instruction<span
+							id="max_instruction_s"></span>.
+					</h3>
+					<div id="control-container">
+						<div id="blocklyDiv"></div>
+					</div>
+				</div>
+				<div id="exec_button">
+					<button id="execute" type="button" class="btn btn-default">Executer</button>
+				</div>
 			</div>
+			
 		</div>
+
+
 	</div>
 	<!-- /container game -->
 
@@ -120,15 +129,16 @@
 
 	<!-- Modal (popup) -->
 	<div class="modal fade" id="endLevelModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="myModalLabel">Félicitation !</h4>
 				</div>
 				<div class="modal-body">
-					Vous avez fini le niveau avec succés !<br />
-					Cliquez sur "Niveau suivant" pour accéder au prochain niveau.
+					Vous avez fini le niveau avec succés !<br /> Cliquez sur "Niveau
+					suivant" pour accéder au prochain niveau.
 				</div>
 				<div class="modal-footer">
 					<button id="nextLevelButton" type="button" class="btn btn-primary"
