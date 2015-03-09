@@ -303,7 +303,7 @@ $(document).ready(function() {
 	function loadInstructions() {
 		$.getJSON("v1/instructions", function(data) {
 			for(var i = 0 ; i < data.length ; i++) {
-				$("#instructions").append('<li value="' + data[i].id + '"> ' + data[i].name + '</li>');
+				$("#instructions").append('<li class="list-group-item list-group-item-info" value="' + data[i].id + '">' + data[i].name + '</li>');
 			}
 		});
 	}

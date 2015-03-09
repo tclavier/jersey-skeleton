@@ -14,18 +14,9 @@ canvas {
 	user-select: none;
 }
 
-#editorCanvas {
-	margin-left: 42px;
-}
-
 .instructionsList {
-	background-color: #FF00FF;
-	min-height: 30px;
-}
-
-ul {
-	padding: 5px;
-	list-style-type: none;
+	background-color: #D9EDF7;
+	min-height: 42px;
 }
 </style>
 <title>Ludicode</title>
@@ -133,14 +124,16 @@ ul {
 				<canvas id="editorCanvas" width="500" height="500">
 				</canvas>
 			</div>
-			<div class="col-md-2">
-				Instructions autorisées:
-				<ul class="instructionsList" id="selectedInstructions">
+			<div class="panel panel-warning col-md-2">
+				<div class="panel-heading">Instructions autorisées:</div>
+				
+				<ul class="instructionsList list-group panel-body"
+					id="selectedInstructions">
 				</ul>
 			</div>
-			<div class="col-md-2">
-				Instructions interdites:
-				<ul class="instructionsList" id="instructions">
+			<div class="panel panel-warning col-md-2">
+			<div class="panel-heading">Instructions interdites:</div>
+				<ul class="instructionsList list-group panel-body" id="instructions">
 				</ul>
 			</div>
 
