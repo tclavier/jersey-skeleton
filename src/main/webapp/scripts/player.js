@@ -59,6 +59,28 @@ define(["jquery"],  function(require) {
 		this.moveBackward = function moveBackward() {
 			this.moveToTile(this.tileX() - dirX, this.tileY() - dirY);
 		}
+
+        this.canGoForward = function canGoForward() {
+            return !this.game.grid.isTileSolid(this.tileX() + dirX, this.tileY() + dirY);
+        }
+
+        this.canGoBackward = function canGoBackward() {
+            return !this.game.grid.isTileSolid(this.tileX() - dirX, this.tileY() - dirY);
+        }
+
+        this.canGoLeft = function canGoLeft() {
+            return !this.game.grid.isTileSolid(this.tileX() + dirY, this.tileY() + dirX);
+        }
+
+        this.canGoRight = function canGoRight() {
+            return !this.game.grid.isTileSolid(this.tileX() - dirY, this.tileY() - dirX);
+        }
+
+        this.hasArrived = function() {
+            return !this.game.grid.tiles[this.tileY()][this.tileX()] == 3;
+        }
+
+
 	}
 
 
