@@ -69,6 +69,8 @@ define(["jquery"],  function(require) {
 				
 				// On avance dans cette direction (en prenant en compte la vitesse general du jeu)
 				this.x += 10 * delta * game.getSpeed() * xsign;
+                // On s'assure qu'on a pas depassé la cible
+                if (((goToX - this.x) * xsign) < 0) this.x = goToX;
 			} else {
 				// Si c'est bon en X (< 2 px), on s'assure d'etre exactement au point de destination
 				this.x = goToX;
@@ -78,6 +80,8 @@ define(["jquery"],  function(require) {
 					if (goToY - this.y < 0) ysign = -1;
 
 					this.y += 10 * delta * game.getSpeed() * ysign;
+                    // On s'assure qu'on a pas depassé la cible
+                    if (((goToY - this.y) * ysign) < 0) this.y = goToY;
 				} else {
 					this.y = goToY;
                     // On prévient le gestionnaire d'evenement que le joueur vient d'atteindre une nouvelle case
