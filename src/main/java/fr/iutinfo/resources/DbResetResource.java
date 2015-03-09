@@ -168,8 +168,13 @@ public class DbResetResource {
 		instructionsDao.insert("Tourner à gauche", "player.turnLeft();", 65, 0);			// ID 3
 		instructionsDao.insert("Tourner à droite", "player.turnRight();", 65, 0);			// ID 4
 		instructionsDao.insert("Répeter 3 fois", "for (var i = 0; i < 3; ++i)", 100, 1);	// ID 5
-
-		return "Table instructions Reset";
+		instructionsDao.insert("Si chemin devant", "if (player.canGoForward())", 200, 1);	// ID 6
+		instructionsDao.insert("Si chemin à gauche", "if (player.canGoLeft())", 200, 1);	// ID 7
+		instructionsDao.insert("Si chemin à droite", "if (player.canGoRight())", 200, 1);	// ID 8
+		instructionsDao.insert("Si chemin derrière", "if (player.canGoBackward())", 200, 1);	// ID 9
+        instructionsDao.insert("Répeter jusqu'a l'arrivée", "while (!player.hasArrived())", 100, 1); // ID 10	
+        
+        return "Table instructions Reset";
 	}
 
 }
