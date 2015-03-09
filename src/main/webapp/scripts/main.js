@@ -68,7 +68,6 @@ function createBlocklyInstruction(instruction) {
 }
 
 var game;
-var speed = 10;
 
 require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "graphical_player","events"], function ($) {
 	var Game = require("game");
@@ -107,7 +106,6 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "g
                 $("#max_instruction").text(remainingBlocks);
                 $("#max_instruction_s").text(remainingBlocks > 1 ? "s" : "");
             });
-			console.log(window.levelData);
 			window.levelData = null;
 		}
 		

@@ -68,7 +68,7 @@ define(["jquery"],  function(require) {
 				if (goToX - this.x < 0) xsign = -1;
 				
 				// On avance dans cette direction (en prenant en compte la vitesse general du jeu)
-				this.x += 10 * delta * speed * xsign;
+				this.x += 10 * delta * game.getSpeed() * xsign;
 			} else {
 				// Si c'est bon en X (< 2 px), on s'assure d'etre exactement au point de destination
 				this.x = goToX;
@@ -77,7 +77,7 @@ define(["jquery"],  function(require) {
 					var ysign = 1;
 					if (goToY - this.y < 0) ysign = -1;
 
-					this.y += 10 * delta * speed * ysign;
+					this.y += 10 * delta * game.getSpeed() * ysign;
 				} else {
 					this.y = goToY;
                     // On prévient le gestionnaire d'evenement que le joueur vient d'atteindre une nouvelle case
@@ -97,7 +97,7 @@ define(["jquery"],  function(require) {
 				if (goToAngle < angle) sign = -1;
 				
 				// On augmente ainsi l'angle dans la direction la plus optimisée
-				angle += Math.PI/20 * sign;
+				angle += Math.PI/20 * sign * this.game.getSpeed() * delta;
 			} else {
 				// Si on a atteint l'angle cible
 				// On s'assure deja d'etre exactement a l'angle cible

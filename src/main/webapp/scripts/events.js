@@ -7,8 +7,6 @@ define(["jquery"],  function(require) {
          * cellId : Id de la cellule
          */
         this.onPlayerArrivalOn = function(cellId) {
-            console.log(cellId);
-
             // Si c'est la cellule d'arriv�e
             if (cellId == 3) {
             	levelFinished();

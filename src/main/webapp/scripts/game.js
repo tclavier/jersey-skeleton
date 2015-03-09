@@ -61,12 +61,18 @@ define(["jquery"],  function($) {
 			if (this.gplayer) this.gplayer.update(delta);
 			this.render();
 		}
+
+
+        this.getSpeed = function getSpeed() {
+            return parseInt($("#speed").val())/10;
+        }
+
+
+
         
         this.events = new Events(this);
         this.grid = new Grid(this, this.tiles, this.width, this.height);
         this.grid.generate();
         this.interpreter = new Interpreter(this);
 	}
-
-
 });
