@@ -14,9 +14,15 @@ canvas {
 	user-select: none;
 	border: 1px solid #000000;
 }
+
 .instructionsList {
 	background-color: #FF00FF;
 	min-height: 30px;
+}
+
+ul {
+	padding: 5px;
+	list-style-type: none;
 }
 </style>
 <title>Ludicode</title>
@@ -32,7 +38,7 @@ canvas {
 <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/editor.js"></script>
- <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 
 </head>
 
@@ -102,7 +108,7 @@ canvas {
 		Nombre max d'instructions: <input type="number"
 			id="instructionsNumber" value="3" min="1">
 		<div class="row">
-			<div class="col-md-8" id="canvasContainer">
+			<div class="col-md-6" id="canvasContainer">
 				<canvas id="pickerCanvas" width="0" height="0"
 					style="border: 1px solid #000000;">
 				</canvas>
@@ -112,10 +118,12 @@ canvas {
 				</canvas>
 			</div>
 			<div class="col-md-2">
-			Instructions autorisées:
+				Instructions autorisées:
 				<ul class="instructionsList" id="selectedInstructions">
 				</ul>
-			Instructions interdites: 
+			</div>
+			<div class="col-md-2">
+				Instructions interdites:
 				<ul class="instructionsList" id="instructions">
 				</ul>
 			</div>
@@ -128,7 +136,8 @@ canvas {
 			onkeypress="handleKeyPress(event)"> x <input type="number"
 			id="gridHeight" onkeypress="handleKeyPress(event)"">
 		<button id="change_size" class="btn btn-default">Redimensionner</button>
-		<button id="save_button" class="btn btn-default">Enregistrer niveau</button>
+		<button id="save_button" class="btn btn-default">Enregistrer
+			niveau</button>
 
 	</div>
 	<!-- container Editor page -->

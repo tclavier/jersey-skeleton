@@ -3,16 +3,16 @@
  */
 
 $(document).ready(function() {
-	var TILE_WIDTH = 50;
-	var TILE_HEIGHT = 50;
+	var TILE_WIDTH = 42;
+	var TILE_HEIGHT = 42;
 
 	var MIN_GRID_WIDTH = 3;
 	var MAX_GRID_WITH = 10;
 	var MIN_GRID_HEIGHT = 3;
 	var MAX_GRID_HEIGHT = 10;
 
-	var PICKER_TILE_WIDTH = 90;
-	var PICKER_TILE_HEIGHT = 90;
+	var PICKER_TILE_WIDTH = 80;
+	var PICKER_TILE_HEIGHT = 80;
 	var FONT_SIZE = 14;
 	var PICKER_HIGHLIHT_OFFSET = 5;
 	var HIGHLIGHT_COLOR = "#0000FF";
@@ -20,8 +20,8 @@ $(document).ready(function() {
 	var COLORS = ["#424242", "#000000", "#FF0000", "#FFFF00"];
 	var NAMES = ["Vide", "Mur", "Départ", "Arrivée"];
 
-	var gridWidth = 8;
-	var gridHeight = 6;
+	var gridWidth = 10;
+	var gridHeight = 10;
 	var grid = [[]];
 	var selectedType = 0;
 	var modified = 0;
@@ -157,8 +157,7 @@ $(document).ready(function() {
 
 	function addError(message) {
 		var list = $("#errors");
-		var entry = $('<li class="label label-danger"></li><br/>');
-		//TODO : crapi <br>
+		var entry = $('<li class="alert alert-danger"></li>');
 		entry.append(message);
 		list.append(entry);
 	}
