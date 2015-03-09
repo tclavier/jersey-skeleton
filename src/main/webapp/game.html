@@ -96,32 +96,39 @@
 	<div class="container-fluid main_panel" id="game_pane">
 		<div class="row">
 			<div class="panel panel-default">
-				<div class="panel-heading" id="level_title"></div>
+				<div class="panel-heading">
+					<h4 id="level_title"></h4>
+				</div>
 				<div class="panel-body">
 					<div class="row">
 						<div id="grid-container" class="col-md-3">
 							<canvas width="200" height="200" id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
 							<div id="toolbox" class="row panel panel-default">
 								<div class="col-md-5">
-									<button id="execute" type="button" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Executer</button>
+									<button id="execute" type="button" class="btn btn-success">
+										<span class="glyphicon glyphicon-play"></span> Executer
+									</button>
 								</div>
 								<div class="col-md-7">
 									<input type="range" min="1" max="200" />
 								</div>
+								<div>
+									<h3>
+										Il vous reste <span id="max_instruction">0</span> instruction<span
+											id="max_instruction_s"></span>.
+									</h3>
+								</div>
 							</div>
+
 						</div>
-						
+
 						<div id="control-container" class="col-md-9">
 							<div id="blocklyDiv"></div>
-							<h3>
-								Il vous reste <span id="max_instruction">0</span> instruction<span
-									id="max_instruction_s"></span>.
-							</h3>
 						</div>
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 
 
