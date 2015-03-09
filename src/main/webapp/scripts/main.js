@@ -144,4 +144,6 @@ $(document).ready(function() {
  // On intercepte les changements de dimension pour adapter le canvas
 $(window).resize(function() {
 	if (game) game.updateDimensions();
+	$(".blocklySvg").attr("height", $("canvas").parent().height());
+
 });

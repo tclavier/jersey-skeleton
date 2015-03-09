@@ -69,15 +69,15 @@ define(["jquery"],  function(require) {
         }
 
         this.canGoLeft = function canGoLeft() {
-            return !this.game.grid.isTileSolid(this.tileX() + dirY, this.tileY() + dirX);
+            return !this.game.grid.isTileSolid(this.tileX() + dirY, this.tileY() - dirX);
         }
 
         this.canGoRight = function canGoRight() {
-            return !this.game.grid.isTileSolid(this.tileX() - dirY, this.tileY() - dirX);
+            return !this.game.grid.isTileSolid(this.tileX() - dirY, this.tileY() + dirX);
         }
 
         this.hasArrived = function() {
-            return !this.game.grid.tiles[this.tileY()][this.tileX()] == 3;
+            return this.game.grid.tiles[this.tileY()][this.tileX()] == 3;
         }
 
 

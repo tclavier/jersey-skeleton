@@ -6,7 +6,7 @@ define(["jquery"],  function(require) {
 		tiles : Tableau a deux dimensions de la grille du niveau
 		width : Largeur (en pixel) de la zone pour dessiner la grille
 		height : Hauteur (en pixel) de la zone pour dessiner la grille
-		Les careaux seront redimensionné en fonction des dimensions de la zone dessinable
+		Les careaux seront redimensionnï¿½ en fonction des dimensions de la zone dessinable
 	**/
 	return function Grid(game, tiles, width, height) {
 		this.game = game;
@@ -63,6 +63,7 @@ define(["jquery"],  function(require) {
 		}
 
         this.isTileSolid = function isTileSolid(tilex, tiley) {
+        	console.log(tilex + " " + tiley + " " + this.tiles[tiley][tilex]);
             if (tilex < 0 || tiley < 0 || tiley >= this.tiles.length || tilex >= this.tiles[0].length) return true;
             return this.tiles[tiley][tilex] == 1;
         }

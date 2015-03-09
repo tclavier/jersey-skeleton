@@ -10,8 +10,9 @@ define(["jquery"],  function($) {
 		var Events = require("events");
 		
 		this.updateDimensions = function updateDimensions() {
-			canvas.width = $("canvas").parent().width();
-			canvas.height = $("canvas").parent().height();
+			var size = Math.min($("canvas").parent().height(), $("canvas").parent().width());
+			canvas.height = size;
+			canvas.width = size;
 			this.width = Math.min(canvas.height, canvas.width);
 			this.height = this.width;
 			// Voir si on garde cette partie la
@@ -42,7 +43,7 @@ define(["jquery"],  function($) {
             // On nettoie toute la zone du canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.save();
-			ctx.translate((canvas.width - this.grid.width)/2, (canvas.height - this.grid.height)/2);
+			ctx.translate((canvas.width - this.grid.width)/2, 0);
 			this.grid.render(ctx);
 			if (this.gplayer) this.gplayer.render(ctx);
 			ctx.restore();

@@ -108,7 +108,7 @@ public class DbResetResource {
 				"1 0 1," + 			// Level content
 				"1 0 1," +
 				"1 3 1", 			//
-				"1,5", 				// instructions id list
+				"1,10", 			// instructions id list
 				2,					// max number of instructions
 				1,					// author id
 				4);					// next level id
@@ -117,27 +117,27 @@ public class DbResetResource {
 				"2 1 3," + 			//
 				"0 1 0," + 			// Level content
 				"0 0 0", 			//
-				"1,3,5", 				// instructions id list
+				"1,3,10", 			// instructions id list
 				4,					// max number of instructions
 				1,					// author id
 				5);					// next level id
 		
 		levelDao.insert("Niveau 5", // name
-				"2 1 1 1," + 			//
-				"0 0 1 1," + 			// Level content
+				"2 1 1 1," + 		//
+				"0 0 1 1," + 		// Level content
 				"1 0 0 1," +
 				"1 1 0 3", 			//
-				"1,3,4,5", 				// instructions id list
+				"1,3,4,10", 		// instructions id list
 				5,					// max number of instructions
 				1,					// author id
 				6);					// next level id
 		
 		levelDao.insert("Niveau 6", // name
-				"2 1 1 1," + 			//
-				"0 1 1 1," + 			// Level content
+				"2 1 1 1," + 		//
+				"0 1 1 1," + 		// Level content
 				"0 1 1 1," +
 				"0 0 0 3", 			//
-				"1,2,4,5", 				// instructions id list
+				"1,2,4,5", 			// instructions id list
 				5,					// max number of instructions
 				1,					// author id
 				7);					// next level id
@@ -147,10 +147,34 @@ public class DbResetResource {
 				"1 1 0," + 			// Level content
 				"0 0 0," +
 				"2 1 1", 			//
-				"1,2,3,5", 				// instructions id list
+				"1,2,3,5", 			// instructions id list
 				5,					// max number of instructions
 				1,					// author id
-				-1);					// next level id
+				8);					// next level id
+		
+		levelDao.insert("Niveau 8", // name
+				"2 1 1 1," + 		//
+				"0 1 1 1," + 		// Level content
+				"0 1 1 1," +
+				"0 0 0 3", 			//
+				"1,3,7,10", 		// instructions id list
+				4,					// max number of instructions
+				1,					// author id
+				9);					// next level id
+		
+		levelDao.insert("Niveau 9", // name
+				"2 1 1 1," + 		//
+				"0 0 0 1," + 		// Level content
+				"1 1 0 1," +
+				"1 1 0 1," +
+				"0 0 0 1," +
+				"3 1 1 1", 			//
+				"1,3,4,7,8,10", 		// instructions id list
+				6,					// max number of instructions
+				1,					// author id
+				-1);				// next level id
+		
+		
 
 		return "Table levels Reset";
 	}
@@ -165,8 +189,8 @@ public class DbResetResource {
 
 		instructionsDao.insert("Avancer", "player.moveForward();", 65, 0);					// ID 1
 		instructionsDao.insert("Reculer", "player.moveBackward();", 65, 0);					// ID 2	
-		instructionsDao.insert("Tourner à gauche", "player.turnLeft();", 65, 0);			// ID 3
-		instructionsDao.insert("Tourner à droite", "player.turnRight();", 65, 0);			// ID 4
+		instructionsDao.insert("Pivoter à gauche", "player.turnLeft();", 65, 0);			// ID 3
+		instructionsDao.insert("Pivoter à droite", "player.turnRight();", 65, 0);			// ID 4
 		instructionsDao.insert("Répeter 3 fois", "for (var i = 0; i < 3; ++i)", 100, 1);	// ID 5
 		instructionsDao.insert("Si chemin devant", "if (player.canGoForward())", 200, 1);	// ID 6
 		instructionsDao.insert("Si chemin à gauche", "if (player.canGoLeft())", 200, 1);	// ID 7
