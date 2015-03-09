@@ -29,7 +29,7 @@ define(["jquery"],  function(require) {
                 if (Blockly) {
                     Blockly.mainWorkspace.getBlockById(command[1]).select();
                 }
-                return command[0];            
+                return command[0];
             }
 
             return false;

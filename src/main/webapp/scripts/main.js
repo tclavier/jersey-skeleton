@@ -117,6 +117,7 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "g
 	console.log("main loaded");
 });
 
+var runned = false;
 // Fonction pour executer le code de l'algo
 function execute(code) {
 	// On regenere la grille pour la remettre a son etat initial
@@ -125,9 +126,24 @@ function execute(code) {
 	game.interpreter.setup();
 	// On execute les actions sur le joueur invisible permettant juste de remplir l'interpreteur
 	var player = game.player;
-	// On execute le code
-	eval(code);
-	// Si tous c'est bien passé, l'interpreteur devrait etre rempli de commande qui vont maintenant pouvoir etre affiché graphiquement
+
+    if (!runned) {
+        // On modifie le design du bouton
+        $("#execute").attr("class", "btn btn-danger");
+        $("#execute").html("<span class=\"glyphicon glyphicon-remove\"></span> Réinitialiser");
+
+        // On execute le code
+        runned = true;
+	    eval(code);
+	    // Si tous c'est bien passé, l'interpreteur devrait etre rempli de commande qui vont maintenant pouvoir etre affiché graphiquement
+
+        runned = true;
+    } else {
+        // On modifie le design du bouton
+        $("#execute").attr("class", "btn btn-success");
+        $("#execute").html("<span class=\"glyphicon glyphicon-play\"></span> Executer");
+        runned = false;
+    }
 }
 
 $(document).ready(function() {
