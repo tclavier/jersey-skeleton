@@ -3,8 +3,6 @@
  */
 
 $(document).ready(function() {
-	
-
 	var TILE_WIDTH = 50;
 	var TILE_HEIGHT = 50;
 
@@ -159,7 +157,8 @@ $(document).ready(function() {
 
 	function addError(message) {
 		var list = $("#errors");
-		var entry = $('<li></li>');
+		var entry = $('<li class="label label-danger"></li><br/>');
+		//TODO : crapi <br>
 		entry.append(message);
 		list.append(entry);
 	}
@@ -207,7 +206,7 @@ $(document).ready(function() {
 		if (getInstructions().length === 0) {
 			addError("Le niveau doit avoir au moins une instruction autorisée");
 			validity = false;
-		}			
+		}
 
 		$("#save_button").prop("disabled", !validity);;
 
@@ -283,18 +282,17 @@ $(document).ready(function() {
 	function loadInstructions() {
 		$.getJSON("v1/instructions", function(data) {
            for(var i = 0 ; i < data.length ; i++) {
-        	   $("#instructionsList").append('<input type="checkbox" value="' + data[i].id + '" checked> ' + data[i].name + '<br>');
+        	   $("#instructions").append('<li value="' + data[i].id + '"> ' + data[i].name + '</li>');
            }
 		});
 	}
 	
 	function getInstructions() {
 		var out = [];
-		var checkBoxes = $("#instructionsList").children();
+		var children = $("#selectedInstructions").children();
 		
-		for (var i = 0; i < checkBoxes.length; i++) {
-			if (checkBoxes[i].checked === true)
-				out.push(checkBoxes[i].value);
+		for (var i = 0; i < children.length; i++) {
+			out.push(children[i].value);
 		}
 		
 		return out;
@@ -322,5 +320,9 @@ $(document).ready(function() {
 		changeSize();
 	});
 	
-	loadInstructions()
+	loadInstructions();
+	
+	 $( "#instructions, #selectedInstructions" ).sortable({
+		 connectWith: ".instructionsList"
+		 }).disableSelection();
 });
