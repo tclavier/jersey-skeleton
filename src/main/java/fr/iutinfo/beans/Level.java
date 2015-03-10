@@ -12,7 +12,8 @@ public class Level {
 	private String instructions;
 	private int maxInstructions;
 	private List<Instruction> instructionsList;
-	private int nextLevelId;
+	private LevelList levelList;
+	
 
 	public Level() {
 		this(0);
@@ -152,11 +153,11 @@ public class Level {
 		this.maxInstructions = maxInstructions;
 	}
 
-	public int getNextLevelId() {
-		return nextLevelId;
+	public LevelList getLevelList() {
+		return levelList;
 	}
 
-	public void setNextLevelId(int nextLevelId) {
-		this.nextLevelId = nextLevelId;
+	public void setLevelList(LevelList levelList) {
+		this.levelList = levelList;
 	}
 }
