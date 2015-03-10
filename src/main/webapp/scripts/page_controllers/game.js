@@ -41,9 +41,12 @@ $(document).ready(function() {
 	}
 	
 	var level = urlParam("level");
-	console.log(level);
+	var list = urlParam("list");
+	console.log("level = " + level);
+	console.log("list = " + list);
 	if( level != null) {
-		loadLevel(level);
+		if(list == null)
+			loadLevel(level);
 	} else {
 		location.replace("levels.html")
 	}

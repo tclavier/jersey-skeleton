@@ -59,7 +59,7 @@ public class LevelResource {
 	}
 	
 	
-	@PUT
+	/*@PUT
 	@Path("{id}/nextLevel/{nextLevelId}")
 	public Feedback setNextLevel(@PathParam("id") int id, @PathParam("idNextLevel") int nextLevelId) {
 		if(levelDao.findById(nextLevelId) == null)
@@ -68,7 +68,7 @@ public class LevelResource {
 			return new Feedback(false, "Le niveau actuel n'existe pas !");
 		levelDao.setNextLevel(nextLevelId, id);
 		return new Feedback(true, "La modification à été apportée !");
-	}
+	}*/
 	
 	
 	/**
@@ -84,7 +84,7 @@ public class LevelResource {
 			if(isValidLevel(level)) {
 				// -1 comme prochain niveau de la série = dernier niveau
 			
-				levelDao.insert(level.getName(), level.content(), level.instructions(), level.getMaxInstructions(), Session.getUser(cookie).getId(), -1);
+				levelDao.insert(level.getName(), level.content(), level.instructions(), level.getMaxInstructions(), Session.getUser(cookie).getId());
 				
 				return new Feedback(true, "Le niveau a bien été enregistré !");
 			}

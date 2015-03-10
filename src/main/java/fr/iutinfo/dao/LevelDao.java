@@ -14,18 +14,17 @@ import fr.iutinfo.beans.LevelInfo;
 
 public interface LevelDao {
 
-	@SqlUpdate("create table levels (id integer primary key autoincrement, name varchar(100), content text, instructions text, maxInstructions integer, authorId integer, nextLevelId integer)")
+	@SqlUpdate("create table levels (id integer primary key autoincrement, name varchar(100), content text, instructions text, maxInstructions integer, authorId integer)")
 	void createLevelsTable();
 
 	@SqlUpdate("insert into levels (name, content, instructions, maxInstructions, authorId, nextLevelId) "
-			+ "values (:name, :jsonContent, :instructions, :maxInstructions, :authorId, :nextLevelId)")
+			+ "values (:name, :jsonContent, :instructions, :maxInstructions, :authorId)")
 	@GetGeneratedKeys
 	int insert(@Bind("name") String name, 
 			@Bind("jsonContent") String jsonContent, 
 			@Bind("instructions") String instructions, 
 			@Bind("maxInstructions") int maxInstructions, 
-			@Bind("authorId") int authorId,
-			@Bind("nextLevelId") int nextLevelId);
+			@Bind("authorId") int authorId);
 
 	@SqlQuery("select * from levels where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)
@@ -51,8 +50,8 @@ public interface LevelDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	LevelInfo getLevelInfoById(@Bind("id") int id);
 	
-	@SqlUpdate("update levels set nextLevelId=:nextLevelId where id=:id")
-	void setNextLevel(@Bind("nextLevelId") int nextLevelId, @Bind("id") int id);
+	/*@SqlUpdate("update levels set nextLevelId=:nextLevelId where id=:id")
+	void setNextLevel(@Bind("nextLevelId") int nextLevelId, @Bind("id") int id);*/
 	
 	@SqlUpdate("drop table if exists levels")
 	void dropLevelsTable(); 

@@ -6,10 +6,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
-import fr.iutinfo.beans.Level;
 import fr.iutinfo.dao.FriendsRelationsDao;
 import fr.iutinfo.dao.InstructionsDao;
 import fr.iutinfo.dao.LevelDao;
+import fr.iutinfo.dao.LevelListDao;
 import fr.iutinfo.dao.UserDao;
 import fr.iutinfo.utils.Utils;
 
@@ -22,6 +22,7 @@ public class DbResetResource {
 	private static UserDao userDao = App.dbi.open(UserDao.class);
 	private static LevelDao levelDao = App.dbi.open(LevelDao.class);
 	private static InstructionsDao instructionsDao = App.dbi.open(InstructionsDao.class);
+	private static LevelListDao levelListDao = App.dbi.open(LevelListDao.class);
 
 
 	
@@ -32,6 +33,7 @@ public class DbResetResource {
 					+ "<li><a href='resetDb/relations'>Reset relations table</a></li>"
 					+ "<li><a href='resetDb/levels'>Reset levels table</a></li>"
 					+ "<li><a href='resetDb/instructions'>Reset instructions table</a></li>"
+					+ "<li><a href='resetDb/levelList'>Reset evelList</a></li>"
 					+ "<li><a href='resetDb/all'>Reset ALL tables</a></li>"
 				+ "</ul>";
 	}
@@ -45,7 +47,7 @@ public class DbResetResource {
 		resetDbInstructions();
 		resetDbLevels(); 
 		resetDbFriendsRelations();
-		
+		resetDbLevelList();
 
 		return "All Tables Reset";
 	}
@@ -90,8 +92,7 @@ public class DbResetResource {
 				"1 3 1", 			//
 				"1", 				// instructions id list
 				2,					// max number of instructions
-				1,					// author id
-				2);					// next level id
+				1);					// author id
 
 		levelDao.insert("Niveau 2", // name
 				"1 1 1," + 			//
@@ -99,8 +100,7 @@ public class DbResetResource {
 				"1 1 1", 			//
 				"1,3", 				// instructions id list
 				3,					// max number of instructions
-				1,					// author id
-				3);					// next level id
+				1);					// author id
 		
 		
 		levelDao.insert("Niveau 3", // name
@@ -110,8 +110,7 @@ public class DbResetResource {
 				"1 3 1", 			//
 				"1,10", 			// instructions id list
 				2,					// max number of instructions
-				1,					// author id
-				4);					// next level id
+				1);					// author id
 		
 		levelDao.insert("Niveau 4", // name
 				"2 1 3," + 			//
@@ -119,8 +118,7 @@ public class DbResetResource {
 				"0 0 0", 			//
 				"1,3,10", 			// instructions id list
 				4,					// max number of instructions
-				1,					// author id
-				5);					// next level id
+				1);					// author id
 		
 		levelDao.insert("Niveau 5", // name
 				"2 1 1 1," + 		//
@@ -129,8 +127,7 @@ public class DbResetResource {
 				"1 1 0 3", 			//
 				"1,3,4,10", 		// instructions id list
 				5,					// max number of instructions
-				1,					// author id
-				6);					// next level id
+				1);					// author id
 		
 		levelDao.insert("Niveau 6", // name
 				"2 1 1 1," + 		//
@@ -139,8 +136,7 @@ public class DbResetResource {
 				"0 0 0 3", 			//
 				"1,2,4,5", 			// instructions id list
 				5,					// max number of instructions
-				1,					// author id
-				7);					// next level id
+				1);					// author id
 		
 		levelDao.insert("Niveau 7", // name
 				"3 0 0," + 			//
@@ -149,8 +145,7 @@ public class DbResetResource {
 				"2 1 1", 			//
 				"1,2,3,5", 			// instructions id list
 				5,					// max number of instructions
-				1,					// author id
-				8);					// next level id
+				1);					// author id
 		
 		levelDao.insert("Niveau 8", // name
 				"2 1 1 1," + 		//
@@ -159,8 +154,7 @@ public class DbResetResource {
 				"0 0 0 3", 			//
 				"1,3,7,10", 		// instructions id list
 				4,					// max number of instructions
-				1,					// author id
-				9);					// next level id
+				1);					// author id
 		
 		levelDao.insert("Niveau 9", // name
 				"2 1 1 1," + 		//
@@ -171,8 +165,7 @@ public class DbResetResource {
 				"3 1 1 1", 			//
 				"1,3,4,7,8,10", 		// instructions id list
 				6,					// max number of instructions
-				1,					// author id
-				-1);				// next level id
+				1);					// author id
 		
 		
 
@@ -198,6 +191,27 @@ public class DbResetResource {
 		instructionsDao.insert("Si chemin derrière", "if (player.canGoBackward())", 200, 1);	// ID 9
         instructionsDao.insert("Répeter jusqu'a l'arrivée", "while (!player.hasArrived())", 100, 1); // ID 10	
         
+        return "Table instructions Reset";
+	}
+	
+	
+	@GET
+	@Path("levelList")
+	public String resetDbLevelList() {
+		levelListDao.dropLevelListAssociationsTable();
+		levelListDao.dropLevelListsTable();
+		
+		levelListDao.createLevelListAssociationsTable();
+		levelListDao.createLevelListsTable();
+        
+		levelListDao.createList("Liste tutoriel");
+		levelListDao.insertAssociation(1, 1);
+		levelListDao.insertAssociation(1, 2);
+		levelListDao.insertAssociation(1, 3);
+		levelListDao.insertAssociation(2, 4);
+		levelListDao.insertAssociation(2, 5);
+		levelListDao.insertAssociation(2, 6);
+		
         return "Table instructions Reset";
 	}
 
