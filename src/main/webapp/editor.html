@@ -44,6 +44,7 @@ ul {
 <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/editor.js"></script>
+<script type="text/javascript" src="libs/bootstrap.js"></script>
 <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 
 </head>
@@ -138,8 +139,8 @@ ul {
 				<form class="form-inline">
 					<div class="form-group">
 						<label for="gridWidth" class="control-label">Dimensions:</label> <input
-							type="number" id="gridWidth" class="form-control">
-						<label for="gridHeight" class="control-label"> x </label> <input
+							type="number" id="gridWidth" class="form-control"> <label
+							for="gridHeight" class="control-label"> x </label> <input
 							type="number" id="gridHeight" class="form-control">
 						<button id="change_size" class="btn btn-info">Redimensionner</button>
 						<button id="save_button" class="btn btn-success">Enregistrer
@@ -166,10 +167,31 @@ ul {
 	</div>
 	<!-- container Editor page -->
 
-	<footer class="container">
-		<div class="row">
-			<hr />
-			<p>&copy; Dashin Games 2015</p>
+
+	<div class="modal fade" id="changeSizeModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Redimensionnement</h4>
+				</div>
+				<div class="modal-body">Vos modifications vont être écrasées.
+					Voulez-vous continuer?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+					<button type="button" class="btn btn-primary" id="changeSizeConfirmation">Continuer</button>
+				</div>
+			</div>
 		</div>
-	</footer>
+
+		<footer class="container">
+			<div class="row">
+				<hr />
+				<p>&copy; Dashin Games 2015</p>
+			</div>
+		</footer>
 </body>
