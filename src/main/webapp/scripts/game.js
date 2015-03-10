@@ -10,7 +10,7 @@ define(["jquery"],  function($) {
 		var Events = require("events");
 		
 		this.updateDimensions = function updateDimensions() {
-			var size = Math.min($("canvas").parent().height(), $("canvas").parent().width());
+            var size = Math.min($("canvas").parent().height(), $("canvas").parent().width());
 			canvas.height = size;
 			canvas.width = size;
 			this.width = Math.min(canvas.height, canvas.width);

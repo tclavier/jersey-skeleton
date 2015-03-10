@@ -157,7 +157,10 @@ $(document).ready(function() {
  
  // On intercepte les changements de dimension pour adapter le canvas
 $(window).resize(function() {
-	if (game) game.updateDimensions();
+    // Commenté, pause trop de probleme (flash, animation coupé...)
+    // surtout parceque blockly provoque un evenement de resize
+    // lorsqu'un bloc est déplacé
+	//if (game) game.updateDimensions();
 	$(".blocklySvg").attr("height", $("canvas").parent().height());
 
 });
