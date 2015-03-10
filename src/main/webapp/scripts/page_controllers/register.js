@@ -17,6 +17,14 @@ $(document).ready(function() {
 				console.log(data);
 				if(data.success) {
 					loginUser(name, password);
+				} else {
+					$('#button_register').popover({trigger : 'manual', title: 'Erreur', content : data.message, placement : 'bottom', animation : 'true'});
+					$('#button_register').popover('show');
+					$('#button_register').on('shown.bs.popover', function() {
+						setTimeout(function() {
+							$('#button_register').popover('hide');
+						}, 5000);
+					});
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
