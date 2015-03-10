@@ -18,6 +18,18 @@ canvas {
 	background-color: #D9EDF7;
 	min-height: 42px;
 }
+
+ul {
+	list-style: none;
+}
+
+.panel {
+	padding: 0;
+}
+
+.form-inline .form-group input {
+	width: 69px;
+}
 </style>
 <title>Ludicode</title>
 
@@ -123,16 +135,27 @@ canvas {
 
 				<canvas id="editorCanvas" width="500" height="500">
 				</canvas>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="gridWidth" class="control-label">Dimensions:</label> <input
+							type="number" id="gridWidth" class="form-control">
+						<label for="gridHeight" class="control-label"> x </label> <input
+							type="number" id="gridHeight" class="form-control">
+						<button id="change_size" class="btn btn-info">Redimensionner</button>
+						<button id="save_button" class="btn btn-success">Enregistrer
+							niveau</button>
+					</div>
+				</form>
 			</div>
-			<div class="panel panel-warning col-md-2">
+			<div class="panel panel-success col-md-2" style="padding: 0px;">
 				<div class="panel-heading">Instructions autorisées:</div>
-				
+
 				<ul class="instructionsList list-group panel-body"
 					id="selectedInstructions">
 				</ul>
 			</div>
-			<div class="panel panel-warning col-md-2">
-			<div class="panel-heading">Instructions interdites:</div>
+			<div class="panel panel-success col-md-2" style="padding: 0px;">
+				<div class="panel-heading">Instructions interdites:</div>
 				<ul class="instructionsList list-group panel-body" id="instructions">
 				</ul>
 			</div>
@@ -140,19 +163,6 @@ canvas {
 			<ul id="errors" style="color: #FF0000;" class="col-md-2">
 			</ul>
 		</div>
-
-		<br>
-		<form class="form-inline">
-			<div class="form-group">
-				<label for="gridWidth">Dimensions: </label> <input type="number"
-					id="gridWidth" class="form-control"> <label
-					for="gridHeight"> x </label> <input type="number" id="gridHeight"
-					class="form-control">
-				<button id="change_size" class="btn btn-default">Redimensionner</button>
-				<button id="save_button" class="btn btn-default">Enregistrer
-					niveau</button>
-			</div>
-		</form>
 	</div>
 	<!-- container Editor page -->
 

@@ -17,7 +17,7 @@ $(document).ready(function() {
 	var PICKER_HIGHLIHT_OFFSET = 5;
 	var HIGHLIGHT_COLOR = "#0000FF";
 
-	var COLORS = ["#424242", "#000000", "#FF0000", "#FFFF00"];
+	var COLORS = ["#AAAAAA", "#000000", "#FF0000", "#FFFF00"];
 	var NAMES = ["Vide", "Mur", "Départ", "Arrivée"];
 
 	var gridWidth = 6;
@@ -174,7 +174,6 @@ $(document).ready(function() {
 		
 		margin = (containerWidth - PICKER_TILE_WIDTH - gridWidth * TILE_WIDTH) / 2;
 		$('#editorCanvas').css("margin-left", margin);
-		console.log(margin);
 	}
 
 	function addError(message) {
@@ -242,10 +241,21 @@ $(document).ready(function() {
 	}
 
 	function sendLevel() {
-
 		var structuredContent = [];
-		for(var i = 0 ; i < grid.length ; i++) {
-			structuredContent[i] = {item : grid[i]};
+
+		var transpo = [[]];
+		
+		for (var i = 0; i < grid.length; i++) {
+			for (var j = 0; j < grid[0].length; j++) {
+				if (transpo[j] === undefined) {
+					transpo[j] = [];
+				}
+				transpo[j][i] = grid[i][j];
+			}
+		}
+		
+		for(var i = 0 ; i < transpo.length ; i++) {
+			structuredContent[i] = {item : transpo[i]};
 		}
 
 		var json = JSON.stringify({
@@ -303,7 +313,8 @@ $(document).ready(function() {
 	function loadInstructions() {
 		$.getJSON("v1/instructions", function(data) {
 			for(var i = 0 ; i < data.length ; i++) {
-				$("#instructions").append('<li class="list-group-item list-group-item-info" value="' + data[i].id + '">' + data[i].name + '</li>');
+				$("#instructions").append('<li class="list-group-item list-group-item-info" style="margin: 5px; border: 1px solid #c7d9ff;" value="' 
+						+ data[i].id + '">' + data[i].name + '</li>');
 			}
 		});
 	}
@@ -334,11 +345,13 @@ $(document).ready(function() {
 	initSpinners();
 	centerCanvas();
 
-	$("#save_button").click(function() {
+	$("#save_button").click(function(e) {
+		e.preventDefault();
 		saveLevel();
 	});
 
-	$("#change_size").click(function() {
+	$("#change_size").click(function(e) {
+		e.preventDefault();
 		changeSize();
 	});
 
