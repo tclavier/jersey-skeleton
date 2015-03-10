@@ -17,22 +17,21 @@ public interface LevelListDao {
 	@SqlUpdate("create table levelLists (id integer primary key autoincrement, name varchar(100))")
 	void createLevelListsTable();
 	
-	@SqlUpdate("create table levelListAssociations (idList integer, idLevel integer, CONSTRAINT pk_association PRIMARY KEY (idList, idLevel))")
+	@SqlUpdate("create table levelListAssociations (idList integer, idLevel integer, position integer, CONSTRAINT pk_association PRIMARY KEY (idList, idLevel))")
 	void createLevelListAssociationsTable();
 	
 	@SqlUpdate("insert into levelLists (name) values (:name)")
 	@GetGeneratedKeys
 	int createList(@Bind("name") String name);
 	
-	@SqlUpdate("insert into levelListAssociations (idList, idLevel) values (:idList, :idLevel)")
-	@GetGeneratedKeys
-	int insertAssociation(@Bind("idList") int idList, @Bind("idLevel") int idLevel);
+	@SqlUpdate("insert into levelListAssociations (idList, idLevel, position) values (:idList, :idLevel, :position)")
+	void insertAssociation(@Bind("idList") int idList, @Bind("idLevel") int idLevel, @Bind("position") int position);
 	
 	@SqlQuery("select * from levelLists where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	LevelList findById(@Bind("id") int id);
 	
-	@SqlQuery("select * from levelListAssociations where idList = :idList")
+	@SqlQuery("select * from levelListAssociations where idList = :idList ORDER BY position")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<LevelListAssociation> getAssociationsOf(@Bind("idList") int idList);
 	

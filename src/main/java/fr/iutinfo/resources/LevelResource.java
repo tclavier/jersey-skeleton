@@ -42,6 +42,17 @@ public class LevelResource {
 	}
 	
 	@GET
+	@Path("list/{idList}/level/{position}")
+	public Level getLevelOnList(@PathParam("idList") int idList, @PathParam("position") int position) {
+		Level level = levelDao.getLevelOnList(idList, position);
+		if(level == null)
+			throw new WebApplicationException(404);
+
+		level.setInstructionsList(instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())));
+		return level;
+	}
+	
+	@GET
 	public List<Level> getLevels() {
 		List<Level> levels = levelDao.getAll();
 		if(levels == null)

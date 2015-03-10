@@ -206,12 +206,12 @@ public class DbResetResource {
         
 		levelListDao.createList("Liste tutoriel");
 		levelListDao.createList("Liste expert");
-		levelListDao.insertAssociation(1, 1);
-		levelListDao.insertAssociation(1, 2);
-		levelListDao.insertAssociation(1, 3);
-		levelListDao.insertAssociation(2, 4);
-		levelListDao.insertAssociation(2, 5);
-		levelListDao.insertAssociation(2, 6);
+		levelListDao.insertAssociation(1, 1, 0);
+		levelListDao.insertAssociation(1, 2, 1);
+		levelListDao.insertAssociation(1, 3, 2);
+		levelListDao.insertAssociation(2, 4, 0);
+		levelListDao.insertAssociation(2, 5, 1);
+		levelListDao.insertAssociation(2, 6, 2);
 		
         return "Table instructions Reset";
 	}

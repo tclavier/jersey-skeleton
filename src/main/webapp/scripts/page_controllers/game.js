@@ -30,15 +30,26 @@ $(document).ready(function() {
 
 
 
-	// charge le niveau d'id "levelId" et renvoie le niveau
+	// charge le niveau d'id "levelId"
 	function loadLevel(levelId) {
 		$.getJSON("v1/levels/" + levelId, function(data) {
+			window.levelData = data;
+			$("#level_title").html(data.name);
+			$("#max_instruction").html(data.maxInstructions);
+		});
+	}
+	
+	
+	// charge le niveau numéro "position" dans la liste d'id "idList"
+	function loadLevelInList(position, idList) {
+		$.getJSON("v1/levels/list/" + idList + "/level/" + position, function(data) {
 			window.levelData = data;
 			nextLevelId = data.nextLevelId;
 			$("#level_title").html(data.name);
 			$("#max_instruction").html(data.maxInstructions);
 		});
 	}
+	
 	
 	var level = urlParam("level");
 	var list = urlParam("list");
@@ -47,6 +58,9 @@ $(document).ready(function() {
 	if( level != null) {
 		if(list == null)
 			loadLevel(level);
+		else {
+			loadLevelInList(level, list);
+		}
 	} else {
 		location.replace("levels.html")
 	}
