@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -17,6 +16,7 @@ import fr.iutinfo.beans.Feedback;
 import fr.iutinfo.beans.Level;
 import fr.iutinfo.dao.InstructionsDao;
 import fr.iutinfo.dao.LevelDao;
+import fr.iutinfo.dao.LevelListDao;
 import fr.iutinfo.utils.Session;
 
 
@@ -25,7 +25,7 @@ import fr.iutinfo.utils.Session;
 public class LevelResource {
 	private static LevelDao levelDao = App.dbi.open(LevelDao.class);
 	private static InstructionsDao instructionsDao = App.dbi.open(InstructionsDao.class);
-
+	private static LevelListDao levelListDao = App.dbi.open(LevelListDao.class);
 	
 	public LevelResource() {}
 	
@@ -37,7 +37,7 @@ public class LevelResource {
 			throw new WebApplicationException(404);
 		
 		level.setInstructionsList(instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())));
-		
+		level.setLevelList(levelListDao.getLevelListByLevelId(id));	
 		return level;
 	}
 	
