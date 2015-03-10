@@ -12,7 +12,7 @@ import org.junit.Test;
 import fr.iutinfo.beans.User;
 
 public class RestClientTest extends JerseyTest {
-	@Override
+	/*@Override
     protected Application configure() {
         return new App();
     }
@@ -26,5 +26,5 @@ public class RestClientTest extends JerseyTest {
 		client.addUser(new User(0, "Yann"),  baseUrl );
 		List<User> users = client.getUrlAsUser(baseUrl );
 		assertEquals(2, users.size());
-	}
+	}*/
 }
