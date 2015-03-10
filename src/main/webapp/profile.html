@@ -23,6 +23,13 @@
 <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/profile.js"></script>
 
+<!--  TODO : Mettre le style dans un fichier -->
+<style>
+  .panel-heading {text-align:center;}
+  h1   {color:blue}
+  p    {color:green}
+</style>
+
 </head>
 
 <body>
@@ -86,18 +93,25 @@
 
 	<div class="container main_panel" id="profile_pane">
 		<div class="row">
-			<div id="info_player" class="col-md-3">
-				
+			<div id="info_player_panel" class="col-md-3 panel panel-primary" style="padding : 0px; margin-left:70px">
+				<div class="panel-heading"> 
+					<h3>Mes informations</h3> 
+				</div>
+				<div id="info_player" class="panel-body"> </div>
 			</div>
-			<div id="creations_panel" class="col-md-3">
-				<h1>Mes créations</h1>
-				<div id="creations_list">
+			<div id="creations_panel" class="col-md-3 panel panel-primary" style="padding : 0px; margin-left:30px">
+				<div class="panel-heading"> 
+					<h3>Mes créations</h3>
+				</div>
+				<div id="creations_list" class="panel-body">
 					
 				</div>
 			</div>
-			<div id="friend_panel" class="col-md-3">
-				<h1>Mes amis</h1>
-				<div id="friend_list" >
+			<div id="friend_panel" class="col-md-3 col-md-offset-0.5 panel panel-primary" style="padding : 0px;margin-left:30px">
+				<div class="panel-heading"> 
+					<h3>Mes amis</h3>
+				</div> 
+				<div class="panel-body" id="friend_list" >
 					
 				</div>
 			</div>
