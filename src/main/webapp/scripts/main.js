@@ -60,8 +60,8 @@ function createBlocklyInstruction(instruction) {
 	Blockly.JavaScript[instruction.name] = function(block) {
 		// Si c'est un bloque, on rajoute les {}
 		if (instruction.block == 1) {
-			// TODO: Le code pour compter le nombre de répétition du bloque et ainsi eviter les boucles infinies
-			return instruction.code + " {\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+            // On ajoute le comptage de bloque
+			return instruction.code + " {\nif (!game.interpreter.increment(" + block.id + ")) break;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
 		}
 		return instruction.code + "\n";
 	};
