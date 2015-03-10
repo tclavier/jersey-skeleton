@@ -10,6 +10,8 @@ define(["jquery"],  function(require) {
             // Si c'est la cellule d'arriv�e
             if (cellId == 3) {
             	levelFinished();
+                // On réinitialise les instructions pour eviter que l'animation continue apres la fin du niveau
+                this.game.interpreter.setup();
             }
         }
 

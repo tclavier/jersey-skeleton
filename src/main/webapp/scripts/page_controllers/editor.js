@@ -17,7 +17,7 @@ $(document).ready(function() {
 	var PICKER_HIGHLIHT_OFFSET = 5;
 	var HIGHLIGHT_COLOR = "#0000FF";
 
-	var COLORS = ["#AAAAAA", "#000000", "#FF0000", "#FFFF00"];
+	var COLORS = ["#EEEEEE", "#000000", "#FF0000", "#FFFF00"];
 	var NAMES = ["Vide", "Mur", "Départ", "Arrivée"];
 
 	var gridWidth = 6;
@@ -135,25 +135,41 @@ $(document).ready(function() {
 				, PICKER_TILE_WIDTH - 2 * PICKER_HIGHLIHT_OFFSET, PICKER_TILE_HEIGHT - 2 * PICKER_HIGHLIHT_OFFSET);
 	}
 
-	function changeSize() {
+	function getSizeInput() {
 		var width = parseInt($("#gridWidth").val());
 		var height = parseInt($("#gridHeight").val());
 
 		if (isNaN(width) || isNaN(height)
-				|| width < MIN_GRID_WIDTH || width > MAX_GRID_WITH 
+				|| width < MIN_GRID_WIDTH || width > MAX_GRID_WITH
 				|| height < MIN_GRID_HEIGHT || height > MAX_GRID_HEIGHT) {
-			alert("Dimensions invalides\nLes dimensions doivent être comprises entre"
-					+ MIN_GRID_WIDTH + "x" + MIN_GRID_HEIGHT + " et " + MAX_GRID_WITH + "x" + MAX_GRID_HEIGHT);
-			return;
+			return [];
 		}
 
-		if (modified === 1 && !confirm("Vos modifications vont être effacées, voulez vous continuer?"))
+		return [width, height];
+	}
+
+	function doChangeSizeClick() {
+		if (getSizeInput().length === 0)
 			return;
+
+		if (modified === 1)
+			$('#changeSizeModal').modal('show');
+	}
+
+	function changeSize() {
+		var dimension = getSizeInput();
+
+		if (dimension.length === 0)
+			return;
+
+		var width = dimension[0];
+		var height = dimension[1];
 
 		gridWidth = width;
 		gridHeight = height;
 		centerCanvas();
 		initGrid(gridWidth, gridHeight);
+		$('#changeSizeModal').modal('hide');
 	}
 
 	function centerCanvas() {
@@ -171,7 +187,7 @@ $(document).ready(function() {
 			$('#pickerCanvas').css("margin-bottom", margin);
 			$('#editorCanvas').css("margin-bottom", 0);
 		}
-		
+
 		margin = (containerWidth - PICKER_TILE_WIDTH - gridWidth * TILE_WIDTH) / 2;
 		$('#editorCanvas').css("margin-left", margin);
 	}
@@ -198,6 +214,7 @@ $(document).ready(function() {
 		}
 
 		document.getElementById("errors").innerHTML = "";
+		$("#change_size").prop("disabled", false);
 
 		if (starts === 0) {
 			addError("Le niveau doit contenir une case de départ");
@@ -227,8 +244,13 @@ $(document).ready(function() {
 			addError("Le niveau doit avoir au moins une instruction autorisée");
 			validity = false;
 		}
+		if (getSizeInput().length === 0) {
+			addError("Les dimensions doivent être comprises entre " 
+					+ MIN_GRID_WIDTH + "x" + MIN_GRID_HEIGHT + " et " + MAX_GRID_WITH + "x" + MAX_GRID_HEIGHT);
+			$("#change_size").prop("disabled", true);
+		}
 
-		$("#save_button").prop("disabled", !validity);;
+		$("#save_button").prop("disabled", !validity);
 
 		return validity;
 	}
@@ -236,7 +258,9 @@ $(document).ready(function() {
 	function handleKeyPress(e) {
 		var key = e.keyCode || e.which;
 		if (key === 13) {
-			changeSize();
+			doChangeSizeClick();
+		} else {
+
 		}
 	}
 
@@ -244,7 +268,7 @@ $(document).ready(function() {
 		var structuredContent = [];
 
 		var transpo = [[]];
-		
+
 		for (var i = 0; i < grid.length; i++) {
 			for (var j = 0; j < grid[0].length; j++) {
 				if (transpo[j] === undefined) {
@@ -253,7 +277,7 @@ $(document).ready(function() {
 				transpo[j][i] = grid[i][j];
 			}
 		}
-		
+
 		for(var i = 0 ; i < transpo.length ; i++) {
 			structuredContent[i] = {item : transpo[i]};
 		}
@@ -352,6 +376,11 @@ $(document).ready(function() {
 
 	$("#change_size").click(function(e) {
 		e.preventDefault();
+		doChangeSizeClick();
+	});
+
+	$("#changeSizeConfirmation").click(function(e) {
+		e.preventDefault();
 		changeSize();
 	});
 
@@ -362,11 +391,11 @@ $(document).ready(function() {
 	$('input').keyup(function() {
 		checkLevel();
 	});
-	
+
 	$('#gridWidth').keypress(function(e) {
 		handleKeyPress(e);
 	});
-	
+
 	$('#gridHeight').keypress(function(e) {
 		handleKeyPress(e);
 	});

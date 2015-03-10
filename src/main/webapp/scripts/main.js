@@ -60,7 +60,7 @@ function createBlocklyInstruction(instruction) {
 	Blockly.JavaScript[instruction.name] = function(block) {
         // Remplacement des balises
         var code = instruction.code
-        code.replace(new RegExp("%line%", 'g'), block.id);
+        code = code.replace(new RegExp("%line%", 'g'), block.id);
 
 
 		// Si c'est un bloque, on rajoute les {}
