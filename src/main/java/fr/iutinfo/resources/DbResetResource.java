@@ -205,6 +205,7 @@ public class DbResetResource {
 		levelListDao.createLevelListsTable();
         
 		levelListDao.createList("Liste tutoriel");
+		levelListDao.createList("Liste expert");
 		levelListDao.insertAssociation(1, 1);
 		levelListDao.insertAssociation(1, 2);
 		levelListDao.insertAssociation(1, 3);

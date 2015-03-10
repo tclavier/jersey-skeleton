@@ -40,9 +40,9 @@ public interface LevelListDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<LevelList> getAllLevelLists();
 	
-	@SqlQuery("select * from levelLists where idLevel = :idLevel")
+	@SqlQuery("select * from levelLists where id = (select DISTINCT idList from levelListAssociations where idLevel = :idLevel)")
     @RegisterMapperFactory(BeanMapperFactory.class)
-	int getLevelListByLevelId(@Bind("idLevel") int idLevel);
+	LevelList getLevelListByLevelId(@Bind("idLevel") int idLevel);
 	
 	@SqlUpdate("drop table if exists levelLists")
 	void dropLevelListsTable(); 

@@ -17,7 +17,7 @@ public interface LevelDao {
 	@SqlUpdate("create table levels (id integer primary key autoincrement, name varchar(100), content text, instructions text, maxInstructions integer, authorId integer)")
 	void createLevelsTable();
 
-	@SqlUpdate("insert into levels (name, content, instructions, maxInstructions, authorId, nextLevelId) "
+	@SqlUpdate("insert into levels (name, content, instructions, maxInstructions, authorId) "
 			+ "values (:name, :jsonContent, :instructions, :maxInstructions, :authorId)")
 	@GetGeneratedKeys
 	int insert(@Bind("name") String name, 
