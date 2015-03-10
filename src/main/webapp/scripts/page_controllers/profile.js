@@ -4,9 +4,9 @@ $(document).ready(function() {
 
 
 	function showProfileInfo(data) {
-		$("#info_player").html("");
-		$("#info_player").append("<h1>" + data.user.name + "</h1><br />");
-		$("#info_player").append("Email :" + data.user.email + "<br />");
+		//$("#info_player").html("");
+		$("#info_player").append("Pseudo : " + data.user.name+"<br>");
+		$("#info_player").append("Email : " + data.user.email);
 
 
 		$("#creations_list").html("");
