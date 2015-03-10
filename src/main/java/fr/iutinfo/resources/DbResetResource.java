@@ -191,7 +191,7 @@ public class DbResetResource {
 		instructionsDao.insert("Reculer", "player.moveBackward();", 65, 0);					// ID 2	
 		instructionsDao.insert("Pivoter à gauche", "player.turnLeft();", 65, 0);			// ID 3
 		instructionsDao.insert("Pivoter à droite", "player.turnRight();", 65, 0);			// ID 4
-		instructionsDao.insert("Répeter 3 fois", "for (var i = 0; i < 3; ++i)", 100, 1);	// ID 5
+		instructionsDao.insert("Répeter 3 fois", "for (var i%line% = 0; i%line% < 3; ++i%line%)", 100, 1);	// ID 5
 		instructionsDao.insert("Si chemin devant", "if (player.canGoForward())", 200, 1);	// ID 6
 		instructionsDao.insert("Si chemin à gauche", "if (player.canGoLeft())", 200, 1);	// ID 7
 		instructionsDao.insert("Si chemin à droite", "if (player.canGoRight())", 200, 1);	// ID 8

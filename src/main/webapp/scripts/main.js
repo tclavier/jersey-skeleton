@@ -58,12 +58,17 @@ function createBlocklyInstruction(instruction) {
 	};
 
 	Blockly.JavaScript[instruction.name] = function(block) {
+        // Remplacement des balises
+        var code = instruction.code
+        code.replace(new RegExp("%line%", 'g'), block.id);
+
+
 		// Si c'est un bloque, on rajoute les {}
 		if (instruction.block == 1) {
             // On ajoute le comptage de bloque
-			return instruction.code + " {\nif (!game.interpreter.increment(" + block.id + ")) break;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+			return code + " {\nif (!game.interpreter.increment(" + block.id + ")) break;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
 		}
-		return instruction.code + "\n";
+		return code + "\n";
 	};
 }
 
