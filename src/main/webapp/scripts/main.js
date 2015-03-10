@@ -60,8 +60,8 @@ function createBlocklyInstruction(instruction) {
 	Blockly.JavaScript[instruction.name] = function(block) {
 		// Si c'est un bloque, on rajoute les {}
 		if (instruction.block == 1) {
-			// TODO: Le code pour compter le nombre de répétition du bloque et ainsi eviter les boucles infinies
-			return instruction.code + " {\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+            // On ajoute le comptage de bloque
+			return instruction.code + " {\nif (!game.interpreter.increment(" + block.id + ")) break;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
 		}
 		return instruction.code + "\n";
 	};
@@ -157,7 +157,10 @@ $(document).ready(function() {
  
  // On intercepte les changements de dimension pour adapter le canvas
 $(window).resize(function() {
-	if (game) game.updateDimensions();
+    // Commenté, pause trop de probleme (flash, animation coupé...)
+    // surtout parceque blockly provoque un evenement de resize
+    // lorsqu'un bloc est déplacé
+	//if (game) game.updateDimensions();
 	$(".blocklySvg").attr("height", $("canvas").parent().height());
 
 });

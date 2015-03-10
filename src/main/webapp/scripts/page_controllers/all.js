@@ -71,12 +71,11 @@ $(document).ready(function() {
 					document.cookie = data.message;
 					setConnected(true);
 				} else {
-					$('#button_login').popover({trigger : 'manual', title: "Erreur", content : data.message, placement : 'bottom'});
-					$('#button_login').popover('show');
-
-					$('#button_login').on('shown.bs.popover', function() {
+					$('#login_send').popover({trigger : 'manual', title: 'Erreur', content : data.message, placement : 'bottom', animation : 'true'});
+					$('#login_send').popover('show');
+					$('#login_send').on('shown.bs.popover', function() {
 						setTimeout(function() {
-							$('#button_login').popover('hide');
+							$('#login_send').popover('hide');
 						}, 5000);
 					});
 				}

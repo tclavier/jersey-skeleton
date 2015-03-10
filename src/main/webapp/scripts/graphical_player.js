@@ -102,6 +102,8 @@ define(["jquery"],  function(require) {
 				
 				// On augmente ainsi l'angle dans la direction la plus optimisée
 				angle += Math.PI/20 * sign * this.game.getSpeed() * delta;
+                // On s'assure qu'on a pas depassé la cible
+                if (((goToAngle - angle) * sign) < 0) angle = goToAngle;
 			} else {
 				// Si on a atteint l'angle cible
 				// On s'assure deja d'etre exactement a l'angle cible
@@ -109,9 +111,6 @@ define(["jquery"],  function(require) {
 				// On indique que l'animation de rotation est fini
 				turning = false;
 			}
-			
-			// TODO : "Caper" les incréments pour ne pas depasser la destination
-			// TODO : Prendre en compte speed dans l'incrément de l'angle
 		}
 		
 		// Deplace le joueur a la position (x, y) en pixel

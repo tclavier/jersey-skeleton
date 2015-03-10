@@ -1,13 +1,33 @@
 define(["jquery"],  function(require) {
     return function Interpreter(game) {
+        var MAX_NUMBER_INSTRUCTIONS = 5000;
+        this.game = game;
         this.stack = [];
         this.exited = false;
         this.executedBlock = 0;
+        this.numberInstructions = 0;
 
 
         this.setup = function() {
             this.stack = [];
             this.exited = false;
+            this.numberInstructions = 0;
+        }
+
+        /**
+         * Augmente le compteur d'instructions
+         * blockId : Id du bloc blockly
+         * @return Vrai si le script peut continuer, faut sinon
+         */
+        this.increment = function(blockId) {
+            ++this.numberInstructions;
+            if (this.numberInstructions > MAX_NUMBER_INSTRUCTIONS) {
+                this.game.events.onInfiniteLoopDetected(blockId);
+                this.addCommand("alert(\"Trop d'instructions !\");");
+                this.addExitCommand();
+                return false;
+            }
+            return true;
         }
 
         this.addCommand = function(command) {

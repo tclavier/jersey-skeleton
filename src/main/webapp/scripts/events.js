@@ -12,5 +12,13 @@ define(["jquery"],  function(require) {
             	levelFinished();
             }
         }
+
+        /**
+         * Appelé lorsque une boucle infinie est détécté dans le code (durant la pré-execution)
+         * blockId : Id du bloc sur qui provoque la boucle infinie
+         */
+        this.onInfiniteLoopDetected = function(blockId) {
+            alert("Boucle infinie sur l'instruction \"" + Blockly.getMainWorkspace().getBlockById(blockId).type + "\"");
+        }
     }
 });
