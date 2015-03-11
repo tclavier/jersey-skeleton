@@ -66,7 +66,7 @@ define(["jquery"],  function(require) {
 		// Met a jour l'animation 
 		this.update = function update(delta) {
             if (!this.loaded || !running) return;
-            timer += delta;
+            timer += delta * this.game.getSpeed() * 0.1;
             if (timer >= interval) {
                 timer = 0;
                 this.patternId = (this.patternId + 1) % pattern.length;
