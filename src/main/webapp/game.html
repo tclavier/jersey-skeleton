@@ -107,25 +107,24 @@
 					<div class="row">
 						<div id="grid-container" class="col-md-3">
 							<canvas width="200" height="200" id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
-							<div id="toolbox" class="row panel panel-default">
-								<div class="col-md-5">
-									<button id="execute" type="button" class="btn btn-success">
-										<span class="glyphicon glyphicon-play"></span> Executer
-									</button>
-								</div>
-								<div class="col-md-7">
-									<input id="speed" type="range" min="5" max="5000" value="100" />
-								</div>
+                            <div id="toolbox" class="row panel panel-default">
+                                <div class="col-execute-button">
+                                    <button id="execute" type="button" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-play"></span> Executer
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-speed">
+                                    <input id="speed" type="range" min="5" max="5000" value="100" />
+                                </div>
                                 <div class="row">
-                                    <div class="col-md-12" class=".h3">
-
+                                    <div id="remaining_instructions" class="col-md-12">
                                         <h3>
-                                            Il vous reste <span id="max_instruction">0</span> instruction<span
+                                            Il vous reste <strong><span id="max_instruction">0</strong></b> instruction<span
                                                 id="max_instruction_s"></span>.
                                         </h3>
                                     </div>
-								</div>
-							</div>
+                                </div>
+                            </div>
 
 						</div>
 
