@@ -143,16 +143,32 @@ $(document).ready(function() {
 	 ****************************/
 
 
-
-
-
-	// Login l'utilisateur
-	$("#login_send").click(function() {
+	function doLoginClick() {
 		var name = $("#name_login").val();
 		var passwd = $("#password_login").val();
 		loginUser(name, passwd);
 		$("#name_login").val("");
 		$("#password_login").val("");
+	}
+	
+	function handleKeyPress(e) {
+		var key = e.keyCode || e.which;
+		if (key === 13) {
+			doLoginClick();
+		}
+	}
+
+	// Login l'utilisateur
+	$("#login_send").click(function() {
+		doLoginClick();
+	});
+	
+	$('#name_login').keyup(function(e) {
+		handleKeyPress(e);
+	});
+	
+	$('#password_login').keyup(function(e) {
+		handleKeyPress(e);
 	});
 
 	//Logout l'utilisateur
