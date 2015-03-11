@@ -101,7 +101,7 @@ define(["jquery"],  function($) {
 			}
 			
 			// ---- Animation de rotation vers goToAngle
-			if (Math.abs(goToAngle - angle) > Math.PI/20) {
+			if (Math.abs(goToAngle - angle) > 0.05) {
 				// Meme principe que pour l'animation de deplacement
 				// On augmente l'angle jusqu'a ce que la difference entre l'angle du joueur et
 				// l'angle a atteindre soit inferieur a Math.PI/20 (les valeurs sont en radians)
@@ -110,7 +110,7 @@ define(["jquery"],  function($) {
 				if (goToAngle < angle) sign = -1;
 				
 				// On augmente ainsi l'angle dans la direction la plus optimisée
-				angle += Math.PI/20 * sign * this.game.getSpeed() * delta;
+				angle += Math.PI/10 * sign * this.game.getSpeed() * delta;
                 // On s'assure qu'on a pas depassé la cible
                 if (((goToAngle - angle) * sign) < 0) angle = goToAngle;
 			} else {
