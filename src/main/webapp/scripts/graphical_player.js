@@ -1,4 +1,4 @@
-define(["jquery"],  function(require) {
+define(["jquery"],  function($) {
 	/**
 	   Classe permettant de representer le joueur graphiquement
 	   
@@ -10,7 +10,11 @@ define(["jquery"],  function(require) {
 		this.x = x;
 		this.y = y;
 		this.game = game;
-		
+
+        // Animation de "scanner" pour les conditions
+        var Animation = require("animation");
+        var scanAnimation = new Animation(this.game, "images/test.png", 8, 1, [0, 1, 2], 1);
+
 		// Destination du joueur en pixel (pour animer les deplacements vers un point)
 		var goToX = x;
 		var goToY = y;
@@ -56,6 +60,9 @@ define(["jquery"],  function(require) {
 			
 			// On restaure les transformations (pour eviter d'appliquer la rotation a d'autres elements
 			context.restore();
+
+            // On dessine le scanner
+            //scanAnimation.draw(context, this.x, this.y, this.game.grid.tile_size, this.game.grid.tile_size);
 		}
 		
 		// Met a jour le joueur (utilisé pour gerer les animations)
@@ -111,6 +118,8 @@ define(["jquery"],  function(require) {
 				// On indique que l'animation de rotation est fini
 				turning = false;
 			}
+
+            scanAnimation.update(delta);
 		}
 		
 		// Deplace le joueur a la position (x, y) en pixel
