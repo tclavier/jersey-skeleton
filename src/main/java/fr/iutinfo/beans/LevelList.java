@@ -5,6 +5,7 @@ import java.util.List;
 public class LevelList {
 	private int id;
 	private String name;
+	private int levelCount;
 	private List<LevelListAssociation> levelsAssociation;
 	
 	public String getName() {
@@ -29,6 +30,14 @@ public class LevelList {
 
 	public void setLevelsAssociation(List<LevelListAssociation> levelsAssociation) {
 		this.levelsAssociation = levelsAssociation;
+	}
+
+	public int getLevelCount() {
+		return levelCount;
+	}
+
+	public void setLevelCount(int levelCount) {
+		this.levelCount = levelCount;
 	}
 	
 }
