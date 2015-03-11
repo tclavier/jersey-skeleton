@@ -15,7 +15,6 @@ canvas {
 }
 
 .instructionsList {
-	background-color: #D9EDF7;
 	min-height: 42px;
 }
 
@@ -29,6 +28,14 @@ ul {
 
 .form-inline .form-group input {
 	width: 69px;
+}
+
+.panel button {
+	margin: 5px;
+}
+
+.form-horizontal .control-label {
+	text-align: left;
 }
 </style>
 <title>Ludicode</title>
@@ -110,27 +117,29 @@ ul {
 	</nav>
 
 
-	<div class="container main_panel" id="home_pane">
-		<form class="form-horizontal" style="width: 40%;">
-			<div class="form-group">
-				<label for="levelName" class="col-sm-7 control-label">Nom du
-					niveau: </label>
-				<div class="col-sm-5">
-					<input type="text" id="levelName" class="form-control"
-						placeholder="Mon niveau" />
+	<div class="container main_panel row" id="home_pane" style="width: 100%">
+		<div class="col-md-6">
+			<form class="form-horizontal text-left">
+				<div class="form-group">
+					<label for="levelName"
+						class="col-sm-4 control-label col-md-offset-2">Nom du
+						niveau: </label>
+					<div class="col-sm-4">
+						<input type="text" id="levelName" class="form-control"
+							placeholder="Mon niveau" />
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="instructionsNumber" class="col-sm-7 control-label">Nombre
-					max d'instructions: </label>
-				<div class="col-sm-5">
-					<input type="number" id="instructionsNumber" value="3" min="1"
-						class="form-control" />
+				<div class="form-group">
+					<label for="instructionsNumber"
+						class="col-sm-4 control-label col-md-offset-2">Instructions
+						max: </label>
+					<div class="col-sm-4">
+						<input type="number" id="instructionsNumber" value="3" min="1"
+							class="form-control" />
+					</div>
 				</div>
-			</div>
-		</form>
-		<div class="row">
-			<div class="col-md-6" id="canvasContainer">
+			</form>
+			<div id="canvasContainer">
 				<canvas id="pickerCanvas" width="0" height="0">
 				</canvas>
 
@@ -148,28 +157,41 @@ ul {
 					</div>
 				</form>
 			</div>
-			<div class="panel panel-success col-md-2" style="padding: 0px;">
-				<div class="panel-heading">Instructions autorisées:</div>
-
-				<ul class="instructionsList list-group panel-body"
-					id="selectedInstructions">
-				</ul>
-			</div>
-			<div class="panel panel-success col-md-2" style="padding: 0px;">
-				<div class="panel-heading">Instructions interdites:</div>
-				<ul class="instructionsList list-group panel-body" id="instructions">
-				</ul>
-			</div>
-
-			<ul id="errors" style="color: #FF0000;" class="col-md-2">
-			</ul>
 		</div>
+		<div class="panel panel-success col-md-2 text-center"
+			style="padding: 0px;">
+			<div class="panel-heading">
+				Instructions autorisées:
+				<button id="legalizeEverything" class="btn btn-success">Tout
+					autoriser</button>
+			</div>
+
+			<ul class="instructionsList list-group panel-body"
+				id="selectedInstructions">
+			</ul>
+
+		</div>
+
+		<div class="panel panel-danger col-md-2 text-center"
+			style="padding: 0px;">
+			<div class="panel-heading">
+				Instructions interdites:
+				<button id="forbidEverything" class="btn btn-danger">Tout
+					interdire</button>
+			</div>
+			<ul class="instructionsList list-group panel-body" id="instructions">
+			</ul>
+
+		</div>
+
+		<ul id="errors" style="color: #FF0000;" class="col-md-2">
+		</ul>
 	</div>
 	<!-- container Editor page -->
 
 
-	<div class="modal fade" id="changeSizeModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="changeSizeModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -183,15 +205,17 @@ ul {
 					Voulez-vous continuer?</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-					<button type="button" class="btn btn-primary" id="changeSizeConfirmation">Continuer</button>
+					<button type="button" class="btn btn-primary" onclick="changeSize"
+						id="changeSizeConfirmation">Continuer</button>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<footer class="container">
-			<div class="row">
-				<hr />
-				<p>&copy; Dashin Games 2015</p>
-			</div>
-		</footer>
+	<footer class="container">
+		<div class="row">
+			<hr />
+			<p>&copy; Dashin Games 2015</p>
+		</div>
+	</footer>
 </body>
