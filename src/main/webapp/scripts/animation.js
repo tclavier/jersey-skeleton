@@ -25,22 +25,34 @@ define(["jquery"],  function(require) {
 
         var instance = this;
         var timer = 0;
+        var running = false;
+        var loop = false;
 
         this.image.onload = function() {
             instance.loaded = true;
             instance.width = Math.floor(instance.image.width / widthInFrame);
             instance.height = Math.floor(instance.image.height / heightInFrame);
         }
+
+        /**
+         * Commence l'animation
+         * looping : Vrai si l'animation doit boucler
+         */
+        this.start = function(looping) {
+            loop = loop;
+            timer = 0;
+            running = true;
+            this.patternId = 0;
+        }
 		
 		// Dessine l'animation 
 		this.draw = function draw(context, x, y, width, height) {
-            if (!this.loaded) return;
+            if (!this.loaded || !running) return;
             context.save();
 
             // Rotation (translation pour l'origine, puis rotation)
             context.translate(x, y);
             context.rotate(this.angle);
-			//context.translate(-x - (this.ox * this.width), -y - this.oy * height);
             
             // On dessine la bonne frame de l'animation
             var sx = this.width * (pattern[this.patternId] % widthInFrame);
@@ -53,13 +65,23 @@ define(["jquery"],  function(require) {
 		
 		// Met a jour l'animation 
 		this.update = function update(delta) {
-            if (!this.loaded) return;
+            if (!this.loaded || !running) return;
             timer += delta;
             if (timer >= interval) {
                 timer = 0;
                 this.patternId = (this.patternId + 1) % pattern.length;
+                if (this.patternId == 0 && !loop) {
+                    running = false;
+                }
             }
 
 		}
+
+        /**
+         * Retourne vrai si l'animation est entrain de tourner
+         */
+        this.running = function() {
+            return running;
+        }
 	}
 });

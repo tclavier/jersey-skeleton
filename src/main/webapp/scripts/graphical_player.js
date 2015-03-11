@@ -14,8 +14,10 @@ define(["jquery"],  function($) {
         // Animation de "scanner" pour les conditions
         var Animation = require("animation");
         var scanAnimation = new Animation(this.game, "images/test.png", 6, 1, [0, 1, 2, 3, 4, 5], 0.1);
-
-		// Destination du joueur en pixel (pour animer les deplacements vers un point)
+        scanAnimation.ox = 1/2;
+        scanAnimation.oy = 0;
+		
+        // Destination du joueur en pixel (pour animer les deplacements vers un point)
 		var goToX = x;
 		var goToY = y;
 		
@@ -62,7 +64,7 @@ define(["jquery"],  function($) {
 			context.restore();
 
             // On dessine le scanner
-            //scanAnimation.draw(context, this.x + this.game.grid.tile_size/2, this.y + this.game.grid.tile_size/2, this.game.grid.tile_size/2, this.game.grid.tile_size/2);
+            scanAnimation.draw(context, this.x + this.game.grid.tile_size/2, this.y + this.game.grid.tile_size/2, this.game.grid.tile_size/2, this.game.grid.tile_size/2);
 		}
 		
 		// Met a jour le joueur (utilisé pour gerer les animations)
@@ -152,7 +154,7 @@ define(["jquery"],  function($) {
 		
 		// Renvoie vrai si le joueur fait quelque chose (deplacement, rotation)
 		this.isDoingSomething = function isDoingSomething() {
-			return moving || turning;
+			return moving || turning || scanAnimation.running();
 		}
 		
 		
@@ -184,15 +186,26 @@ define(["jquery"],  function($) {
 			}
 		}
 		
-		// Avance le joueur dans la direction dans laquelle il est
-		this.moveForward = function moveForward() {
-			this.moveToTile(this.tileX() + dirX, this.tileY() + dirY);
-		}
-		
-		// Recul le joueur en fonction de la direction dans laquelle il est
-		this.moveBackward = function moveBackward() {
-			this.moveToTile(this.tileX() - dirX, this.tileY() - dirY);
-		}
+        this.scanForward = function() {
+            scanAnimation.angle = angle;
+            scanAnimation.start(true);
+        }
+
+        this.scanBackward = function() {
+            scanAnimation.angle = angle + Math.PI;
+            scanAnimation.start(true);
+        }
+
+        this.scanLeft = function() {
+            scanAnimation.angle = angle - Math.PI/2;
+            scanAnimation.start(true);
+        }
+
+        this.scanRight = function() {
+            scanAnimation.angle = angle + Math.PI/2;
+            scanAnimation.start(true);
+        }
+
 	}
 
 });
