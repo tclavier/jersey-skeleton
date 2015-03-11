@@ -13,7 +13,7 @@ define(["jquery"],  function($) {
 
         // Animation de "scanner" pour les conditions
         var Animation = require("animation");
-        var scanAnimation = new Animation(this.game, "images/test.png", 8, 1, [0, 1, 2], 1);
+        var scanAnimation = new Animation(this.game, "images/test.png", 6, 1, [0, 1, 2, 3, 4, 5], 0.1);
 
 		// Destination du joueur en pixel (pour animer les deplacements vers un point)
 		var goToX = x;
@@ -62,7 +62,7 @@ define(["jquery"],  function($) {
 			context.restore();
 
             // On dessine le scanner
-            //scanAnimation.draw(context, this.x, this.y, this.game.grid.tile_size, this.game.grid.tile_size);
+            //scanAnimation.draw(context, this.x + this.game.grid.tile_size/2, this.y + this.game.grid.tile_size/2, this.game.grid.tile_size/2, this.game.grid.tile_size/2);
 		}
 		
 		// Met a jour le joueur (utilisé pour gerer les animations)

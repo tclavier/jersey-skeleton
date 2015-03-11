@@ -27,7 +27,7 @@ define(["jquery"],  function(require) {
 		// Dessine l'animation 
 		this.draw = function draw(context, x, y, width, height) {
             if (!this.loaded) return;
-            var sx = this.width * pattern[this.patternId] % widthInFrame;
+            var sx = this.width * (pattern[this.patternId] % widthInFrame);
             var sy = this.height * Math.floor(pattern[this.patternId] / widthInFrame);
             context.drawImage(this.image, sx, sy, this.width, this.height, x, y, width, height);
 		}
