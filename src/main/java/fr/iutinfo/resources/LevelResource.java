@@ -37,7 +37,7 @@ public class LevelResource {
 			throw new WebApplicationException(404);
 		
 		level.setInstructionsList(instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())));
-		level.setLevelList(levelListDao.getLevelListByLevelId(id));	
+		
 		return level;
 	}
 	
@@ -49,7 +49,13 @@ public class LevelResource {
 			throw new WebApplicationException(404);
 
 		level.setInstructionsList(instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())));
+		level.setLevelList(levelListDao.findById(idList));
+		level.getLevelList().setLevelsAssociation(levelListDao.getAssociationsOf(level.getLevelList().getId()));
 		return level;
+	}
+	
+	private void fillLevel(Level level) {
+		
 	}
 	
 	@GET

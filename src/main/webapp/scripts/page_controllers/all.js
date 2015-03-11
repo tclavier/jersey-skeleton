@@ -61,8 +61,7 @@ $(document).ready(function() {
 			data : JSON.stringify({
 				"id" : 0,
 				"name" : name,
-				"password" : password, 
-				"email" : ""
+				"password" : password
 			}),
 			success : function(data, textStatus, jqXHR) {
 				console.log(data);

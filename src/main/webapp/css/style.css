@@ -65,3 +65,11 @@ nav .glyphicon {
 	height: 50vh;
 	overflow: auto
 }
+
+#game_pane nav {
+	float:right;
+}
+
+#game_pane nav ul {
+	margin: 0;
+}

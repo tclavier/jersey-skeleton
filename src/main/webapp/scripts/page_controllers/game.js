@@ -1,16 +1,29 @@
-var nextLevelId = 0;
+var levelList;
+var currentLevel = urlParam("level");
+var currentList = urlParam("list");
 
 function levelFinished() {
-	$("#endLevelModal").modal("show");
+	
+	if(levelList == undefined) {
+		// le niveau n'appartient pas à une liste
+		// On ne redirige pas et on affiche un message 
+		$("#congratsModal .modal-body").html("Vous avez fini le niveau avec succés !");
+		$("#congratsModal").modal("show");
+	} else {
+		// Le niveau appartient à une liste
+		console.log(levelList.levelsAssociation.length - 1);
+		console.log(currentLevel);
+		if(currentLevel < levelList.levelsAssociation.length - 1){
+			$("#endLevelModal").modal("show");
+		} else {
+			$("#congratsModal .modal-body").html("Vous avez fini la série de niveau avec succés !");
+			$("#congratsModal").modal("show");
+		}
+	}
 }
 
 function goToNextLevel() {
-	if(nextLevelId > 0){
-		location.replace("game.html?level=" + nextLevelId);
-		//location.reload();
-	} else {
-		// Afficher une fenêtre de félicitation ?
-	}
+	location.href = "game.html?list=" + currentList + "&level=" + (parseInt(currentLevel) + 1);
 }
 
 function urlParam(name){
@@ -28,14 +41,39 @@ $(document).ready(function() {
 	 **** REQUETES AJAX LEVELS ****
 	 ******************************/
 
+	
+	function createLevelPagination() {
+		var nav = $("#levels_pagination");
+		nav.html("");
+		for(var i = 0 ; i < levelList.levelsAssociation.length ; i++) {
+			var activeClass = (i == currentLevel ? "active" : "");
+			nav.append('<li class="' + activeClass + '">'
+						+'<a href="game.html?list=' + currentList + '&level=' + i +'">' + (i+1) + '</a>'
+						+'</li>');
+		}
+	}
+	
+	function createLevelTitle(data) {
+		var listTitle = data.levelList == undefined ? "" : data.levelList.name + " : ";
+		$("#level_title").html(listTitle + data.name);
+	}
 
-
+	function handleLevel(data) {
+		window.levelData = data;
+		console.log(data);
+		levelList = data.levelList;
+		
+		$("#max_instruction").html(data.maxInstructions);
+		createLevelTitle(data);
+		if(levelList != null)
+			createLevelPagination();
+	}
+	
+	
 	// charge le niveau d'id "levelId"
 	function loadLevel(levelId) {
 		$.getJSON("v1/levels/" + levelId, function(data) {
-			window.levelData = data;
-			$("#level_title").html(data.name);
-			$("#max_instruction").html(data.maxInstructions);
+			handleLevel(data);
 		});
 	}
 	
@@ -43,38 +81,35 @@ $(document).ready(function() {
 	// charge le niveau numéro "position" dans la liste d'id "idList"
 	function loadLevelInList(position, idList) {
 		$.getJSON("v1/levels/list/" + idList + "/level/" + position, function(data) {
-			window.levelData = data;
-			nextLevelId = data.nextLevelId;
-			$("#level_title").html(data.name);
-			$("#max_instruction").html(data.maxInstructions);
+			handleLevel(data);
 		});
 	}
 	
 	
-	var level = urlParam("level");
-	var list = urlParam("list");
-	console.log("level = " + level);
-	console.log("list = " + list);
-	if( level != null) {
-		if(list == null)
-			loadLevel(level);
-		else {
-			loadLevelInList(level, list);
+	if( currentLevel != null) {
+		if(currentList == null) {
+			loadLevel(currentLevel);
+		} else {
+			loadLevelInList(currentLevel, currentList);
 		}
 	} else {
 		location.replace("levels.html")
 	}
 
-	$("#skip_level").click(function() {
+	/*$("#skip_level").click(function() {
 		if(nextLevelId > 0){
 			goToNextLevel();
 		} else {
 			// Afficher une fenêtre de félicitation ?
 		}
-	});
+	});*/
 	
 	$("#nextLevelButton").click(function() {
 		goToNextLevel();
+	});
+	
+	$("#levelPageButton").click(function() {
+		location.href = "levels.html";
 	});
 
 
