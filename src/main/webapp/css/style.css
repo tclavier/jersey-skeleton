@@ -60,8 +60,27 @@ nav .glyphicon {
     width: 140px;
 }
 
+#speed {
+    margin-top:200px;
+}
+
 .level-list .panel-body  {
 	position: relative;
 	height: 50vh;
 	overflow: auto
+}
+
+.col-execute-button {
+    padding-left:10px;
+    width:140px;
+    float:left;
+}
+
+.col-speed {
+    width:calc(100% - 145px);
+    margin-left:5px;
+}
+
+#remaining_instructions {
+    text-align: center;
 }
