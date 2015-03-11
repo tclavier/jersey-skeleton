@@ -13,7 +13,15 @@ define(["jquery"],  function(require) {
         this.image = new Image();
         this.image.src = imagePath;
         this.loaded = false;
+        // Numero de la frame sur laquelle est l'animation
         this.patternId = 0;
+
+        // Angle de l'animation
+        this.angle = 0;
+
+        // Origine de l'animation (centre de rotation...), valeur entre 0 (gauche) et 1 (droite)
+        this.ox = 0;
+        this.oy = 0;
 
         var instance = this;
         var timer = 0;
@@ -27,16 +35,26 @@ define(["jquery"],  function(require) {
 		// Dessine l'animation 
 		this.draw = function draw(context, x, y, width, height) {
             if (!this.loaded) return;
+            context.save();
+
+            // Rotation (translation pour l'origine, puis rotation)
+            context.translate(x, y);
+            context.rotate(this.angle);
+			//context.translate(-x - (this.ox * this.width), -y - this.oy * height);
+            
+            // On dessine la bonne frame de l'animation
             var sx = this.width * (pattern[this.patternId] % widthInFrame);
             var sy = this.height * Math.floor(pattern[this.patternId] / widthInFrame);
-            context.drawImage(this.image, sx, sy, this.width, this.height, x, y, width, height);
+
+            context.drawImage(this.image, sx, sy, this.width, this.height, -this.ox * width, -this.oy * height, width, height);
+            
+            context.restore();
 		}
 		
 		// Met a jour l'animation 
 		this.update = function update(delta) {
             if (!this.loaded) return;
             timer += delta;
-
             if (timer >= interval) {
                 timer = 0;
                 this.patternId = (this.patternId + 1) % pattern.length;
