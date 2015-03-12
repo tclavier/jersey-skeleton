@@ -72,10 +72,10 @@ function setTileType(x, y, type) {
 	checkLevel();
 }
 
-function doGridClick(event) {
+function doGridClick(e) {
 	// position sur le gridCanvas
-	var canvasX = event.pageX- gridCanvas.offsetLeft - canvasContainer.offsetLeft;
-	var canvasY = event.pageY - gridCanvas.offsetTop - canvasContainer.offsetTop;
+	var canvasX = (e.offsetX || e.clientX - $(e.target).offset().left);
+	var canvasY = (e.offsetY || e.clientY - $(e.target).offset().top);
 
 	// position dans la grille
 	var gridX = Math.floor(canvasX / TILE_WIDTH);
@@ -85,9 +85,9 @@ function doGridClick(event) {
 	drawGrid();
 }
 
-function doPickerClick(event) {
+function doPickerClick(e) {
 	// position sur le canvas
-	var canvasY = event.pageY - pickerCanvas.offsetTop - canvasContainer.offsetTop;
+	var canvasY = (e.offsetY || e.clientY - $(e.target).offset().top);
 	// position dans la grille
 	var gridY = Math.floor(canvasY / PICKER_TILE_HEIGHT);
 
