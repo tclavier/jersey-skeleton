@@ -19,6 +19,7 @@
 
 <!-- Code local -->
 <script type="text/javascript" src="libs/jquery.js"></script>
+<script type="text/javascript" src="libs/bootstrap.js"></script>
 <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/options.js"></script>
@@ -29,7 +30,7 @@
 }
 
 #info_player {
-	margin-top:20px;
+	margin-top: 20px;
 }
 </style>
 
@@ -109,17 +110,15 @@
 					<h3>Modifier mes informations</h3>
 				</div>
 				<div class="row panel-body">
-					
-						<div id="image_panel" class="col-md-5">
-							<img src="images/profil.png" align="middle" alt="profil"
-								class="img-circle img-responsive text-center"> <br> <input
-								class="btn btn-default btn-sm" type="button"
-								value="Changer ma photo de profil">
-						</div>
-						
-						<div id="info_player" class="col-md-7">
 
-						</div>
+					<div id="image_panel" class="col-md-5">
+						<img src="images/profil.png" align="middle" alt="profil"
+							class="img-circle img-responsive text-center"> <br> <input
+							class="btn btn-default btn-sm" type="button"
+							value="Changer ma photo de profil">
+					</div>
+
+					<div id="info_player" class="col-md-7"></div>
 
 				</div>
 			</div>
@@ -136,7 +135,143 @@
 
 		</div>
 	</div>
-	<!-- container option_pane -->
+
+	<!--  Modal pour le changement de pseudo -->
+	<div class="modal fade" id="pseudo_modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Modifier le pseudo</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+
+						<div class="form-group">
+							<label for="newPseudo" class="col-sm-6 control-label">Nouveau
+								pseudo</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="newPassword"
+									placeholder="Nouveau pseudo">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="newPseudoConfirmation" class="col-sm-6 control-label">Confirmer
+								le nouveau pseudo</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control"
+									id="newPseudoConfirmation" placeholder="Nouveau pseudo">
+							</div>
+						</div>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<button type="button" class="btn btn-primary">Sauvergarder</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--  Modal pour le changement de mail -->
+	<div class="modal fade" id="email_modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Modifier le mail</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+
+						<div class="form-group">
+							<label for="newMail" class="col-sm-6 control-label">Nouveau
+								mail</label>
+							<div class="col-sm-6">
+								<input type="email" class="form-control" id="newMail"
+									placeholder="Nouveau mail">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="newMailConfirmation" class="col-sm-6 control-label">Confirmer
+								le nouveau mail </label>
+							<div class="col-sm-6">
+								<input type="email" class="form-control"
+									id="newMailConfirmation" placeholder="Nouveau mail">
+							</div>
+						</div>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<button type="button" class="btn btn-primary">Sauvergarder</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--  Modal pour le changement de mot de passe -->
+	<div class="modal fade" id="password_modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Modifier mon mot de
+						passe</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="oldPassword" class="col-sm-6 control-label">Ancien
+								mot de passe</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" id="oldPassword"
+									placeholder="Ancien mot de passe">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="newPassword" class="col-sm-6 control-label">Nouveau
+								mot de passe</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" id="newPassword"
+									placeholder="Nouveau mot de passe">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="newPasswordConfirmation"
+								class="col-sm-6 control-label">Confirmer le nouveau mot
+								de passe</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control"
+									id="newPasswordConfirmation" placeholder="Nouveau mot de passe">
+							</div>
+						</div>
+					</form>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<button type="button" class="btn btn-primary">Sauvergarder</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<footer class="container">
