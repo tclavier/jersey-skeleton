@@ -25,9 +25,19 @@
 
 <!--  TODO : Mettre le style dans un fichier -->
 <style>
-  .panel-heading {text-align:center;}
-  h1   {color:blue}
-  p    {color:green}
+.panel-heading {
+	text-align: center;
+}
+
+#info_player {
+	text-align: center;
+}
+
+#creations_panel {
+	text-align: center;
+}
+
+
 </style>
 
 </head>
@@ -49,9 +59,12 @@
 			<div id="navbar" class="navbar-collapse collapse">
 
 				<ul class="nav navbar-nav">
-					<li class="menu_bar_element" id="levels_bar"><a href="levels.html">Jouer</a></li>
-					<li class="menu_bar_element" id="editor_bar"><a href="editor.html">Editeur</a></li>
-					<li class="menu_bar_element" id="leaderboard_bar"><a href="leaderboard.html">Classement</a></li>
+					<li class="menu_bar_element" id="levels_bar"><a
+						href="levels.html">Jouer</a></li>
+					<li class="menu_bar_element" id="editor_bar"><a
+						href="editor.html">Editeur</a></li>
+					<li class="menu_bar_element" id="leaderboard_bar"><a
+						href="leaderboard.html">Classement</a></li>
 				</ul>
 
 				<div class="navbar-form navbar-right">
@@ -64,24 +77,21 @@
 								data-toggle="popover">Envoyer</button>
 						</div>
 						<div class="form-group">
-							<a href="register.html" type="button" class="menu_bar_element btn btn-info">M'enregistrer</a>
+							<a href="register.html" type="button"
+								class="menu_bar_element btn btn-info">M'enregistrer</a>
 						</div>
 					</div>
 					<div id="info_profil_navbar">
-						<a id="user_icon" href="profile.html" class="menu_bar_element">
+						<a id="user_icon" href="profile.html" class="menu_bar_element" data-toogle="tooltip" title="Mon profil">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a>
-						<a href="#">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
-						</a> 
-						<a href="#">
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-						</a>
-						<a id="options_icon" class="menu_bar_element" href="options.html">
+						</a> <a href="#" data-toogle="tooltip" title="Mes messages"> <span class="glyphicon glyphicon-comment"
+							aria-hidden="true"> </span>
+						</a> <a href="#" data-toogle="tooltip" title="Mes notifications"> <span
+							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						</a> <a id="options_icon" class="menu_bar_element" href="options.html" data-toogle="tooltip" title="Paramètres">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a>
-						<a id="logout_icon" href="#"> 
-							<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+						</a> <a id="logout_icon" href="#" data-toogle="tooltip" title="Deconnéxion"> <span
+							class="glyphicon glyphicon-off" aria-hidden="true"></span>
 						</a>
 					</div>
 				</div>
@@ -93,27 +103,30 @@
 
 	<div class="container main_panel" id="profile_pane">
 		<div class="row">
-			<div id="info_player_panel" class="col-md-3 panel panel-primary" style="padding : 0px; margin-left:70px">
-				<div class="panel-heading"> 
-					<h3>Mes informations</h3> 
+			<div id="info_player_panel" class="col-md-3 panel panel-primary"
+				style="padding: 0px; margin-left: 70px">
+				<div class="panel-heading">
+					<h3>Mes informations</h3>
 				</div>
-				<div id="info_player" class="panel-body"> </div>
+				<div id="info_player" class="panel-body">
+					<img src="images/profil.png" align="middle" alt="profil" class="img-circle text-center">
+					<br> <br>
+				</div>
 			</div>
-			<div id="creations_panel" class="col-md-3 panel panel-primary" style="padding : 0px; margin-left:30px">
-				<div class="panel-heading"> 
+			<div id="creations_panel" class="col-md-3 panel panel-primary"
+				style="padding: 0px; margin-left: 30px">
+				<div class="panel-heading">
 					<h3>Mes créations</h3>
 				</div>
-				<div id="creations_list" class="panel-body">
-					
-				</div>
+				<div id="creations_list" class="panel-body"></div>
 			</div>
-			<div id="friend_panel" class="col-md-3 col-md-offset-0.5 panel panel-primary" style="padding : 0px;margin-left:30px">
-				<div class="panel-heading"> 
+			<div id="friend_panel"
+				class="col-md-3 col-md-offset-0.5 panel panel-primary"
+				style="padding: 0px; margin-left: 30px">
+				<div class="panel-heading">
 					<h3>Mes amis</h3>
-				</div> 
-				<div class="panel-body" id="friend_list" >
-					
 				</div>
+				<div class="panel-body" id="friend_list"></div>
 			</div>
 		</div>
 	</div>

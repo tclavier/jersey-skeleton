@@ -65,9 +65,9 @@ nav .glyphicon {
 }
 
 .level-list .panel-body  {
-	position: relative;
-	height: 50vh;
-	overflow: auto
+	//position: relative;
+	//height: 50vh;
+	//overflow: auto
 }
 
 #game_pane nav {

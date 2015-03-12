@@ -23,6 +23,16 @@
 <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/options.js"></script>
 
+<style>
+.panel-heading {
+	text-align: center;
+}
+
+#info_player {
+	margin-top:20px;
+}
+</style>
+
 </head>
 
 <body>
@@ -67,16 +77,20 @@
 						</div>
 					</div>
 					<div id="info_profil_navbar">
-						<a id="user_icon" href="profile.html" class="menu_bar_element">
-							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a> <a href="#"> <span class="glyphicon glyphicon-comment"
-							aria-hidden="true"> </span>
-						</a> <a href="#"> <span
-							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-						</a> <a id="options_icon" class="menu_bar_element" href="options.html">
-							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a> <a id="logout_icon" href="#"> <span
-							class="glyphicon glyphicon-off" aria-hidden="true"></span>
+						<a id="user_icon" href="profile.html" class="menu_bar_element"
+							data-toogle="tooltip" title="Mon profil"> <span
+							class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						</a> <a href="#" data-toogle="tooltip" title="Mes messages"> <span
+							class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
+						</a> <a href="#" data-toogle="tooltip" title="Mes notifications">
+							<span class="glyphicon glyphicon-exclamation-sign"
+							aria-hidden="true"></span>
+						</a> <a id="options_icon" class="menu_bar_element" href="options.html"
+							data-toogle="tooltip" title="Paramètres"> <span
+							class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						</a> <a id="logout_icon" href="#" data-toogle="tooltip"
+							title="Deconnéxion"> <span class="glyphicon glyphicon-off"
+							aria-hidden="true"></span>
 						</a>
 					</div>
 				</div>
@@ -88,7 +102,38 @@
 
 	<div class="container main_panel" id="options_pane">
 		<div class="row">
-			<a href="#" id="login_fb">connexion fb</a>
+
+			<div id="info_player_panel" class="col-md-5 panel panel-primary"
+				style="padding: 0px; margin-right: 30px">
+				<div class="panel-heading">
+					<h3>Modifier mes informations</h3>
+				</div>
+				<div class="row panel-body">
+					
+						<div id="image_panel" class="col-md-5">
+							<img src="images/profil.png" align="middle" alt="profil"
+								class="img-circle img-responsive text-center"> <br> <input
+								class="btn btn-default btn-sm" type="button"
+								value="Changer ma photo de profil">
+						</div>
+						
+						<div id="info_player" class="col-md-7">
+
+						</div>
+
+				</div>
+			</div>
+
+			<div id="facebook_panel" class="col-md-5 panel panel-primary"
+				style="padding: 0px">
+				<div class="panel-heading">
+					<h3>Options Facebook</h3>
+				</div>
+				<div id="info_facebook" class="panel-body">
+					<a href="#" id="login_fb">connexion fb</a>
+				</div>
+			</div>
+
 		</div>
 	</div>
 	<!-- container option_pane -->

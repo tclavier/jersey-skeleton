@@ -5,8 +5,9 @@ $(document).ready(function() {
 
 	function showProfileInfo(data) {
 		//$("#info_player").html("");
-		$("#info_player").append("Pseudo : " + data.user.name+"<br>");
-		$("#info_player").append("Email : " + data.user.email);
+		$("#info_player").append("<b> Pseudo :</b> " + data.user.name+"<br>");
+		$("#info_player").append("<b> Email :</b> " + data.user.email+"<br> <br>");
+		$("#info_player").append("<a href='options.html'> Modifier mon profil </a>");
 
 
 		$("#creations_list").html("");

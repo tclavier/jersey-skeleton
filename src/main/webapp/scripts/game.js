@@ -40,6 +40,7 @@ define(["jquery"],  function($) {
 
 		this.render = function render() {
 			var ctx = canvas.getContext("2d");
+            ctx.imageSmoothingEnabled = false;
             // On nettoie toute la zone du canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.save();

@@ -67,7 +67,7 @@ function createBlocklyInstruction(instruction) {
 		// Si c'est un bloque, on rajoute les {}
 		if (instruction.block == 1) {
             // On ajoute le comptage de bloque
-			return code + " {\nif (!game.interpreter.increment(" + block.id + ")) break;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+			return code + " {\nif (!game.interpreter.increment(" + block.id + ")) return;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
 		}
 		return code + "\n";
 	};
@@ -137,7 +137,7 @@ function execute(code) {
 
         // On execute le code
         runned = true;
-	    eval(code);
+	    eval("function code() { " + code + "\n}\ncode()");
 	    // Si tous c'est bien passé, l'interpreteur devrait etre rempli de commande qui vont maintenant pouvoir etre affiché graphiquement
 
         runned = true;
