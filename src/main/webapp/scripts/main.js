@@ -50,7 +50,10 @@ function createBlocklyInstruction(instruction) {
 		// Si l'instruction est un bloque
 		if (instruction.block == 1) {
 			this.appendStatementInput("block").appendField(instruction.name);
-		} else {
+		} else if (instruction.block == 2) { 
+            this.appendStatementInput("block").appendField(instruction.name);
+            this.appendStatementInput("else").appendField("sinon");
+        } else {
 			this.appendDummyInput().appendField(instruction.name);
 		}
 		this.setPreviousStatement(true);
@@ -63,11 +66,13 @@ function createBlocklyInstruction(instruction) {
         var code = instruction.code
         code = code.replace(new RegExp("%line%", 'g'), block.id);
 
-
 		// Si c'est un bloque, on rajoute les {}
-		if (instruction.block == 1) {
+		if (instruction.block >= 1) {
             // On ajoute le comptage de bloque
-			return code + " {\nif (!game.interpreter.increment(" + block.id + ")) return;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+			code =  code + " {\nif (!game.interpreter.increment(" + block.id + ")) return;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+            if (instruction.block == 2) {
+                code += "else {\n" +  Blockly.JavaScript.statementToCode(block, "else") + "\n}"; 
+            }
 		}
 		return code + "\n";
 	};
