@@ -65,11 +65,18 @@ nav .glyphicon {
 }
 
 .level-list .panel-body  {
-	position: relative;
-	height: 50vh;
-	overflow: auto
+	//position: relative;
+	//height: 50vh;
+	//overflow: auto
 }
 
+#game_pane nav {
+	float:right;
+}
+
+#game_pane nav ul {
+	margin: 0;
+}
 .col-execute-button {
     padding-left:10px;
     width:140px;

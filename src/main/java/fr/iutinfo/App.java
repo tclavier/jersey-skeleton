@@ -9,7 +9,6 @@ import javax.ws.rs.core.Application;
 import org.skife.jdbi.v2.DBI;
 import org.sqlite.SQLiteDataSource;
 
-import fr.iutinfo.beans.ProfileInfo;
 import fr.iutinfo.resources.DbResetResource;
 import fr.iutinfo.resources.FriendsRelationsResource;
 import fr.iutinfo.resources.InstructionsResource;
@@ -38,9 +37,9 @@ public class App extends Application {
 		SQLiteDataSource ds = new SQLiteDataSource();
 		ds.setUrl("jdbc:sqlite:"+System.getProperty("java.io.tmpdir")+System.getProperty("file.separator")+"data.db");
 		dbi = new DBI(ds);
+		System.out.println("Database created : " + System.getProperty("java.io.tmpdir")+System.getProperty("file.separator")+"data.db");
 		
-		// Crée la DB à vide au début
-		/*DbResetResource dbRessource = new DbResetResource();
-		dbRessource.resetDatabase();*/
+		DbResetResource dbRessource = new DbResetResource();
+		dbRessource.resetDatabase();
     }
 }

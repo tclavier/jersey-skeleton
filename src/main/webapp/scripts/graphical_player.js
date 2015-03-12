@@ -13,9 +13,11 @@ define(["jquery"],  function($) {
 
         // Animation de "scanner" pour les conditions
         var Animation = require("animation");
-        var scanAnimation = new Animation(this.game, "images/test.png", 8, 1, [0, 1, 2], 1);
-
-		// Destination du joueur en pixel (pour animer les deplacements vers un point)
+        var scanAnimation = new Animation(this.game, "images/test.png", 6, 1, [0, 1, 2, 3, 4, 5], 0.1);
+        scanAnimation.ox = 1/2;
+        scanAnimation.oy = 0;
+		
+        // Destination du joueur en pixel (pour animer les deplacements vers un point)
 		var goToX = x;
 		var goToY = y;
 		
@@ -62,7 +64,7 @@ define(["jquery"],  function($) {
 			context.restore();
 
             // On dessine le scanner
-            //scanAnimation.draw(context, this.x, this.y, this.game.grid.tile_size, this.game.grid.tile_size);
+            scanAnimation.draw(context, this.x + this.game.grid.tile_size/2, this.y + this.game.grid.tile_size/2, this.game.grid.tile_size/2, this.game.grid.tile_size/2);
 		}
 		
 		// Met a jour le joueur (utilisé pour gerer les animations)
@@ -99,7 +101,7 @@ define(["jquery"],  function($) {
 			}
 			
 			// ---- Animation de rotation vers goToAngle
-			if (Math.abs(goToAngle - angle) > Math.PI/20) {
+			if (Math.abs(goToAngle - angle) > 0.05) {
 				// Meme principe que pour l'animation de deplacement
 				// On augmente l'angle jusqu'a ce que la difference entre l'angle du joueur et
 				// l'angle a atteindre soit inferieur a Math.PI/20 (les valeurs sont en radians)
@@ -108,7 +110,7 @@ define(["jquery"],  function($) {
 				if (goToAngle < angle) sign = -1;
 				
 				// On augmente ainsi l'angle dans la direction la plus optimisée
-				angle += Math.PI/20 * sign * this.game.getSpeed() * delta;
+				angle += Math.PI/10 * sign * this.game.getSpeed() * delta;
                 // On s'assure qu'on a pas depassé la cible
                 if (((goToAngle - angle) * sign) < 0) angle = goToAngle;
 			} else {
@@ -152,7 +154,7 @@ define(["jquery"],  function($) {
 		
 		// Renvoie vrai si le joueur fait quelque chose (deplacement, rotation)
 		this.isDoingSomething = function isDoingSomething() {
-			return moving || turning;
+			return moving || turning || scanAnimation.running();
 		}
 		
 		
@@ -184,15 +186,26 @@ define(["jquery"],  function($) {
 			}
 		}
 		
-		// Avance le joueur dans la direction dans laquelle il est
-		this.moveForward = function moveForward() {
-			this.moveToTile(this.tileX() + dirX, this.tileY() + dirY);
-		}
-		
-		// Recul le joueur en fonction de la direction dans laquelle il est
-		this.moveBackward = function moveBackward() {
-			this.moveToTile(this.tileX() - dirX, this.tileY() - dirY);
-		}
+        this.scanForward = function() {
+            scanAnimation.angle = angle;
+            scanAnimation.start(true);
+        }
+
+        this.scanBackward = function() {
+            scanAnimation.angle = angle + Math.PI;
+            scanAnimation.start(true);
+        }
+
+        this.scanLeft = function() {
+            scanAnimation.angle = angle - Math.PI/2;
+            scanAnimation.start(true);
+        }
+
+        this.scanRight = function() {
+            scanAnimation.angle = angle + Math.PI/2;
+            scanAnimation.start(true);
+        }
+
 	}
 
 });

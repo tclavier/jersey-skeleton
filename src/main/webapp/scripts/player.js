@@ -61,18 +61,24 @@ define(["jquery"],  function(require) {
 		}
 
         this.canGoForward = function canGoForward() {
+            this.game.interpreter.addCommand("player.scanForward();");
+
             return !this.game.grid.isTileSolid(this.tileX() + dirX, this.tileY() + dirY);
         }
 
         this.canGoBackward = function canGoBackward() {
+            this.game.interpreter.addCommand("player.scanBackward();");
+
             return !this.game.grid.isTileSolid(this.tileX() - dirX, this.tileY() - dirY);
         }
 
         this.canGoLeft = function canGoLeft() {
+            this.game.interpreter.addCommand("player.scanLeft();");
             return !this.game.grid.isTileSolid(this.tileX() + dirY, this.tileY() - dirX);
         }
 
         this.canGoRight = function canGoRight() {
+            this.game.interpreter.addCommand("player.scanRight();");
             return !this.game.grid.isTileSolid(this.tileX() - dirY, this.tileY() + dirX);
         }
 

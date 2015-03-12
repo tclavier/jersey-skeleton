@@ -97,6 +97,10 @@
 		<div class="row">
 			<div class="panel panel-default">
 				<div class="panel-heading">
+					<nav>
+						<ul id="levels_pagination" class="pagination">
+						</ul>
+					</nav>
 					<h4 id="level_title"></h4>
 				</div>
 				<div class="panel-body">
@@ -146,7 +150,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">Félicitation !</h4>
+					<h4 class="modal-title" id="myModalLabel">Bravo !</h4>
 				</div>
 				<div class="modal-body">
 					Vous avez fini le niveau avec succés !<br /> Cliquez sur "Niveau
@@ -155,6 +159,28 @@
 				<div class="modal-footer">
 					<button id="nextLevelButton" type="button" class="btn btn-primary"
 						data-dismiss="modal">Niveau suivant</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Modal (popup) -->
+	<div class="modal fade" id="congratsModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Félicitation !</h4>
+				</div>
+				<div class="modal-body">
+					
+					
+				</div>
+				<div class="modal-footer">
+					<button id="levelPageButton" type="button" class="btn btn-primary"
+						data-dismiss="modal">Choisir un niveau</button>
 				</div>
 			</div>
 		</div>

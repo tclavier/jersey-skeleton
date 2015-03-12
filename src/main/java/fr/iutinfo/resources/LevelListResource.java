@@ -38,7 +38,7 @@ public class LevelListResource {
 	
 	@GET
 	public List<LevelList> getLevelLists() {
-		List<LevelList> list = levelListDao.getAllLevelLists();
+		List<LevelList> list = levelListDao.getAllLevelListWithCount();
 		
 		if(list == null)
 			throw new WebApplicationException(404);
