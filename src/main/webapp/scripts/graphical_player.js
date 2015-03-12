@@ -1,3 +1,5 @@
+var scanAnimation = null;
+
 define(["jquery"],  function($) {
 	/**
 	   Classe permettant de representer le joueur graphiquement
@@ -13,9 +15,11 @@ define(["jquery"],  function($) {
 
         // Animation de "scanner" pour les conditions
         var Animation = require("animation");
-        var scanAnimation = new Animation(this.game, "images/test.png", 6, 1, [0, 1, 2, 3, 4, 5], 0.1);
-        scanAnimation.ox = 1/2;
-        scanAnimation.oy = 0;
+        if (!scanAnimation) {
+            scanAnimation = new Animation(this.game, "images/test.png", 6, 2, [0, 1, 2, 3, 4, 5], 0.1);
+            scanAnimation.ox = 1/2;
+            scanAnimation.oy = 0;
+        }
 		
         // Destination du joueur en pixel (pour animer les deplacements vers un point)
 		var goToX = x;
@@ -185,25 +189,45 @@ define(["jquery"],  function($) {
 				dirX = 0;
 			}
 		}
-		
+
+        /**
+         * Change l'animation du scanner en fonction de son resultat
+         * result : Vrai si le scanner trouve un chemin
+         */
+        var setScanResult = function(result) {
+            scanAnimation.pattern = result ? [0, 1, 2, 3, 4, 5] : [6, 7, 8, 9, 10, 11];
+        }
+
+        /**
+         * Fonctionis pour faire une animation de scanner
+         * scanForward -> Scanner devant le joueur
+         * scanBackward -> Scanner derriere le joueur
+         * scanLeft -> Scanner a gauche du joueur
+         * scanRight -> Scanner a droite du joueur
+         */
+
         this.scanForward = function() {
+            setScanResult(!this.game.grid.isTileSolid(this.tileX() + dirX, this.tileY() + dirY));
             scanAnimation.angle = angle;
-            scanAnimation.start(true);
+            scanAnimation.start(false);
         }
 
         this.scanBackward = function() {
+            setScanResult(!this.game.grid.isTileSolid(this.tileX() - dirX, this.tileY() - dirY));
             scanAnimation.angle = angle + Math.PI;
-            scanAnimation.start(true);
+            scanAnimation.start(false);
         }
 
         this.scanLeft = function() {
+            setScanResult(!this.game.grid.isTileSolid(this.tileX() + dirY, this.tileY() - dirX));
             scanAnimation.angle = angle - Math.PI/2;
-            scanAnimation.start(true);
+            scanAnimation.start(false);
         }
 
         this.scanRight = function() {
+            setScanResult(!this.game.grid.isTileSolid(this.tileX() - dirY, this.tileY() + dirX));
             scanAnimation.angle = angle + Math.PI/2;
-            scanAnimation.start(true);
+            scanAnimation.start(false);
         }
 
 	}

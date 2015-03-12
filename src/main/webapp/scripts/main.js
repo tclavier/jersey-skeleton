@@ -44,13 +44,16 @@ requirejs.config({
 
 
 function createBlocklyInstruction(instruction) {
-	Blockly.Blocks[instruction.name] = {
+	Blockly.Blocks[instruction.name + instruction.block] = {
 	  init: function() {
 		this.setColour(instruction.color);
 		// Si l'instruction est un bloque
 		if (instruction.block == 1) {
 			this.appendStatementInput("block").appendField(instruction.name);
-		} else {
+		} else if (instruction.block == 2) { 
+            this.appendStatementInput("block").appendField(instruction.name);
+            this.appendStatementInput("else").appendField("sinon");
+        } else {
 			this.appendDummyInput().appendField(instruction.name);
 		}
 		this.setPreviousStatement(true);
@@ -58,16 +61,18 @@ function createBlocklyInstruction(instruction) {
 	  }
 	};
 
-	Blockly.JavaScript[instruction.name] = function(block) {
+	Blockly.JavaScript[instruction.name + instruction.block] = function(block) {
         // Remplacement des balises
         var code = instruction.code
         code = code.replace(new RegExp("%line%", 'g'), block.id);
 
-
 		// Si c'est un bloque, on rajoute les {}
-		if (instruction.block == 1) {
+		if (instruction.block >= 1) {
             // On ajoute le comptage de bloque
-			return code + " {\nif (!game.interpreter.increment(" + block.id + ")) return;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+			code =  code + " {\nif (!game.interpreter.increment(" + block.id + ")) return;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+            if (instruction.block == 2) {
+                code += "else {\n" +  Blockly.JavaScript.statementToCode(block, "else") + "\n}"; 
+            }
 		}
 		return code + "\n";
 	};
@@ -98,7 +103,8 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 			var toolbox = '<xml>';
 			for (var i = 0; i < window.levelData.instructionsList.length; ++i) {
 				createBlocklyInstruction(window.levelData.instructionsList[i]);
-				toolbox += '  <block type="' + window.levelData.instructionsList[i].name + '"></block>';
+                var instruction = window.levelData.instructionsList[i];
+				toolbox += '  <block type="' + instruction.name + instruction.block + '"></block>';
 			}
 			toolbox += '</xml>';
 

@@ -101,7 +101,7 @@ public class LevelResource {
 			if(isValidLevel(level)) {
 				// -1 comme prochain niveau de la série = dernier niveau
 			
-				levelDao.insert(level.getName(), level.content(), level.instructions(), level.getMaxInstructions(), Session.getUser(cookie).getId());
+				levelDao.insert(level.getName(), level.getContent(), level.instructions(), level.getMaxInstructions(), Session.getUser(cookie).getId());
 				
 				return new Feedback(true, "Le niveau a bien été enregistré !");
 			}
