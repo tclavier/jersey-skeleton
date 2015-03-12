@@ -201,6 +201,29 @@ public class DbResetResource {
 				7,					// max number of instructions
 				1);					// author id
 		
+		levelDao.insert("Niveau 3", // name
+				"0 0 0 0 0 2 1," + 	//
+				"1 0 1 1 1 1 1," + 	// Level content
+				"1 0 0 0 0 0 1," +
+				"1 0 1 1 1 0 1," +
+				"1 1 0 0 0 0 1," +
+				"1 3 1 0 1 1 1," +
+				"1 0 0 0 1 1 1", 		//
+				"1,10,15,3,4,7", 	// instructions id list
+				6,					// max number of instructions
+				1);					// author id
+		
+		/*levelDao.insert("Niveau 2", // name
+				"2 1 0 0 0 0," + 	//
+				"0 1 0 1 0 0," + 	// Level content
+				"0 0 0 0 1 1," +
+				"0 1 0 1 0 0," +
+				"1 1 0 0 0 1," +
+				"0 0 0 1 0 0", 		//
+				"1,3,4,7,8,10,11", 	// instructions id list
+				7,					// max number of instructions
+				1);					// author id*/
+		
 		
 		
 
@@ -226,6 +249,13 @@ public class DbResetResource {
 		instructionsDao.insert("Si chemin derrière", "if (player.canGoBackward())", 200, 1);	// ID 9
         instructionsDao.insert("Répeter jusqu'a l'arrivée", "while (!player.hasArrived())", 100, 1); // ID 10	
 		instructionsDao.insert("Si PAS de chemin devant", "if (!player.canGoForward())", 200, 1);	// ID 11
+		instructionsDao.insert("Si PAS chemin à gauche", "if (player.canGoLeft())", 200, 1);	// ID 12
+		instructionsDao.insert("Si PAS chemin à droite", "if (player.canGoRight())", 200, 1);	// ID 13
+		instructionsDao.insert("Si PAS chemin derrière", "if (player.canGoBackward())", 200, 1);	// ID 14
+		instructionsDao.insert("Si chemin devant", "if (player.canGoForward())", 200, 2);	// ID 15
+		instructionsDao.insert("Si chemin à gauche", "if (player.canGoLeft())", 200, 2);	// ID 16
+		instructionsDao.insert("Si chemin à droite", "if (player.canGoRight())", 200, 2);	// ID 17
+		instructionsDao.insert("Si chemin derrière", "if (player.canGoBackward())", 200, 2);	// ID 18
 
         return "Table instructions Reset";
 	}
@@ -255,7 +285,7 @@ public class DbResetResource {
 		levelListDao.insertAssociation(2, 10, 4);
 		levelListDao.insertAssociation(3, 11, 0);
 		levelListDao.insertAssociation(3, 12, 1);
-		//levelListDao.insertAssociation(3, 13, 2);
+		levelListDao.insertAssociation(3, 13, 2);
 		//levelListDao.insertAssociation(3, 14, 3);
 		//levelListDao.insertAssociation(3, 15, 4);
 		
