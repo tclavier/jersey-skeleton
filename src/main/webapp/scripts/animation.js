@@ -13,6 +13,10 @@ define(["jquery"],  function(require) {
         this.image = new Image();
         this.image.src = imagePath;
         this.loaded = false;
+
+        // Pattern d'animation
+        this.pattern = pattern;
+
         // Numero de la frame sur laquelle est l'animation
         this.patternId = 0;
 
@@ -39,7 +43,7 @@ define(["jquery"],  function(require) {
          * looping : Vrai si l'animation doit boucler
          */
         this.start = function(looping) {
-            loop = loop;
+            loop = looping;
             timer = 0;
             running = true;
             this.patternId = 0;
@@ -55,8 +59,8 @@ define(["jquery"],  function(require) {
             context.rotate(this.angle);
             
             // On dessine la bonne frame de l'animation
-            var sx = this.width * (pattern[this.patternId] % widthInFrame);
-            var sy = this.height * Math.floor(pattern[this.patternId] / widthInFrame);
+            var sx = this.width * (this.pattern[this.patternId] % widthInFrame);
+            var sy = this.height * Math.floor(this.pattern[this.patternId] / widthInFrame);
 
             context.drawImage(this.image, sx, sy, this.width, this.height, -this.ox * width, -this.oy * height, width, height);
             
@@ -69,7 +73,7 @@ define(["jquery"],  function(require) {
             timer += delta * this.game.getSpeed() * 0.1;
             if (timer >= interval) {
                 timer = 0;
-                this.patternId = (this.patternId + 1) % pattern.length;
+                this.patternId = (this.patternId + 1) % this.pattern.length;
                 if (this.patternId == 0 && !loop) {
                     running = false;
                 }
