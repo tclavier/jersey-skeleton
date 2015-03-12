@@ -24,7 +24,7 @@ public class Level {
 		instructionsList = new ArrayList<Instruction>();
 	}
 
-	public String content() {
+	public String getContent() {
 		return content;
 	}
 
