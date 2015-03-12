@@ -44,7 +44,7 @@ requirejs.config({
 
 
 function createBlocklyInstruction(instruction) {
-	Blockly.Blocks[instruction.name] = {
+	Blockly.Blocks[instruction.name + instruction.block] = {
 	  init: function() {
 		this.setColour(instruction.color);
 		// Si l'instruction est un bloque
@@ -61,7 +61,7 @@ function createBlocklyInstruction(instruction) {
 	  }
 	};
 
-	Blockly.JavaScript[instruction.name] = function(block) {
+	Blockly.JavaScript[instruction.name + instruction.block] = function(block) {
         // Remplacement des balises
         var code = instruction.code
         code = code.replace(new RegExp("%line%", 'g'), block.id);
@@ -103,7 +103,8 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 			var toolbox = '<xml>';
 			for (var i = 0; i < window.levelData.instructionsList.length; ++i) {
 				createBlocklyInstruction(window.levelData.instructionsList[i]);
-				toolbox += '  <block type="' + window.levelData.instructionsList[i].name + '"></block>';
+                var instruction = window.levelData.instructionsList[i];
+				toolbox += '  <block type="' + instruction.name + instruction.block + '"></block>';
 			}
 			toolbox += '</xml>';
 
