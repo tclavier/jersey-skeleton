@@ -14,13 +14,18 @@ define(["jquery"],  function(require) {
                 this.game.interpreter.setup();
             }
         }
+        
+        this.onPlayerCollide = function() {
+        	// TODO : Avertir l'utilisateur de la collision correctement
+        	this.game.interpreter.addCommand("alert(\"Collision avec un mur !\");");
+        }
 
         /**
          * Appelé lorsque une boucle infinie est détécté dans le code (durant la pré-execution)
          * blockId : Id du bloc sur qui provoque la boucle infinie
          */
         this.onInfiniteLoopDetected = function(blockId) {
-            alert("Boucle infinie sur l'instruction \"" + Blockly.getMainWorkspace().getBlockById(blockId).type + "\"");
+            //alert("Boucle infinie sur l'instruction \"" + Blockly.getMainWorkspace().getBlockById(blockId).type + "\"");
         }
     }
 });
