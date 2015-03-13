@@ -17,7 +17,8 @@ define(["jquery"],  function(require) {
                 this.game.interpreter.addCommand("player.moveToTile(" + x + ", " + y + ");");
 				return true;
 			}
-            this.game.interpreter.addCommand("alert(\"Collision avec un mur !\");");
+			this.game.events.onPlayerCollide();
+            //this.game.interpreter.addCommand("alert(\"Collision avec un mur !\");");
             this.game.interpreter.addExitCommand();
 			return false;
 		}
