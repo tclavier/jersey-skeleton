@@ -16,7 +16,7 @@ function levelFinished() {
 		if(currentLevel < levelList.levelsAssociation.length - 1){
 			$("#endLevelModal").modal("show");
 		} else {
-			$("#congratsModal .modal-body").html("Vous avez fini la série de niveau avec succés !");
+			//$("#congratsModal .modal-body").html("");
 			$("#congratsModal").modal("show");
 		}
 	}
