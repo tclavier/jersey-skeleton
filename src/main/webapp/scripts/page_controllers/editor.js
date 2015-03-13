@@ -338,8 +338,12 @@ function initSpinners() {
 function loadInstructions() {
 	$.getJSON("v1/instructions", function(data) {
 		for(var i = 0 ; i < data.length ; i++) {
-			var item = $('<li class="list-group-item list-group-item-success" style="margin: 5px; border: 1px solid #c7d9ff;" value="' 
-					+ data[i].id + '">' + data[i].name + '</li>');
+			var label = data[i].name;
+			if (data[i].block === 2) {
+				label += " ... sinon";
+			}
+			var item = $('<li class="list-group-item list-group-item-success" style="margin: 5px; " value="' 
+					+ data[i].id + '">' + label + '</li>');
 			item.appendTo("#instructions");
 			updateCSS(item);
 		}

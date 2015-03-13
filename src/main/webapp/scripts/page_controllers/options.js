@@ -3,11 +3,16 @@ $(document).ready(function() {
 
 	function showProfileInfo(data) {
 		$("#info_player").append("<b> Pseudo :</b> " + data.user.name+"  ");
-		$("#info_player").append("<input class='btn btn-default btn-xs' type='button' value='Modifier'> <br> <br>");
+		$("#info_player").append("<input class='btn btn-default btn-xs' type='button' value='Modifier' id='pseudo_button'> <br> <br>");
 		$("#info_player").append("<b> Email :</b> " + data.user.email+"  ");
-		$("#info_player").append("<input class='btn btn-default btn-xs' type='button' value='Modifier'> <br> <br>");
+		$("#info_player").append("<input class='btn btn-default btn-xs' type='button' value='Modifier' id='email_button'> <br> <br>");
 		$("#info_player").append("<b> Mot de passe :</b> ******  ");
-		$("#info_player").append("<input class='btn btn-default btn-xs' type='button' value='Modifier'> <br>");
+		$("#info_player").append("<input class='btn btn-default btn-xs' type='button' id='password_button' value='Modifier'> <br>");
+		
+		
+		$("#password_button").click(function () { $("#password_modal").modal("show") });
+		$("#email_button").click(function() { $("#email_modal").modal("show")});
+		$("#pseudo_button").click(function() { $("#pseudo_modal").modal("show")});
 
 	}
 
