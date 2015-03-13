@@ -25,10 +25,10 @@ $(document).ready(function() {
 
 		if(sessionStorage.getItem("isConnected") == "true") {
 			$("#login_navbar").hide();
-			$("#info_profil_navbar").show();
+			//$("#info_profil_navbar").show();
 		} else {
 			$("#info_profil_navbar").hide();
-			$("#login_navbar").show();
+			//$("#login_navbar").show();
 
 			if(isLoginRequiredPage()) {
 				location.replace("/");
