@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
+import fr.iutinfo.beans.Instruction;
 import fr.iutinfo.beans.Level;
 import fr.iutinfo.dao.InstructionsDao;
 import fr.iutinfo.dao.LevelDao;
@@ -36,7 +37,7 @@ public class LevelResource {
 		if(level == null)
 			throw new WebApplicationException(404);
 		
-		level.setInstructionsList(instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())));
+		level.setInstructionsList((Instruction[]) instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())).toArray());
 		
 		return level;
 	}
@@ -48,7 +49,7 @@ public class LevelResource {
 		if(level == null)
 			throw new WebApplicationException(404);
 
-		level.setInstructionsList(instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())));
+		level.setInstructionsList((Instruction[]) instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())).toArray());
 		level.setLevelList(levelListDao.findById(idList));
 		level.getLevelList().setLevelsAssociation(levelListDao.getAssociationsOf(level.getLevelList().getId()));
 		return level;

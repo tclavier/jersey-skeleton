@@ -1,7 +1,6 @@
 package fr.iutinfo.beans;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Level {
 
@@ -11,7 +10,7 @@ public class Level {
 	private String content;
 	private String instructions;
 	private int maxInstructions;
-	private List<Instruction> instructionsList;
+	private Instruction[] instructionsList;
 	private LevelList levelList;
 	
 
@@ -21,7 +20,6 @@ public class Level {
 
 	public Level(int id) {
 		this.id = id;
-		instructionsList = new ArrayList<Instruction>();
 	}
 
 	public String getContent() {
@@ -137,11 +135,11 @@ public class Level {
 	}
 
 
-	public List<Instruction> getInstructionsList() {
+	public Instruction[] getInstructionsList() {
 		return instructionsList;
 	}
 
-	public void setInstructionsList(List<Instruction> list) {
+	public void setInstructionsList(Instruction[] list) {
 		this.instructionsList = list;
 	}
 	
