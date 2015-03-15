@@ -116,6 +116,7 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
                 var remainingBlocks = Blockly.maxBlocks - Blockly.getMainWorkspace().getAllBlocks().length;
                 $("#max_instruction").text(remainingBlocks);
                 $("#max_instruction_s").text(remainingBlocks > 1 ? "s" : "");
+                if (runned) execute("");
             });
 			window.levelData = null;
 		}

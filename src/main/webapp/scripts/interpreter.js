@@ -53,7 +53,6 @@ define(["jquery"],  function(require) {
             // Resets all the colors
             for (var i = 0; i < Blockly.mainWorkspace.getAllBlocks().length; ++i) {
                 var b = Blockly.mainWorkspace.getAllBlocks()[i];
-                console.log(b);
                 if (b != null && typeof b['tmpColour'] !== 'undefined') {
                     b.setColour(b.tmpColour);
                     b.tmpColour = undefined;
