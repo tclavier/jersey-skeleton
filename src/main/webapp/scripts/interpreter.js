@@ -18,13 +18,15 @@ define(["jquery"],  function(require) {
         /**
          * Augmente le compteur d'instructions
          * blockId : Id du bloc blockly
-         * @return Vrai si le script peut continuer, faut sinon
+         * @return Vrai si le script peut continuer, faux sinon
          */
         this.increment = function(blockId) {
+            // Si on est deja sortie du script
+            if (this.exited) return false;
+
             ++this.numberInstructions;
             if (this.numberInstructions > MAX_NUMBER_INSTRUCTIONS) {
                 this.game.events.onInfiniteLoopDetected(blockId);
-                this.addCommand("alert(\"Trop d'instructions !\");");
                 this.addExitCommand();
                 return false;
             }
