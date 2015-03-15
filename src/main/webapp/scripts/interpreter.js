@@ -12,6 +12,7 @@ define(["jquery"],  function(require) {
             this.stack = [];
             this.exited = false;
             this.numberInstructions = 0;
+            this.resetBlocksColour();
         }
 
         /**
@@ -43,11 +44,40 @@ define(["jquery"],  function(require) {
             return this.stack.length > 0;
         }
 
+        
+        /**
+         * Réinitialise les bloques a leurs couleurs original
+         */
+        this.resetBlocksColour = function() {
+            if (!Blockly) return;
+            // Resets all the colors
+            for (var i = 0; i < Blockly.mainWorkspace.getAllBlocks().length; ++i) {
+                var b = Blockly.mainWorkspace.getAllBlocks()[i];
+                console.log(b);
+                if (b != null && typeof b['tmpColour'] !== 'undefined') {
+                    b.setColour(b.tmpColour);
+                    b.tmpColour = undefined;
+                }
+            }
+        }
+
         this.nextStep = function() {
             if (this.stack.length > 0) {
                 var command = this.stack.shift();
                 if (Blockly) {
-                    Blockly.mainWorkspace.getBlockById(command[1]).select();
+                    this.resetBlocksColour(); 
+                    var block = Blockly.mainWorkspace.getBlockById(command[1]);
+                    if (block != null && block.tmpColour == null) {
+                        block.tmpColour = block.getColour();
+
+                        // Si c'etait la derniere commande et que c'etait une erreur, on colorise le bloque en rouge
+                        if (this.stack.length == 0 && this.exited) {
+                            block.setColour(0);
+                        } else {
+                            block.setColour(block.getColour() - 40);
+                        }
+                    }
+                   
                 }
                 return command[0];
             }
