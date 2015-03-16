@@ -50,7 +50,8 @@ ul {
 <script type="text/javascript" src="libs/jquery.js"></script>
 <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
-<script type="text/javascript" src="scripts/page_controllers/editor.js"></script>
+<script type="text/javascript"
+	src="scripts/page_controllers/instructions_controller.js"></script>
 <script type="text/javascript" src="libs/bootstrap.js"></script>
 <script type="text/javascript" src="libs/jquery-ui.js"></script>
 
@@ -121,47 +122,51 @@ ul {
 			<label for="instructionsNumber"
 				class="col-sm-4 control-label col-md-offset-2">Instructions
 				max: </label>
-
 			<div class="col-sm-4">
 				<input type="number" id="instructionsNumber" value="3" min="1"
 					class="form-control" />
-				<div class="panel panel-success col-md-2 text-center"
-					style="padding: 0px;">
-					<div class="panel-heading">
-						Instructions autorisées:
-						<button id="legalizeEverything" class="btn btn-success">Tout
-							autoriser</button>
-					</div>
+			</div>
+		</div>
+		
+		<br >
 
-					<ul class="instructionsList list-group panel-body"
-						id="selectedInstructions">
-					</ul>
+		<div class="row">
 
-				</div>
-				<div class="row">
-					<div class="panel panel-danger col-md-2 text-center"
-						style="padding: 0px;">
-
-						<div class="panel-heading">
-							Instructions interdites:
-							<button id="forbidEverything" class="btn btn-danger">Tout
-								interdire</button>
-						</div>
-						<ul class="instructionsList list-group panel-body"
-							id="instructions">
-						</ul>
-
-					</div>
+			<div class="panel panel-success col-md-2 text-center"
+				style="padding: 0px;">
+				<div class="panel-heading">
+					Instructions autorisées:
+					<button id="legalizeEverything" class="btn btn-success">Tout
+						autoriser</button>
 				</div>
 
-
-				<!-- container Editor page -->
+				<ul class="instructionsList list-group panel-body"
+					id="selectedInstructions">
+				</ul>
 
 			</div>
-			<footer class="container">
-				<div class="row">
-					<hr />
-					<p>&copy; Dashin Games 2015</p>
+			<div class="panel panel-danger col-md-2 text-center"
+				style="padding: 0px;">
+
+				<div class="panel-heading">
+					Instructions interdites:
+					<button id="forbidEverything" class="btn btn-danger">Tout
+						interdire</button>
 				</div>
-			</footer>
+				<ul class="instructionsList list-group panel-body" id="instructions">
+				</ul>
+
+			</div>
+		</div>
+
+
+		<!-- container Editor page -->
+
+	</div>
+	<footer class="container">
+		<div class="row">
+			<hr />
+			<p>&copy; Dashin Games 2015</p>
+		</div>
+	</footer>
 </body>
