@@ -91,3 +91,14 @@ nav .glyphicon {
 #remaining_instructions {
     text-align: center;
 }
+
+
+#sidebar li > a {
+	padding: 0;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+body {
+	position: relative;
+}

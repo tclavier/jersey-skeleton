@@ -6,7 +6,6 @@ import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
-import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
 import org.skife.jdbi.v2.sqlobject.stringtemplate.UseStringTemplate3StatementLocator;
 import org.skife.jdbi.v2.tweak.BeanMapperFactory;
@@ -17,22 +16,35 @@ import fr.iutinfo.beans.Instruction;
 @UseStringTemplate3StatementLocator
 public interface InstructionsDao {
 	
-	@SqlUpdate("create table instructions (id integer primary key autoincrement, name varchar(100), code text, color integer, block integer)")
+	@SqlUpdate("create table instructions " +
+			"(id integer primary key autoincrement, " +
+			"name varchar(100), " +
+			"code text, " +
+			"color integer, " +
+			"block integer, " +
+			"imageUrl text, " +
+			"animationUrl text, " +
+			"description text, " +
+			"category integer)")
 	void createInstructionsTable();
 
 	
-	@SqlUpdate("insert into instructions (name, code, color, block) "
-			+ "values (:name, :code, :color, :block)")
+	@SqlUpdate("insert into instructions (name, code, color, block, imageUrl, animationUrl, description, category) "
+			+ "values (:name, :code, :color, :block, :imageUrl, :animationUrl, :description, :category)")
 	@GetGeneratedKeys
 	int insert(@Bind("name") String name, 
 			@Bind("code") String code, 
 			@Bind("color") int color, 
-			@Bind("block") int block);
+			@Bind("block") int block, 
+			@Bind("imageUrl") String imageUrl,
+			@Bind("animationUrl") String animationUrl,
+			@Bind("description") String description, 
+			@Bind("category") int category);
 
 	@SqlQuery("select * from instructions where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	Instruction findById(@Bind("id") int id);
-	
+
 	@SqlQuery("select * from instructions")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<Instruction> getAll();

@@ -25,7 +25,7 @@ public class InstructionsResource {
 
 	@GET
 	@Path("{id}")
-	public Instruction getLevel(@PathParam("id") Integer id) {
+	public Instruction getInstruction(@PathParam("id") Integer id) {
 		Instruction instruction = instructionsDao.findById(id);
 		if(instruction == null)
 			throw new WebApplicationException(404);
@@ -34,7 +34,7 @@ public class InstructionsResource {
 	}
 
 	@GET
-	public List<Instruction> getLevels() {
+	public List<Instruction> getInstructions() {
 		List<Instruction> instructions = instructionsDao.getAll();
 		if(instructions == null)
 			throw new WebApplicationException(404);

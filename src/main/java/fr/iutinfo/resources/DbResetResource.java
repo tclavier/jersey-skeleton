@@ -238,24 +238,24 @@ public class DbResetResource {
 
 		instructionsDao.createInstructionsTable();
 
-		instructionsDao.insert("Avancer", "player.moveForward();", 65, 0);					// ID 1
-		instructionsDao.insert("Reculer", "player.moveBackward();", 65, 0);					// ID 2	
-		instructionsDao.insert("Pivoter à gauche", "player.turnLeft();", 65, 0);			// ID 3
-		instructionsDao.insert("Pivoter à droite", "player.turnRight();", 65, 0);			// ID 4
-		instructionsDao.insert("Répeter 3 fois", "for (var i%line% = 0; i%line% < 3; ++i%line%)", 100, 1);	// ID 5
-		instructionsDao.insert("Si chemin devant", "if (player.canGoForward())", 200, 1);	// ID 6
-		instructionsDao.insert("Si chemin à gauche", "if (player.canGoLeft())", 200, 1);	// ID 7
-		instructionsDao.insert("Si chemin à droite", "if (player.canGoRight())", 200, 1);	// ID 8
-		instructionsDao.insert("Si chemin derrière", "if (player.canGoBackward())", 200, 1);	// ID 9
-        instructionsDao.insert("Répeter jusqu'a l'arrivée", "while (!player.hasArrived())", 100, 1); // ID 10	
-		instructionsDao.insert("Si PAS de chemin devant", "if (!player.canGoForward())", 200, 1);	// ID 11
-		instructionsDao.insert("Si PAS chemin à gauche", "if (player.canGoLeft())", 200, 1);	// ID 12
-		instructionsDao.insert("Si PAS chemin à droite", "if (player.canGoRight())", 200, 1);	// ID 13
-		instructionsDao.insert("Si PAS chemin derrière", "if (player.canGoBackward())", 200, 1);	// ID 14
-		instructionsDao.insert("Si chemin devant", "if (player.canGoForward())", 200, 2);	// ID 15
-		instructionsDao.insert("Si chemin à gauche", "if (player.canGoLeft())", 200, 2);	// ID 16
-		instructionsDao.insert("Si chemin à droite", "if (player.canGoRight())", 200, 2);	// ID 17
-		instructionsDao.insert("Si chemin derrière", "if (player.canGoBackward())", 200, 2);	// ID 18
+		instructionsDao.insert("Avancer", "player.moveForward();", 65, 0, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 0);					// ID 1
+		instructionsDao.insert("Reculer", "player.moveBackward();", 65, 0, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 0);					// ID 2	
+		instructionsDao.insert("Pivoter à gauche", "player.turnLeft();", 65, 0, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 0);			// ID 3
+		instructionsDao.insert("Pivoter à droite", "player.turnRight();", 65, 0, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 0);			// ID 4
+		instructionsDao.insert("Répeter 3 fois", "for (var i%line% = 0; i%line% < 3; ++i%line%)", 100, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 1);	// ID 5
+		instructionsDao.insert("Si chemin devant", "if (player.canGoForward())", 200, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 6
+		instructionsDao.insert("Si chemin à gauche", "if (player.canGoLeft())", 200, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 7
+		instructionsDao.insert("Si chemin à droite", "if (player.canGoRight())", 200, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 8
+		instructionsDao.insert("Si chemin derrière", "if (player.canGoBackward())", 200, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 9
+        instructionsDao.insert("Répeter jusqu'a l'arrivée", "while (!player.hasArrived())", 100, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 1); // ID 10	
+		instructionsDao.insert("Si PAS de chemin devant", "if (!player.canGoForward())", 200, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 11
+		instructionsDao.insert("Si PAS chemin à gauche", "if (player.canGoLeft())", 200, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 12
+		instructionsDao.insert("Si PAS chemin à droite", "if (player.canGoRight())", 200, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 13
+		instructionsDao.insert("Si PAS chemin derrière", "if (player.canGoBackward())", 200, 1, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 14
+		instructionsDao.insert("Si chemin devant", "if (player.canGoForward())", 200, 2, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 15
+		instructionsDao.insert("Si chemin à gauche", "if (player.canGoLeft())", 200, 2, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 16
+		instructionsDao.insert("Si chemin à droite", "if (player.canGoRight())", 200, 2, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 17
+		instructionsDao.insert("Si chemin derrière", "if (player.canGoBackward())", 200, 2, "images/doc/avancer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 18
 
         return "Table instructions Reset";
 	}
@@ -270,9 +270,9 @@ public class DbResetResource {
 		levelListDao.createLevelListAssociationsTable();
 		levelListDao.createLevelListsTable();
         
-		levelListDao.createList("Tutoriel");
-		levelListDao.createList("Intermédiaire");
-		levelListDao.createList("Expert");
+		levelListDao.createList("Tutoriel", 1);
+		levelListDao.createList("Intermédiaire", 1);
+		levelListDao.createList("Expert", 1);
 		levelListDao.insertAssociation(1, 1, 0);
 		levelListDao.insertAssociation(1, 2, 1);
 		levelListDao.insertAssociation(1, 3, 2);
