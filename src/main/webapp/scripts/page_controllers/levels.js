@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 	
 	function loadLevelList() {
-		$.getJSON("v1/levelList", function(data) {
+		$.getJSON("v1/levelLists", function(data) {
 			showLevels(data);
 		});
 	}
