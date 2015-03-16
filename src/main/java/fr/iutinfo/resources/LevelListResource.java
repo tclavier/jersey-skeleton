@@ -18,7 +18,7 @@ import fr.iutinfo.utils.Session;
 
 
 
-@Path("/levelList")
+@Path("/levelLists")
 @Produces(MediaType.APPLICATION_JSON)
 public class LevelListResource {
 	private static LevelListDao levelListDao = App.dbi.open(LevelListDao.class);
