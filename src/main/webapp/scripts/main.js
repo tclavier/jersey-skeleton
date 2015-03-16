@@ -87,7 +87,6 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 		if (game) game.update(dt);
 	}
 	mainLoop();
-	console.log("main loaded");
 });
 
 var runned = false;

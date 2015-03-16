@@ -7,10 +7,48 @@ define(["jquery"],  function($) {
         Blockly.JavaScript.STATEMENT_PREFIX = "game.interpreter.executedBlock = %1;\n";
 
         /**
+         * Ajoute un champs pour editer un entier a un bloc
+         * block : Instance d'un bloc blockly
+         * param : Parametre du spinner (min,max)
+         */
+        this.appendSpinner = function(block, param) {
+            var minMax = param.split(",");
+            if (minMax.length != 2) return;
+            var min = parseInt(minMax[0]);
+            var max = parseInt(minMax[1]);
+
+            block.appendField(new Blockly.FieldTextInput(min+"", function validator(text) {
+                // D'abord on s'assure que c'est bien un entier
+                if (Blockly.FieldTextInput.numberValidator(text) == null)
+                return null;
+
+            return (parseInt(text) >= min && parseInt(text) <= max) ? text : null;
+            }), "vField");
+        }
+
+        /**
+         * Ajoute une liste deroulante a un bloc
+         * block : Instance d'un bloc blockly
+         * param : Parametre de la liste deroulante (element1:val1,element2:val2)
+         */
+        this.appendCombobox = function(block, param) {
+            var list = [];
+            var elements = param.split(",");
+            for (var i = 0; i < elements.length; ++i) {
+                var element = elements[i].split(":");
+                if (element.length == 2)
+                    list.push([element[0], element[1]]);
+            }
+
+            block.appendField(new Blockly.FieldDropdown(list), "cField");
+        }
+
+        /**
          * Analyse le nom de l'instruction pour gerer les balises
+         * instructionName : Nom de l'instruction a analyser
+         * block : L'instance du bloque blockly
          */
         this.parseInstructionName = function(instructionName, block) {
-            //var regexp = /.*%(.)(\[.*\])?%(.*)/g;
             var regexp = /(.*)%(.*)%(.*)/g;
             var match = regexp.exec(instructionName);
             if (match != null && match.length > 3) {
@@ -20,24 +58,38 @@ define(["jquery"],  function($) {
                 // Ensuite, on recupere la lettre de la commande pour savoir qu'elle est la balise
                 if (subMatch != null && subMatch.length > 3) {
                     var cmd = subMatch[1];
+                                      
                     if (cmd === "v") {
-                        // Si c'est un spinner
-                        block.appendField(new Blockly.FieldTextInput("1"), "NAME");
+                        // Si c'est un spinner 
+                        this.appendSpinner(block, subMatch[3]);
                     } else if (cmd === "c") {
                         // Si c'est une combobox
-                        // TODO faire les combobox
+                        this.appendCombobox(block, subMatch[3]); 
                     }
                 }
-                console.log(subMatch);
                 block.appendField(match[3]);
-
             } else {
                 block.appendField(instructionName); 
             }
         }
 
+
+        this.parseCodeTags = function(block, code) {
+            // Balise %line%
+            code = code.replace(new RegExp("%line%", 'g'), block.id);
+
+            // Balise %v%
+            code = code.replace(new RegExp("%v%", 'g'), block.getFieldValue("vField"));
+
+            // Balise %c%
+            code = code.replace(new RegExp("%c%", 'g'), block.getFieldValue("cField"));
+
+            return code;
+        }
+
         /**
          * Crée une instruction blockly
+         * L'instruction a créer (instance d'un objet avec les attributs name et block)
          */
         this.createBlocklyInstruction = function(instruction) {
             Blockly.Blocks[instruction.name + instruction.block] = {
@@ -59,9 +111,8 @@ define(["jquery"],  function($) {
 
             Blockly.JavaScript[instruction.name + instruction.block] = function(block) {
                 // Remplacement des balises
-                var code = instruction.code
-                    code = code.replace(new RegExp("%line%", 'g'), block.id);
-
+                var code = instance.parseCodeTags(block, instruction.code);
+                    //
                 // Si c'est un bloque, on rajoute les {}
                 if (instruction.block >= 1) {
                     // On ajoute le comptage de bloque
