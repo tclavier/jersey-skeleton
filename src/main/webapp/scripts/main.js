@@ -14,6 +14,7 @@ requirejs.config({
 		"interpreter": "scripts/interpreter",
         "events" : "scripts/events",
         "animation" : "scripts/animation",
+        "block_creator" : "scripts/block_creator",
 		"menu_bar_controller": "scripts/page_controllers/menu_bar_controller",
 		"users_query": "scripts/queries/users_query",
 		"levels_query": "scripts/queries/levels_query"
@@ -43,45 +44,14 @@ requirejs.config({
 });
 
 
-function createBlocklyInstruction(instruction) {
-	Blockly.Blocks[instruction.name + instruction.block] = {
-	  init: function() {
-		this.setColour(instruction.color);
-		// Si l'instruction est un bloque
-		if (instruction.block == 1) {
-			this.appendStatementInput("block").appendField(instruction.name);
-		} else if (instruction.block == 2) { 
-            this.appendStatementInput("block").appendField(instruction.name);
-            this.appendStatementInput("else").appendField("sinon");
-        } else {
-			this.appendDummyInput().appendField(instruction.name);
-		}
-		this.setPreviousStatement(true);
-		this.setNextStatement(true);
-	  }
-	};
 
-	Blockly.JavaScript[instruction.name + instruction.block] = function(block) {
-        // Remplacement des balises
-        var code = instruction.code
-        code = code.replace(new RegExp("%line%", 'g'), block.id);
-
-		// Si c'est un bloque, on rajoute les {}
-		if (instruction.block >= 1) {
-            // On ajoute le comptage de bloque
-			code =  code + " {\nif (!game.interpreter.increment(" + block.id + ")) return;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
-            if (instruction.block == 2) {
-                code += "else {\n" +  Blockly.JavaScript.statementToCode(block, "else") + "\n}"; 
-            }
-		}
-		return code + "\n";
-	};
-}
 
 var game;
 
-require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "animation", "graphical_player","events"], function ($) {
+require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "animation", "graphical_player","events","block_creator"], function ($) {
 	var Game = require("game");
+    var BlockCreator = require("block_creator");
+
 	var time;
 	function mainLoop() {
 		requestAnimationFrame(mainLoop);
@@ -97,16 +67,9 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 				tiles.push(window.levelData.structuredContent[i].item);
 			}
 			game = new Game(tiles);
-			
-			// On crée les instructions
-			Blockly.JavaScript.STATEMENT_PREFIX = "game.interpreter.executedBlock = %1;\n";
-			var toolbox = '<xml>';
-			for (var i = 0; i < window.levelData.instructionsList.length; ++i) {
-				createBlocklyInstruction(window.levelData.instructionsList[i]);
-                var instruction = window.levelData.instructionsList[i];
-				toolbox += '  <block type="' + instruction.name + instruction.block + '"></block>';
-			}
-			toolbox += '</xml>';
+			blockCreator = new BlockCreator(game);
+
+            var toolbox = blockCreator.getToolbox(window.levelData.instructionsList);
 
 			// On crée la zone pour blockly
 			Blockly.inject(document.getElementById('blocklyDiv'), {trashcan: true, toolbox: toolbox, maxBlocks: window.levelData.maxInstructions});
