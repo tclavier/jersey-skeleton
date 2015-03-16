@@ -282,7 +282,7 @@ function sendLevel() {
 	sessionStorage.level = transpo;
 	sessionStorage.name = $("#levelName").val();
 	sessionStorage.width = gridWidth;
-	sessionStorage.width = gridHeight;
+	sessionStorage.height = gridHeight;
 	
 	window.location.assign("/test.html");
 
