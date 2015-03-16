@@ -222,11 +222,11 @@ function checkLevel() {
 		validity = false;
 	}
 	if (starts > 1) {
-		addError("Le niveau ne peut contenir qu'une case de départ");
+		addError("Le niveau ne peut contenir qu'une seule case de départ");
 		validity = false;
 	}
 	if (goals === 0) {
-		addError("Le niveau doit contenir une case d'arrivée");
+		addError("Le niveau doit contenir une seule case d'arrivée");
 		validity = false;
 	}
 	if (goals > 1) {
@@ -237,14 +237,14 @@ function checkLevel() {
 		addError("Le niveau doit avoir un nom");
 		validity = false;
 	}
-	if (!($("#instructionsNumber").val() > 0)) {
-		addError("Nombre maximum d'instructions invalide");
-		validity = false;
-	}
-	if (getInstructions().length === 0) {
-		addError("Le niveau doit avoir au moins une instruction autorisée");
-		validity = false;
-	}
+//	if (!($("#instructionsNumber").val() > 0)) {
+//		addError("Nombre maximum d'instructions invalide");
+//		validity = false;
+//	}
+//	if (getInstructions().length === 0) {
+//		addError("Le niveau doit avoir au moins une instruction autorisée");
+//		validity = false;
+//	}
 	if (getSizeInput().length === 0) {
 		addError("Les dimensions doivent être comprises entre " 
 				+ MIN_GRID_WIDTH + "x" + MIN_GRID_HEIGHT + " et " + MAX_GRID_WITH + "x" + MAX_GRID_HEIGHT);
@@ -278,40 +278,45 @@ function sendLevel() {
 			transpo[j][i] = grid[i][j];
 		}
 	}
+	
+	sessionStorage.level = transpo;
+	sessionStorage.name = $("#levelName").val();
+	
+	window.location.assign("/test.html");
 
-	for(var i = 0 ; i < transpo.length ; i++) {
-		structuredContent[i] = {item : transpo[i]};
-	}
-
-	var json = JSON.stringify({
-		"structuredContent": structuredContent,
-		"structuredInstructions": getInstructions(),
-		"name": $("#levelName").val(),
-		"maxInstructions": $("#instructionsNumber").val()
-	});
-
-	console.log(json);
-
-	$.ajax({
-		type : 'POST',
-		contentType : 'application/json',
-		url : "v1/levels/add/" + document.cookie,
-		dataType : "json",
-		data : json ,
-		success : function(data, textStatus, jqXHR) {
-			console.log(data);
-			if(data.success) {
-				// TODO : afficher message de succés
-				alert("Success!");
-			} else {
-				// TODO : Afficher mesage d'erreur
-				alert("Oh mince...");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert('postUser error: ' + textStatus);
-		}
-	});
+//	for(var i = 0 ; i < transpo.length ; i++) {
+//		structuredContent[i] = {item : transpo[i]};
+//	}
+//
+//	var json = JSON.stringify({
+//		"structuredContent": structuredContent,
+//		"structuredInstructions": getInstructions(),
+//		"name": $("#levelName").val(),
+//		"maxInstructions": $("#instructionsNumber").val()
+//	});
+//
+//	console.log(json);
+//
+//	$.ajax({
+//		type : 'POST',
+//		contentType : 'application/json',
+//		url : "v1/levels/add/" + document.cookie,
+//		dataType : "json",
+//		data : json ,
+//		success : function(data, textStatus, jqXHR) {
+//			console.log(data);
+//			if(data.success) {
+//				// TODO : afficher message de succés
+//				alert("Success!");
+//			} else {
+//				// TODO : Afficher mesage d'erreur
+//				alert("Oh mince...");
+//			}
+//		},
+//		error : function(jqXHR, textStatus, errorThrown) {
+//			alert('postUser error: ' + textStatus);
+//		}
+//	});
 }
 
 function saveLevel() {
