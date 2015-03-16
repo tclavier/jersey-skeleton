@@ -76,18 +76,6 @@ public class LevelResource {
 	}
 	
 	
-	/*@PUT
-	@Path("{id}/nextLevel/{nextLevelId}")
-	public Feedback setNextLevel(@PathParam("id") int id, @PathParam("idNextLevel") int nextLevelId) {
-		if(levelDao.findById(nextLevelId) == null)
-			return new Feedback(false, "Le niveau suivant n'existe pas !");
-		if(levelDao.findById(id) == null)
-			return new Feedback(false, "Le niveau actuel n'existe pas !");
-		levelDao.setNextLevel(nextLevelId, id);
-		return new Feedback(true, "La modification à été apportée !");
-	}*/
-	
-	
 	/**
 	 * Insert le niveau si celui ci est valide.
 	 * @param level
@@ -95,7 +83,7 @@ public class LevelResource {
 	 */
 	@POST
 	@Path("/add/{cookie}")
-	public Feedback createUser(Level level, @PathParam("cookie") String cookie) {
+	public Feedback createLevel(Level level, @PathParam("cookie") String cookie) {
 		if(Session.isLogged(cookie)) {
 			// User enregistré, l'envoie du niveau peux être effectué
 			if(isValidLevel(level)) {
@@ -109,6 +97,30 @@ public class LevelResource {
 		}
 		
 		
+		return new Feedback(false, "Vous n'êtes pas enregistré !");
+	}
+	
+	
+	/**
+	 * Insert le niveau si celui ci est valide.
+	 * @param level
+	 * @return
+	 */
+	@POST
+	@Path("/add/{cookie}/{idList}")
+	public Feedback createUser(Level level, @PathParam("cookie") String cookie, @PathParam("cookie") int idList) {
+		if(Session.isLogged(cookie)) {
+			// User enregistré, l'envoie du niveau peux être effectué
+			if(isValidLevel(level)) {
+				// -1 comme prochain niveau de la série = dernier niveau
+			
+				int idLevel = levelDao.insert(level.getName(), level.getContent(), level.instructions(), level.getMaxInstructions(), Session.getUser(cookie).getId());
+				levelListDao.insertAssociation(idList, idLevel, levelListDao.getNextPosition(idList));
+
+				return new Feedback(true, "Le niveau a bien été enregistré !");
+			}
+			return new Feedback(false, "Le niveau n'est pas valide ou à été corrompu.");
+		}
 		return new Feedback(false, "Vous n'êtes pas enregistré !");
 	}
 
