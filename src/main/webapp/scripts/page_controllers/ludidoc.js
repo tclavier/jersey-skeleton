@@ -15,23 +15,25 @@ $(document).ready(function() {
 	function createInput(instruction, idx) {
 		var nav = $("#sidebar");
 		var doc = $("#doc-container");
+		var name = instruction.name;
+		var regexp = /(.*)%(.*)%(.*)/g;
+        var match = regexp.exec(name);
+        if (match != null && match.length > 3)
+        	name = match[1] + " N " + match[3];
 		
-		nav.append($('<li><a href="#' + idx + '" for="' + idx + '">' + instruction.name + '</a></li>'));
+		name += (instruction.block == 2 ? " ... sinon" : "");
+		nav.append($('<li><a href="#' + idx + '" for="' + idx + '">' + name + '</a></li>'));
 		
 		doc.append($('<div id="' + idx + '" class="panel panel-default doc-element">' +
 						'<div class="panel-heading">' +
-							'<img src="' + instruction.imageUrl+ '" alt="' + instruction.name + '"/>' +
+							'<img src="' + instruction.imageUrl+ '" alt="' + name + '"/>' +
 						'</div>' +
 						'<div class="panel-body">' +
-						'<img src="' + instruction.animationUrl+ '" alt="' + instruction.name + '"/>' +
+						'<img src="' + instruction.animationUrl+ '" alt="' + name + '"/>' +
 						instruction.description +
 						'</div>' +
 					'</div>'));
 		console.log(instruction);
-	}
-	
-	function setActive(idElement) {
-		
 	}
 	
 	/*function toggleDoc(clickedElement) {
@@ -55,14 +57,6 @@ $(document).ready(function() {
 		for(var i = 0 ; i < data.length ; i++) {
 			createInput(data[i], i);
 		}
-		
-		$('#sidebar a').click(function() {
-			console.log($(this).parent());
-			setActiveDoc($(this).parent());
-		});
-		
-		currentMenuElement = $($('#sidebar a')[0]).parent();
-		setActiveDoc(currentMenuElement);
 	});
 	
 });
