@@ -3,6 +3,7 @@ package fr.iutinfo;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.websocket.WebSocketContainer;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
@@ -14,11 +15,14 @@ import fr.iutinfo.resources.FriendsRelationsResource;
 import fr.iutinfo.resources.InstructionsResource;
 import fr.iutinfo.resources.LevelListResource;
 import fr.iutinfo.resources.LevelResource;
+import fr.iutinfo.resources.MyServerEndpoint;
 import fr.iutinfo.resources.ProfileInfoResource;
 import fr.iutinfo.resources.UserResource;
 
 @ApplicationPath("/v1/")
 public class App extends Application {
+	
+	
     @Override
     public Set<Class<?>> getClasses() {
     	Set<Class<?>> s = new HashSet<Class<?>>();
@@ -28,7 +32,7 @@ public class App extends Application {
     	s.add(DbResetResource.class);
     	s.add(InstructionsResource.class);
     	s.add(ProfileInfoResource.class);
-    	s.add(LevelListResource.class);
+    	s.add(LevelListResource.class);    	
     	return s;
     }
     
