@@ -61,6 +61,7 @@ public class DbResetResource {
 
 		userDao.insert("toto", Utils.hashMD5("toto"), "toto@toto.to");
 		userDao.insert("titi", Utils.hashMD5("titi"), "titi@titi.ti");
+		userDao.insert("tata", Utils.hashMD5("tata"), "tata@tata.ta");
 
 		return "Table user Reset";
 	}

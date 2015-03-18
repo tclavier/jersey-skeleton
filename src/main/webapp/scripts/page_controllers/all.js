@@ -9,6 +9,18 @@ function isLoginRequiredPage() {
 }
 
 
+/**
+ * Permet de lire les paramètres de l'URL
+ */
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null) {
+       return null;
+    } else {
+       return results[1] || 0;
+    }
+}
+
 
 /**
  * Cookies : 
@@ -79,7 +91,6 @@ $(document).ready(function() {
 			$("#login_navbar").show();
 
 			if(isLoginRequiredPage()) {
-				console.log("toto");
 				location.replace("/");
 			}
 		}

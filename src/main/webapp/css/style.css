@@ -102,3 +102,9 @@ nav .glyphicon {
 body {
 	position: relative;
 }
+
+.profil_picture {
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+}
