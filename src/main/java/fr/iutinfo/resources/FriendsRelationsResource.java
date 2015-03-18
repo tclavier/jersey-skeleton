@@ -64,8 +64,11 @@ public class FriendsRelationsResource {
 			int idUser = Session.getUser(cookie).getId();
 			if(userDao.findById(idFriend) != null) {
 				if(friendDao.isRelationExist(idUser, idFriend) == null) {
-					friendDao.createRelation(idUser, idFriend);
-					return new Feedback(true, "Vous avez un(e) nouvel ami(e) !");
+					if(idUser != idFriend) {
+						friendDao.createRelation(idUser, idFriend);
+						return new Feedback(true, "Vous avez un(e) nouvel ami(e) !");
+					}
+					return new Feedback(false, "Vous ne pouvez pas vous ajouter vous-même !");
 				}
 				return new Feedback(false, "Vous êtes déjà ami(e) !");
 			}
