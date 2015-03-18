@@ -27,6 +27,10 @@ public interface UserDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	User findById(@Bind("id") int id);
 	
+	@SqlQuery("select name from users where name like :name")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+	List<User> searchUsers(@Bind("name") String name);
+	
 	@SqlQuery("select id, name, email, facebookId from users where facebookId = :facebookId")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	User findByFacebookId(@Bind("facebookId") int facebookId);

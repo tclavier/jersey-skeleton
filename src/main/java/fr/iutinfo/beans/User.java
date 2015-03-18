@@ -3,7 +3,7 @@ package fr.iutinfo.beans;
 public class User {
 	
 	private int id = 0;
-	private long facebookId = 0;
+	private long facebookId;
 	private String name;
 	private String password;
 	private String email;

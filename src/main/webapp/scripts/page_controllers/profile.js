@@ -1,5 +1,35 @@
 
+var tab = [];
+
+function searchUsers() {	
+	$.getJSON("/v1/users/search?term=" + $("#search-friend").val() , function(data) {
+		for(var i = 0 ; i < data.length ; i++) {
+			tab[i] = data[i].name;
+		}
+		console.log(tab);
+	});
+}
+
+
 $(document).ready(function() {
+
+
+
+
+
+	$( "#search-friend" ).autocomplete({
+		source: function (request, response) {
+			$.getJSON("/v1/users/search?term=" + $("#search-friend").val(), function (data) {
+				response($.map(data, function (value, key) {	            	
+					return {
+						label: value.name
+					};
+				}));
+			});
+		},
+		delay: 0
+	});
+
 
 
 
@@ -75,17 +105,15 @@ $(document).ready(function() {
 
 
 	if(location.hash == "") {
-		$.getJSON("v1/profile/me/" + document.cookie, function(data) {
-			console.log(data);
+		$.getJSON("v1/profile/me/" + Cookies["id"], function(data) {
 			showProfileInfo(data);
 		})
 		.error(function() {
 			// Utilisateur non loggé
-			location.replace("/");
+			location.replace("/index.html");
 		});
 	} else {
 		$.getJSON("v1/profile/" + location.hash.substring(1), function(data) {
-			console.log(data);
 			showProfileInfo(data);
 		});
 	}
