@@ -62,7 +62,7 @@ $(document).ready(function() {
 
         obj.structuredContent = structuredContent;
         instructions = obj.instructionsList = instructionList;
-        obj.maxInstructions = 999;
+        obj.maxInstructions = Infinity;
         obj.name = sessionStorage.name;
 
         return obj;
