@@ -61,7 +61,7 @@ $(document).ready(function() {
 
 
 	if(location.hash == "") {
-		$.getJSON("v1/profile/me/" + document.cookie, function(data) {
+		$.getJSON("v1/profile/me/" + Cookies["id"], function(data) {
 			console.log(data);
 			showProfileInfo(data);
 		})
