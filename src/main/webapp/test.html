@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+<title>Ludicode</title>
+
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Code local -->
+<script src="libs/blockly_compressed.js"></script>
+<script src="libs/blocks_compressed.js"></script>
+<script src="libs/blockly_msg.js"></script>
+<script src="libs/javascript_compressed.js"></script>
+
+<script data-main="scripts/main" src="libs/require.js"></script>
+<script type="text/javascript" src="libs/jquery.js"></script>
+<script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
+<script type="text/javascript" src="scripts/page_controllers/all.js"></script>
+<script type="text/javascript" src="scripts/page_controllers/game_test.js"></script>
+
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand menu_bar_element" id="home_bar" href="index.html">Ludicode</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+
+				<ul class="nav navbar-nav">
+
+					<li class="menu_bar_element active" id="levels_bar"><a
+						href="levels.html">Jouer</a></li>
+					<li class="menu_bar_element" id="editor_bar"><a
+						href="editor.html">Editeur</a></li>
+					<li class="menu_bar_element" id="leaderboard_bar"><a
+						href="leaderboard.html">Classement</a></li>
+
+				</ul>
+
+				<div class="navbar-form navbar-right">
+					<div id="login_navbar">
+						<div class="form-group">
+							<input id="name_login" type="text" placeholder="Pseudo"
+								class="form-control" /> <input id="password_login"
+								type="password" placeholder="Mot de passe" class="form-control" />
+							<button id="login_send" type="submit" class="btn btn-success"
+								data-toggle="popover">Envoyer</button>
+						</div>
+						<div class="form-group">
+							<a href="register.html" type="button"
+								class="menu_bar_element btn btn-info">M'enregistrer</a>
+						</div>
+					</div>
+					<div id="info_profil_navbar">
+						<a id="user_icon" href="profile.html" class="menu_bar_element">
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						</a> <a href="#"> <span class="glyphicon glyphicon-comment"
+							aria-hidden="true"> </span>
+						</a> <a href="#"> <span
+							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						</a> <a id="options_icon" class="menu_bar_element" href="options.html">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						</a> <a id="logout_icon" href="#"> <span
+							class="glyphicon glyphicon-off" aria-hidden="true"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--/.navbar-collapse -->
+		</div>
+	</nav>
+
+
+	<div class="container-fluid main_panel" id="game_pane">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<nav>
+						<ul id="levels_pagination" class="pagination">
+						</ul>
+					</nav>
+					<h4 id="level_title"></h4>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div id="grid-container" class="col-md-3">
+							<canvas width="200" height="200" id="grid">Votre navigateur ne supporte pas le HTML5 :(</canvas>
+                            <div id="toolbox" class="row panel panel-default">
+                                <div class="col-execute-button">
+                                    <button id="execute" type="button" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-play"></span> Executer
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-speed">
+                                    <input id="speed" type="range" min="5" max="5000" value="100" />
+                                </div>
+                                <div class="row">
+                                    <div id="remaining_instructions" class="col-md-12">
+                                        <h3>
+                                            Il vous reste <strong><span id="max_instruction">0</strong></b> instruction<span
+                                                id="max_instruction_s"></span>.
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+
+						</div>
+
+						<div id="control-container" class="col-md-9">
+							<div id="blocklyDiv"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+	<!-- /container game -->
+
+
+
+	<!-- Modal (popup) -->
+	<div class="modal fade" id="endLevelModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Bravo !</h4>
+				</div>
+				<div class="modal-body">
+					Vous avez fini votre niveau avec succès !<br /> Vous pouvez enregister votre niveau ou le modifier.
+				</div>
+				<div class="modal-footer">
+                    <button id="saveLevelBtn" type="button" class="btn btn-primary"
+                        data-dismiss="modal">Enregister</button>
+                    <button id="editLevelBtn" type="button" class="btn btn-primary"
+						data-dismiss="modal">Modifier</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<footer class="container">
+		<div class="row">
+			<hr />
+			<p>&copy; Dashin Games 2015</p>
+		</div>
+	</footer>
+</body>
+</html>
+

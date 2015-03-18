@@ -11,6 +11,8 @@ function levelFinished() {
 		$("#congratsModal").modal("show");
 	} else {
 		// Le niveau appartient à une liste
+		console.log(levelList.levelsAssociation.length - 1);
+		console.log(currentLevel);
 		if(currentLevel < levelList.levelsAssociation.length - 1){
 			$("#endLevelModal").modal("show");
 		} else {
@@ -58,6 +60,7 @@ $(document).ready(function() {
 
 	function handleLevel(data) {
 		window.levelData = data;
+		console.log(data);
 		levelList = data.levelList;
 		
 		$("#max_instruction").html(data.maxInstructions);
