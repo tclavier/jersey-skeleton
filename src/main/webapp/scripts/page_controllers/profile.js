@@ -14,10 +14,6 @@ function searchUsers() {
 $(document).ready(function() {
 
 
-
-<<<<<<< HEAD
-
-
 	$( "#search-friend" ).autocomplete({
 		source: function (request, response) {
 			$.getJSON("/v1/users/search?term=" + $("#search-friend").val(), function (data) {
@@ -32,12 +28,7 @@ $(document).ready(function() {
 	});
 
 
-
-
-	function showProfileInfo(data) {
-=======
 	function showProfileInfo(data, currentUserProfile) {
->>>>>>> 9787b328908c4cfffbd7f596a8276365e322932d
 		//$("#info_player").html("");
 		$("#info_player").append("<b> Pseudo :</b> " + data.user.name+"<br>");
 		if(currentUserProfile) $("#info_player").append("<b> Email :</b> " + data.user.email+"<br> <br>");
@@ -113,18 +104,11 @@ $(document).ready(function() {
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));*/
 
-<<<<<<< HEAD
-
-	if(location.hash == "") {
-		$.getJSON("v1/profile/me/" + Cookies["id"], function(data) {
-			showProfileInfo(data);
-=======
 	var idUser = urlParam("id");
 	if(!idUser) {
 		$.getJSON("v1/profile/me/" + Cookies["id"], function(data) {
 			console.log(data);
 			showProfileInfo(data, true);
->>>>>>> 9787b328908c4cfffbd7f596a8276365e322932d
 		})
 		.error(function() {
 			// Utilisateur non loggé
@@ -138,10 +122,6 @@ $(document).ready(function() {
 		
 		
 	} else {
-<<<<<<< HEAD
-		$.getJSON("v1/profile/" + location.hash.substring(1), function(data) {
-			showProfileInfo(data);
-=======
 		$.getJSON("v1/profile/" + idUser, function(data) {
 			console.log(data);
 			showProfileInfo(data, false);
@@ -150,7 +130,6 @@ $(document).ready(function() {
 		$.getJSON("v1/friends/" + idUser, function(data) {
 			console.log(data);
 			showFriendList(data);
->>>>>>> 9787b328908c4cfffbd7f596a8276365e322932d
 		});
 	}
 
