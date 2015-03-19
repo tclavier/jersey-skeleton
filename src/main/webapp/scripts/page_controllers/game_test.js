@@ -20,6 +20,7 @@ function urlParam(name){
 }
 
 $(document).ready(function() {
+	sessionStorage.solutionValidity = false;
 
 	/******************************
 	 **** REQUETES AJAX LEVELS ****
@@ -59,7 +60,7 @@ $(document).ready(function() {
                 structuredContent[y].item[x] = tileId;
             }
         }
-
+        
         obj.structuredContent = structuredContent;
         instructions = obj.instructionsList = instructionList;
         obj.maxInstructions = Infinity;
@@ -91,10 +92,13 @@ $(document).ready(function() {
             for (var j = 0; j < blocks.length; ++j) {
                 if (blocks[j].type == (instructions[i].name + instructions[i].block)) {
                     usedInstructions.push(instructions[i].id);
+                    break;
                 }
             }
         }
-        sessionStorage.usedInstructions = usedInstructions;
+        sessionStorage.instructionsNumber = Blockly.mainWorkspace.getAllBlocks().length;
+        sessionStorage.usedInstructions = JSON.stringify(usedInstructions);
+        sessionStorage.solutionValidity = true;
         window.location.assign("/instructionsSelection.html");
     });
 

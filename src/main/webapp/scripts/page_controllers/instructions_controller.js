@@ -1,3 +1,9 @@
+var lockedInstructions;
+var instrNum;
+var gridWidth;
+var gridHeight;
+var grid = [[]];
+
 function loadInstructions() {
 	$.getJSON("v1/instructions", function(data) {
 		for(var i = 0 ; i < data.length ; i++) {
@@ -5,22 +11,37 @@ function loadInstructions() {
 			if (data[i].block === 2) {
 				label += " ... sinon";
 			}
-			var item = $('<li class="list-group-item list-group-item-success" style="margin: 5px; " value="' 
+			var item = $('<li style="margin: 5px; " value="' 
 					+ data[i].id + '">' + label + '</li>');
-			item.appendTo("#instructions");
+			if ($.inArray(data[i].id, lockedInstructions) == -1)
+				item.appendTo("#instructions");
+			else
+				item.appendTo("#lockedInstructions");
 			updateCSS(item);
 		}
 	});
 }
 
+function loadSessionInfo() {
+	instrNum = parseInt(window.sessionStorage.instructionsNumber) || 0;
+		
+	$('#instructionsNumber').prop("min", instrNum);
+	$('#instructionsNumber').val(instrNum);
+}
+
 function updateCSS(item) {
 	var parentId = item.parent().attr("id");
-	console.log(parentId);
 	if (parentId === "instructions") {
 		item.prop("class", "list-group-item list-group-item-danger");
+	} else if (parentId === "lockedInstructions"){
+		item.prop("class", "list-group-item list-group-item-warning");
 	} else {
 		item.prop("class", "list-group-item list-group-item-success");
 	}
+}
+
+function loadLockedInstructions() {
+	lockedInstructions = JSON.parse(window.sessionStorage.usedInstructions);	
 }
 
 function getInstructions() {
@@ -31,7 +52,94 @@ function getInstructions() {
 		out.push(children[i].value);
 	}
 
-	return out;
+	return out.concat(lockedInstructions);
+}
+
+function saveLevel() {
+	var validity = checkLevel();
+	if (validity) {
+		gridWidth = parseInt(window.sessionStorage.width);
+		gridHeight = parseInt(window.sessionStorage.height);
+		initGrid(gridWidth, gridHeight);
+		parseSessionLevel();
+
+		sendLevel();
+	}
+	else 
+		alert("Niveau invalide");
+}
+
+function parseSessionLevel() {
+	var tiles = window.sessionStorage.level.split(",");
+	
+	for (var i = 0; i < gridWidth; i++) {
+		for (var j = 0; j < gridHeight; j++) {
+			grid[i][j] = parseInt(tiles[j * gridWidth + i]);
+		}
+	}
+}
+
+function initGrid(width, height) {
+	grid = [[]];
+
+	for (var i = 0; i < width; i++) {
+		grid[i] = [];
+		for (var j = 0; j < height; j++) {
+			grid[i][j] = 0;
+		}
+	}
+
+	grid[0][0] = 2;
+	grid[width - 1][height - 1] = 3;
+}
+
+function sendLevel() {
+	var structuredContent = [];
+
+	var transpo = [[]];
+
+	for (var i = 0; i < grid.length; i++) {
+		for (var j = 0; j < grid[0].length; j++) {
+			if (transpo[j] === undefined) {
+				transpo[j] = [];
+			}
+			transpo[j][i] = grid[i][j];
+		}
+	}
+
+	for(var i = 0 ; i < transpo.length ; i++) {
+		structuredContent[i] = {item : transpo[i]};
+	}
+
+	var json = JSON.stringify({
+		"structuredContent": structuredContent,
+		"structuredInstructions": getInstructions(),
+		"name": window.sessionStorage.name,
+		"maxInstructions": $("#instructionsNumber").val()
+	});
+
+	console.log(json);
+
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : "v1/levels/add/" + Cookies["id"],
+		dataType : "json",
+		data : json ,
+		success : function(data, textStatus, jqXHR) {
+			console.log(data);
+			if(data.success) {
+				// TODO : afficher message de succés
+				alert("Success!");
+			} else {
+				// TODO : Afficher mesage d'erreur
+				alert("Oh mince...");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
 }
 
 function authorizeInstructions() {
@@ -48,20 +156,22 @@ function forbidInstructions() {
 
 function checkLevel() {
 
-	if (!($("#instructionsNumber").val() > 0)) {
+	if ($("#instructionsNumber").val() < instrNum || !sessionStorage.solutionValidity) {
+		$("#save_button").prop("disabled", true);
 		return false;
 	}
-	if (getInstructions().length === 0) {
-		return false
-	}
-
-	return sessionStorage.validity || false;
+	
+	$("#save_button").prop("disabled", false);
+	return true;
 }
 
 $(document).ready(function() {
 
+	loadLockedInstructions();
 	loadInstructions();
+	loadSessionInfo();
 
+	
 	$( "#instructions, #selectedInstructions" ).sortable({
 		connectWith: ".instructionsList",
 		receive: function(event, ui) {
@@ -72,11 +182,22 @@ $(document).ready(function() {
 
 	$('#legalizeEverything').click(function() {
 		authorizeInstructions();
-		checkLevel();
 	});
 
 	$('#forbidEverything').click(function() {
 		forbidInstructions();
+	});
+	
+	$("#save_button").click(function(e) {
+		e.preventDefault();
+		saveLevel();
+	});
+	
+	$('input').keyup(function() {
+		checkLevel();
+	});
+	
+	$('input').change(function() {
 		checkLevel();
 	});
 });
