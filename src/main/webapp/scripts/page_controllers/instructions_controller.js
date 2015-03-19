@@ -123,7 +123,7 @@ function sendLevel() {
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
-		url : "v1/levels/add/" + document.cookie,
+		url : "v1/levels/add/" + Cookies["id"],
 		dataType : "json",
 		data : json ,
 		success : function(data, textStatus, jqXHR) {
