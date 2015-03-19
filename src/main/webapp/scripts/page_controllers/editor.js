@@ -150,7 +150,7 @@ function getSizeInput() {
 function doChangeSizeClick() {	
 	if (getSizeInput().length === 0)
 		return;
-	
+
 	if (modified === 1)
 		$('#changeSizeModal').modal('show');
 	else
@@ -226,11 +226,11 @@ function checkLevel() {
 		validity = false;
 	}
 	if (goals === 0) {
-		addError("Le niveau doit contenir une seule case d'arrivée");
+		addError("Le niveau doit contenir une case d'arrivée");
 		validity = false;
 	}
 	if (goals > 1) {
-		addError("Le niveau ne peut contenir qu'une case d'arrivée");
+		addError("Le niveau ne peut contenir qu'une seule case d'arrivée");
 		validity = false;
 	}
 	if ($("#levelName").val().length === 0) {
@@ -238,12 +238,12 @@ function checkLevel() {
 		validity = false;
 	}
 //	if (!($("#instructionsNumber").val() > 0)) {
-//		addError("Nombre maximum d'instructions invalide");
-//		validity = false;
+//	addError("Nombre maximum d'instructions invalide");
+//	validity = false;
 //	}
 //	if (getInstructions().length === 0) {
-//		addError("Le niveau doit avoir au moins une instruction autorisée");
-//		validity = false;
+//	addError("Le niveau doit avoir au moins une instruction autorisée");
+//	validity = false;
 //	}
 	if (getSizeInput().length === 0) {
 		addError("Les dimensions doivent être comprises entre " 
@@ -265,9 +265,7 @@ function handleKeyPress(e) {
 	}
 }
 
-function sendLevel() {
-	var structuredContent = [];
-
+function transpose(matrix) {
 	var transpo = [[]];
 
 	for (var i = 0; i < grid.length; i++) {
@@ -278,56 +276,52 @@ function sendLevel() {
 			transpo[j][i] = grid[i][j];
 		}
 	}
-	
-	sessionStorage.level = transpo;
-	sessionStorage.name = $("#levelName").val();
-	sessionStorage.width = gridWidth;
-	sessionStorage.height = gridHeight;
-	
-	window.location.assign("/test.html");
 
-//	for(var i = 0 ; i < transpo.length ; i++) {
-//		structuredContent[i] = {item : transpo[i]};
-//	}
-//
-//	var json = JSON.stringify({
-//		"structuredContent": structuredContent,
-//		"structuredInstructions": getInstructions(),
-//		"name": $("#levelName").val(),
-//		"maxInstructions": $("#instructionsNumber").val()
-//	});
-//
-//	console.log(json);
-//
-//	$.ajax({
-//		type : 'POST',
-//		contentType : 'application/json',
-//		url : "v1/levels/add/" + document.cookie,
-//		dataType : "json",
-//		data : json ,
-//		success : function(data, textStatus, jqXHR) {
-//			console.log(data);
-//			if(data.success) {
-//				// TODO : afficher message de succés
-//				alert("Success!");
-//			} else {
-//				// TODO : Afficher mesage d'erreur
-//				alert("Oh mince...");
-//			}
-//		},
-//		error : function(jqXHR, textStatus, errorThrown) {
-//			alert('postUser error: ' + textStatus);
-//		}
-//	});
+	return transpo;
+}
+
+function parseSessionLevel() {
+	var tiles = window.sessionStorage.level.split(",");
+	
+	for (var i = 0; i < gridWidth; i++) {
+		for (var j = 0; j < gridHeight; j++) {
+			grid[i][j] = parseInt(tiles[j * gridWidth + i]);
+		}
+	}
 }
 
 function saveLevel() {
 	// TODO : enregistrement db
 	var validity = checkLevel();
-	if (validity)
-		sendLevel();
+	if (validity) {
+		var structuredContent = [];
+
+		sessionStorage.level = transpose(grid);
+		sessionStorage.name = $("#levelName").val();
+		sessionStorage.width = gridWidth;
+		sessionStorage.height = gridHeight;
+
+		window.location.assign("/test.html");
+	}
 	else 
 		alert("Niveau invalide");
+}
+
+function loadSessionInfo() {
+	var instrNum = parseInt(window.sessionStorage.instructionsNumber);
+	if (window.sessionStorage.level !== undefined) {
+		gridWidth = parseInt(window.sessionStorage.width);
+		gridHeight = parseInt(window.sessionStorage.height);
+		initGrid(gridWidth, gridHeight);
+		parseSessionLevel();
+		drawGrid();
+	} else {
+		initGrid(gridWidth, gridHeight);
+	}
+	$('#levelName').val(window.sessionStorage.name);
+	
+	$('#instructionsNumber').prop("min", instrNum);
+	$('#instructionsNumber').val(instrNum);
 }
 
 function initSpinners() {
@@ -342,10 +336,6 @@ function initSpinners() {
 	widthSpinner.value = gridWidth;
 }
 
-
-
-
-
 $(document).ready(function() {
 
 	gridCanvas = document.getElementById("editorCanvas");
@@ -356,7 +346,7 @@ $(document).ready(function() {
 
 	canvasContainer = document.getElementById("canvasContainer");
 
-
+	loadSessionInfo();
 
 	gridCanvas.addEventListener("mousedown", function(event) {
 		gridCanvas.addEventListener("mousemove", doGridClick, false)
@@ -366,8 +356,7 @@ $(document).ready(function() {
 	document.getElementsByTagName("body")[0].addEventListener("mouseup", function() {
 		gridCanvas.removeEventListener("mousemove", doGridClick);
 	}, false);
-
-	initGrid(gridWidth, gridHeight);
+	
 	initPicker();
 	highLightSelectedTile(selectedType, HIGHLIGHT_COLOR);
 	initSpinners();
@@ -404,7 +393,7 @@ $(document).ready(function() {
 		handleKeyPress(e);
 	});
 
-	
+
 
 	checkLevel();
 });

@@ -37,6 +37,11 @@ ul {
 .form-horizontal .control-label {
 	text-align: left;
 }
+
+.info {
+	font-size: 0.84em;
+	color: gray;
+}
 </style>
 <title>Ludicode</title>
 
@@ -120,17 +125,34 @@ ul {
 	<div class="container main_panel" id="home_pane" style="width: 100%">
 		<div class="form-group">
 			<label for="instructionsNumber"
-				class="col-sm-4 control-label col-md-offset-2">Instructions
+				class="col-sm-2 control-label col-md-offset-3">Instructions
 				max: </label>
-			<div class="col-sm-4">
+			<div class="col-sm-2">
 				<input type="number" id="instructionsNumber" value="3" min="1"
 					class="form-control" />
 			</div>
+			<div class="col-sm-2">
+				<button id="save_button" class="btn btn-success">Enregistrer
+					niveau</button>
+			</div>
 		</div>
 		
-		<br >
+		<hr>
 
 		<div class="row">
+
+			<div class="panel panel-warning col-md-2 text-center col-md-offset-3"
+				style="padding: 0px;">
+
+				<div class="panel-heading">
+					Instructions obligatoires:
+					<div class="info">(Ces instructions sont utilisées par votre
+						solution)</div>
+				</div>
+				<ul class="instructionsList list-group panel-body"
+					id="lockedInstructions">
+				</ul>
+			</div>
 
 			<div class="panel panel-success col-md-2 text-center"
 				style="padding: 0px;">
@@ -143,8 +165,8 @@ ul {
 				<ul class="instructionsList list-group panel-body"
 					id="selectedInstructions">
 				</ul>
-
 			</div>
+
 			<div class="panel panel-danger col-md-2 text-center"
 				style="padding: 0px;">
 
@@ -155,7 +177,6 @@ ul {
 				</div>
 				<ul class="instructionsList list-group panel-body" id="instructions">
 				</ul>
-
 			</div>
 		</div>
 
