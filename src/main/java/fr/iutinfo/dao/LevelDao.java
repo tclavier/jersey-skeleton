@@ -55,7 +55,7 @@ public interface LevelDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	Level getLevelOnList(@Bind("idList") int idList, @Bind("idLevel") int idLevel);
 	
-	@SqlQuery("select levels.id as levelId, levels.name as levelName, users.id as userId, users.name as userName from levels INNER JOIN users where users.id = authorId AND creationDate > lastNotifChecking AND authorId in (select idFriend FROM friendsRelations where idUser = :userId)")
+	@SqlQuery("select levels.id as levelId, levels.name as levelName, users.id as userId, users.name as userName from levels INNER JOIN users where users.id = authorId AND creationDate > (select lastNotifChecking FROM users where id = :userId) AND authorId in (select idFriend FROM friendsRelations where idUser = :userId);")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<NotifLevel> getNewLevelsFor(@Bind("userId") int userId);
 	

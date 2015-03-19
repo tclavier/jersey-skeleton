@@ -13,12 +13,12 @@ function isLoginRequiredPage() {
  * Permet de lire les paramètres de l'URL
  */
 function urlParam(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null) {
-       return null;
-    } else {
-       return results[1] || 0;
-    }
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (results==null) {
+		return null;
+	} else {
+		return results[1] || 0;
+	}
 }
 
 
@@ -193,15 +193,27 @@ $(document).ready(function() {
 			}
 		});
 	}
-	
-	
+
+
 	function getNewNotifs() {
 		$.getJSON("v1/levels/notifs/" + Cookies["id"], function(data) {
 			console.log(data);
+			var htmlData = $('<ul class="list-group"></ul>');
+			if(data.length > 0) {
+				// On a des nouvelles notifs
+				for(var i = 0 ; i < data.length ; i++) {
+					htmlData.append('<li class="list-group-item"><a href="game.html?level='+data[i].levelId+'">'+data[i].levelName+'</a> de <a href="profile.html?id='+data[i].userId+'">'+data[i].userName+'</a></li>');
+				}
+			} else {
+				htmlData = $("<p>Vous n'avez pas de nouvelles notifications.</p>");
+			}
+			
+			$('#notif_icon').popover({trigger: 'manual', html : true, content : htmlData.html(), placement : 'bottom', animation : 'true'});
+			$('#notif_icon').popover("toggle");
 			updateNotifDate();
 		});
 	}
-	
+
 	function updateNotifDate() {
 		$.ajax({
 			type : 'PUT',
@@ -257,7 +269,7 @@ $(document).ready(function() {
 	$("#logout_icon").click(function() {
 		logoutUser();
 	});
-	
+
 	$("#notif_icon").click(function() {
 		getNewNotifs();
 	});
