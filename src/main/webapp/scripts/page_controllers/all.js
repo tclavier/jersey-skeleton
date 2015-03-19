@@ -9,6 +9,18 @@ function isLoginRequiredPage() {
 }
 
 
+/**
+ * Permet de lire les paramètres de l'URL
+ */
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null) {
+       return null;
+    } else {
+       return results[1] || 0;
+    }
+}
+
 
 /**
  * Cookies : 
@@ -79,7 +91,6 @@ $(document).ready(function() {
 			$("#login_navbar").show();
 
 			if(isLoginRequiredPage()) {
-				console.log("toto");
 				location.replace("/");
 			}
 		}
@@ -182,6 +193,29 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	
+	function getNewNotifs() {
+		$.getJSON("v1/levels/notifs/" + Cookies["id"], function(data) {
+			console.log(data);
+			updateNotifDate();
+		});
+	}
+	
+	function updateNotifDate() {
+		$.ajax({
+			type : 'PUT',
+			contentType : 'application/json',
+			url : "v1/users/updateNotifDate/" + Cookies["id"],
+			dataType : "json",
+			success : function(data, textStatus, jqXHR) {
+				console.log(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert('postUser error: ' + textStatus);
+			}
+		});
+	}
 
 
 
@@ -222,6 +256,10 @@ $(document).ready(function() {
 	//Logout l'utilisateur
 	$("#logout_icon").click(function() {
 		logoutUser();
+	});
+	
+	$("#notif_icon").click(function() {
+		getNewNotifs();
 	});
 
 

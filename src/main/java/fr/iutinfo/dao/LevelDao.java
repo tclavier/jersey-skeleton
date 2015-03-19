@@ -11,10 +11,11 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
 import fr.iutinfo.beans.Level;
 import fr.iutinfo.beans.LevelInfo;
+import fr.iutinfo.beans.NotifLevel;
 
 public interface LevelDao {
 
-	@SqlUpdate("create table levels (id integer primary key autoincrement, name varchar(100), content text, instructions text, maxInstructions integer, authorId integer)")
+	@SqlUpdate("create table levels (id integer primary key autoincrement, name varchar(100), content text, instructions text, maxInstructions integer, authorId integer, creationDate DATETIME DEFAULT CURRENT_TIMESTAMP)")
 	void createLevelsTable();
 
 	@SqlUpdate("insert into levels (name, content, instructions, maxInstructions, authorId) "
@@ -54,8 +55,9 @@ public interface LevelDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	Level getLevelOnList(@Bind("idList") int idList, @Bind("idLevel") int idLevel);
 	
-	/*@SqlUpdate("update levels set nextLevelId=:nextLevelId where id=:id")
-	void setNextLevel(@Bind("nextLevelId") int nextLevelId, @Bind("id") int id);*/
+	@SqlQuery("select levels.id as levelId, levels.name as levelName, users.id as userId, users.name as userName from levels INNER JOIN users where users.id = authorId AND creationDate > lastNotifChecking AND authorId in (select idFriend FROM friendsRelations where idUser = :userId)")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+	List<NotifLevel> getNewLevelsFor(@Bind("userId") int userId);
 	
 	@SqlUpdate("drop table if exists levels")
 	void dropLevelsTable(); 
