@@ -1,32 +1,32 @@
 package fr.iutinfo.beans;
 
 public class FriendRelation {
-	private int userId;
-	private int friendId;
+	private int idUser;
+	private int idFriend;
 	
 	public FriendRelation() {
-		userId = 0;
-		friendId = 0;
+		idUser = 0;
+		idFriend = 0;
 	}
 	
-	public FriendRelation(int userId, int friendId) {
-		this.userId = userId;
-		this.friendId = friendId;
+	public FriendRelation(int idUser, int idFriend) {
+		this.idUser = idUser;
+		this.idFriend = idFriend;
 	}
 	
-	public int getUserId() {
-		return userId;
+	public int getIdUser() {
+		return idUser;
 	}
 	
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 	
-	public int getFriendId() {
-		return friendId;
+	public int getIdFriend() {
+		return idFriend;
 	}
 	
-	public void setFriendId(int friendId) {
-		this.friendId = friendId;
+	public void setIdFriend(int idFriend) {
+		this.idFriend = idFriend;
 	}
 }

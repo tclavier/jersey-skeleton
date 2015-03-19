@@ -76,6 +76,7 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 
             // On met un message dynamique pour afficher le nombre de bloques restant
             Blockly.addChangeListener(function() {
+                if (Blockly.maxBlocks == Infinity) return;
                 var remainingBlocks = Blockly.maxBlocks - Blockly.getMainWorkspace().getAllBlocks().length;
                 $("#max_instruction").text(remainingBlocks);
                 $("#max_instruction_s").text(remainingBlocks > 1 ? "s" : "");

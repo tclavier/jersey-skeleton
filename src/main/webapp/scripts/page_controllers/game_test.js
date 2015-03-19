@@ -25,7 +25,8 @@ $(document).ready(function() {
 	 **** REQUETES AJAX LEVELS ****
 	 ******************************/
 
-	
+    var instructions;
+
 	function setLevelTitle(data) {
 		var listTitle = data == undefined ? "" : "[TEST] " + data;
 		$("#level_title").html(listTitle);
@@ -60,8 +61,8 @@ $(document).ready(function() {
         }
 
         obj.structuredContent = structuredContent;
-        obj.instructionsList = instructionList;
-        obj.maxInstructions = 999;
+        instructions = obj.instructionsList = instructionList;
+        obj.maxInstructions = Infinity;
         obj.name = sessionStorage.name;
 
         return obj;
@@ -80,6 +81,27 @@ $(document).ready(function() {
     if (sessionStorage.level != undefined) {
         loadInstructions();
     }
+
+    $("#saveLevelBtn").click(function() {
+        // On calcul les instructions utilisé
+        usedInstructions = [];
+        var blocks = Blockly.mainWorkspace.getAllBlocks();
+        // On parcours toutes les instructions existante
+        for (var i = 0; i < instructions.length; ++i) {
+            for (var j = 0; j < blocks.length; ++j) {
+                if (blocks[j].type == (instructions[i].name + instructions[i].block)) {
+                    usedInstructions.push(instructions[i].id);
+                }
+            }
+        }
+        sessionStorage.usedInstructions = usedInstructions;
+        window.location.assign("/instructionsSelection.html");
+    });
+
+
+    $("#editLevelBtn").click(function() {
+        window.location.assign("/editor.html");
+    });
 	
 });
 
