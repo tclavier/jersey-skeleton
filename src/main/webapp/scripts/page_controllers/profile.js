@@ -1,20 +1,29 @@
-
-var tab = [];
-
-function searchUsers() {	
-	$.getJSON("/v1/users/search?term=" + $("#search-friend").val() , function(data) {
-		for(var i = 0 ; i < data.length ; i++) {
-			tab[i] = data[i].name;
-		}
-		console.log(tab);
-	});
-}
-
-
 $(document).ready(function() {
 
+	
+	function handleKeyPress(e) {
+		var key = e.keyCode || e.which;
+		if (key === 13) {
+			doSearchClick();
+		}
+	}
+	
+	
+	function doSearchClick() {
+		$.getJSON("/v1/users/getId/" + $("#search-friend").val(), function(data) {
+			location.replace("profile.html?id=" + data.id);
+		});
+	}
+	
+	$('#go-to-profile').keyup(function(e) {
+		handleKeyPress(e);
+	});
+	
+	$("#go-to-profile").click(function() {
+		doSearchClick();
+	});
 
-	$( "#search-friend" ).autocomplete({
+	$("#search-friend").autocomplete({
 		source: function (request, response) {
 			$.getJSON("/v1/users/search?term=" + $("#search-friend").val(), function (data) {
 				response($.map(data, function (value, key) {	            	
@@ -51,7 +60,6 @@ $(document).ready(function() {
 	}
 
 	function showFriendList(data) {
-		$("#friend_list").html("");
 		for(var i = 0 ; i < data.length ; i++) {
 			var friendInfo = $('<div class="friend_info"></div>');
 			friendInfo.append('<img class="profil_picture" src="images/profil.png" />');

@@ -1,4 +1,4 @@
-var wsUri = "ws://localhost:8080/echo";
+var wsUri = "ws://localhost:8080/irc/";
 var websocket;
 
 function init() {
@@ -7,7 +7,7 @@ function init() {
 
 
 function testWebSocket() {
-	websocket = new WebSocket(wsUri + "/" + $("#clientName").val());
+	websocket = new WebSocket(wsUri + Cookies["id"]);
 	websocket.onopen = function(evt) {
 		console.log("connected");
 	};
@@ -15,9 +15,11 @@ function testWebSocket() {
 		console.log("closed");
 	};
 	websocket.onmessage = function(evt) {
-		console.log(evt)
+		console.log(evt);
 		var data = JSON.parse(evt.data);
-		$("#screen").append(data.name + " : " + data.content + "<br />");
+		console.log(data);
+		if(!data.fromServer)
+			$("#screen").append(data.from + " : " + data.content + "<br />");
 	};
 	websocket.onerror = function(evt) {
 		console.log("Erreur");
@@ -26,15 +28,10 @@ function testWebSocket() {
 }
 
 $(document).ready(function() {
-	$("#connect").click(function() {
-		init();
-	});
+	init();
 	
 	$("#sendMessage").click(function() {
-		websocket.send(JSON.stringify({
-			"name" : $("#clientName").val(),
-			"content" : $("#messageToSend").val()
-		}));
-		$("#screen").append($("#messageToSend").val() + "<br />");
+		websocket.send($("#messageToSend").val());
+		$("#screen").append("moi : " + $("#messageToSend").val() + "<br />");
 	});
 });

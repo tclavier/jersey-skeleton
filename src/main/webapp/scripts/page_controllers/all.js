@@ -193,6 +193,29 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	
+	function getNewNotifs() {
+		$.getJSON("v1/levels/notifs/" + Cookies["id"], function(data) {
+			console.log(data);
+			updateNotifDate();
+		});
+	}
+	
+	function updateNotifDate() {
+		$.ajax({
+			type : 'PUT',
+			contentType : 'application/json',
+			url : "v1/users/updateNotifDate/" + Cookies["id"],
+			dataType : "json",
+			success : function(data, textStatus, jqXHR) {
+				console.log(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert('postUser error: ' + textStatus);
+			}
+		});
+	}
 
 
 
@@ -233,6 +256,10 @@ $(document).ready(function() {
 	//Logout l'utilisateur
 	$("#logout_icon").click(function() {
 		logoutUser();
+	});
+	
+	$("#notif_icon").click(function() {
+		getNewNotifs();
 	});
 
 

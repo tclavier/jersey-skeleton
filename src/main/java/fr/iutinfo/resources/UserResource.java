@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -121,16 +122,6 @@ public class UserResource {
 		return new Feedback(true, id.toString());
 	}
 	
-	@POST
-	@Path("/linkFb")
-	public Feedback linkFacebookAccount(User user) {
-		
-		int userId = Session.getUser(user.getCookie()).getId();
-		dao.linkAccount(user.getFacebookId(), userId);
-		return new Feedback(true, "Facebook account linked");
-	}
-	
-	
 	@GET
 	@Path("/isLogged/{cookie}")
 	public Feedback isLogged(@PathParam("cookie") String cookie) {
@@ -176,6 +167,26 @@ public class UserResource {
 			throw new WebApplicationException(404);
 		}
 		return out;
+	}
+	
+	@GET
+	@Path("/getId/{name}")
+	public User getId(@PathParam("name") String name) {
+		User out = dao.findByName(name);
+		if (out == null) {
+			throw new WebApplicationException(404);
+		}
+		return out;
+	}
+	
+	@PUT
+	@Path("/updateNotifDate/{cookie}")
+	public Feedback updateNotifDate(@PathParam("cookie") String cookie) {
+		if(Session.isLogged(cookie)) {
+			dao.updateNotifDate(Session.getUser(cookie).getId());
+			return new Feedback(true, "update done");
+		}
+		return new Feedback(false, "Vous n'êtes pas enregistré !");
 	}
 
 
