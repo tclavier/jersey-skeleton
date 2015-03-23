@@ -36,6 +36,21 @@ $(document).ready(function() {
 	
 	// Change le mot de passe de l'utilisateur
 	$("#updatePasswordButton").click(updatePassword);
+	
+	$("#error").hide();
+	
+	$("#pseudo_modal").on('hidden.bs.modal', function() {
+		$("#error").hide();
+	});
+	
+	
+	$("#pseudo_modal").on('shown.bs.modal', function() {
+		$("#newPseudo").focus();
+	});
+
+	
+	
+	loadProfil();
 
 
 	/**
@@ -57,23 +72,6 @@ $(document).ready(function() {
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
 
-
-	if(location.hash == "") {
-		$.getJSON("v1/profile/me/" + Cookies["id"], function(data) {
-			console.log(data);
-			showProfileInfo(data);
-		})
-		.error(function() {
-			// Utilisateur non loggé
-			location.replace("/");
-		});
-	} else {
-		$.getJSON("v1/profile/" + location.hash.substring(1), function(data) {
-			console.log(data);
-			showProfileInfo(data);
-		});
-	}
-
 });
 
 function updateName() {
@@ -91,7 +89,15 @@ function updateName() {
 			url : "v1/users/updateName/" + Cookies["id"] + "/" + name,
 			dataType : "json",
 			success : function(data, textStatus, jqXHR) {
-				console.log("Pseudo MAJ !");
+				if (data.success) {
+					$("#pseudo_modal").modal('hide');
+					loadProfil();
+				} else {
+					$("#error").empty();
+					$("#error").append(data.message);
+					$("#error").show();
+
+				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				alert('postUser error: ' + textStatus);
@@ -99,7 +105,6 @@ function updateName() {
 		});
 	}
 	
-	$("#pseudo_modal").modal('hide');
 	
 }
 
@@ -153,6 +158,7 @@ function updatePassword() {
 }
 
 function showProfileInfo(data) {
+	
 	$("#info_player").text("");
 
 	$("#info_player").append("<b> Pseudo :</b> " + data.user.name+"  ");
@@ -167,4 +173,23 @@ function showProfileInfo(data) {
 	$("#email_button").click(function() { $("#email_modal").modal("show")});
 	$("#pseudo_button").click(function() { $("#pseudo_modal").modal("show")});
 
+}
+
+function loadProfil() {
+	if(location.hash == "") {
+		$.getJSON("v1/profile/me/" + Cookies["id"], function(data) {
+			console.log(data);
+			showProfileInfo(data);
+		})
+		.error(function() {
+			// Utilisateur non loggé
+			location.replace("/");
+		});
+	} else {
+		$.getJSON("v1/profile/" + location.hash.substring(1), function(data) {
+			console.log(data);
+			showProfileInfo(data);
+		});
+	}
+	
 }
