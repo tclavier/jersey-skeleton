@@ -1,0 +1,25 @@
+#! /bin/sh
+# /etc/init.d/ludicode
+#
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+		echo "starting ludicode"
+		cd /home/ludicode/ludicode-server
+		mvn jetty:start
+		echo "ludicode started"
+    ;;
+  stop)
+   	echo "stopping ludicode"
+		cd /home/ludicode/ludicode-server
+		mvn jetty:stop
+		echo "ludicode stopped"
+    ;;
+  *)
+    echo "Usage: /etc/init.d/ludicode {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
