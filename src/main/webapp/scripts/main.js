@@ -15,6 +15,7 @@ requirejs.config({
         "events" : "scripts/events",
         "animation" : "scripts/animation",
         "block_creator" : "scripts/block_creator",
+        "theme" : "scripts/theme",
 		"menu_bar_controller": "scripts/page_controllers/menu_bar_controller",
 		"users_query": "scripts/queries/users_query",
 		"levels_query": "scripts/queries/levels_query"
@@ -48,7 +49,7 @@ requirejs.config({
 
 var game;
 
-require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "animation", "graphical_player","events","block_creator"], function ($) {
+require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "animation", "graphical_player","events","block_creator", "theme"], function ($) {
 	var Game = require("game");
     var BlockCreator = require("block_creator");
 
@@ -97,6 +98,8 @@ function execute(code) {
 	game.grid.generate()
 	// On prepare l'interpreteur
 	game.interpreter.setup();
+    // On réinitialise le theme pour eviter les bugs graphiques
+    game.theme.reset();
 	// On execute les actions sur le joueur invisible permettant juste de remplir l'interpreteur
 	var player = game.player;
 

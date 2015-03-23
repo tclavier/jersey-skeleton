@@ -31,6 +31,9 @@ define(["jquery"],  function(require) {
         var timer = 0;
         var running = false;
         var loop = false;
+        
+        this.visible = false;
+
 
         this.image.onload = function() {
             instance.loaded = true;
@@ -48,10 +51,23 @@ define(["jquery"],  function(require) {
             running = true;
             this.patternId = 0;
         }
+
+        /**
+         * Arrete l'animation
+         * visible : Si vrai, l'animation reste visible stoppé
+         */
+        this.stop = function(visible) {
+            loop = false;
+            timer = 0;
+            running = false;
+            this.patternId = 0;
+            this.visible = visible;
+        }
+
 		
 		// Dessine l'animation 
 		this.draw = function draw(context, x, y, width, height) {
-            if (!this.loaded || !running) return;
+            if ((!this.loaded || !running) && !this.visible) return;
             context.save();
 
             // Rotation (translation pour l'origine, puis rotation)

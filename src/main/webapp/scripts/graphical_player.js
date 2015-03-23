@@ -41,31 +41,7 @@ define(["jquery"],  function($) {
 		
 		// Dessine le joueur sur le context
 		this.render = function render(context) {
-			// On memorise les transformations deja faites sur le context
-			context.save();
-			
-			// On commence le dessin
-			context.beginPath();
-			
-			// On fait la rotation pour obtenir l'angle "angle" (translation pour definir le centre de rotation)
-			context.translate(this.x + this.game.grid.tile_size/2, this.y + this.game.grid.tile_size/2);
-			context.rotate(angle);
-			context.translate(-(this.x + this.game.grid.tile_size/2), -(this.y + this.game.grid.tile_size/2));
-			
-			// Defini la marge de chaque coté du joueur (evite que le triangle soit collé au bords des carreaux)
-			var margin = 3;
-			
-			// Dessine le joueur (triangle)
-			context.moveTo(this.x + margin, this.y + margin);
-			context.lineTo(this.x + this.game.grid.tile_size - margin, this.y + margin);
-			context.lineTo(this.x + this.game.grid.tile_size/2 - margin, this.y + this.game.grid.tile_size - margin);
-			
-			// Rempli de couleur rouge le triangle
-			context.fillStyle = "#FF0000";
-			context.fill();
-			
-			// On restaure les transformations (pour eviter d'appliquer la rotation a d'autres elements
-			context.restore();
+            this.game.theme.drawPlayer(context, this.x, this.y, this.game.grid.tile_size, angle);
 
             // On dessine le scanner
             scanAnimation.draw(context, this.x + this.game.grid.tile_size/2, this.y + this.game.grid.tile_size/2, this.game.grid.tile_size/2, this.game.grid.tile_size/2);
@@ -98,7 +74,10 @@ define(["jquery"],  function($) {
 				} else {
 					this.y = goToY;
                     // On prévient le gestionnaire d'evenement que le joueur vient d'atteindre une nouvelle case
-                    if (moving) this.game.events.onPlayerArrivalOn(this.game.grid.tiles[this.tileY()][this.tileX()]);
+                    if (moving) {
+                        this.game.events.onPlayerArrivalOn(this.game.grid.tiles[this.tileY()][this.tileX()]);
+                        this.game.theme.onPlayerFinishedWalking();
+                    }
                     // On indique la fin du deplacement puisque la destination a été atteinte
 					moving = false;
 				}
@@ -133,6 +112,9 @@ define(["jquery"],  function($) {
 			moving = true;
 			goToX = x;
 			goToY = y;
+
+            // On informe le theme
+            this.game.theme.onPlayerStartedWalking();
 		}
 		
 		// Fait tourner le joueur jusqu'a l'angle "a" en radian
@@ -160,7 +142,6 @@ define(["jquery"],  function($) {
 		this.isDoingSomething = function isDoingSomething() {
 			return moving || turning || scanAnimation.running();
 		}
-		
 		
 		this.turnLeft = function turnLeft() {
 			// Animation de rotation

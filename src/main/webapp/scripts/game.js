@@ -8,6 +8,7 @@ define(["jquery"],  function($) {
         var Player = require("player");
 		var GraphicalPlayer = require("graphical_player");
 		var Events = require("events");
+        var Theme = require("theme");
 		
 		this.updateDimensions = function updateDimensions() {
             var size = Math.min($("canvas").parent().height(), $("canvas").parent().width());
@@ -59,6 +60,7 @@ define(["jquery"],  function($) {
             }
 
 			this.grid.update(delta);
+            this.theme.update(delta);
 			if (this.gplayer) this.gplayer.update(delta);
 			this.render();
 		}
@@ -70,7 +72,7 @@ define(["jquery"],  function($) {
 
 
 
-        
+        this.theme = new Theme(this, "images/themes.png");
         this.events = new Events(this);
         this.grid = new Grid(this, this.tiles, this.width, this.height);
         this.grid.generate();
