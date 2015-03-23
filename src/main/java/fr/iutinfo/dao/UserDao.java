@@ -51,6 +51,15 @@ public interface UserDao {
 	@SqlUpdate("UPDATE users SET lastNotifChecking = CURRENT_TIMESTAMP WHERE id = :id")
 	@GetGeneratedKeys
 	int updateNotifDate(@Bind("id") int id);
+	
+	@SqlUpdate("UPDATE users SET name = :name WHERE id = :id")
+	void updateName(@Bind("id") int id, @Bind("name") String name);
+	
+	@SqlUpdate("UPDATE users SET email = :email WHERE id = :id")
+	void updateEmail(@Bind("id") int id, @Bind("email") String email);
+	
+	@SqlUpdate("UPDATE users SET password = :password WHERE id = :id")
+	void updatePassword(@Bind("id") int id, @Bind("password") String password);
 
 	
 	@SqlUpdate("drop table if exists users")
