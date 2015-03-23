@@ -79,5 +79,4 @@ public class LevelListResource {
 
 		return new Feedback(false, "Vous n'êtes pas enregistré !");
 	}
-
 }
