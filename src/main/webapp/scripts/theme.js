@@ -11,19 +11,26 @@ define(["jquery"],  function($) {
         this.loaded = false;
         this.themeId = 0;
 
+        // Nombre de theme sur l'image
+        this.nbLine = 1;
+
+        // Nombre de colonne sur l'image des themes
+        this.nbCol = 9;
+        
         var Animation = require("animation");
 
-        var playerAnimation = new Animation(this.game, themesImgPath, 5, 1, [0, 1, 2, 1, 0, 4, 3, 4], 0.15);
-        playerAnimation.ox = 1/2;
-        playerAnimation.oy = 1/2;
-        playerAnimation.visible = true;
+        var playerAnimation;
 
+        var tilesColors = ["#EEEEEE", "#222222", "#EEEEEE", "#FFFF00", "#55FF55"];
 
+        
         var instance = this;
         this.image.onload = function() {
             instance.loaded = true;
-            //instance.width = Math.floor(instance.image.width / widthInFrame);
-            //instance.height = Math.floor(instance.image.height / heightInFrame);
+            playerAnimation = new Animation(instance.game, instance.image, instance.nbCol, instance.nbLine, [0, 1, 2, 1, 0, 4, 3, 4], 0.15);
+            playerAnimation.ox = 1/2;
+            playerAnimation.oy = 1/2;
+            playerAnimation.visible = true;
         }
 
         /**
@@ -54,6 +61,7 @@ define(["jquery"],  function($) {
         }
 
         this.drawPlayer = function(context, x, y, size, angle) {
+            if (!this.loaded) return;
 
             // S'il n'y a pas de theme, on dessine un triangle baisque
             if (this.themeId == -1) {
@@ -86,13 +94,40 @@ define(["jquery"],  function($) {
             } else {
                 // Sinon, on dessine le joueur en fonction de l'image du theme
                 //context.drawImage(this.image, x, y, size, size);
-
                 playerAnimation.angle = angle;
                 playerAnimation.draw(context, x + size/2, y + size/2, size, size);
 
             }
 
         }
+
+
+        this.drawTile = function(context, id, x, y, size) {
+            if (!this.loaded) return;
+
+            // S'il n'y a pas de theme, on dessine un triangle baisque
+            if (this.themeId == -1) {
+                context.fillStyle = "#EEEEEE";
+
+                // Si le carreaux a une couleur particuliere defini dans tilesColor
+                if (id < tilesColors.length) {
+                    context.fillStyle = tilesColors[id];
+                }
+
+                // On dessine le carreaux avec la bonne couleur
+                context.fillRect(x, y, size, size);
+                context.strokeRect(x, y, size, size);
+            } else {
+                // Sinon, on dessine le joueur en fonction de l'image du theme
+                var sx = (this.image.width / this.nbCol) * ((id + 5) % this.nbCol);
+                var sy = (this.image.height / this.nbLine) * this.themeId;
+                context.drawImage(this.image, sx, sy, 48, 48, x, y, size, size);
+            }
+
+        }
+
+
+
 
         this.onPlayerStartedWalking = function() {
             // Si l'animation n'est pas deja lancé, on la demarre

@@ -44,16 +44,8 @@ define(["jquery"],  function(require) {
 			for (var yy = 0; yy < this.tiles.length; ++yy) {
 				for (var xx = 0; xx < this.tiles[yy].length; ++xx) {
 					var id = this.tiles[yy][xx];
-					context.fillStyle = "#EEEEEE";
-					
-					// Si le carreaux a une couleur particuliere defini dans tilesColor
-					if (id < tilesColors.length) {
-						context.fillStyle = tilesColors[id];
-					}
-					
-					// On dessine le carreaux avec la bonne couleur
-					context.fillRect(xx*this.tile_size, yy*this.tile_size, this.tile_size, this.tile_size);
-					context.strokeRect(xx*this.tile_size, yy*this.tile_size, this.tile_size, this.tile_size);
+
+                    this.game.theme.drawTile(context, id, xx*this.tile_size, yy*this.tile_size, this.tile_size);
 				}
 			}
 		}

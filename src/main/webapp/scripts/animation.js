@@ -10,9 +10,14 @@ define(["jquery"],  function(require) {
 	**/
 	return function Animation(game, imagePath, widthInFrame, heightInFrame, pattern, interval) {
 		this.game = game;
-        this.image = new Image();
-        this.image.src = imagePath;
-        this.loaded = false;
+        if (imagePath.src) {
+            this.image = imagePath;
+            this.loaded = true;
+        } else {
+            this.image = new Image();
+            this.image.src = imagePath;
+            this.loaded = false;
+        }
 
         // Pattern d'animation
         this.pattern = pattern;
@@ -34,11 +39,15 @@ define(["jquery"],  function(require) {
         
         this.visible = false;
 
-
-        this.image.onload = function() {
-            instance.loaded = true;
+        if (imagePath.src) {
             instance.width = Math.floor(instance.image.width / widthInFrame);
             instance.height = Math.floor(instance.image.height / heightInFrame);
+        } else {
+            this.image.onload = function() {
+                instance.loaded = true;
+                instance.width = Math.floor(instance.image.width / widthInFrame);
+                instance.height = Math.floor(instance.image.height / heightInFrame);
+            }
         }
 
         /**
@@ -77,9 +86,8 @@ define(["jquery"],  function(require) {
             // On dessine la bonne frame de l'animation
             var sx = this.width * (this.pattern[this.patternId] % widthInFrame);
             var sy = this.height * Math.floor(this.pattern[this.patternId] / widthInFrame);
-
-            context.drawImage(this.image, sx, sy, this.width, this.height, -this.ox * width, -this.oy * height, width, height);
             
+            context.drawImage(this.image, sx, sy, this.width, this.height, -this.ox * width, -this.oy * height, width, height);
             context.restore();
 		}
 		

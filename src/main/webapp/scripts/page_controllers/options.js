@@ -52,6 +52,9 @@ $(document).ready(function() {
 	
 	loadProfil();
 
+    // Change l'avatar de l'utilisateur
+    document.getElementById("updateAvatar").addEventListener('change', updateAvatar, false);
+
 
 	/**
 	 * INIT FB SDK
@@ -73,6 +76,36 @@ $(document).ready(function() {
 	}(document, 'script', 'facebook-jssdk'));
 
 });
+
+function updateAvatar(evt) {
+    console.log(evt);
+
+    var files = evt.target.files; // FileList object
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0; i < files.length; i++) {
+        var reader = new FileReader();
+        var binaryReader = new FileReader();
+
+        // Pour afficher le resultat en preview
+        reader.onload = (function(theFile) {
+            return function(e) {
+                $("#avatar").attr("src", e.target.result);
+            };
+        })(files[i]);
+
+        // Pour envoyer le resultat au serveur
+        binaryReader.onload = function () {
+            console.log(binaryReader.result);
+            // TODO: Envoyer le contenu par une requete ajax
+        }
+
+        binaryReader.readAsBinaryString(files[i]);
+
+        reader.readAsDataURL(files[i]);
+    }
+}
 
 function updateName() {
 	
