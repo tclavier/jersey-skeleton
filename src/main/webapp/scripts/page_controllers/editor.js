@@ -237,6 +237,10 @@ function checkLevel() {
 		addError("Le niveau doit avoir un nom");
 		validity = false;
 	}
+	if (!(parseInt($("#levelList").val()) > 0)) {
+		addError("Veuillez sélectionner une liste");
+		validity = false;
+	}
 //	if (!($("#instructionsNumber").val() > 0)) {
 //	addError("Nombre maximum d'instructions invalide");
 //	validity = false;
@@ -282,11 +286,13 @@ function transpose(matrix) {
 
 function loadLevelLists() {
 	$("#levelList").empty();
-	$.getJSON("v1/levelLists" + Cookie["id"], function(data) {
+	$.getJSON("v1/levelLists/me/" + Cookies["id"], function(data) {
+		console.log(data);
 		for(var i = 0 ; i < data.length ; i++) {
 			var item = $('<option value="' + data[i].id + '">' + data[i].name + '</option>');
 			item.appendTo("#levelList");
 		}
+		checkLevel();
 	});
 }
 
@@ -318,10 +324,8 @@ function saveLevel() {
 }
 
 function createList() {
-	console.log("toroergjririegherighreiog");
-
 	var json = JSON.stringify({
-		"name": $("#newListName"),
+		"name": $("#newListName").val(),
 	});
 
 	console.log(json);
@@ -344,7 +348,7 @@ function createList() {
 		}
 	});
 
-	$('#addListModal').modal('show');
+	$('#addListModal').modal('hide');
 }
 
 function loadSessionInfo() {
@@ -443,6 +447,13 @@ $(document).ready(function() {
 	$("#createListConfirmation").click(function(e) {
 		e.preventDefault();
 		createList();
+	});
+	
+	$('#newListName').keypress(function(e) {
+		var key = e.keyCode || e.which;
+		if (key === 13) {
+			createList();
+		}
 	});
 
 	checkLevel();
