@@ -25,6 +25,13 @@ define(["jquery"],  function(require) {
          * blockId : Id du bloc sur qui provoque la boucle infinie
          */
         this.onInfiniteLoopDetected = function(blockId) {
+            // Affiche une bulle de dialogue a coté de l'instruction qui provoque la boucle infinie
+            /*var block = Blockly.getMainWorkspace().getBlockById(blockId);
+            var coord = block.getRelativeToSurfaceXY();
+            var svgText = Blockly.createSvgElement("svg", {"x": 200, "y": 200}, null);
+            console.log(svgText);
+            var bubble = new Blockly.Bubble(block.workspace, Blockly.Comment.prototype.createEditor_(), block.svgPath_, coord.x, coord.y, null, null);
+            */
             //alert("Boucle infinie sur l'instruction \"" + Blockly.getMainWorkspace().getBlockById(blockId).type + "\"");
         }
     }
