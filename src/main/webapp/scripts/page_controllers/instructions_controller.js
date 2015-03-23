@@ -123,14 +123,13 @@ function sendLevel() {
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
-		url : "v1/levels/add/" + Cookies["id"],
+		url : "v1/levels/add/" + Cookies["id"] + "/" + sessionStorage.list,
 		dataType : "json",
 		data : json ,
 		success : function(data, textStatus, jqXHR) {
 			console.log(data);
 			if(data.success) {
-				// TODO : afficher message de succés
-				alert("Success!");
+				console.log("success");
 			} else {
 				// TODO : Afficher mesage d'erreur
 				alert("Oh mince...");

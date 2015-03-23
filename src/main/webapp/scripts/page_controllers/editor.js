@@ -292,6 +292,7 @@ function loadLevelLists() {
 			var item = $('<option value="' + data[i].id + '">' + data[i].name + '</option>');
 			item.appendTo("#levelList");
 		}
+		$('#levelList').val(data[data.length - 1].id);
 		checkLevel();
 	});
 }
@@ -316,6 +317,7 @@ function saveLevel() {
 		sessionStorage.name = $("#levelName").val();
 		sessionStorage.width = gridWidth;
 		sessionStorage.height = gridHeight;
+		sessionStorage.list = $('#levelList').val();
 
 		window.location.assign("/test.html");
 	}
@@ -338,7 +340,7 @@ function createList() {
 		data : json ,
 		success : function(data, textStatus, jqXHR) {
 			if (data.success) {
-				alert("Success!");
+				console.log("Success!");
 			} else {
 				alert("Oh mince...");
 			}
@@ -348,6 +350,7 @@ function createList() {
 		}
 	});
 
+	loadLevelLists();
 	$('#addListModal').modal('hide');
 }
 
