@@ -74,8 +74,8 @@ function setTileType(x, y, type) {
 
 function doGridClick(e) {
 	// position sur le gridCanvas
-	var canvasX = (e.offsetX || e.clientX - $(e.target).offset().left);
-	var canvasY = (e.offsetY || e.clientY - $(e.target).offset().top);
+	var canvasX = e.pageX - $(e.target).offset().left;
+	var canvasY = e.pageY - $(e.target).offset().top;
 
 	// position dans la grille
 	var gridX = Math.floor(canvasX / TILE_WIDTH);
@@ -87,7 +87,7 @@ function doGridClick(e) {
 
 function doPickerClick(e) {
 	// position sur le canvas
-	var canvasY = (e.offsetY || e.clientY - $(e.target).offset().top);
+	var canvasY = e.pageY - $(e.target).offset().top;
 	// position dans la grille
 	var gridY = Math.floor(canvasY / PICKER_TILE_HEIGHT);
 
@@ -280,9 +280,19 @@ function transpose(matrix) {
 	return transpo;
 }
 
+function loadLevelLists() {
+	$("#levelList").empty();
+	$.getJSON("v1/levelLists" + Cookie["id"], function(data) {
+		for(var i = 0 ; i < data.length ; i++) {
+			var item = $('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+			item.appendTo("#levelList");
+		}
+	});
+}
+
 function parseSessionLevel() {
 	var tiles = window.sessionStorage.level.split(",");
-	
+
 	for (var i = 0; i < gridWidth; i++) {
 		for (var j = 0; j < gridHeight; j++) {
 			grid[i][j] = parseInt(tiles[j * gridWidth + i]);
@@ -307,6 +317,36 @@ function saveLevel() {
 		alert("Niveau invalide");
 }
 
+function createList() {
+	console.log("toroergjririegherighreiog");
+
+	var json = JSON.stringify({
+		"name": $("#newListName"),
+	});
+
+	console.log(json);
+
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : "v1/levelLists/create/" + Cookies["id"],
+		dataType : "json",
+		data : json ,
+		success : function(data, textStatus, jqXHR) {
+			if (data.success) {
+				alert("Success!");
+			} else {
+				alert("Oh mince...");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
+
+	$('#addListModal').modal('show');
+}
+
 function loadSessionInfo() {
 	var instrNum = parseInt(window.sessionStorage.instructionsNumber);
 	if (window.sessionStorage.level !== undefined) {
@@ -319,7 +359,7 @@ function loadSessionInfo() {
 		initGrid(gridWidth, gridHeight);
 	}
 	$('#levelName').val(window.sessionStorage.name);
-	
+
 	$('#instructionsNumber').prop("min", instrNum);
 	$('#instructionsNumber').val(instrNum);
 }
@@ -356,11 +396,13 @@ $(document).ready(function() {
 	document.getElementsByTagName("body")[0].addEventListener("mouseup", function() {
 		gridCanvas.removeEventListener("mousemove", doGridClick);
 	}, false);
-	
+
 	initPicker();
 	highLightSelectedTile(selectedType, HIGHLIGHT_COLOR);
 	initSpinners();
 	centerCanvas();
+	
+	loadLevelLists();
 
 	$("#save_button").click(function(e) {
 		e.preventDefault();
@@ -393,7 +435,15 @@ $(document).ready(function() {
 		handleKeyPress(e);
 	});
 
+	$('#addNewList').click(function(e) {
+		e.preventDefault();
+		$('#addListModal').modal('show');
+	});
 
+	$("#createListConfirmation").click(function(e) {
+		e.preventDefault();
+		createList();
+	});
 
 	checkLevel();
 });
