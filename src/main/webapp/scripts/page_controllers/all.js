@@ -4,8 +4,7 @@
 function isLoginRequiredPage() {
 	var page = location.pathname;
 
-	return page == "/options.html";/* || 
-				page == "/editor.html";*/
+	return page == "/options.html" || page == "/profile.html";
 }
 
 

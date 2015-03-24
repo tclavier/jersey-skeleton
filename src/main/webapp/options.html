@@ -48,7 +48,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand menu_bar_element" id="home_bar" href="index.html">Ludicode</a>
+				<a class="navbar-brand menu_bar_element" id="home_bar"
+					href="index.html">Ludicode</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 
@@ -81,8 +82,9 @@
 						<a id="user_icon" href="profile.html" class="menu_bar_element"
 							data-toogle="tooltip" title="Mon profil"> <span
 							class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a> <a href="chat.html" data-toogle="tooltip" title="Mes messages"> <span
-							class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
+						</a> <a href="chat.html" data-toogle="tooltip" title="Mes messages">
+							<span class="glyphicon glyphicon-comment" aria-hidden="true">
+						</span>
 						</a> <a href="#" data-toogle="tooltip" title="Mes notifications">
 							<span class="glyphicon glyphicon-exclamation-sign"
 							aria-hidden="true"></span>
@@ -112,11 +114,10 @@
 				<div class="row panel-body">
 
 					<div id="image_panel" class="col-md-5">
-						<img id="avatar" src="images/profil.png" align="middle" alt="profil"
-                        class="img-circle img-responsive text-center"> <br> 
-                        <input id="updateAvatar"
-							class="btn btn-default btn-sm" type="file"
-                            value="Changer ma photo de profil"></input>
+						<img id="avatar" src="images/profil.png" align="middle"
+							alt="profil" class="img-circle img-responsive text-center">
+						<br> <input id="updateAvatar" class="btn btn-default btn-sm"
+							type="file" value="Changer ma photo de profil"></input>
 					</div>
 
 					<div id="info_player" class="col-md-7"></div>
@@ -150,8 +151,8 @@
 					<h4 class="modal-title" id="myModalLabel">Modifier le pseudo</h4>
 				</div>
 				<div class="modal-body">
-				
-					<div id="error" class="alert alert-danger"> </div>
+
+					<div id="errorPseudo" class="alert alert-danger"></div>
 					<form class="form-horizontal">
 
 						<div class="form-group">
@@ -175,7 +176,8 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-					<button id="updateNameButton" type="button" class="btn btn-primary" onclick="updateName">Sauvegarder</button>
+					<button id="updateNameButton" type="button" class="btn btn-primary"
+						onclick="updateName">Sauvegarder</button>
 				</div>
 			</div>
 		</div>
@@ -194,6 +196,7 @@
 					<h4 class="modal-title" id="myModalLabel">Modifier le mail</h4>
 				</div>
 				<div class="modal-body">
+					<div id="errorEmail" class="alert alert-danger"></div>
 					<form class="form-horizontal">
 
 						<div class="form-group">
@@ -238,6 +241,8 @@
 						passe</h4>
 				</div>
 				<div class="modal-body">
+					<div id="errorPassword" class="alert alert-danger"></div>
+
 					<form class="form-horizontal">
 						<div class="form-group">
 							<label for="oldPassword" class="col-sm-6 control-label">Ancien
@@ -270,7 +275,8 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-					<button id="updatePasswordButton" type="button" class="btn btn-primary">Sauvegarder</button>
+					<button id="updatePasswordButton" type="button"
+						class="btn btn-primary">Sauvegarder</button>
 				</div>
 			</div>
 		</div>

@@ -1,9 +1,5 @@
 $(document).ready(function() {
 
-
-
-
-
 	function enableFacebook(enable) {
 		FB.getLoginStatus(function(response) {
 			if (response.status === 'connected') {
@@ -37,15 +33,36 @@ $(document).ready(function() {
 	// Change le mot de passe de l'utilisateur
 	$("#updatePasswordButton").click(updatePassword);
 	
-	$("#error").hide();
 	
+	// Cache les messages d'erreur si on en a pas
+	$("#errorPseudo").hide();
+	$("#errorEmail").hide();
+	$("#errorPassword").hide();
+	
+	// Cache le message d'erreur quand on quitte les modals
 	$("#pseudo_modal").on('hidden.bs.modal', function() {
-		$("#error").hide();
+		$("#errorPseudo").hide();
 	});
 	
+	$("#email_modal").on('hidden.bs.modal', function() {
+		$("#errorEmail").hide();
+	});
 	
+	$("#password_modal").on('hidden.bs.modal', function() {
+		$("#errorPassword").hide();
+	});
+	
+	// Focus sur le premier champ de chaque formulaire
 	$("#pseudo_modal").on('shown.bs.modal', function() {
 		$("#newPseudo").focus();
+	});
+	
+	$("#email_modal").on('shown.bs.modal', function() {
+		$("#newMail").focus();
+	});
+	
+	$("#password_modal").on('shown.bs.modal', function() {
+		$("#oldPassword").focus();
 	});
 
 	
@@ -126,16 +143,22 @@ function updateName() {
 					$("#pseudo_modal").modal('hide');
 					loadProfil();
 				} else {
-					$("#error").empty();
-					$("#error").append(data.message);
-					$("#error").show();
+					$("#errorPseudo").empty();
+					$("#errorPseudo").append(data.message);
+					$("#errorPseudo").show();
 
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				alert('postUser error: ' + textStatus);
+				$("#errorPseudo").empty();
+				$("#errorPseudo").append("Vous devez remplir tous les champs !");
+				$("#errorPseudo").show();
 			}
 		});
+	} else {
+		$("#errorPseudo").empty();
+		$("#errorPseudo").append("Les deux pseudos sont différents !");
+		$("#errorPseudo").show();
 	}
 	
 	
@@ -155,15 +178,29 @@ function updateEmail() {
 			url : "v1/users/updateEmail/" + Cookies["id"] + "/" + mail,
 			dataType : "json",
 			success : function(data, textStatus, jqXHR) {
-				console.log("email MAJ !");
+				if (data.success) {
+					$("#email_modal").modal('hide');
+					loadProfil();
+				} else {
+					console.log("else !!");
+					$("#errorEmail").empty();
+					$("#errorEmail").append(data.message);
+					$("#errorEmail").show();
+
+				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				alert('postUser error: ' + textStatus);
+				$("#errorEmail").empty();
+				$("#errorEmail").append("Vous devez remplir tous les champs !");
+				$("#errorEmail").show();
 			}
 		});
+	} else {
+		$("#errorEmail").empty();
+		$("#errorEmail").append("Les deux emails sont différents !");
+		$("#errorEmail").show();
 	}
 	
-	$("#email_modal").modal('hide');
 }
 
 function updatePassword() {
@@ -180,12 +217,26 @@ function updatePassword() {
 			url : "v1/users/updatePassword/" + Cookies["id"] + "/" + oldPassword +"/" + newPassword,
 			dataType : "json",
 			success : function(data, textStatus, jqXHR) {
-				console.log(data.message);
+				if (data.success) {
+					$("#password_modal").modal('hide');
+					loadProfil();
+				} else {
+					console.log("else !!");
+					$("#errorPassword").empty();
+					$("#errorPassword").append(data.message);
+					$("#errorPassword").show();
+				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				alert('postUser error: ' + textStatus);
+				$("#errorPassword").empty();
+				$("#errorPassword").append("Vous devez remplir tous les champs !");
+				$("#errorPassword").show();
 			}
 		});
+	} else {
+		$("#errorPassword").empty();
+		$("#errorPassword").append("Les deux mots de passe sont différents !");
+		$("#errorPassword").show();
 	}
 	
 }

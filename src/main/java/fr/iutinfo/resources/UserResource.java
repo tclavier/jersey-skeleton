@@ -273,7 +273,7 @@ public class UserResource {
 			u = dao.userIsCorrect(Session.getUser(cookie).getName(), Utils.hashMD5(oldPassword));
 			
 			if ( u == null ) {
-				return new Feedback(false, "Mot de passe invalide !");
+				return new Feedback(false, "L'ancien mot de passe est invalide !");
 			}
 			
 			String hashedPassword = Utils.hashMD5(password);
