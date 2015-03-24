@@ -1,38 +1,6 @@
 $(document).ready(function() {
 
-
-	function registerUser(name, password, email) {
-		$.ajax({
-			type : 'POST',
-			contentType : 'application/json',
-			url : "v1/users/register",
-			dataType : "json",
-			data : JSON.stringify({
-				"id" : 0,
-				"name" : name,
-				"password" : password, 
-				"email" : email
-			}),
-			success : function(data, textStatus, jqXHR) {
-				console.log(data);
-				if(data.success) {
-					loginUser(name, password);
-				} else {
-					$('#button_register').popover({trigger : 'manual', title: 'Erreur', content : data.message, placement : 'bottom', animation : 'true'});
-					$('#button_register').popover('show');
-					$('#button_register').on('shown.bs.popover', function() {
-						setTimeout(function() {
-							$('#button_register').popover('hide');
-						}, 5000);
-					});
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				alert('postUser error: ' + textStatus);
-			}
-		});
-	}
-
+	$("#error").hide();
 
 
 	// Enregistrer un utilisateur
@@ -49,3 +17,33 @@ $(document).ready(function() {
 	});
 
 });
+
+function registerUser(name, password, email) {
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : "v1/users/register",
+		dataType : "json",
+		data : JSON.stringify({
+			"id" : 0,
+			"name" : name,
+			"password" : password, 
+			"email" : email
+		}),
+		success : function(data, textStatus, jqXHR) {
+			console.log(data);
+			if(data.success) {
+				loginUser(name, password);
+				// location.replace("/");
+			} else {
+				$("#error").empty();
+				$("#error").append(data.message);
+				$("#error").show();
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
+}
+

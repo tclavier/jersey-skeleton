@@ -79,30 +79,9 @@ $(document).ready(function() {
 	/*
 	 * When the user connect or disconnect
 	 */
-	function setConnected(connected) {
-		sessionStorage.setItem("isConnected", connected);
+	
 
-		if(sessionStorage.getItem("isConnected") == "true") {
-			$("#login_navbar").hide();
-			$("#info_profil_navbar").show();
-		} else {
-			$("#info_profil_navbar").hide();
-			$("#login_navbar").show();
 
-			if(isLoginRequiredPage()) {
-				location.replace("/");
-			}
-		}
-	}
-
-	function checkConnection() {
-		if(!Cookies["id"])
-			setConnected(false);
-		else
-			$.getJSON("v1/users/isLogged/" + Cookies["id"], function(data) {
-				setConnected(data.success);
-			});
-	}
 
 	checkConnection();
 
@@ -111,65 +90,11 @@ $(document).ready(function() {
 	 **** REQUETES AJAX USERS ****
 	 *****************************/
 
-	function loginUser(name, password) {
-		$.ajax({
-			type : 'POST',
-			contentType : 'application/json',
-			url : "v1/users/login",
-			dataType : "json",
-			data : JSON.stringify({
-				"id" : 0,
-				"name" : name,
-				"password" : password
-			}),
-			success : function(data, textStatus, jqXHR) {
-				console.log(data);
-				if(data.success) {
-					// data.message contain uniq id for session
-					Cookies.create("id", data.message);
-					setConnected(true);
-				} else {
-					$('#login_send').popover({trigger : 'manual', title: 'Erreur', content : data.message, placement : 'bottom', animation : 'true'});
-					$('#login_send').popover('show');
-					$('#login_send').on('shown.bs.popover', function() {
-						setTimeout(function() {
-							$('#login_send').popover('hide');
-						}, 5000);
-					});
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				alert('postUser error: ' + textStatus);
-			}
-		});
-	}
+
 
 	/*
 	 * Fonction permettant d'afficher les informations de l'utilisateur
 	 */
-	function showProfile(userCookie) {
-		$.ajax({
-			type : 'GET',
-			dataType : 'application/json', 
-			url : 'v1/users/'+userCookie,
-
-			succes : function(json, statut) {
-				console.log("DATA : "+json);
-				var page = $("#profil_pane");
-				page.append(json+"");
-			}
-		})
-	}
-
-	function logoutUser() {
-		if(!Cookies["id"])
-			setConnected(false);
-		else
-			$.getJSON("v1/users/logout/" + Cookies["id"], function(data) {
-				console.log(data);
-				setConnected(false);
-			});
-	}
 
 
 
@@ -194,62 +119,10 @@ $(document).ready(function() {
 	}
 
 
-	function getNewNotifs() {
-		$.getJSON("v1/levels/notifs/" + Cookies["id"], function(data) {
-			console.log(data);
-			var htmlData = $('<ul class="list-group"></ul>');
-			if(data.length > 0) {
-				// On a des nouvelles notifs
-				for(var i = 0 ; i < data.length ; i++) {
-					htmlData.append('<li class="list-group-item"><a href="game.html?level='+data[i].levelId+'">'+data[i].levelName+'</a> de <a href="profile.html?id='+data[i].userId+'">'+data[i].userName+'</a></li>');
-				}
-			} else {
-				htmlData = $("<p>Vous n'avez pas de nouvelles notifications.</p>");
-			}
-			
-			$('#notif_icon').popover({trigger: 'manual', html : true, content : htmlData.html(), placement : 'bottom', animation : 'true'});
-			$('#notif_icon').popover("toggle");
-			updateNotifDate();
-		});
-	}
-
-	function updateNotifDate() {
-		$.ajax({
-			type : 'PUT',
-			contentType : 'application/json',
-			url : "v1/users/updateNotifDate/" + Cookies["id"],
-			dataType : "json",
-			success : function(data, textStatus, jqXHR) {
-				console.log(data);
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				alert('postUser error: ' + textStatus);
-			}
-		});
-	}
-
-
-
-
 	/****************************
 	 **** CONTROLE DES PAGES ****
 	 ****************************/
 
-
-	function doLoginClick() {
-		var name = $("#name_login").val();
-		var passwd = $("#password_login").val();
-		loginUser(name, passwd);
-		$("#name_login").val("");
-		$("#password_login").val("");
-	}
-
-	function handleKeyPress(e) {
-		var key = e.keyCode || e.which;
-		if (key === 13) {
-			doLoginClick();
-		}
-	}
 
 	// Login l'utilisateur
 	$("#login_send").click(function() {
@@ -276,3 +149,135 @@ $(document).ready(function() {
 
 
 });
+
+function loginUser(name, password) {
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : "v1/users/login",
+		dataType : "json",
+		data : JSON.stringify({
+			"id" : 0,
+			"name" : name,
+			"password" : password
+		}),
+		success : function(data, textStatus, jqXHR) {
+			if(data.success) {
+				// data.message contain uniq id for session
+				Cookies.create("id", data.message);
+				setConnected(true);
+			} else {
+				$('#login_send').popover({trigger : 'manual', title: 'Erreur', content : data.message, placement : 'bottom', animation : 'true'});
+				$('#login_send').popover('show');
+				$('#login_send').on('shown.bs.popover', function() {
+					setTimeout(function() {
+						$('#login_send').popover('hide');
+					}, 5000);
+				});
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
+}	
+
+
+function setConnected(connected) {
+	sessionStorage.setItem("isConnected", connected);
+
+	if(sessionStorage.getItem("isConnected") == "true") {
+		$("#login_navbar").hide();
+		$("#info_profil_navbar").show();
+	} else {
+		$("#info_profil_navbar").hide();
+		$("#login_navbar").show();
+
+		if(isLoginRequiredPage()) {
+			location.replace("/");
+		}
+	}
+}
+
+function updateNotifDate() {
+	$.ajax({
+		type : 'PUT',
+		contentType : 'application/json',
+		url : "v1/users/updateNotifDate/" + Cookies["id"],
+		dataType : "json",
+		success : function(data, textStatus, jqXHR) {
+			console.log(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
+}
+
+function handleKeyPress(e) {
+	var key = e.keyCode || e.which;
+	if (key === 13) {
+		doLoginClick();
+	}
+}
+
+function getNewNotifs() {
+	$.getJSON("v1/levels/notifs/" + Cookies["id"], function(data) {
+		console.log(data);
+		var htmlData = $('<ul class="list-group"></ul>');
+		if(data.length > 0) {
+			// On a des nouvelles notifs
+			for(var i = 0 ; i < data.length ; i++) {
+				htmlData.append('<li class="list-group-item"><a href="game.html?level='+data[i].levelId+'">'+data[i].levelName+'</a> de <a href="profile.html?id='+data[i].userId+'">'+data[i].userName+'</a></li>');
+			}
+		} else {
+			htmlData = $("<p>Vous n'avez pas de nouvelles notifications.</p>");
+		}
+		
+		$('#notif_icon').popover({trigger: 'manual', html : true, content : htmlData.html(), placement : 'bottom', animation : 'true'});
+		$('#notif_icon').popover("toggle");
+		updateNotifDate();
+	});
+}
+
+
+function showProfile(userCookie) {
+	$.ajax({
+		type : 'GET',
+		dataType : 'application/json', 
+		url : 'v1/users/'+userCookie,
+
+		succes : function(json, statut) {
+			console.log("DATA : "+json);
+			var page = $("#profil_pane");
+			page.append(json+"");
+		}
+	})
+}
+
+function logoutUser() {
+	if(!Cookies["id"])
+		setConnected(false);
+	else
+		$.getJSON("v1/users/logout/" + Cookies["id"], function(data) {
+			console.log(data);
+			setConnected(false);
+		});
+}
+
+function checkConnection() {
+	if(!Cookies["id"])
+		setConnected(false);
+	else
+		$.getJSON("v1/users/isLogged/" + Cookies["id"], function(data) {
+			setConnected(data.success);
+		});
+}
+
+function doLoginClick() {
+	var name = $("#name_login").val();
+	var passwd = $("#password_login").val();
+	loginUser(name, passwd);
+	$("#name_login").val("");
+	$("#password_login").val("");
+}

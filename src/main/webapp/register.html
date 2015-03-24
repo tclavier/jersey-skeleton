@@ -22,7 +22,8 @@
 <script type="text/javascript" src="libs/bootstrap.js"></script>
 <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
-<script type="text/javascript" src="scripts/page_controllers/register.js"></script>
+<script type="text/javascript"
+	src="scripts/page_controllers/register.js"></script>
 
 </head>
 
@@ -38,15 +39,19 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand menu_bar_element" id="home_bar" href="index.html">Ludicode</a>
+				<a class="navbar-brand menu_bar_element" id="home_bar"
+					href="index.html">Ludicode</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 
 				<ul class="nav navbar-nav">
 
-					<li class="menu_bar_element" id="levels_bar"><a href="levels.html">Jouer</a></li>
-					<li class="menu_bar_element" id="editor_bar"><a href="editor.html">Editeur</a></li>
-					<li class="menu_bar_element" id="leaderboard_bar"><a href="leaderboard.html">Classement</a></li>
+					<li class="menu_bar_element" id="levels_bar"><a
+						href="levels.html">Jouer</a></li>
+					<li class="menu_bar_element" id="editor_bar"><a
+						href="editor.html">Editeur</a></li>
+					<li class="menu_bar_element" id="leaderboard_bar"><a
+						href="leaderboard.html">Classement</a></li>
 
 				</ul>
 
@@ -60,24 +65,21 @@
 								data-toggle="popover">Envoyer</button>
 						</div>
 						<div class="form-group">
-							<a href="register.html" type="button" class="menu_bar_element btn btn-info">M'enregistrer</a>
+							<a href="register.html" type="button"
+								class="menu_bar_element btn btn-info">M'enregistrer</a>
 						</div>
 					</div>
 					<div id="info_profil_navbar">
 						<a id="user_icon" href="profile.html" class="menu_bar_element">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a>
-						<a href="chat.html">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
-						</a> 
-						<a href="#">
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-						</a>
-						<a id="options_icon" class="menu_bar_element" href="options.html">
+						</a> <a href="chat.html"> <span
+							class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
+						</a> <a href="#"> <span
+							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						</a> <a id="options_icon" class="menu_bar_element" href="options.html">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a>
-						<a id="logout_icon" href="#"> 
-							<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+						</a> <a id="logout_icon" href="#"> <span
+							class="glyphicon glyphicon-off" aria-hidden="true"></span>
 						</a>
 					</div>
 				</div>
@@ -90,21 +92,25 @@
 	<div class="container main_panel" id="register_pane">
 		<div class="row">
 			<div class="form col-md-offset-3 col-md-6">
-				 <div class="form-group">
-				    <label for="name_register">Pseudo : </label>
-				    <input type="text" class="form-control" id="name_register" placeholder="Votre pseudo" />
-				  </div>
-				  
-				  <div class="form-group">
-				    <label for="email_register">Adresse Email</label>
-				    <input type="text" class="form-control" id="email_register" placeholder="Votre email" />
-				  </div>
-				  <div class="form-group">
-				  	<label for="password_register">Mot de passe : </label>
-					<input type="password" class="form-control" id="password_register" placeholder="Votre mot de passe" />
-				  </div>
-				  
-				  <button id="button_register" type="button" class="btn btn-default" data-toggle="popover">M'enregistrer</button>
+				<div id="error" class="alert alert-danger"></div>
+				<div class="form-group">
+					<label for="name_register">Pseudo : </label> <input type="text"
+						class="form-control" id="name_register" placeholder="Votre pseudo" />
+				</div>
+
+				<div class="form-group">
+					<label for="email_register">Adresse Email</label> <input
+						type="text" class="form-control" id="email_register"
+						placeholder="Votre email" />
+				</div>
+				<div class="form-group">
+					<label for="password_register">Mot de passe : </label> <input
+						type="password" class="form-control" id="password_register"
+						placeholder="Votre mot de passe" />
+				</div>
+
+				<button id="button_register" type="button" class="btn btn-default"
+					data-toggle="popover">M'enregistrer</button>
 			</div>
 		</div>
 	</div>
