@@ -1,6 +1,7 @@
 define(["jquery"],  function($) {
     return function Game() {
 		var canvas = document.getElementById("grid");
+        var messageTimeout;
 
 		var Grid = require("grid");
         var Interpreter = require("interpreter");
@@ -35,6 +36,25 @@ define(["jquery"],  function($) {
         this.createPlayer = function createPlayer(tileX, tileY) {
             this.gplayer = new GraphicalPlayer(this, tileX * this.grid.tile_size, tileY * this.grid.tile_size);
             this.player = new Player(this, tileX * this.grid.tile_size, tileY * this.grid.tile_size);
+        }
+
+        /**
+         * Affiche un bulle de message
+         * text : Texte dans la bulle de message
+         * x : Position x de la bulle
+         * y : Position y de la bulle
+         * timeout : Temps avant que le message n'expire
+         */
+        this.showBubble = function(text, x, y, timeout) {
+            // On s'assure qu'il n'y a pas un timeout en cours
+            clearTimeout(messageTimeout);
+
+            $("#message_box").css({top: y, left: x, position:'absolute'});
+            $("#message_box").text(text);
+            $("#message_box").show();
+
+            messageTimeout = setTimeout(function() {$("#message_box").hide();
+            }, timeout ? timeout : 2000);
         }
 
 

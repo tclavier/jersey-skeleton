@@ -106,6 +106,11 @@ define(["jquery"],  function($) {
 
             scanAnimation.update(delta);
 		}
+
+        this.showMessage = function(text) {
+            var canvasPos = $("#grid").offset();
+            this.game.showBubble(text, canvasPos.left + this.x, canvasPos.top + this.y);
+        }
 		
 		// Deplace le joueur a la position (x, y) en pixel
 		this.moveTo = function moveTo(x, y) {

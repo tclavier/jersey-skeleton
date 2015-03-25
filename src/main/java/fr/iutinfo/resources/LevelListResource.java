@@ -71,11 +71,14 @@ public class LevelListResource {
 	public List<LevelList> getLevelListsWithContentOf(@PathParam("cookie") String cookie) {
 		if(Session.isLogged(cookie)) {
 			List<LevelList> list = levelListDao.findByIdAuthor(Session.getUser(cookie).getId());
+			
+			if(list == null)
+				throw new WebApplicationException(404);
+			
 			for(LevelList levelList : list) {
 				levelList.setLevels(levelDao.getLevelsOnList(levelList.getId()));
 			}
-			if(list == null)
-				throw new WebApplicationException(404);
+			
 			
 			return list;
 		}

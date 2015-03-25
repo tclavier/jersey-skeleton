@@ -115,7 +115,9 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 var runned = false;
 // Fonction pour executer le code de l'algo
 function execute(code) {
-	// On regenere la grille pour la remettre a son etat initial
+	// On cache le message
+    $("#message_box").hide();
+    // On regenere la grille pour la remettre a son etat initial
 	game.grid.generate()
 	// On prepare l'interpreteur
 	game.interpreter.setup();

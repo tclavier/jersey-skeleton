@@ -17,7 +17,7 @@ define(["jquery"],  function(require) {
         
         this.onPlayerCollide = function() {
         	// TODO : Avertir l'utilisateur de la collision correctement
-        	this.game.interpreter.addCommand("alert(\"Collision avec un mur !\");");
+        	this.game.interpreter.addCommand("player.showMessage(\"Collision avec un mur !\");");
         }
 
         /**
@@ -29,7 +29,6 @@ define(["jquery"],  function(require) {
             /*var block = Blockly.getMainWorkspace().getBlockById(blockId);
             var coord = block.getRelativeToSurfaceXY();
             var svgText = Blockly.createSvgElement("svg", {"x": 200, "y": 200}, null);
-            console.log(svgText);
             var bubble = new Blockly.Bubble(block.workspace, Blockly.Comment.prototype.createEditor_(), block.svgPath_, coord.x, coord.y, null, null);
             */
             //alert("Boucle infinie sur l'instruction \"" + Blockly.getMainWorkspace().getBlockById(blockId).type + "\"");

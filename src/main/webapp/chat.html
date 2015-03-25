@@ -21,7 +21,8 @@
 <script type="text/javascript" src="libs/jquery.js"></script>
 <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
 <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
-<script type="text/javascript" src="scripts/page_controllers/websocket_client.js"></script>
+<script type="text/javascript"
+	src="scripts/page_controllers/websocket_client.js"></script>
 
 </head>
 
@@ -70,8 +71,8 @@
 					<div id="info_profil_navbar">
 						<a id="user_icon" href="profile.html" class="menu_bar_element">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a> <a href="chat.html"> <span class="glyphicon glyphicon-comment"
-							aria-hidden="true"> </span>
+						</a> <a href="chat.html"> <span
+							class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
 						</a> <a href="#"> <span
 							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 						</a> <a id="options_icon" class="menu_bar_element" href="options.html">
@@ -88,14 +89,48 @@
 
 
 	<div class="container main_panel" id="chat_pane">
+
 		<div class="row">
+			<h3 class="text-center">LUDICHAT</h3>
+			<br />
+			<br />
+			<div class="col-md-8">
+				<div id="conv-history" class="panel panel-info">
+					<div class="panel-heading">HISTORIQUE DE CONVERSATION</div>
+					<div class="panel-body">
+						<ul id="screen" class="media-list">
+						</ul>
+					</div>
+					<div class="panel-footer">
+						<div class="input-group">
+							<input id="messageToSend" type="text" class="form-control" placeholder="Enter Message" /> <span class="input-group-btn">
+								<button id="sendMessage" class="btn btn-info" type="button">SEND</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div id="connected-users-panel" class="panel panel-primary">
+					<div class="panel-heading">UTILISATEURS CONNECTÈS</div>
+					<div class="panel-body">
+						<ul id="connected-users" class="media-list">
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<!--  <div class="row">
 			<div>
 				<input id="messageToSend" type="text" />
 				<button id="sendMessage">Envoyer !</button>
 
 				<div id="screen"></div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 	<!-- container your page -->
 
