@@ -89,6 +89,13 @@ $(document).ready(function() {
 		});
 	}
 	
+	function showProgressList(data) {
+		for(var i = 0 ; i < data.length ; i++) {
+			var list = $('#progress_list');
+			friendInfo.append('<a href="game.html?level=' + data.id + '">' + data.name + '</a>');
+		}
+	}
+	
 
 
 
@@ -130,6 +137,11 @@ $(document).ready(function() {
 			showFriendList(data);
 		});
 		
+		$.getJSON("v1/levelProgress/me/"+ Cookies["id"], function(date) {
+			console.log(data);
+			showProgressList(data);
+		});
+		
 		
 	} else {
 		$.getJSON("v1/profile/" + idUser, function(data) {
@@ -140,6 +152,11 @@ $(document).ready(function() {
 		$.getJSON("v1/friends/" + idUser, function(data) {
 			console.log(data);
 			showFriendList(data);
+		});
+		
+		$.getJSON("v1/levelProgress/"+ idUser, function(date) {
+			console.log(data);
+			showProgressList(data);
 		});
 	}
 

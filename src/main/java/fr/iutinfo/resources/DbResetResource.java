@@ -11,7 +11,7 @@ import fr.iutinfo.dao.FriendsRelationsDao;
 import fr.iutinfo.dao.InstructionsDao;
 import fr.iutinfo.dao.LevelDao;
 import fr.iutinfo.dao.LevelListDao;
-import fr.iutinfo.dao.LevelProgressDAO;
+import fr.iutinfo.dao.LevelProgressDao;
 import fr.iutinfo.dao.UserDao;
 import fr.iutinfo.utils.Utils;
 
@@ -25,7 +25,7 @@ public class DbResetResource {
 	private static LevelDao levelDao = App.dbi.open(LevelDao.class);
 	private static InstructionsDao instructionsDao = App.dbi.open(InstructionsDao.class);
 	private static LevelListDao levelListDao = App.dbi.open(LevelListDao.class);
-	private static LevelProgressDAO levelProgressDAO = App.dbi.open(LevelProgressDAO.class);
+	private static LevelProgressDao levelProgressDAO = App.dbi.open(LevelProgressDao.class);
 
 
 	
@@ -78,6 +78,14 @@ public class DbResetResource {
 		levelProgressDAO.dropLevelProgessTable();
 		levelProgressDAO.createLevelProgressTable();
 
+		levelProgressDAO.insert(1, 1);
+		levelProgressDAO.insert(1, 2);
+		levelProgressDAO.insert(1, 3);
+
+		levelProgressDAO.insert(2, 1);
+		levelProgressDAO.insert(2, 4);
+		
+		
 		return "Table levelProgress Reset";
 	}
 

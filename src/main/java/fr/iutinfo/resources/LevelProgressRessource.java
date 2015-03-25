@@ -7,20 +7,23 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
+import fr.iutinfo.beans.LeaderboardRow;
+import fr.iutinfo.beans.Level;
 import fr.iutinfo.beans.LevelProgress;
-import fr.iutinfo.dao.LevelProgressDAO;
+import fr.iutinfo.dao.LevelProgressDao;
 import fr.iutinfo.utils.Session;
 
 
-@Path("/LevelProgress")
+@Path("/levelProgress")
 @Produces(MediaType.APPLICATION_JSON)
 
 public class LevelProgressRessource {
-	private static LevelProgressDAO dao = App.dbi.open(LevelProgressDAO.class);
+	private static LevelProgressDao dao = App.dbi.open(LevelProgressDao.class);
 	
 	@POST
 	@Path("/putProgress/{cookie}/{idLevel}")
@@ -40,8 +43,22 @@ public class LevelProgressRessource {
 	}
 	
 	@GET
-	@Path("/getLevels/{cookie}")
-	public List<Integer> getLevelsDone(@PathParam("cookie") String cookie) {
-		return dao.getLevelsFromUser(Session.getUser(cookie).getId());
+	@Path("/me/{cookie}")
+	public List<Level> getLevelsDone(@PathParam("cookie") String cookie) {
+		if(Session.isLogged(cookie))
+			return dao.getFinishedLevels(Session.getUser(cookie).getId());
+		throw new WebApplicationException(404);
+	}
+	
+	@GET
+	@Path("/{idUser}")
+	public List<Level> getLevelsDone(@PathParam("idUser") int idUser) {
+		return dao.getFinishedLevels(idUser);
+	}
+	
+	@GET
+	@Path("/rankings")
+	public List<LeaderboardRow> getLeaderboard() {
+		return dao.getLevelsCount();
 	}
 }
