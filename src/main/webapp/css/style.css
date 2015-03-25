@@ -114,7 +114,9 @@ body {
 }
 
 #message_box {
-    background-color: red;
+    border-radius: 5px;
+    padding: 5px;
+    background: rgba(220, 220, 220, 0.9);
     position: absolute;
     left: 0px;
     top: 0px;
