@@ -1,7 +1,9 @@
 package fr.iutinfo.resources;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.websocket.OnClose;
@@ -10,7 +12,10 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 
+import fr.iutinfo.beans.User;
+import fr.iutinfo.beans.WebsocketConnectedUsers;
 import fr.iutinfo.beans.WebsocketMessage;
+import fr.iutinfo.beans.WebsocketObject;
 
 
 @javax.websocket.server.ServerEndpoint("/irc/{cookie}")
@@ -24,37 +29,60 @@ public class MyServerEndpoint {
 		if(fr.iutinfo.utils.Session.isLogged(cookie)) {
 			connectedUsers.put(cookie, session);
 			this.cookie = cookie;
+			
+			broadcastObject(getConnectedUsers());
 		} else {
 			try {
 				session.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	private WebsocketConnectedUsers getConnectedUsers() {
+		List<User> users = new ArrayList<User>();
+		for(Map.Entry<String, Session> entry : connectedUsers.entrySet()) {
+			users.add(fr.iutinfo.utils.Session.getUser(entry.getKey()));
+		}
+		WebsocketConnectedUsers wcu = new WebsocketConnectedUsers();
+		wcu.setFormServer(true);
+		wcu.setUsers(users);
+		return wcu;
+	}
+
+	private void broadcastObject(WebsocketObject wo) {
+		for(Map.Entry<String, Session> entry : connectedUsers.entrySet())
+			sendObjectTo(wo, entry.getValue());
+	}
+	
+	private void broadcastExceptUserObject(WebsocketObject wo) {
+		for(Map.Entry<String, Session> entry : connectedUsers.entrySet())
+			if(!entry.getKey().equals(cookie))
+				sendObjectTo(wo, entry.getValue());
+	}
+
+	private void sendObjectTo(WebsocketObject o, Session session) {
+		try {
+			session.getBasicRemote().sendText(o.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
 	@OnMessage
 	public void onMessage(String message, Session session){
 		if(fr.iutinfo.utils.Session.isLogged(cookie)) {
-			try {
-				WebsocketMessage websocketMessage = new WebsocketMessage();
-				websocketMessage.setContent(message);
-				websocketMessage.setFormServer(false);
-				websocketMessage.setFrom(fr.iutinfo.utils.Session.getUser(cookie).getName());
+			WebsocketMessage websocketMessage = new WebsocketMessage();
+			websocketMessage.setContent(message);
+			websocketMessage.setFormServer(false);
+			websocketMessage.setFrom(fr.iutinfo.utils.Session.getUser(cookie).getName());
 
-				for(Map.Entry<String, Session> entry : connectedUsers.entrySet()) {
-					if(!entry.getKey().equals(cookie))
-						entry.getValue().getBasicRemote().sendText(websocketMessage.toString());
-				}
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
+			broadcastExceptUserObject(websocketMessage);
 		} else {
 			try {
 				session.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -62,7 +90,8 @@ public class MyServerEndpoint {
 
 	@OnClose
 	public void onClose(Session session){
-		System.out.println("Session " +session.getId()+" has ended");
 		connectedUsers.remove(cookie);
+		
+		broadcastObject(getConnectedUsers());
 	}
 }

@@ -112,3 +112,22 @@ body {
 #row-theme {
     padding-top: 8px;
 }
+
+#conv-history ul {
+	height: 45vh;
+    overflow: auto;
+}
+
+#conv-history hr {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#conv-history li {
+	margin-top: 5px;
+}
+
+#connected-users-panel ul {
+	height: 45vh;
+    overflow: auto;
+}

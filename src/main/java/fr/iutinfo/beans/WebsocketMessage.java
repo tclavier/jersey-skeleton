@@ -1,11 +1,13 @@
 package fr.iutinfo.beans;
 
-import com.google.gson.Gson;
 
-public class WebsocketMessage {
+public class WebsocketMessage extends WebsocketObject {
 	private String content;
 	private String from;
-	private boolean formServer;
+	
+	public WebsocketMessage() {
+		setType(2);
+	}
 	
 	public String getContent() {
 		return content;
@@ -21,19 +23,6 @@ public class WebsocketMessage {
 	
 	public void setFrom(String from) {
 		this.from = from;
-	}
-	
-	public boolean isFormServer() {
-		return formServer;
-	}
-	
-	public void setFormServer(boolean formServer) {
-		this.formServer = formServer;
-	}
-	
-	public String toString() {
-		Gson gson = new Gson();
-		return gson.toJson(this);
 	}
 	
 	
