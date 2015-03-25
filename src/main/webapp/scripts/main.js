@@ -54,8 +54,7 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
     var BlockCreator = require("block_creator");
     var Theme = require("theme");
 
-    
-    theme = new Theme("images/themes.png");
+    game = new Game();
 	
     var time;
 	function mainLoop() {
@@ -65,7 +64,7 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 
 		time = now;
 		
-		if (!game && window.levelData && theme.isLoaded()) {
+		if (window.levelData && game.theme.isLoaded()) {
             // On ajoute les themes a la combobox
             for (var i = 0; i < 2; ++i) {
                 var o = new Option("Theme " + (i + 1), "" + (i - 1));
@@ -76,7 +75,7 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
             // Si un theme a été sauvegardé, on le recharge
             if (sessionStorage.themeId) {
                 $("#theme_selector").val(sessionStorage.themeId);
-                theme.themeId = parseInt(sessionStorage.themeId);
+                game.theme.themeId = parseInt(sessionStorage.themeId);
             }
 
             // Si une vitesse a été sauvegardé, on l'utilise
@@ -89,7 +88,7 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 			for (var i = 0; i < window.levelData.structuredContent.length; ++i) {
 				tiles.push(window.levelData.structuredContent[i].item);
 			}
-			game = new Game(theme, tiles);
+			game.setTiles(tiles);
 			blockCreator = new BlockCreator(game);
 
             var toolbox = blockCreator.getToolbox(window.levelData.instructionsList);

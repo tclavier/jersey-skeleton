@@ -3,8 +3,8 @@ define(["jquery"],  function($) {
       Classe permettant de gerer un theme
 
      **/
-    return function Theme(themesImgPath) {
-        //this.game = game;
+    return function Theme(game, themesImgPath) {
+        this.game = game;
         this.image = new Image();
         this.image.src = themesImgPath;
         this.loaded = false;
