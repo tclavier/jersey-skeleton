@@ -1,14 +1,14 @@
 define(["jquery"],  function($) {
-    return function Game(tiles) {
+    return function Game(theme, tiles) {
 		var canvas = document.getElementById("grid");
-		this.tiles = tiles
+		this.tiles = tiles;
+        this.theme = theme;
 
 		var Grid = require("grid");
         var Interpreter = require("interpreter");
         var Player = require("player");
 		var GraphicalPlayer = require("graphical_player");
 		var Events = require("events");
-        var Theme = require("theme");
 		
 		this.updateDimensions = function updateDimensions() {
             var size = Math.min($("canvas").parent().height(), $("canvas").parent().width());
@@ -72,7 +72,6 @@ define(["jquery"],  function($) {
 
 
 
-        this.theme = new Theme(this, "images/themes.png");
         this.events = new Events(this);
         this.grid = new Grid(this, this.tiles, this.width, this.height);
         this.grid.generate();

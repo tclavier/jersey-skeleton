@@ -52,8 +52,12 @@ var game;
 require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "animation", "graphical_player","events","block_creator", "theme"], function ($) {
 	var Game = require("game");
     var BlockCreator = require("block_creator");
+    var Theme = require("theme");
 
-	var time;
+    
+    theme = new Theme("images/themes.png");
+	
+    var time;
 	function mainLoop() {
 		requestAnimationFrame(mainLoop);
 		var now = new Date().getTime(),
@@ -61,13 +65,26 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 
 		time = now;
 		
-		if (window.levelData) {
+		if (!game && window.levelData && theme.isLoaded()) {
+            // On ajoute les themes a la combobox
+            for (var i = 0; i < 2; ++i) {
+                var o = new Option("Theme " + (i + 1), "" + (i - 1));
+                $(o).html("Theme " + (i + 1));
+                $("#theme_selector").append(o);
+            }
+
+            // Si un theme a été sauvegardé, on le recharge
+            if (sessionStorage.themeId) {
+                $("#theme_selector").val(sessionStorage.themeId);
+                theme.themeId = parseInt(sessionStorage.themeId);
+            }
+
 			// On crée un tableau 2D avec les données
 			var tiles = [];
 			for (var i = 0; i < window.levelData.structuredContent.length; ++i) {
 				tiles.push(window.levelData.structuredContent[i].item);
 			}
-			game = new Game(tiles);
+			game = new Game(theme, tiles);
 			blockCreator = new BlockCreator(game);
 
             var toolbox = blockCreator.getToolbox(window.levelData.instructionsList);
@@ -130,6 +147,14 @@ $(document).ready(function() {
             alert("Not loaded yet :(");
         }
     }
+
+    // Permet de changer le theme dynamiquement
+    $("#theme_selector").change(function() {
+        game.theme.themeId = parseInt($(this).val());
+
+        // On sauvegarde le theme choisi
+        sessionStorage.themeId = game.theme.themeId;
+    });
 });
 
  
