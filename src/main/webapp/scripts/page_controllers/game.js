@@ -21,6 +21,27 @@ function levelFinished() {
 			$("#congratsModal").modal("show");
 		}
 	}
+	
+	saveProgress();
+}
+
+function saveProgress() {
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : "v1/LevelProgress/putProgress/"+Cookies["id"]+"/"+levelId,
+		dataType : "json",
+		success : function(data, textStatus, jqXHR) {
+			if (data.success) {
+				console.log("Niveau sauvegarde !");
+			} else {
+				console.log("Niveau deja sauvegarde !");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
 }
 
 function goToNextLevel() {

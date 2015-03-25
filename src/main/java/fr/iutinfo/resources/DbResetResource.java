@@ -5,11 +5,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import ch.qos.logback.core.property.ResourceExistsPropertyDefiner;
 import fr.iutinfo.App;
 import fr.iutinfo.dao.FriendsRelationsDao;
 import fr.iutinfo.dao.InstructionsDao;
 import fr.iutinfo.dao.LevelDao;
 import fr.iutinfo.dao.LevelListDao;
+import fr.iutinfo.dao.LevelProgressDAO;
 import fr.iutinfo.dao.UserDao;
 import fr.iutinfo.utils.Utils;
 
@@ -23,6 +25,7 @@ public class DbResetResource {
 	private static LevelDao levelDao = App.dbi.open(LevelDao.class);
 	private static InstructionsDao instructionsDao = App.dbi.open(InstructionsDao.class);
 	private static LevelListDao levelListDao = App.dbi.open(LevelListDao.class);
+	private static LevelProgressDAO levelProgressDAO = App.dbi.open(LevelProgressDAO.class);
 
 
 	
@@ -33,7 +36,8 @@ public class DbResetResource {
 					+ "<li><a href='resetDb/relations'>Reset relations table</a></li>"
 					+ "<li><a href='resetDb/levels'>Reset levels table</a></li>"
 					+ "<li><a href='resetDb/instructions'>Reset instructions table</a></li>"
-					+ "<li><a href='resetDb/levelList'>Reset evelList</a></li>"
+					+ "<li><a href='resetDb/levelList'>Reset levelList</a></li>"
+					+ "<li><a href='resetDb/levelProgress'>Reset levelProgress</a></li>"
 					+ "<li><a href='resetDb/all'>Reset ALL tables</a></li>"
 				+ "</ul>";
 	}
@@ -48,7 +52,9 @@ public class DbResetResource {
 		resetDbLevels(); 
 		resetDbFriendsRelations();
 		resetDbLevelList();
-
+		resetDbUsers();
+		resetDbLevelProgress();
+		
 		return "All Tables Reset";
 	}
 
@@ -64,6 +70,15 @@ public class DbResetResource {
 		userDao.insert("tata", Utils.hashMD5("tata"), "tata@tata.ta");
 
 		return "Table user Reset";
+	}
+	
+	@GET
+	@Path("levelProgress")
+	public String resetDbLevelProgress() {
+		levelProgressDAO.dropLevelProgessTable();
+		levelProgressDAO.createLevelProgressTable();
+
+		return "Table levelProgress Reset";
 	}
 
 

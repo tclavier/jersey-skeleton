@@ -19,10 +19,14 @@ public interface LevelProgressDAO {
 	void insert(@Bind("idUser") int idUser, @Bind("idLevel") int idLevel);
 	
 	@SqlQuery("SELECT * FROM LevelProgress WHERE idUser = :idUser AND idLevel = :idLevel")
+    @RegisterMapperFactory(BeanMapperFactory.class)
 	LevelProgress getLevel(@Bind("idUser") int idUser, @Bind("idLevel") int idLevel);
 	
 	@SqlQuery("SELECT idLevel FROM LevelProgress WHERE idUser = :idUser")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<Integer> getLevelsFromUser(@Bind("idUser") int idUser);
+	
+	@SqlUpdate("drop table if exists LevelProgress")
+	void dropLevelProgessTable();
 
 }
