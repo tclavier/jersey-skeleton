@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -75,6 +76,29 @@ public class LevelListResource {
 			levelListDao.createList(levelList.getName(), Session.getUser(cookie).getId());
 
 			return new Feedback(true, "La liste a bien été créée !");
+		}
+
+		return new Feedback(false, "Vous n'êtes pas enregistré !");
+	}
+	
+	
+	/**
+	 * crée une liste de niveaux vide
+	 * @param levelList
+	 * @return
+	 */
+	@PUT
+	@Path("/me/{cookie}")
+	public Feedback createList(List<LevelList> levelLists, @PathParam("cookie") String cookie) {
+		if(Session.isLogged(cookie)) {
+			for(LevelList list : levelLists) {
+				levelListDao.deleteAssociationsOf(list.getId());
+				for(int i = 0 ; i < list.getLevelsAssociation().size() ; i++) {
+					levelListDao.insertAssociation(list.getId(), list.getLevelsAssociation().get(i).getIdLevel(), i);
+				}
+			}
+
+			return new Feedback(true, "Les listes ont bien été modifiés !");
 		}
 
 		return new Feedback(false, "Vous n'êtes pas enregistré !");
