@@ -121,7 +121,7 @@ public class LevelResource {
 	 */
 	@POST
 	@Path("/add/{cookie}/{idList}")
-	public Feedback createUser(Level level, @PathParam("cookie") String cookie, @PathParam("cookie") int idList) {
+	public Feedback createUser(Level level, @PathParam("cookie") String cookie, @PathParam("idList") int idList) {
 		if(Session.isLogged(cookie)) {
 			// User enregistré, l'envoie du niveau peux être effectué
 			if(isValidLevel(level)) {

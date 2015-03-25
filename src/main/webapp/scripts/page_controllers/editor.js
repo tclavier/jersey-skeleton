@@ -344,13 +344,14 @@ function createList() {
 			} else {
 				alert("Oh mince...");
 			}
+			loadLevelLists();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('postUser error: ' + textStatus);
 		}
 	});
 
-	loadLevelLists();
+	
 	$('#addListModal').modal('hide');
 }
 
