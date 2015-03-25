@@ -110,5 +110,13 @@ body {
 }
 
 #row-theme {
-    padding-top: 8px;
+    padding-top: 5px;
+}
+
+#message_box {
+    background-color: red;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: none;
 }
