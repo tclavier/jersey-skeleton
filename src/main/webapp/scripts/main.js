@@ -79,6 +79,11 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
                 theme.themeId = parseInt(sessionStorage.themeId);
             }
 
+            // Si une vitesse a été sauvegardé, on l'utilise
+            if (sessionStorage.speed) {
+                $("#speed").val(sessionStorage.speed);
+            }
+
 			// On crée un tableau 2D avec les données
 			var tiles = [];
 			for (var i = 0; i < window.levelData.structuredContent.length; ++i) {
@@ -155,6 +160,13 @@ $(document).ready(function() {
         // On sauvegarde le theme choisi
         sessionStorage.themeId = game.theme.themeId;
     });
+
+    // Lors des changements de la vitesse
+    $("#speed").change(function() {
+        // On sauvegarde la vitesse choisi
+        sessionStorage.speed = $(this).val();
+    });
+
 });
 
  
