@@ -66,7 +66,7 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 		
 		if (window.levelData && game.theme.isLoaded()) {
             // On ajoute les themes a la combobox
-            for (var i = 0; i < 2; ++i) {
+            for (var i = 0; i <= game.theme.nbLine; ++i) {
                 var o = new Option("Theme " + (i + 1), "" + (i - 1));
                 $(o).html("Theme " + (i + 1));
                 $("#theme_selector").append(o);
