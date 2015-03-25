@@ -8,3 +8,4 @@ data.db
 /build/
 /bin/
 hs*
+src/main/webapp/images/avatars/

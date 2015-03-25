@@ -116,9 +116,14 @@
 					<div id="image_panel" class="col-md-5">
 						<img id="avatar" src="images/profil.png" align="middle"
 							alt="profil" class="img-circle img-responsive text-center">
-						<br> <input id="updateAvatar" class="btn btn-default btn-sm"
-							type="file" value="Changer ma photo de profil"></input>
-					</div>
+                            <br> 
+                            
+                            <form action="v1/avatars/add" method="post" enctype="multipart/form-data">
+                                <p>
+                                <input id="updateAvatar" type="file" name="file" />
+                                </p>
+                            </form>
+                        </div>
 
 					<div id="info_player" class="col-md-7"></div>
 

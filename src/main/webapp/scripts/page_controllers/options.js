@@ -103,7 +103,6 @@ function updateAvatar(evt) {
     var output = [];
     for (var i = 0; i < files.length; i++) {
         var reader = new FileReader();
-        var binaryReader = new FileReader();
 
         // Pour afficher le resultat en preview
         reader.onload = (function(theFile) {
@@ -113,12 +112,26 @@ function updateAvatar(evt) {
         })(files[i]);
 
         // Pour envoyer le resultat au serveur
-        binaryReader.onload = function () {
-            console.log(binaryReader.result);
-            // TODO: Envoyer le contenu par une requete ajax
-        }
+        var formData = new FormData();
+        formData.append('file', files[i]);
+        $.ajax({
+            url : '/v1/avatars/add',
+            type : 'POST',
+            data : formData,
+            cache : false,
+            contentType : false,
+            processData : false,
+            success : function(data, textStatus, jqXHR) {
+                var feedback = JSON.parse(jqXHR.responseText);
+                if (!feedback.success) {
+                    alert("Impossible d'uploader votre avatar !\n" +  feedback.message);
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+        });
 
-        binaryReader.readAsBinaryString(files[i]);
 
         reader.readAsDataURL(files[i]);
     }
