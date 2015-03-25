@@ -39,11 +39,11 @@ public class App extends Application {
     public static DBI dbi;
 	static {
 		SQLiteDataSource ds = new SQLiteDataSource();
-		ds.setUrl("jdbc:sqlite:"+System.getProperty("java.io.tmpdir")+System.getProperty("file.separator")+"data.db");
+		ds.setUrl("jdbc:sqlite:"+System.getProperty("user.home")+System.getProperty("file.separator")+"ludicode.db");
 		dbi = new DBI(ds);
-		System.out.println("Database created : " + System.getProperty("java.io.tmpdir")+System.getProperty("file.separator")+"data.db");
+		System.out.println("Database created : " + System.getProperty("user.home")+System.getProperty("file.separator")+"ludicode.db");
 		
-		DbResetResource dbRessource = new DbResetResource();
-		dbRessource.resetDatabase();
+		//DbResetResource dbRessource = new DbResetResource();
+		//dbRessource.resetDatabase();
     }
 }
