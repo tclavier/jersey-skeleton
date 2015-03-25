@@ -55,7 +55,7 @@ public interface LevelListDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	int getNextPosition(@Bind("idList") int idList);
 	
-	@SqlQuery("DELETE FROM levelListAssociations WHERE idList = :idList")
+	@SqlUpdate("DELETE FROM levelListAssociations WHERE idList = :idList")
 	void deleteAssociationsOf(@Bind("idList") int idList);
 	
 	@SqlUpdate("drop table if exists levelLists")

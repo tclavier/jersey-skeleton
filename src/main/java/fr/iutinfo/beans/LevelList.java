@@ -7,6 +7,7 @@ public class LevelList {
 	private String name;
 	private int levelCount;
 	private List<LevelListAssociation> levelsAssociation;
+	private List<Level> levels;
 	private int idAuthor;
 	
 	public String getName() {
@@ -47,6 +48,14 @@ public class LevelList {
 
 	public void setIdAuthor(int idAuthor) {
 		this.idAuthor = idAuthor;
+	}
+
+	public List<Level> getLevels() {
+		return levels;
+	}
+
+	public void setLevels(List<Level> levels) {
+		this.levels = levels;
 	}
 	
 }
