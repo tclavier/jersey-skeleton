@@ -14,6 +14,7 @@ import fr.iutinfo.resources.DbResetResource;
 import fr.iutinfo.resources.FriendsRelationsResource;
 import fr.iutinfo.resources.InstructionsResource;
 import fr.iutinfo.resources.LevelListResource;
+import fr.iutinfo.resources.LevelProgressRessource;
 import fr.iutinfo.resources.LevelResource;
 import fr.iutinfo.resources.MyServerEndpoint;
 import fr.iutinfo.resources.ProfileInfoResource;
@@ -33,6 +34,7 @@ public class App extends Application {
     	s.add(InstructionsResource.class);
     	s.add(ProfileInfoResource.class);
     	s.add(LevelListResource.class);    	
+    	s.add(LevelProgressRessource.class);
     	return s;
     }
     

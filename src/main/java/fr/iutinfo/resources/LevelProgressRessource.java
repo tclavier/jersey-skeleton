@@ -26,6 +26,9 @@ public class LevelProgressRessource {
 	@Path("/putProgress/{cookie}/{idLevel}")
 	public Feedback putProgress(@PathParam("cookie") String cookie, @PathParam("idLevel") int idLevel) {
 		
+		if (!Session.isLogged(cookie))
+			return new Feedback(false, "Vous devez être connecte !");
+		
 		int idUser = Session.getUser(cookie).getId();
 		LevelProgress tmp = dao.getLevel(idUser, idLevel);
 		if (tmp != null)
