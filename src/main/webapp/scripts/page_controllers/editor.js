@@ -363,6 +363,7 @@ function loadSessionInfo() {
 		initGrid(gridWidth, gridHeight);
 		parseSessionLevel();
 		drawGrid();
+		modified = 1;
 	} else {
 		initGrid(gridWidth, gridHeight);
 	}
