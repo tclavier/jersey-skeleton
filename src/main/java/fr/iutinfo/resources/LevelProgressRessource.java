@@ -14,6 +14,7 @@ import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
 import fr.iutinfo.beans.LeaderboardRow;
 import fr.iutinfo.beans.Level;
+import fr.iutinfo.beans.LevelInfo;
 import fr.iutinfo.beans.LevelProgress;
 import fr.iutinfo.dao.LevelProgressDao;
 import fr.iutinfo.utils.Session;
@@ -44,7 +45,7 @@ public class LevelProgressRessource {
 	
 	@GET
 	@Path("/me/{cookie}")
-	public List<Level> getLevelsDone(@PathParam("cookie") String cookie) {
+	public List<LevelInfo> getLevelsDone(@PathParam("cookie") String cookie) {
 		if(Session.isLogged(cookie))
 			return dao.getFinishedLevels(Session.getUser(cookie).getId());
 		throw new WebApplicationException(404);
@@ -52,7 +53,7 @@ public class LevelProgressRessource {
 	
 	@GET
 	@Path("/{idUser}")
-	public List<Level> getLevelsDone(@PathParam("idUser") int idUser) {
+	public List<LevelInfo> getLevelsDone(@PathParam("idUser") int idUser) {
 		return dao.getFinishedLevels(idUser);
 	}
 	
