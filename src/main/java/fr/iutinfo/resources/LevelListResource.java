@@ -89,7 +89,7 @@ public class LevelListResource {
 	 */
 	@PUT
 	@Path("/me/{cookie}")
-	public Feedback createList(List<LevelList> levelLists, @PathParam("cookie") String cookie) {
+	public Feedback changeList(List<LevelList> levelLists, @PathParam("cookie") String cookie) {
 		if(Session.isLogged(cookie)) {
 			for(LevelList list : levelLists) {
 				levelListDao.deleteAssociationsOf(list.getId());
