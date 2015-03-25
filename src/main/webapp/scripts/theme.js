@@ -3,8 +3,8 @@ define(["jquery"],  function($) {
       Classe permettant de gerer un theme
 
      **/
-    return function Theme(themesImgPath) {
-        //this.game = game;
+    return function Theme(game, themesImgPath) {
+        this.game = game;
         this.image = new Image();
         this.image.src = themesImgPath;
         this.loaded = false;
@@ -26,7 +26,7 @@ define(["jquery"],  function($) {
         var instance = this;
         this.image.onload = function() {
             instance.loaded = true;
-            playerAnimation = new Animation(instance.game, instance.image, instance.nbCol, instance.nbLine, [0, 1, 2, 1, 0, 4, 3, 4], 0.15);
+            playerAnimation = new Animation(instance.game, instance.image, instance.nbCol, instance.nbLine, [0, 1, 2, 1, 0, 4, 3, 4], 0.1);
             playerAnimation.ox = 1/2;
             playerAnimation.oy = 1/2;
             playerAnimation.visible = true;
@@ -134,7 +134,8 @@ define(["jquery"],  function($) {
         }
 
         this.onPlayerFinishedWalking = function() {
-            playerAnimation.stop(true);
+            // On ne stop que si l'animation est en cours
+            if (playerAnimation.running()) playerAnimation.pause(true);
         }
 
         // Met a jour l'animation 

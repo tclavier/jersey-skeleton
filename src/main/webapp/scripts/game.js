@@ -1,14 +1,13 @@
 define(["jquery"],  function($) {
-    return function Game(theme, tiles) {
+    return function Game() {
 		var canvas = document.getElementById("grid");
-		this.tiles = tiles;
-        this.theme = theme;
 
 		var Grid = require("grid");
         var Interpreter = require("interpreter");
         var Player = require("player");
 		var GraphicalPlayer = require("graphical_player");
 		var Events = require("events");
+        var Theme = require("theme");
 		
 		this.updateDimensions = function updateDimensions() {
             var size = Math.min($("canvas").parent().height(), $("canvas").parent().width());
@@ -40,7 +39,8 @@ define(["jquery"],  function($) {
 
 
 		this.render = function render() {
-			var ctx = canvas.getContext("2d");
+			if (!this.grid) return;
+            var ctx = canvas.getContext("2d");
             ctx.imageSmoothingEnabled = false;
             // On nettoie toute la zone du canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -52,6 +52,7 @@ define(["jquery"],  function($) {
 		}
 
 		this.update = function update(delta) {
+            if (!this.grid) return;
             // Si le joueur n'est pas dans une animation, on execute la commande suivante
             if (!this.gplayer.isDoingSomething() && this.interpreter.hasSteps()) {
                 // On précise que c'est le joueur graphique
@@ -70,11 +71,16 @@ define(["jquery"],  function($) {
             return parseInt($("#speed").val())/10;
         }
 
+        this.setTiles = function(tiles) {
+            this.tiles = tiles;
+
+            this.grid = new Grid(this, this.tiles, this.width, this.height);
+            this.grid.generate();
+        }
 
 
+        this.theme = new Theme(this, "images/themes.png");
         this.events = new Events(this);
-        this.grid = new Grid(this, this.tiles, this.width, this.height);
-        this.grid.generate();
         this.interpreter = new Interpreter(this);
 	}
 });

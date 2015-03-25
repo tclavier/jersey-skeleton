@@ -36,6 +36,7 @@ define(["jquery"],  function(require) {
         var timer = 0;
         var running = false;
         var loop = false;
+        var paused = false;
         
         this.visible = false;
 
@@ -55,12 +56,23 @@ define(["jquery"],  function(require) {
          * looping : Vrai si l'animation doit boucler
          */
         this.start = function(looping) {
-            loop = looping;
-            timer = 0;
             running = true;
+            loop = looping;
+
+            if (paused) {
+                paused = false;
+                return;
+            }
+
+            timer = 0;
             this.patternId = 0;
         }
 
+        this.pause = function(visible) {
+            paused = true;
+            running = false;
+            this.visible = visible;
+        }
         /**
          * Arrete l'animation
          * visible : Si vrai, l'animation reste visible stoppé
@@ -84,8 +96,11 @@ define(["jquery"],  function(require) {
             context.rotate(this.angle);
             
             // On dessine la bonne frame de l'animation
-            var sx = this.width * (this.pattern[this.patternId] % widthInFrame);
-            var sy = this.height * Math.floor(this.pattern[this.patternId] / widthInFrame);
+            var pId = this.patternId;
+            
+            if (paused) pId = 0;
+            var sx = this.width * (this.pattern[pId] % widthInFrame);
+            var sy = this.height * Math.floor(this.pattern[pId] / widthInFrame);
             
             context.drawImage(this.image, sx, sy, this.width, this.height, -this.ox * width, -this.oy * height, width, height);
             context.restore();

@@ -1,4 +1,5 @@
 var levelList;
+var levelId;
 var currentLevel = urlParam("level");
 var currentList = urlParam("list");
 
@@ -55,6 +56,7 @@ $(document).ready(function() {
 		window.levelData = data;
 		console.log(data);
 		levelList = data.levelList;
+		levelId = data.id;
 		
 		$("#max_instruction").html(data.maxInstructions);
 		createLevelTitle(data);
