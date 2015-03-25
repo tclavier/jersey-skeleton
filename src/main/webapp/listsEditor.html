@@ -31,6 +31,9 @@ canvas {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
+	position: fixed;
+	top: 0px;
+	left: 0px;
 }
 
 .connectedList {
@@ -46,10 +49,9 @@ ul {
 	margin: 0;
 }
 
-canvas {
-	position: fixed;
-	top: 0px;
-	left: 0px;
+.info {
+	font-size: 0.84em;
+	color: gray;
 }
 </style>
 
@@ -125,7 +127,7 @@ canvas {
 
 
 	<div class="container main_panel" id="home_pane">
-		<button id="sendLists">Enregistrer les modifications</button>
+		<button id="sendLists" class="btn btn-success">Enregistrer les modifications</button>
 		<div id="container"></div>
 	</div>
 	<!-- container home page -->

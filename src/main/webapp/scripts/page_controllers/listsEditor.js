@@ -28,12 +28,18 @@ function loadLists() {
 function displayList(list) {
 	var listDiv = $('<div class="panel panel-warning col-md-2 text-center col-md-offset-3"' +
 	'style="padding: 0px;">');
-	$('<div class="panel-heading">' + list.name + '</div>').appendTo(listDiv);	
+	var header = $('<div class="panel-heading">' + list.name + 
+			'<div class="info">Cliquez pour afficher/masquer les niveaux</div></div>');	
+		
 	var ul = $('<ul class="connectedList list-group panel-body"' +
 			'id="list-' + list.id + '"></ul>');	
 
 	var item = $('<li class="list-group-item list-group-item-danger" style="margin: 5px; " value="' 
 			+ list.id + '">' + list.name + '</li>');
+	
+	header.click(function() {
+		ul.toggle();
+	});
 
 	for (var i = 0; i < list.levels.length; i++) {
 		var level = createLevelNode(list.levels[i]);
@@ -41,8 +47,10 @@ function displayList(list) {
 		level.appendTo(ul);
 	}
 
+	header.appendTo(listDiv);
 	ul.appendTo(listDiv);
 	listDiv.appendTo("#container");
+	ul.hide();
 }
 
 function createLevelNode(level) {
