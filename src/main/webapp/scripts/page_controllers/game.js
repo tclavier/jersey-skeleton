@@ -29,7 +29,7 @@ function saveProgress() {
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
-		url : "v1/LevelProgress/putProgress/"+Cookies["id"]+"/"+levelId,
+		url : "v1/levelProgress/putProgress/"+Cookies["id"]+"/"+levelId,
 		dataType : "json",
 		success : function(data, textStatus, jqXHR) {
 			if (data.success) {
