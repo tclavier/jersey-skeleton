@@ -13,7 +13,9 @@ import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
+import fr.iutinfo.beans.Level;
 import fr.iutinfo.beans.LevelList;
+import fr.iutinfo.dao.LevelDao;
 import fr.iutinfo.dao.LevelListDao;
 import fr.iutinfo.utils.Session;
 
@@ -23,6 +25,7 @@ import fr.iutinfo.utils.Session;
 @Produces(MediaType.APPLICATION_JSON)
 public class LevelListResource {
 	private static LevelListDao levelListDao = App.dbi.open(LevelListDao.class);
+	private static LevelDao levelDao = App.dbi.open(LevelDao.class);
 
 	@GET
 	@Path("{id}")
@@ -62,6 +65,23 @@ public class LevelListResource {
 		}
 		throw new WebApplicationException(404);		
 	}
+	
+	@GET
+	@Path("/me/full/{cookie}")
+	public List<LevelList> getLevelListsWithContentOf(@PathParam("cookie") String cookie) {
+		if(Session.isLogged(cookie)) {
+			List<LevelList> list = levelListDao.findByIdAuthor(Session.getUser(cookie).getId());
+			for(LevelList levelList : list) {
+				levelList.setLevels(levelDao.getLevelsOnList(levelList.getId()));
+			}
+			if(list == null)
+				throw new WebApplicationException(404);
+			
+			return list;
+		}
+		throw new WebApplicationException(404);		
+	}
+
 
 
 	/**

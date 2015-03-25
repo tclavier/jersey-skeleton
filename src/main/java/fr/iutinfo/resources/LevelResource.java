@@ -88,7 +88,6 @@ public class LevelResource {
 		return levels;
 	}
 
-
 	/**
 	 * Insert le niveau si celui ci est valide.
 	 * @param level
