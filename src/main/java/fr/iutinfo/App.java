@@ -7,9 +7,11 @@ import javax.websocket.WebSocketContainer;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.skife.jdbi.v2.DBI;
 import org.sqlite.SQLiteDataSource;
 
+import fr.iutinfo.resources.AvatarResource;
 import fr.iutinfo.resources.DbResetResource;
 import fr.iutinfo.resources.FriendsRelationsResource;
 import fr.iutinfo.resources.InstructionsResource;
@@ -35,6 +37,8 @@ public class App extends Application {
     	s.add(ProfileInfoResource.class);
     	s.add(LevelListResource.class);    	
     	s.add(LevelProgressRessource.class);
+    	s.add(AvatarResource.class);
+    	s.add(MultiPartFeature.class);
     	return s;
     }
     
