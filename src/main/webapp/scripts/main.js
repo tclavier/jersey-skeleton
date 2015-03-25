@@ -73,10 +73,10 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
             }
 
             // Si un theme a été sauvegardé, on le recharge
-            if (sessionStorage.themeId) {
-                $("#theme_selector").val(sessionStorage.themeId);
+            if (sessionStorage.themeId)
                 game.theme.themeId = parseInt(sessionStorage.themeId);
-            }
+
+            $("#theme_selector").val(game.theme.themeId);
 
             // Si une vitesse a été sauvegardé, on l'utilise
             if (sessionStorage.speed) {
