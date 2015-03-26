@@ -178,7 +178,9 @@ $(window).resize(function() {
     // lorsqu'un bloc est déplacé
 	//if (game) game.updateDimensions();
     //var minHeight = $("#grid-container").height() + 20;//$("#grid-container").offset() + " " + $("#grid-container").height();
-    var minHeight = $("#max_instruction").offset().top - $("#grid-container").offset().top + 30;
+    var minHeight = 500;
+    if ($("#max_instruction").offset())
+        minHeight = $("#max_instruction").offset().top - $("#grid-container").offset().top + 30;
 
     var height = $("canvas").parent().height();
 
