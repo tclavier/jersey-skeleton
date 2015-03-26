@@ -73,7 +73,7 @@ $(document).ready(function() {
 
 			friendInfo.append("<img class=\"profil_picture\" src=\"images/avatars/" + data[i].name + ".png\" align=\"middle\" alt=\"profil\" class=\"img-circle text-center\" onerror=\"if (this.src != 'images/profil.png') this.src = 'images/profil.png';\">");
 			//	friendInfo.append('<img class="profil_picture" src="images/profil.png" />');
-			friendInfo.append(data[i].name);
+			friendInfo.append("<a href=\"/profile.html?id=" + data[i].id + "\">" + data[i].name + "</a>");
 			$("#friend_list").append(friendInfo);
 		}
 	}

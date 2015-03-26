@@ -98,11 +98,11 @@ require(["jquery", "libs/bootstrap", "game", "grid", "player", "interpreter", "a
 
             // On met un message dynamique pour afficher le nombre de bloques restant
             Blockly.addChangeListener(function() {
+                if (runned) execute("");
                 if (Blockly.maxBlocks == Infinity) return;
                 var remainingBlocks = Blockly.maxBlocks - Blockly.getMainWorkspace().getAllBlocks().length;
                 $("#max_instruction").text(remainingBlocks);
                 $("#max_instruction_s").text(remainingBlocks > 1 ? "s" : "");
-                if (runned) execute("");
             });
 			window.levelData = null;
 		}
@@ -177,6 +177,14 @@ $(window).resize(function() {
     // surtout parceque blockly provoque un evenement de resize
     // lorsqu'un bloc est déplacé
 	//if (game) game.updateDimensions();
-	$(".blocklySvg").attr("height", $("canvas").parent().height());
+    //var minHeight = $("#grid-container").height() + 20;//$("#grid-container").offset() + " " + $("#grid-container").height();
+    var minHeight = 500;
+    if ($("#max_instruction").offset())
+        minHeight = $("#max_instruction").offset().top - $("#grid-container").offset().top + 30;
+
+    var height = $("canvas").parent().height();
+
+   // console.log(minHeight + " " + height);
+    $(".blocklySvg").attr("height", Math.max(minHeight, height));
 
 });
