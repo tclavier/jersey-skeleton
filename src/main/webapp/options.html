@@ -113,17 +113,19 @@
 				</div>
 				<div class="row panel-body">
 
-					<div id="image_panel" class="col-md-5">
-						<img id="avatar" src="images/profil.png" align="middle"
-							alt="profil" class="img-circle img-responsive text-center">
-                            <br> 
-                            
-                            <form action="v1/avatars/add" method="post" enctype="multipart/form-data">
-                                <p>
-                                <input id="updateAvatar" type="file" name="file" />
-                                </p>
-                            </form>
-                        </div>
+                    <div id="image_panel" class="col-md-5">
+                        <img id="avatar" src="images/profil.png" align="middle" alt="profil"
+                        class="img-circle text-center" onerror="if (this.src != 'images/profil.png') this.src = 'images/profil.png';">
+
+                        <br> 
+
+                        <p>
+                        <input type="file" id="updateAvatar" style="display: none;" name="file"/>
+                        <input type="button" class="btn btn-primary" value="Choisissez un fichier" onclick="document.getElementById('updateAvatar').click();" />
+
+
+                        </p>
+                    </div>
 
 					<div id="info_player" class="col-md-7"></div>
 

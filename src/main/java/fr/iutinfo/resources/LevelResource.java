@@ -16,6 +16,7 @@ import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
 import fr.iutinfo.beans.Level;
 import fr.iutinfo.beans.NotifLevel;
+import fr.iutinfo.beans.NotifLevelCount;
 import fr.iutinfo.dao.InstructionsDao;
 import fr.iutinfo.dao.LevelDao;
 import fr.iutinfo.dao.LevelListDao;
@@ -37,7 +38,6 @@ public class LevelResource {
 		Level level = levelDao.findById(id);
 		if(level == null)
 			throw new WebApplicationException(404);
-
 		level.setInstructionsList(instructionsDao.getAllId(Arrays.asList(level.getStructuredInstructions())));
 
 		return level;
@@ -66,6 +66,20 @@ public class LevelResource {
 				throw new WebApplicationException(404);
 			
 			return notifs;
+		}
+		throw new WebApplicationException(404);
+	}
+	
+	@GET
+	@Path("notifs/count/{cookie}")
+	public NotifLevelCount getLevelsNotifsCount(@PathParam("cookie") String cookie) {
+		if(Session.isLogged(cookie)) {
+			NotifLevelCount notifCount = levelDao.getNewLevelsCountFor(Session.getUser(cookie).getId());
+
+			if(notifCount == null)
+				throw new WebApplicationException(404);
+			
+			return notifCount;
 		}
 		throw new WebApplicationException(404);
 	}

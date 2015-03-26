@@ -49,7 +49,7 @@ public class App extends Application {
 		dbi = new DBI(ds);
 		System.out.println("Database created : " + System.getProperty("user.home")+System.getProperty("file.separator")+"ludicode.db");
 		
-		DbResetResource dbRessource = new DbResetResource();
-		dbRessource.resetDatabase();
+		//DbResetResource dbRessource = new DbResetResource();
+		//dbRessource.resetDatabase();
     }
 }

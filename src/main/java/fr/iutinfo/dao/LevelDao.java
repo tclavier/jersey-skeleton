@@ -12,6 +12,7 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 import fr.iutinfo.beans.Level;
 import fr.iutinfo.beans.LevelInfo;
 import fr.iutinfo.beans.NotifLevel;
+import fr.iutinfo.beans.NotifLevelCount;
 
 public interface LevelDao {
 
@@ -62,6 +63,10 @@ public interface LevelDao {
 	@SqlQuery("select levels.id as levelId, levels.name as levelName, users.id as userId, users.name as userName from levels INNER JOIN users where users.id = authorId AND creationDate > (select lastNotifChecking FROM users where id = :userId) AND authorId in (select idFriend FROM friendsRelations where idUser = :userId);")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<NotifLevel> getNewLevelsFor(@Bind("userId") int userId);
+	
+	@SqlQuery("select count(*) as notifCount from levels INNER JOIN users where users.id = authorId AND creationDate > (select lastNotifChecking FROM users where id = :userId) AND authorId in (select idFriend FROM friendsRelations where idUser = :userId);")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+	NotifLevelCount getNewLevelsCountFor(@Bind("userId") int userId);
 	
 	@SqlUpdate("drop table if exists levels")
 	void dropLevelsTable(); 

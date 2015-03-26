@@ -266,7 +266,7 @@ public class DbResetResource {
 		instructionsDao.insert("Reculer", "player.moveBackward();", 65, 0, "images/doc/reculer.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 0);					// ID 2	
 		instructionsDao.insert("Pivoter à gauche", "player.turnLeft();", 65, 0, "images/doc/pivoter_gauche.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 0);			// ID 3
 		instructionsDao.insert("Pivoter à droite", "player.turnRight();", 65, 0, "images/doc/pivoter_droite.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 0);			// ID 4
-		instructionsDao.insert("Répeter %v[2,15]% fois", "for (var i%line% = 0; i%line% < %v%; ++i%line%)", 100, 1, "images/doc/répéter_n.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 1);	// ID 5
+		instructionsDao.insert("Répeter 3 fois", "for (var i%line% = 0; i%line% < 3; ++i%line%)", 100, 1, "images/doc/répéter_n.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 1);	// ID 5
 		instructionsDao.insert("Si chemin devant", "if (player.canGoForward())", 200, 1, "images/doc/si_devant.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 6
 		instructionsDao.insert("Si chemin à gauche", "if (player.canGoLeft())", 200, 1, "images/doc/si_gauche.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 7
 		instructionsDao.insert("Si chemin à droite", "if (player.canGoRight())", 200, 1, "images/doc/si_droite.png", "images/doc/avancer.gif", "Description de l'instruction Avancer", 2);	// ID 8

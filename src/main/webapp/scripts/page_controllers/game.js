@@ -35,7 +35,7 @@ function saveProgress() {
 			if (data.success) {
 				console.log("Niveau sauvegarde !");
 			} else {
-				console.log("Niveau deja sauvegarde !");
+				console.log(data.message);
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
