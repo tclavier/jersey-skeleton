@@ -60,8 +60,10 @@ $(document).ready(function() {
 
 
 		$("#creations_list").html("");
+		if (location.search === "")
+			$("#creations_list").append('<a  class="btn btn-primary" href="listsEditor.html">Organiser mes listes</a>');
 		for(var i = 0 ; i < data.levelsInfo.length ; i++) {
-			var levelInfo = $('<div class="level_info"></div>');
+			var levelInfo = $('<div class="level_info"></div>');			
 			levelInfo.append('<a href="game.html?level=' + data.levelsInfo[i].id + '">' + data.levelsInfo[i].name + '</a>');
 			$("#creations_list").append(levelInfo);
 		}

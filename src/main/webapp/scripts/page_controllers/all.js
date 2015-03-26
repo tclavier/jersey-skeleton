@@ -6,8 +6,11 @@ function isLoginRequiredPage() {
 
 	return page == "/options.html" 
 		|| page == "/profile.html"
-		|| page == "/editor.html"
-		|| page == "/chat.html";
+			|| page == "/editor.html"
+				|| page == "/chat.html"
+					|| page == "listsEditor.html"
+						|| page == "test.html"
+							|| page == "instructionsSelection.html";
 }
 
 
@@ -121,7 +124,7 @@ $(document).ready(function() {
 });
 
 function loginUser(name, password, redirect_url) {
-    console.log(name + " " + password);
+	console.log(name + " " + password);
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -137,7 +140,7 @@ function loginUser(name, password, redirect_url) {
 				// data.message contain uniq id for session
 				Cookies.create("id", data.message);
 				setConnected(true);
-                if (redirect_url) location.replace(redirect_url);
+				if (redirect_url) location.replace(redirect_url);
 			} else {
 				$('#login_send').popover({trigger : 'manual', title: 'Erreur', content : data.message, placement : 'bottom', animation : 'true'});
 				$('#login_send').popover('show');

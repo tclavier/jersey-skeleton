@@ -200,3 +200,7 @@ canvas {
     max-height: 200px;
 
 }
+
+ul {
+	list-style-type: none;
+}
