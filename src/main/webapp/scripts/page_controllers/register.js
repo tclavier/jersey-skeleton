@@ -33,8 +33,7 @@ function registerUser(name, password, email) {
 		success : function(data, textStatus, jqXHR) {
 			console.log(data);
 			if(data.success) {
-				loginUser(name, password);
-				// location.replace("/");
+				loginUser(name, password, "/");	
 			} else {
 				$("#error").empty();
 				$("#error").append(data.message);
@@ -42,7 +41,7 @@ function registerUser(name, password, email) {
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert('postUser error: ' + textStatus);
+			alert('Erreur lors de l\'enregistrement de votre compte : ' + textStatus);
 		}
 	});
 }
