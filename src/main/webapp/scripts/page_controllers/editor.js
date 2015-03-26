@@ -217,6 +217,11 @@ function checkLevel() {
 	document.getElementById("errors").innerHTML = "";
 	$("#change_size").prop("disabled", false);
 
+	/*if (sessionStorage.getItem("isConnected") != "true") {
+		addError("Vous devez être connecté pour créer un niveau !");
+		validity = false;
+	}*/
+	
 	if (starts === 0) {
 		addError("Le niveau doit contenir une case de départ");
 		validity = false;
