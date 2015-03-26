@@ -20,7 +20,7 @@ import fr.iutinfo.utils.Session;
 
 
 @Path("/levelProgress")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 
 public class LevelProgressRessource {
 	private static LevelProgressDao dao = App.dbi.open(LevelProgressDao.class);

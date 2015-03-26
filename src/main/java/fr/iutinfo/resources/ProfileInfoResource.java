@@ -15,7 +15,7 @@ import fr.iutinfo.utils.Session;
 
 
 @Path("/profile")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 public class ProfileInfoResource {
 	private static UserDao userDao = App.dbi.open(UserDao.class);
 	private static LevelDao levelDao = App.dbi.open(LevelDao.class);

@@ -22,7 +22,7 @@ import fr.iutinfo.utils.Session;
 
 
 @Path("/levelLists")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 public class LevelListResource {
 	private static LevelListDao levelListDao = App.dbi.open(LevelListDao.class);
 	private static LevelDao levelDao = App.dbi.open(LevelDao.class);

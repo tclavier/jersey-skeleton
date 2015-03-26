@@ -23,7 +23,7 @@ import fr.iutinfo.utils.Session;
 import fr.iutinfo.utils.Utils;
 
 @Path("/users")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 public class UserResource {
 	private static UserDao dao = App.dbi.open(UserDao.class);
 

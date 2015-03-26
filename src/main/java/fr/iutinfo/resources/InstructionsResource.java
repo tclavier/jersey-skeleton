@@ -15,7 +15,7 @@ import fr.iutinfo.dao.InstructionsDao;
 
 
 @Path("/instructions")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 public class InstructionsResource {
 
 	private static InstructionsDao instructionsDao = App.dbi.open(InstructionsDao.class);

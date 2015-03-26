@@ -22,7 +22,7 @@ import fr.iutinfo.utils.Utils;
 
 
 @Path("/friends")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 public class FriendsRelationsResource {
 
 	private static FriendsRelationsDao friendDao = App.dbi.open(FriendsRelationsDao.class);
