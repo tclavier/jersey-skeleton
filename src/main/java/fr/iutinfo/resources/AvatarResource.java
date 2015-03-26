@@ -43,7 +43,6 @@ public class AvatarResource {
 			return new Feedback(false, "Image trop volumineuse (> 42Ko)");
 		
 		
-		System.out.println("sdfgdg" + fileDetail.getSize());
 		User user = Session.getUser(cookie);
 		
 		try {

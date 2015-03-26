@@ -179,3 +179,11 @@ canvas {
 .form-horizontal .control-label {
 	text-align: left;
 }
+
+#avatar {
+    height: 100%
+    width: 100%;
+    max-width: 200px;
+    max-height: 200px;
+
+}
