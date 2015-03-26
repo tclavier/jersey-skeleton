@@ -16,10 +16,11 @@ function loadLists() {
 	$.getJSON("v1/levelLists/me/full/" + Cookies['id'], function(data) {
 		var listIds = "#list-" + data[0].id;
 		for (var i = 0; i < data.length; i++) {
-
-			displayList(data[i]);
+			if ($.inArray(data[i].id, listArr) == -1) {
+				displayList(data[i]);				
+				listArr.push(data[i].id);
+			}
 			listIds += ", #list-" + data[i].id;	
-			listArr.push(data[i].id);
 		}
 		connectLists(listIds);
 	});
@@ -29,14 +30,14 @@ function displayList(list) {
 	var listDiv = $('<div class="panel panel-warning col-md-2 text-center col-md-offset-3"' +
 	'style="padding: 0px;">');
 	var header = $('<div class="panel-heading">' + list.name + 
-			'<div class="info">Cliquez pour afficher/masquer les niveaux</div></div>');	
-		
+	'<div class="info">Cliquez pour afficher/masquer les niveaux</div></div>');	
+
 	var ul = $('<ul class="connectedList list-group panel-body"' +
 			'id="list-' + list.id + '"></ul>');	
 
 	var item = $('<li class="list-group-item list-group-item-danger" style="margin: 5px; " value="' 
 			+ list.id + '">' + list.name + '</li>');
-	
+
 	header.click(function() {
 		ul.toggle();
 	});
@@ -70,7 +71,7 @@ function createLevelNode(level) {
 				el.hide();
 				window.removeEventListener("mousemove", movePreview, true);
 			});
-	
+
 	node.click(function() {
 		$('#preview').hide();
 	});
@@ -94,15 +95,15 @@ function drawPreview(level) {
 	var grid = level.structuredContent;
 	canvasHeight = grid.length * TILE_HEIGHT + 2 * BORDER_OFFSET;
 	canvasWidth = grid[0].item.length * TILE_WIDTH + 2 * BORDER_OFFSET;
-	
+
 	console.log(grid[0]);
-	
+
 	canvas.height = canvasHeight;
 	canvas.width = canvasWidth;
-	
+
 	ctx.fillStyle = "#FF00FF";
 	ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-	
+
 	for (var i = 0; i < grid.length; i++) {
 		for (var j = 0; j < grid[0].item.length; j++) {
 			ctx.fillStyle = COLORS[grid[i].item[j]];
@@ -110,6 +111,37 @@ function drawPreview(level) {
 					, TILE_WIDTH, TILE_HEIGHT);
 		}
 	}
+}
+
+function createList() {
+	var json = JSON.stringify({
+		"name": $("#newListName").val(),
+	});
+
+	console.log(json);
+
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : "v1/levelLists/create/" + Cookies["id"],
+		dataType : "json",
+		data : json ,
+		success : function(data, textStatus, jqXHR) {
+			if (data.success) {
+				console.log("Success!");
+			} else {
+				alert("Zut alors!");
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
+
+
+	$('#addListModal').modal('hide');
+	loadLists();
 }
 
 function sendLists() {
@@ -167,4 +199,21 @@ $(document).ready(function() {
 	$('#sendLists').click(function() {
 		sendLists();
 	});	
+	
+	$('#addNewList').click(function(e) {
+		e.preventDefault();
+		$('#addListModal').modal('show');
+	});
+
+	$("#createListConfirmation").click(function(e) {
+		e.preventDefault();
+		createList();
+	});
+
+	$('#newListName').keypress(function(e) {
+		var key = e.keyCode || e.which;
+		if (key === 13) {
+			createList();
+		}
+	});
 });

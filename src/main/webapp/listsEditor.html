@@ -97,10 +97,37 @@
 			<!--/.navbar-collapse -->
 		</div>
 	</nav>
+	
+	<div class="modal fade" id="addListModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Nouvelle liste</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="newListName" class="control-label">Liste: </label> <input
+							type="text" id="newListName" class="form-control">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+					<button type="button" class="btn btn-primary" onclick="createList"
+						id="createListConfirmation">Enregistrer</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<div class="container main_panel" id="list-editor">
 		<button id="sendLists" class="btn btn-success">Enregistrer les modifications</button>
+		<button class="btn btn-warning" id="addNewList">Nouvelle liste</button>
 		<div id="container"></div>
 	</div>
 	<!-- container home page -->
