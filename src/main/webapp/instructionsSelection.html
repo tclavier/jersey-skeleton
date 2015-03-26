@@ -71,8 +71,8 @@
 					<div id="info_profil_navbar">
 						<a id="user_icon" href="profile.html" class="menu_bar_element">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a> <a href="chat.html"> <span class="glyphicon glyphicon-comment"
-							aria-hidden="true"> </span>
+						</a> <a href="chat.html"> <span
+							class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
 						</a> <a id="notif_icon" href="#"> <span
 							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 						</a> <a id="options_icon" class="menu_bar_element" href="options.html">
@@ -100,7 +100,7 @@
 					niveau</button>
 			</div>
 		</div>
-		
+
 		<hr>
 
 		<div class="row">
@@ -143,11 +143,29 @@
 				</ul>
 			</div>
 		</div>
-
-
 		<!-- container Editor page -->
-
 	</div>
+
+	<div class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		id="saveSuccessfulModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">Votre niveau a bien été enregistré</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<footer class="container">
 		<div class="row">
 			<hr />

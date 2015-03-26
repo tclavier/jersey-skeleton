@@ -24,7 +24,7 @@ function loadInstructions() {
 
 function loadSessionInfo() {
 	instrNum = parseInt(window.sessionStorage.instructionsNumber) || 0;
-		
+
 	$('#instructionsNumber').prop("min", instrNum);
 	$('#instructionsNumber').val(instrNum);
 }
@@ -71,7 +71,7 @@ function saveLevel() {
 
 function parseSessionLevel() {
 	var tiles = window.sessionStorage.level.split(",");
-	
+
 	for (var i = 0; i < gridWidth; i++) {
 		for (var j = 0; j < gridHeight; j++) {
 			grid[i][j] = parseInt(tiles[j * gridWidth + i]);
@@ -130,9 +130,10 @@ function sendLevel() {
 			console.log(data);
 			if(data.success) {
 				console.log("success");
+				doSaveSuccessful();
 			} else {
 				// TODO : Afficher mesage d'erreur
-				alert("Oh mince...");
+				alert("Oh mince, une erreur est survenue :(");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -159,9 +160,15 @@ function checkLevel() {
 		$("#save_button").prop("disabled", true);
 		return false;
 	}
-	
+
 	$("#save_button").prop("disabled", false);
 	return true;
+}
+
+function doSaveSuccessful() {
+	window.sessionStorage.clear();
+	$('#saveSuccessfulModal').modal('show');
+	console.log("leleelleleleleelellelelele");
 }
 
 $(document).ready(function() {
@@ -170,7 +177,6 @@ $(document).ready(function() {
 	loadInstructions();
 	loadSessionInfo();
 
-	
 	$( "#instructions, #selectedInstructions" ).sortable({
 		connectWith: ".instructionsList",
 		receive: function(event, ui) {
@@ -186,17 +192,21 @@ $(document).ready(function() {
 	$('#forbidEverything').click(function() {
 		forbidInstructions();
 	});
-	
+
 	$("#save_button").click(function(e) {
 		e.preventDefault();
 		saveLevel();
 	});
-	
+
 	$('input').keyup(function() {
 		checkLevel();
 	});
-	
+
 	$('input').change(function() {
 		checkLevel();
+	});
+
+	$('#saveSuccessfulModal').on('hidden.bs.modal', function () {
+		window.location.assign("editor.html");
 	});
 });

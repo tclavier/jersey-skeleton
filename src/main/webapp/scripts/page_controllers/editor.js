@@ -221,7 +221,7 @@ function checkLevel() {
 		addError("Vous devez être connecté pour créer un niveau !");
 		validity = false;
 	}*/
-	
+
 	if (starts === 0) {
 		addError("Le niveau doit contenir une case de départ");
 		validity = false;
@@ -298,11 +298,14 @@ function loadLevelLists(selectLast) {
 			item.appendTo("#levelList");
 		}
 		checkLevel();
-		
-		if (selectLast)
+
+		if (selectLast) {
+			console.log("last:" + data[data.length - 1].id);
 			$('#levelList').val(data[data.length - 1].id);
-		else
+		} else {
+			console.log("session: " + window.sessionStorage.list);
 			$('#levelList').val(window.sessionStorage.list);
+		}
 	});
 }
 
@@ -354,14 +357,14 @@ function createList() {
 				alert("Oh mince...");
 			}
 			loadLevelLists(true);
-			
+
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('postUser error: ' + textStatus);
 		}
 	});
 
-	
+
 	$('#addListModal').modal('hide');
 }
 
@@ -374,6 +377,8 @@ function loadSessionInfo() {
 		parseSessionLevel();
 		drawGrid();
 		modified = 1;
+		$('#gridWidth').val(gridWidth);
+		$('#gridHeight').val(gridHeight);
 	} else {
 		initGrid(gridWidth, gridHeight);
 	}
@@ -418,8 +423,8 @@ $(document).ready(function() {
 	highLightSelectedTile(selectedType, HIGHLIGHT_COLOR);
 	initSpinners();
 	centerCanvas();
-	
-	loadLevelLists();	
+
+	loadLevelLists(window.sessionStorage.list === undefined);	
 
 	loadSessionInfo();
 
@@ -463,12 +468,16 @@ $(document).ready(function() {
 		e.preventDefault();
 		createList();
 	});
-	
+
 	$('#newListName').keypress(function(e) {
 		var key = e.keyCode || e.which;
 		if (key === 13) {
 			createList();
 		}
+	});
+
+	$('#levelList').change(function() {
+		checkLevel();
 	});
 
 	checkLevel();
