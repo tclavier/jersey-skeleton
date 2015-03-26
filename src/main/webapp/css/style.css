@@ -148,9 +148,16 @@ body {
 	left: 0px;
 }
 
-.panel {
-	padding: 0;
+#list-editor .panel {
 	margin: 0;
+}
+
+#profile_pane .panel {
+	margin-left: 60px;
+}
+
+.panel {
+	padding: 0px;
 }
 
 .info {
