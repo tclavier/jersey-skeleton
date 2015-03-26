@@ -79,44 +79,11 @@ $(document).ready(function() {
 	/*
 	 * When the user connect or disconnect
 	 */
-	
+
 
 
 
 	checkConnection();
-
-
-	/*****************************
-	 **** REQUETES AJAX USERS ****
-	 *****************************/
-
-
-
-	/*
-	 * Fonction permettant d'afficher les informations de l'utilisateur
-	 */
-
-
-
-
-	function linkFacebookAccount(facebookId) {
-		$.ajax({
-			type : 'POST',
-			contentType : 'application/json',
-			url : "v1/users/linkFb",
-			dataType : "json",
-			data : JSON.stringify({
-				"facebookId" : facebookId,
-				"cookie" : Cookies["id"]
-			}),
-			success : function(data, textStatus, jqXHR) {
-				console.log(data);
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				alert('postUser error: ' + textStatus);
-			}
-		});
-	}
 
 
 	/****************************
@@ -183,12 +150,20 @@ function loginUser(name, password) {
 }	
 
 
+function getNotifCount() {
+	$.getJSON("v1/levels/notifs/count/" + Cookies["id"], function(data) {
+		if(data.notifCount > 0)
+			$("#notif_icon").append('<span id="notif-count" class="badge">'+data.notifCount+'</span>');
+	});
+}
+
 function setConnected(connected) {
 	sessionStorage.setItem("isConnected", connected);
 
 	if(sessionStorage.getItem("isConnected") == "true") {
 		$("#login_navbar").hide();
 		$("#info_profil_navbar").show();
+		getNotifCount();
 	} else {
 		$("#info_profil_navbar").hide();
 		$("#login_navbar").show();
@@ -200,6 +175,7 @@ function setConnected(connected) {
 }
 
 function updateNotifDate() {
+	$("#notif-count").html("");
 	$.ajax({
 		type : 'PUT',
 		contentType : 'application/json',
@@ -221,23 +197,30 @@ function handleKeyPress(e) {
 	}
 }
 
+var popoverNotifShow = false;
 function getNewNotifs() {
-	$.getJSON("v1/levels/notifs/" + Cookies["id"], function(data) {
-		console.log(data);
-		var htmlData = $('<ul class="list-group"></ul>');
-		if(data.length > 0) {
-			// On a des nouvelles notifs
-			for(var i = 0 ; i < data.length ; i++) {
-				htmlData.append('<li class="list-group-item"><a href="game.html?level='+data[i].levelId+'">'+data[i].levelName+'</a> de <a href="profile.html?id='+data[i].userId+'">'+data[i].userName+'</a></li>');
+	if(!popoverNotifShow) {
+		$.getJSON("v1/levels/notifs/" + Cookies["id"], function(data) {
+			console.log(data);
+			var htmlData = $('<ul class="list-group"></ul>');
+			if(data.length > 0) {
+				// On a des nouvelles notifs
+				for(var i = 0 ; i < data.length ; i++) {
+					htmlData.append('<li class="list-group-item"><a href="game.html?level='+data[i].levelId+'">'+data[i].levelName+'</a> de <a href="profile.html?id='+data[i].userId+'">'+data[i].userName+'</a></li>');
+				}
+			} else {
+				htmlData = $("<p>Vous n'avez pas de nouvelles notifications.</p>");
 			}
-		} else {
-			htmlData = $("<p>Vous n'avez pas de nouvelles notifications.</p>");
-		}
-		
-		$('#notif_icon').popover({trigger: 'manual', html : true, content : htmlData.html(), placement : 'bottom', animation : 'true'});
-		$('#notif_icon').popover("toggle");
-		updateNotifDate();
-	});
+
+			$('#notif_icon').popover({trigger: 'manual', html : true, content : htmlData.html(), placement : 'bottom', animation : 'true'});
+			$('#notif_icon').popover("show");
+			popoverNotifShow = true;
+			updateNotifDate();
+		});
+	} else {
+		$('#notif_icon').popover("destroy");
+		popoverNotifShow = false;
+	}
 }
 
 
