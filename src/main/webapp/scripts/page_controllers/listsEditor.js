@@ -70,6 +70,10 @@ function createLevelNode(level) {
 				el.hide();
 				window.removeEventListener("mousemove", movePreview, true);
 			});
+	
+	node.click(function() {
+		$('#preview').hide();
+	});
 
 	return node;
 }

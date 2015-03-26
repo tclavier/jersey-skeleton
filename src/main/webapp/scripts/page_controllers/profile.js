@@ -40,7 +40,10 @@ $(document).ready(function() {
 	function showProfileInfo(data, currentUserProfile) {
 		//$("#info_player").html("");
 		$("#info_player").append("<b> Pseudo :</b> " + data.user.name+"<br>");
-		if(currentUserProfile) $("#info_player").append("<b> Email :</b> " + data.user.email+"<br> <br>");
+        // Chargement de l'image de profil
+        $("#avatar").attr("src", "images/avatars/" + data.user.name + ".png");
+		
+        if(currentUserProfile) $("#info_player").append("<b> Email :</b> " + data.user.email+"<br> <br>");
 		if(currentUserProfile) $("#info_player").append("<a href='options.html'> Modifier mon profil </a>");
 		else $("#info_player").append('<button id="add-friend" type="button" class="btn btn-primary">Ajouter en ami</button>');
 		
@@ -62,7 +65,9 @@ $(document).ready(function() {
 	function showFriendList(data) {
 		for(var i = 0 ; i < data.length ; i++) {
 			var friendInfo = $('<div class="friend_info"></div>');
-			friendInfo.append('<img class="profil_picture" src="images/profil.png" />');
+
+            friendInfo.append("<img class=\"profil_picture\" src=\"images/avatars/" + data[i].name + ".png\" align=\"middle\" alt=\"profil\" class=\"img-circle text-center\" onerror=\"if (this.src != 'images/profil.png') this.src = 'images/profil.png';\">");
+		//	friendInfo.append('<img class="profil_picture" src="images/profil.png" />');
 			friendInfo.append(data[i].name);
 			$("#friend_list").append(friendInfo);
 		}

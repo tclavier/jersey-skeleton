@@ -141,3 +141,49 @@ body {
 	height: 45vh;
     overflow: auto;
 }
+
+#preview {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+}
+
+.panel {
+	padding: 0;
+	margin: 0;
+}
+
+.info {
+	font-size: 0.84em;
+	color: gray;
+}
+
+canvas {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.instructionsList , .connectedList{
+	min-height: 42px;
+}
+
+.form-inline .form-group input {
+	width: 69px;
+}
+
+.panel button {
+	margin: 5px;
+}
+
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+#avatar {
+    height: 100%
+    width: 100%;
+    max-width: 200px;
+    max-height: 200px;
+
+}
