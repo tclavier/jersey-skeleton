@@ -95,27 +95,21 @@ $(document).ready(function() {
 });
 
 function updateAvatar(evt) {
-    console.log(evt);
 
     var files = evt.target.files; // FileList object
 
     // files is a FileList of File objects. List some properties.
     var output = [];
+    var imageLocalPath;
     for (var i = 0; i < files.length; i++) {
         var reader = new FileReader();
 
-        // Pour afficher le resultat en preview
-        reader.onload = (function(theFile) {
-            return function(e) {
-                $("#avatar").attr("src", e.target.result);
-            };
-        })(files[i]);
 
         // Pour envoyer le resultat au serveur
         var formData = new FormData();
         formData.append('file', files[i]);
         $.ajax({
-            url : '/v1/avatars/add',
+            url : '/v1/avatars/add/' + Cookies['id'],
             type : 'POST',
             data : formData,
             cache : false,
@@ -125,6 +119,8 @@ function updateAvatar(evt) {
                 var feedback = JSON.parse(jqXHR.responseText);
                 if (!feedback.success) {
                     alert("Impossible d'uploader votre avatar !\n" +  feedback.message);
+                } else {
+                    $("#avatar").attr("src", feedback.message + "?" + new Date().getTime());    
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -133,13 +129,11 @@ function updateAvatar(evt) {
         });
 
 
-        reader.readAsDataURL(files[i]);
     }
 }
 
 function updateName() {
 	
-	console.log("update Name");
 
 	var name = $("#newPseudo").val();
 	var name2 = $("#newPseudoConfirmation").val();
@@ -178,7 +172,6 @@ function updateName() {
 }
 
 function updateEmail() {
-	console.log("update Email");
 
 	var mail = $("#newMail").val();
 	var mail2 = $("#newMailConfirmation").val();
@@ -195,7 +188,6 @@ function updateEmail() {
 					$("#email_modal").modal('hide');
 					loadProfil();
 				} else {
-					console.log("else !!");
 					$("#errorEmail").empty();
 					$("#errorEmail").append(data.message);
 					$("#errorEmail").show();
@@ -217,7 +209,6 @@ function updateEmail() {
 }
 
 function updatePassword() {
-	console.log("update password");
 	
 	var oldPassword = $("#oldPassword").val();
 	var newPassword = $("#newPassword").val();
@@ -259,6 +250,10 @@ function showProfileInfo(data) {
 	$("#info_player").text("");
 
 	$("#info_player").append("<b> Pseudo :</b> " + data.user.name+"  ");
+
+    // Chargement de l'image de profil
+    $("#avatar").attr("src", "images/avatars/" + data.user.name + ".png");
+
 	$("#info_player").append("<input class='btn btn-default btn-xs' type='button' value='Modifier' id='pseudo_button'> <br> <br>");
 	$("#info_player").append("<b> Email :</b> " + data.user.email+"  ");
 	$("#info_player").append("<input class='btn btn-default btn-xs' type='button' value='Modifier' id='email_button'> <br> <br>");
