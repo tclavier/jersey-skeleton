@@ -109,6 +109,12 @@ body {
 	margin-right: 10px;
 }
 
+.profil_picture_search {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
 #row-theme {
     padding-top: 5px;
 }
@@ -148,9 +154,16 @@ body {
 	left: 0px;
 }
 
-.panel {
-	padding: 0;
+#list-editor .panel {
 	margin: 0;
+}
+
+#profile_pane .panel {
+	margin-right: 60px;
+}
+
+.panel {
+	padding: 0px;
 }
 
 .info {

@@ -43,7 +43,7 @@ public interface LevelListDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<LevelList> getAllLevelLists();
 	
-	@SqlQuery("SELECT count(*) as levelCount, id, idLevel, name from levelListAssociations INNER JOIN levelLists WHERE id=idList GROUP BY idList;")
+	@SqlQuery("SELECT count(*) as levelCount, id, idLevel, name, idAuthor from levelListAssociations INNER JOIN levelLists WHERE id=idList GROUP BY idList;")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<LevelList> getAllLevelListWithCount();
 	
