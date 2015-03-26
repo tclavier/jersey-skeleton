@@ -64,8 +64,11 @@ public class AvatarResource {
         int read = 0;
         byte[] bytes = new byte[1024];
         int size = 0;
-        
-        out = new FileOutputStream(new File(uploadedFileLocation));
+
+        File file = new File(uploadedFileLocation);
+        // On s'assure que le repertoire existe, sinon, on le crée
+        file.getParentFile().mkdirs();
+        out = new FileOutputStream(file);
 	    while ((read = uploadedInputStream.read(bytes)) != -1) {
 			size += read;
 			if (size > 42000)

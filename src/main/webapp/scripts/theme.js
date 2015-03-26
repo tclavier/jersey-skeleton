@@ -11,7 +11,7 @@ define(["jquery"],  function($) {
         this.themeId = 0;
 
         // Nombre de theme sur l'image
-        this.nbLine = 1;
+        this.nbLine = 2;
 
         // Nombre de colonne sur l'image des themes
         this.nbCol = 9;

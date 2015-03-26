@@ -91,8 +91,8 @@ $(document).ready(function() {
 	
 	function showProgressList(data) {
 		for(var i = 0 ; i < data.length ; i++) {
-			var list = $('#progress_list');
-			friendInfo.append('<a href="game.html?level=' + data.id + '">' + data.name + '</a>');
+			var progress_list = $('#progress_list');
+			progress_list.append('<a href="game.html?level=' + data[i].id + '">' + data[i].name + '</a><br />');
 		}
 	}
 	
@@ -137,7 +137,7 @@ $(document).ready(function() {
 			showFriendList(data);
 		});
 		
-		$.getJSON("v1/levelProgress/me/"+ Cookies["id"], function(date) {
+		$.getJSON("v1/levelProgress/me/"+ Cookies["id"], function(data) {
 			console.log(data);
 			showProgressList(data);
 		});
@@ -154,7 +154,7 @@ $(document).ready(function() {
 			showFriendList(data);
 		});
 		
-		$.getJSON("v1/levelProgress/"+ idUser, function(date) {
+		$.getJSON("v1/levelProgress/"+ idUser, function(data) {
 			console.log(data);
 			showProgressList(data);
 		});

@@ -10,6 +10,7 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
 import fr.iutinfo.beans.LeaderboardRow;
 import fr.iutinfo.beans.Level;
+import fr.iutinfo.beans.LevelInfo;
 import fr.iutinfo.beans.LevelProgress;
 
 public interface LevelProgressDao {
@@ -34,7 +35,7 @@ public interface LevelProgressDao {
 	
 	@SqlQuery("SELECT id, name FROM LevelProgress INNER JOIN levels WHERE idUser = :idUser AND idLevel = id")
     @RegisterMapperFactory(BeanMapperFactory.class)
-	List<Level> getFinishedLevels(@Bind("idUser") int idUser);
+	List<LevelInfo> getFinishedLevels(@Bind("idUser") int idUser);
 	
 	@SqlUpdate("drop table if exists LevelProgress")
 	void dropLevelProgessTable();
