@@ -4,7 +4,10 @@
 function isLoginRequiredPage() {
 	var page = location.pathname;
 
-	return page == "/options.html" || page == "/profile.html";
+	return page == "/options.html" 
+		|| page == "/profile.html"
+		|| page == "/editor.html"
+		|| page == "/chat.html";
 }
 
 
@@ -165,8 +168,10 @@ function setConnected(connected) {
 	if(sessionStorage.getItem("isConnected") == "true") {
 		$("#login_navbar").hide();
 		$("#info_profil_navbar").show();
+		$("#editor_bar").show();
 		getNotifCount();
 	} else {
+		$("#editor_bar").hide();
 		$("#info_profil_navbar").hide();
 		$("#login_navbar").show();
 
