@@ -177,6 +177,12 @@ $(window).resize(function() {
     // surtout parceque blockly provoque un evenement de resize
     // lorsqu'un bloc est déplacé
 	//if (game) game.updateDimensions();
-	$(".blocklySvg").attr("height", $("canvas").parent().height());
+    //var minHeight = $("#grid-container").height() + 20;//$("#grid-container").offset() + " " + $("#grid-container").height();
+    var minHeight = $("#max_instruction").offset().top - $("#grid-container").offset().top + 30;
+
+    var height = $("canvas").parent().height();
+
+   // console.log(minHeight + " " + height);
+    $(".blocklySvg").attr("height", Math.max(minHeight, height));
 
 });
