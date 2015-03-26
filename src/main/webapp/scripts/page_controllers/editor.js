@@ -284,7 +284,7 @@ function transpose(matrix) {
 	return transpo;
 }
 
-function loadLevelLists() {
+function loadLevelLists(selectLast) {
 	$("#levelList").empty();
 	$.getJSON("v1/levelLists/me/" + Cookies["id"], function(data) {
 		console.log(data);
@@ -292,8 +292,12 @@ function loadLevelLists() {
 			var item = $('<option value="' + data[i].id + '">' + data[i].name + '</option>');
 			item.appendTo("#levelList");
 		}
-		$('#levelList').val(data[data.length - 1].id);
 		checkLevel();
+		
+		if (selectLast)
+			$('#levelList').val(data[data.length - 1].id);
+		else
+			$('#levelList').val(window.sessionStorage.list);
 	});
 }
 
@@ -344,7 +348,8 @@ function createList() {
 			} else {
 				alert("Oh mince...");
 			}
-			loadLevelLists();
+			loadLevelLists(true);
+			
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('postUser error: ' + textStatus);
@@ -395,8 +400,6 @@ $(document).ready(function() {
 
 	canvasContainer = document.getElementById("canvasContainer");
 
-	loadSessionInfo();
-
 	gridCanvas.addEventListener("mousedown", function(event) {
 		gridCanvas.addEventListener("mousemove", doGridClick, false)
 		doGridClick(event);
@@ -411,7 +414,9 @@ $(document).ready(function() {
 	initSpinners();
 	centerCanvas();
 	
-	loadLevelLists();
+	loadLevelLists();	
+
+	loadSessionInfo();
 
 	$("#save_button").click(function(e) {
 		e.preventDefault();
