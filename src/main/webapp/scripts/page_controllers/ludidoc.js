@@ -29,7 +29,7 @@ $(document).ready(function() {
 							'<img src="' + instruction.imageUrl+ '" alt="' + name + '"/>' +
 						'</div>' +
 						'<div class="panel-body">' +
-						'<img src="' + instruction.animationUrl+ '" alt="' + name + '"/>' +
+						//'<img src="' + instruction.animationUrl+ '" alt="' + name + '"/>' +
 						instruction.description +
 						'</div>' +
 					'</div>'));
