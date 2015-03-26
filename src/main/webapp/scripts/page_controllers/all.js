@@ -120,7 +120,8 @@ $(document).ready(function() {
 
 });
 
-function loginUser(name, password) {
+function loginUser(name, password, redirect_url) {
+    console.log(name + " " + password);
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -136,6 +137,7 @@ function loginUser(name, password) {
 				// data.message contain uniq id for session
 				Cookies.create("id", data.message);
 				setConnected(true);
+                if (redirect_url) location.replace(redirect_url);
 			} else {
 				$('#login_send').popover({trigger : 'manual', title: 'Erreur', content : data.message, placement : 'bottom', animation : 'true'});
 				$('#login_send').popover('show');
