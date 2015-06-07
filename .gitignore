@@ -1,7 +1,11 @@
 *~
 *.swp
+# Eclipse
 .project
 .classpath
 .settings
 target/
+# Intellij
+.idea
+*.iml
 data.db
