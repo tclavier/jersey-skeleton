@@ -7,6 +7,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/userdb")
 @Produces(MediaType.APPLICATION_JSON)
@@ -16,10 +17,10 @@ public class UserDBResource {
 	public UserDBResource() {
 		try {
 			dao.createUserTable();
+			dao.insert("foo");
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
 		}
-		dao.insert("foo");
 	}
 	
 	@POST
@@ -32,11 +33,16 @@ public class UserDBResource {
 	@GET
 	@Path("/{name}")
 	public User getUser(@PathParam("name") String name) {
-		User out = dao.findByName(name);
-		if (out == null) {
+		User user = dao.findByName(name);
+		if (user == null) {
 			throw new WebApplicationException(404);
 		}
-		return out;
+		return user;
+	}
+
+	@GET
+	public List<User> getAllUsers() {
+		return dao.all();
 	}
 
 }
