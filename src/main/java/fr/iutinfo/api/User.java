@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.api;
 
 public class User {
 	private String name;

@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.api;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,16 +14,17 @@ import org.sqlite.SQLiteDataSource;
 
 @ApplicationPath("/v1/")
 public class App extends ResourceConfig {
-    
+
     public App() {
-      packages("fr.iutinfo");
-      register(LoggingFilter.class);
+        packages("fr.iutinfo");
+        register(LoggingFilter.class);
     }
 
     public static DBI dbi;
+
     static {
-      SQLiteDataSource ds = new SQLiteDataSource();
-      ds.setUrl("jdbc:sqlite:"+System.getProperty("java.io.tmpdir")+System.getProperty("file.separator")+"data.db");
-      dbi = new DBI(ds);
+        SQLiteDataSource ds = new SQLiteDataSource();
+        ds.setUrl("jdbc:sqlite:" + System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + "data.db");
+        dbi = new DBI(ds);
     }
 }

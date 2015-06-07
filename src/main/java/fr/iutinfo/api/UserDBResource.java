@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.api;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

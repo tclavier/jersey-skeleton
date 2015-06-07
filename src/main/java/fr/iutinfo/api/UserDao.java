@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.api;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;

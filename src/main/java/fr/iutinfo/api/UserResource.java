@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.api;
 
 import java.util.ArrayList;
 import java.util.HashMap;

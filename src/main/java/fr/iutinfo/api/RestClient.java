@@ -1,6 +1,5 @@
-package fr.iutinfo;
+package fr.iutinfo.api;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.client.ClientBuilder;
