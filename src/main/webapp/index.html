@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<title>Jersey Skeleton</title>
-		<meta charset='utf-8'>
-		<!-- jQuery -->
-		<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-		
-		<!-- bootstrap -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		
-		<!-- Code local -->
-		<script src="all.js"></script>
-	</head>
-	<body>
-		<div class="container">
-			<div class="row">
-				<input type="text" name="user" id="user" placeholder="Nom ?"/>
-				<div class="btn-group" role="group">
-					<button id="get" class="btn btn-default">Lire</button>
-					<button id="post" class="btn btn-primary">Sauver</button>
-					<button id="list" class="btn btn-warning">Lister</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="panel panel-info">
-					<div class="panel-heading">Réponse</div>
-	  				<div class="panel-body" id="reponse">
-	  				</div>
-				</div>
-			</div>	
-		</div>
-		<script type="text/javascript">
+<head>
+    <title>Jersey Skeleton</title>
+    <meta charset='utf-8'>
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Code local -->
+    <script src="all.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="user">Utilisateur RAM : </label>
+                <input type="text" name="user" id="user" placeholder="Nom ?" class="form-control"/>
+            </div>
+            <div class="btn-group" role="group">
+                <button id="get-ram" class="btn btn-default">Lire</button>
+                <button id="post-ram" class="btn btn-primary">Sauver</button>
+                <button id="list-ram" class="btn btn-warning">Lister</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="userdb">Utilisateur BDD : </label>
+                <input type="text" name="userdb" id="userdb" placeholder="Nom ?" class="form-control"/>
+            </div>
+            <div class="btn-group" role="group">
+                <button id="get-bdd" class="btn btn-default">Lire</button>
+                <button id="post-bdd" class="btn btn-primary">Sauver</button>
+                <button id="list-bdd" class="btn btn-warning">Lister</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 1em;">
+        <div class="panel panel-info">
+            <div class="panel-heading">Réponse</div>
+            <div class="panel-body" id="reponse">
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
 			$(document).ready(function() {
-				$("#get").click(function () {getUser($('#user').val())});
-				$("#post").click(function () {postUser($('#user').val())});
-				$("#list").click(function () {listUsers()});
+				$("#get-ram").click(function () {getUser($('#user').val())});
+				$("#post-ram").click(function () {postUser($('#user').val())});
+				$("#list-ram").click(function () {listUsers()});
+				$("#get-bdd").click(function () {getUserBdd($('#userdb').val())});
+				$("#post-bdd").click(function () {postUserBdd($('#userdb').val())});
+				$("#list-bdd").click(function () {listUsersBdd()});
 			});
-  		</script>
-	</body>
+</script>
+</body>
 </html>
