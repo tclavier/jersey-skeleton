@@ -16,7 +16,7 @@ import org.sqlite.SQLiteDataSource;
 public class App extends ResourceConfig {
 
     public App() {
-        packages("fr.iutinfo");
+        packages("fr.iutinfo.api");
         register(LoggingFilter.class);
     }
 

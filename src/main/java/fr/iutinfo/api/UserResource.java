@@ -22,6 +22,7 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
 	private static Map<Integer, User> users = new HashMap<>();
 	
@@ -56,7 +57,6 @@ public class UserResource {
 	}
 	
 	@PUT
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
 	public Response updateUser(@PathParam("id") int id, 
 			User user) {

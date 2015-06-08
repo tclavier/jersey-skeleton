@@ -28,5 +28,9 @@ public interface UserDao {
 	@RegisterMapperFactory(BeanMapperFactory.class)
 	List<User> all();
 
+	@SqlQuery("select * from users where id = :id")
+	@RegisterMapperFactory(BeanMapperFactory.class)
+	User findById(@Bind("id") int id);
+
 	void close();
 }
