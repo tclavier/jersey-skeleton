@@ -1,41 +1,36 @@
 package fr.iutinfo.api;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-
-import javax.ws.rs.core.Application;
-
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
 import org.junit.Test;
-import org.skife.jdbi.v2.DBI;
+
+import javax.ws.rs.core.Application;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class RestClientTest extends JerseyTest {
-    private static UserDao dao;
+    private static UserDao userDao;
 
-  @Override
-  protected Application configure() {
-      App app = new App();
-      DBI dbi = app.dbi;
-      dao = dbi.open(UserDao.class);
-    return new App();
-  }
+    @Override
+    protected Application configure() {
+        userDao = new App().dbi.open(UserDao.class);
+        return new App();
+    }
 
-  @Before
-  public void cleanupDb() {
-      dao.dropUserTable();
-      dao.createUserTable();
-  }
+    @Before
+    public void cleanupDb() {
+        userDao.dropUserTable();
+        userDao.createUserTable();
+    }
 
-  @Test
-  public void getUsers () {
-    int port = this.getPort();
-    String baseUrl = "http://localhost:"+port+"/user/";
-    RestClient client = new RestClient();
-    client.addUser(new User(0, "Thomas"),  baseUrl );
-    client.addUser(new User(0, "Yann"),  baseUrl );
-    List<User> users = client.getUrlAsUser(baseUrl );
-    assertEquals(2, users.size());
-  }
+    @Test
+    public void should_return_2_clients() {
+        String baseUrl = this.getBaseUri() + "/user/";
+        RestClient client = new RestClient();
+        client.addUser(new User(0, "Thomas"), baseUrl);
+        client.addUser(new User(0, "Yann"), baseUrl);
+        List<User> users = client.getUrlAsUser(baseUrl);
+        assertEquals(2, users.size());
+    }
 }
