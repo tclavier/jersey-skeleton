@@ -15,8 +15,8 @@ public class RestClientTest extends JerseyTest {
 
     @Override
     protected Application configure() {
-        userDao = new App().dbi.open(UserDao.class);
-        //return new App();
+        userDao = BDDFactory.getDbi().open(UserDao.class);
+        //return new Api();
         return new ResourceConfig(UserDBResource.class);
     }
 

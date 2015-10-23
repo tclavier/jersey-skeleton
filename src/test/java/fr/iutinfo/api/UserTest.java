@@ -18,7 +18,7 @@ import org.junit.Test;
 public class UserTest extends JerseyTest {
 	@Override
     protected Application configure() {
-        return new App();
+        return new Api();
     }
 
 	@Test

@@ -8,7 +8,7 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserDBResource {
-	private static UserDao dao = App.dbi.open(UserDao.class);
+	private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
 
 	public UserDBResource() {
 		try {

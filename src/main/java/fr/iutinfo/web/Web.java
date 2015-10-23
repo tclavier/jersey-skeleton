@@ -19,11 +19,5 @@ public class Web extends ResourceConfig {
         property(ServerProperties.TRACING, TracingConfig.ON_DEMAND.name());
     }
 
-    public static DBI dbi;
 
-    static {
-        SQLiteDataSource ds = new SQLiteDataSource();
-        ds.setUrl("jdbc:sqlite:" + System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + "data.db");
-        dbi = new DBI(ds);
-    }
 }

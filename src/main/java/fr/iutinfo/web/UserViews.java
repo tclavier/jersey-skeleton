@@ -1,6 +1,7 @@
 package fr.iutinfo.web;
 
 
+import fr.iutinfo.api.BDDFactory;
 import fr.iutinfo.api.*;
 import org.glassfish.jersey.server.mvc.Template;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.TEXT_HTML)
 public class UserViews {
-    private static UserDao dao = fr.iutinfo.api.App.dbi.open(UserDao.class);
+    private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
 
     @GET
     @Template

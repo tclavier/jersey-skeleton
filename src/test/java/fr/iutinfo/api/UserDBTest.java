@@ -11,7 +11,6 @@ import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
 import org.junit.Test;
-import org.skife.jdbi.v2.DBI;
 
 import java.util.List;
 
@@ -20,10 +19,8 @@ public class UserDBTest extends JerseyTest {
 	
 	@Override
     protected Application configure() {
-		App app = new App();
-		DBI dbi = app.dbi;
-		dao = dbi.open(UserDao.class);
-        return new App();
+		dao = BDDFactory.getDbi().open(UserDao.class);
+        return new Api();
     }
 	
 	@Before
