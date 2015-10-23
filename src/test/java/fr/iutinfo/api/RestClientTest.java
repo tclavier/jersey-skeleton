@@ -1,5 +1,6 @@
 package fr.iutinfo.api;
 
+import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,8 @@ public class RestClientTest extends JerseyTest {
     @Override
     protected Application configure() {
         userDao = new App().dbi.open(UserDao.class);
-        return new App();
+        //return new App();
+        return new ResourceConfig(UserDBResource.class);
     }
 
     @Before
@@ -26,7 +28,7 @@ public class RestClientTest extends JerseyTest {
 
     @Test
     public void should_return_2_clients() {
-        String baseUrl = this.getBaseUri() + "/user/";
+        String baseUrl = this.getBaseUri() + "/userdb/";
         RestClient client = new RestClient();
         client.addUser(new User(0, "Thomas"), baseUrl);
         client.addUser(new User(0, "Yann"), baseUrl);

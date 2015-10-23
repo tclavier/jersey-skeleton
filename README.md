@@ -7,6 +7,8 @@ Sur github :
 - modifier le nom du projet dans le pom
 
 ## Eclipse
+Plugin maven m2e depuis http://download.eclipse.org/releases/indigo/ puis import existing maven project
+
 WTP : http://download.eclipse.org/webtools/repository/indigo/
 * Web Tools Plateform 3.3.2 
   * JavaScript Development Tools
@@ -43,39 +45,5 @@ Pour lancer un serveur local
 
     mvn jetty:run
     
-# Création du projet depuis rien
-## Maven
-    
-    mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DgroupId=fr.iutinfo -DartifactId=jersey-skeleton
 
-## Init du git
-
-    cd jersey-skeleton
-    git init 
-    vi .gitignore
-    
-    *~
-    .project
-    .classpath
-    .settings
-
-
-    git add ....
-    git commit -m "Init empty project"
-    git remote add origin git@github.com:tclavier/jersey-skeleton.git
-    git push -u origin master
-
-## Init du projet
-
-modifier le pom pour avoir les bonnes versions de jUnit et java.
-
-- pour avoir junit 4.12
-- java 1.7
-
-# Eclipse
-
-- plugin maven m2e depuis http://download.eclipse.org/releases/indigo/
-- import existing maven project
-
-Dans le pom ajouter la dépendance jersey
 
