@@ -37,11 +37,15 @@ public class User {
 	}
 
 	@Override
-    public boolean equals(Object u) {
-		return name.equals(((User) u).name) && alias.equals(((User) u).alias);
+    public boolean equals(Object arg) {
+        if (getClass() != arg.getClass())
+            return false;
+        User user = (User) arg;
+        return name.equals(user.name) && alias.equals(user.alias);
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		return id + ": " + alias + ", " +name;
 	}
 

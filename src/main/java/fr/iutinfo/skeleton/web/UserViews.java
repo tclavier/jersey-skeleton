@@ -9,7 +9,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("user")
+@Path("/user")
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.TEXT_HTML)
 public class UserViews {
@@ -23,7 +23,7 @@ public class UserViews {
 
     @GET
     @Template(name = "detail")
-    @Path("{id}")
+    @Path("/{id}")
     public User getDetail(@PathParam("id") String id) {
         User user = dao.findById(Integer.parseInt(id));
         if (user == null) {

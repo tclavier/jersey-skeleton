@@ -16,7 +16,7 @@ public class Web extends ResourceConfig {
         packages("fr.iutinfo.skeleton.web");
         register(JspMvcFeature.class);
         // Tracing support.
-        property(ServerProperties.TRACING, TracingConfig.ON_DEMAND.name());
+        //property(ServerProperties.TRACING, TracingConfig.ON_DEMAND.name());
     }
 
 
