@@ -13,7 +13,7 @@ public class UserDBResource {
 	public UserDBResource() {
 		try {
 			dao.createUserTable();
-			dao.insert("foo");
+			dao.insert(new User(0,"Margaret Thatcher", "la Dame de fer"));
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
 		}
@@ -21,7 +21,7 @@ public class UserDBResource {
 	
 	@POST
 	public User createUser(User user) {
-		int id = dao.insert(user.getName());
+		int id = dao.insert(user);
 		user.setId(id);
 		return user;
 	}

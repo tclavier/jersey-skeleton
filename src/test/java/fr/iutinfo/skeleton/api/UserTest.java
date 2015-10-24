@@ -15,7 +15,7 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
 
-public class UserTest extends JerseyTest {
+public class UserTest extends HelperTest {
 	@Override
     protected Application configure() {
         return new Api();
@@ -45,7 +45,7 @@ public class UserTest extends JerseyTest {
 		User u = createUser("thomas");
 		u.setName("yann");
 		Response rep = target("/user").path("" + u.getId()).request()
-				.put(Entity.entity(u, MediaType.APPLICATION_JSON));;
+				.put(Entity.entity(u, MediaType.APPLICATION_JSON));
 		User updatedUser = rep.readEntity(User.class);
 		assertEquals("yann", updatedUser.getName());
 	}
@@ -54,7 +54,7 @@ public class UserTest extends JerseyTest {
 	public void testGetingSameUserTwice() {
 		User user1 = target("/user/foo").request().get(User.class);
 		User user2 = target("/user/foo").request().get(User.class);
-		assertEquals(user1, user2);
+		assertEquals(user1.toString(), user2.toString());
 	}
 	
 	@Test
@@ -68,12 +68,12 @@ public class UserTest extends JerseyTest {
 		createUser("toto");
 		createUser("titi");
 		List<User> users = target("/user/").request().get(new GenericType<List<User>>() {
-        });
+		});
 		assertTrue(users.size() >= 2);
 	}
 
 	@Test
-	public void testDeleteUser() {
+	public void after_delete_read_user_sould_return_202() {
 		User u = createUser("toto");
 		int status = target("/user/"+u.getId()).request().delete().getStatus();
         assertEquals(202, status);
@@ -87,18 +87,8 @@ public class UserTest extends JerseyTest {
         assertEquals("rms", user.getAlias());
     }
 
-	private User createUser(String name) {
-		User user = new User(0, name);
-		return postUser(user);
-	}
-
-	private User createUser(String name, String alias) {
-		User user = new User(0, name, alias);
-		return postUser(user);
-	}
-
-	private User postUser(User user) {
-		Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
-        return target("/user").request().post(userEntity).readEntity(User.class);
+	@Override
+	String getResouceUrl() {
+		return "/user";
 	}
 }

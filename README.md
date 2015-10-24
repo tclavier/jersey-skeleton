@@ -52,7 +52,7 @@ Pour lancer un serveur local
     
 # Autre à détailler
 
-C'est quoi une architecture REST ?
+C'est quoi une architecture REST ? exemple d'urls
 
 Client JS voir index.html et all.js
 
@@ -64,3 +64,10 @@ Construit depuis :
 Client Android
 
 JDBI
+
+SLF4J
+
+# TODO
+
+* Compléter la doc
+* 

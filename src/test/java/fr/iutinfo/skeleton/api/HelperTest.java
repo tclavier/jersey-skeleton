@@ -5,19 +5,21 @@ import org.glassfish.jersey.test.JerseyTest;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 
-public class HelperTest extends JerseyTest {
-    private User createUser(String name) {
+public abstract class HelperTest extends JerseyTest {
+    protected User createUser(String name) {
         User user = new User(0, name);
-        return postUser(user);
+        return doPost(user);
     }
 
-    private User createUser(String name, String alias) {
+    protected User createUser(String name, String alias) {
         User user = new User(0, name, alias);
-        return postUser(user);
+        return doPost(user);
     }
 
-    private User postUser(User user) {
+    private User doPost(User user) {
         Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
-        return target("/user").request().post(userEntity).readEntity(User.class);
+        return target(getResouceUrl()).request().post(userEntity).readEntity(User.class);
     }
+
+    abstract String getResouceUrl() ;
 }

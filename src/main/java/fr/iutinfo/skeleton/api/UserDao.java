@@ -1,21 +1,18 @@
 package fr.iutinfo.skeleton.api;
 
-import org.skife.jdbi.v2.sqlobject.Bind;
-import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
-import org.skife.jdbi.v2.sqlobject.SqlQuery;
-import org.skife.jdbi.v2.sqlobject.SqlUpdate;
+import org.skife.jdbi.v2.sqlobject.*;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
 import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
 import java.util.List;
 
 public interface UserDao {
-	@SqlUpdate("create table users (id integer primary key autoincrement, name varchar(100))")
+	@SqlUpdate("create table users (id integer primary key autoincrement, name varchar(100), alias varchar(100))")
 	void createUserTable();
 
-	@SqlUpdate("insert into users (name) values (:name)")
+	@SqlUpdate("insert into users (name,alias) values (:name, :alias)")
 	@GetGeneratedKeys
-	int insert(@Bind("name") String name);
+	int insert(@BindBean() User user);
 
 	@SqlQuery("select * from users where name = :name")
     @RegisterMapperFactory(BeanMapperFactory.class)
