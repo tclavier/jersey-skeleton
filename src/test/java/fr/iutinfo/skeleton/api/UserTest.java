@@ -44,8 +44,8 @@ public class UserTest extends JerseyTest {
 	public void testUpdateUserName() {
 		User u = createUser("thomas");
 		u.setName("yann");
-		Response rep = target("/user").path(""+u.getId()).request()
-				.put(Entity.entity(u,MediaType.APPLICATION_JSON));;
+		Response rep = target("/user").path("" + u.getId()).request()
+				.put(Entity.entity(u, MediaType.APPLICATION_JSON));;
 		User updatedUser = rep.readEntity(User.class);
 		assertEquals("yann", updatedUser.getName());
 	}
@@ -67,7 +67,8 @@ public class UserTest extends JerseyTest {
 	public void tesListAllUsers() {
 		createUser("toto");
 		createUser("titi");
-		List<User> users = target("/user/").request().get(new GenericType<List<User>>(){});
+		List<User> users = target("/user/").request().get(new GenericType<List<User>>() {
+        });
 		assertTrue(users.size() >= 2);
 	}
 
@@ -78,12 +79,26 @@ public class UserTest extends JerseyTest {
         assertEquals(202, status);
         
 	}
-	
+
+    @Test
+    public void read_user_richard_should_return_good_alias() {
+        createUser("richard stallman", "rms");
+        User user = target("/user/richard stallman").request().get(User.class);
+        assertEquals("rms", user.getAlias());
+    }
+
 	private User createUser(String name) {
 		User user = new User(0, name);
-	    Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
-		User savedUser = target("/user").request().post(userEntity).readEntity(User.class);
-		return savedUser;
+		return postUser(user);
 	}
-	
+
+	private User createUser(String name, String alias) {
+		User user = new User(0, name, alias);
+		return postUser(user);
+	}
+
+	private User postUser(User user) {
+		Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
+        return target("/user").request().post(userEntity).readEntity(User.class);
+	}
 }
