@@ -12,15 +12,15 @@ function getUserGeneric(name, url) {
 	});
 }
 
-function postUser(name) {
-    postUserGeneric(name, "v1/user/");
+function postUser(name, alias) {
+    postUserGeneric(name, alias, "v1/user/");
 }
 
-function postUserBdd(name) {
-    postUserGeneric(name, "v1/userdb/");
+function postUserBdd(name, alias) {
+    postUserGeneric(name, alias, "v1/userdb/");
 }
 
-function postUserGeneric(name, url) {
+function postUserGeneric(name, alias, url) {
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -28,6 +28,7 @@ function postUserGeneric(name, url) {
 		dataType : "json",
 		data : JSON.stringify({
 			"name" : name,
+			"alias" : alias,
 			"id" : 0
 		}),
 		success : function(data, textStatus, jqXHR) {
@@ -55,14 +56,14 @@ function listUsersGeneric(url) {
 
 function afficheUser(data) {
 	console.log(data);
-	$("#reponse").html(data.id + " : " + data.name);
+	$("#reponse").html(data.id + " : <b>" + data.alias + "</b> (" + data.name + ")");
 }
 
 function afficheListUsers(data) {
 	var html = '<ul>';
 	var index = 0;
 	for (index = 0; index < data.length; ++index) {
-		html = html + "<li>"+ data[index].id +" : " + data[index].name + "</li>";
+		html = html + "<li>"+ data[index].name + "</li>";
 	}
 	html = html + "</ul>";
 	$("#reponse").html(html);

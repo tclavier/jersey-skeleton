@@ -6,7 +6,7 @@
 .settings
 target/
 # Intellij
-.idea
+.idea/
 *.iml
 # database file
 data.db

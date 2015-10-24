@@ -31,6 +31,7 @@
             <div class="form-group">
                 <label for="user">Utilisateur en mémoire : </label>
                 <input type="text" name="user" id="user" placeholder="Nom ?" class="form-control"/>
+                <input type="text" name="user" id="alias" placeholder="Surnom ?" class="form-control"/>
             </div>
             <div class="btn-group" role="group">
                 <button id="get-ram" class="btn btn-default">Lire</button>
@@ -42,6 +43,7 @@
             <div class="form-group">
                 <label for="userdb">Utilisateur BDD : </label>
                 <input type="text" name="userdb" id="userdb" placeholder="Nom ?" class="form-control"/>
+                <input type="text" name="user" id="aliasdb" placeholder="Surnom ?" class="form-control"/>
             </div>
             <div class="btn-group" role="group">
                 <button id="get-bdd" class="btn btn-default">Lire</button>
@@ -60,11 +62,11 @@
 </div>
 <script type="text/javascript">
 			$(document).ready(function() {
-				$("#get-ram").click(function () {getUser($('#user').val())});
-				$("#post-ram").click(function () {postUser($('#user').val())});
+				$("#get-ram").click(function () {getUser($('#user').val(), $('#alias').val())});
+				$("#post-ram").click(function () {postUser($('#user').val(), $('#alias').val())});
 				$("#list-ram").click(function () {listUsers()});
-				$("#get-bdd").click(function () {getUserBdd($('#userdb').val())});
-				$("#post-bdd").click(function () {postUserBdd($('#userdb').val())});
+				$("#get-bdd").click(function () {getUserBdd($('#userdb').val(), $('#aliasdb').val())});
+				$("#post-bdd").click(function () {postUserBdd($('#userdb').val(), $('#aliasdb').val())});
 				$("#list-bdd").click(function () {listUsersBdd()});
 			});
 
