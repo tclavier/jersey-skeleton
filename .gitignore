@@ -8,4 +8,5 @@ target/
 # Intellij
 .idea
 *.iml
+# database file
 data.db

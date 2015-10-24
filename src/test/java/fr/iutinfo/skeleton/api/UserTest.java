@@ -1,4 +1,4 @@
-package fr.iutinfo.api;
+package fr.iutinfo.skeleton.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

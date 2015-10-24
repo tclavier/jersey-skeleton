@@ -1,4 +1,4 @@
-package fr.iutinfo.api;
+package fr.iutinfo.skeleton.api;
 
 public class User {
 	private String name;

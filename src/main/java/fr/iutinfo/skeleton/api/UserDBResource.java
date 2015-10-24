@@ -1,4 +1,4 @@
-package fr.iutinfo.api;
+package fr.iutinfo.skeleton.api;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

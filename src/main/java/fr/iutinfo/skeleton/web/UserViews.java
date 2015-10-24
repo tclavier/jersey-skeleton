@@ -1,8 +1,8 @@
-package fr.iutinfo.web;
+package fr.iutinfo.skeleton.web;
 
 
-import fr.iutinfo.api.BDDFactory;
-import fr.iutinfo.api.*;
+import fr.iutinfo.skeleton.api.BDDFactory;
+import fr.iutinfo.skeleton.api.*;
 import org.glassfish.jersey.server.mvc.Template;
 
 import javax.ws.rs.*;
@@ -18,8 +18,6 @@ public class UserViews {
     @GET
     @Template
     public List<User> getAll() {
-        dao.insert("thomas");
-        dao.insert("yann");
         return dao.all();
     }
 

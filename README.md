@@ -27,6 +27,7 @@ WTP : http://download.eclipse.org/webtools/repository/indigo/
 Pour lancer le projet sur la machine du développeur et visiter les pages web sur http://localhost:8080/
 
 modifier le pom pour ajouter jetty-maven-plugin :
+
     <project>
       ...
       <build>
@@ -38,12 +39,28 @@ modifier le pom pour ajouter jetty-maven-plugin :
             <artifactId>jetty-maven-plugin</artifactId>
             <version>9.3.0.M1</version>
           </plugin>
+          ...
         </plugins>
+        ...
       </build>
+      ...
+    </project>
 
 Pour lancer un serveur local
 
     mvn jetty:run
     
+# Autre à détailler
 
+C'est quoi une architecture REST ?
 
+Client JS voir index.html et all.js
+
+MVC template : http://localhost:8080/html/user
+Construit depuis : 
+- src/main/webapp/fr/iutinfo/skeleton/web/UserViews/index.jsp 
+- src/main/java/fr/iutinfo/skeleton/web/UserViews.java
+
+Client Android
+
+JDBI
