@@ -28,7 +28,7 @@ public class RestClientTest extends JerseyTest {
 
     @Test
     public void should_return_2_clients() {
-        String baseUrl = this.getBaseUri() + "/userdb/";
+        String baseUrl = this.getBaseUri() + "userdb/";
         RestClient client = new RestClient();
         client.addUser(new User(0, "Thomas"), baseUrl);
         client.addUser(new User(0, "Yann"), baseUrl);
