@@ -7,16 +7,18 @@ Sur Github :
 
 # Installation de Maven
 ## Prérequis
+### Java 1.7
 Vous devez avoir un Java 1.7 minimum d'installer sur votre ordinateur.
 
-Pour ubuntu/debian :
+Pour ubuntu ou debian :
 
     sudo apt-get install openjdk-7-jdk
 
 Pour Windows : https://www.java.com/fr/download/
 
-## Ubuntu/Debian
-Pour installer maven, vous pouvez installer le paquet mvn directement depuis les dépots officiels :
+### Maven
+#### Linux
+Pour installer maven depuis ubuntu ou debian, vous pouvez installer le paquet mvn directement depuis les dépots officiels :
 
     sudo apt-get install mvn
 
@@ -27,7 +29,7 @@ mkdir $HOME/.m2
 touch $HOME/.m2/settings.xml
 ```
 
-Modifier ce fichier settings.xml avec votre éditeur préféré (Emacs) et copiez y cette configuration :
+Modifier ce fichier settings.xml avec votre éditeur préféré (Emacs / vim) et copiez cette configuration :
 
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -54,7 +56,7 @@ Pour vérifier votre installation, ouvrez un terminal et taper :
 
 **/!\ Si vous n'êtes pas sur les ordinateurs de l'IUT, ou sur le réseau WIFI de Lille1, passer le paramètre proxy.active à "false" !**
 
-## Windows
+#### Windows
 Télécharger l'archive maven sur le site officiel : http://maven.apache.org/download.cgi
 
 Décompressez l'archive dans le répertoire où vous souhaitez installer maven.
@@ -135,6 +137,5 @@ Pour lancer un serveur local
 ## Liens utiles
 - Documentation de Jersey :https://jersey.java.net/documentation/latest/index.html  
 - Explication de JAX-RS avec Jersey : http://coenraets.org/blog/2011/12/restful-services-with-jquery-and-java-using-jax-rs-and-jersey/
-* Aide sur les IHM en java avec Jersey : http://thierry-leriche-dessirier.developpez.com/tutoriels/java/client-swing-menus-filtres-rest-service/
-* Framework HTML/CSS/JS Bootstrap : http://getbootstrap.com/
-* Moteur de template : http://www.stringtemplate.org/
+- Aide sur les IHM en java avec Jersey : http://thierry-leriche-dessirier.developpez.com/tutoriels/java/client-swing-menus-filtres-rest-service/
+- Framework HTML/CSS/JS Bootstrap : http://getbootstrap.com/
