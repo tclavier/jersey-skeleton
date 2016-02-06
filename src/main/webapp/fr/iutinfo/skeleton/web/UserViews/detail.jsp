@@ -6,30 +6,23 @@
   <head>
     <meta charset="utf-8">
     <title>User : ${it.name}</title>
-    <!-- jQuery -->
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <jsp:include page="/layout/head.jsp"/>
   </head>
   <body>
-    <nav class="navbar navbar-default">
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="/">Javascript</a></li>
-          <li class="active"><a href="/html/user">MVC Template (jsp)</a></li>
-        </ul>
-      </div>
-    </nav>
+    <jsp:include page="/layout/navbar.jsp"/>
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <h1>${it.name}</h1>
-          id : ${it.id} <br/>
-          alias : ${it.alias} <br/>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Détail du "User"</h3>
+              </div>
+              <div class="panel-body">
+                Nom : ${it.name}<br/>
+                Id : ${it.id}<br/>
+                alias : ${it.alias} <br/>
+              </div>
+            </div>
         </div>
       </div>
     </div>
