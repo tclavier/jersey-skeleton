@@ -1,4 +1,6 @@
-package fr.iutinfo.skeleton.api;
+package fr.iutinfo.skeleton.utils;
+
+import fr.iutinfo.skeleton.api.User;
 
 import java.util.List;
 

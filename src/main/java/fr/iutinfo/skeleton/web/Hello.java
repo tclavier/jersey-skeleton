@@ -1,4 +1,4 @@
-package fr.iutinfo.skeleton.api;
+package fr.iutinfo.skeleton.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;

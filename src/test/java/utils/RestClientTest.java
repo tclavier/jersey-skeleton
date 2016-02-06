@@ -1,5 +1,10 @@
-package fr.iutinfo.skeleton.api;
+package utils;
 
+import fr.iutinfo.skeleton.api.BDDFactory;
+import fr.iutinfo.skeleton.api.User;
+import fr.iutinfo.skeleton.api.UserDBResource;
+import fr.iutinfo.skeleton.api.UserDao;
+import fr.iutinfo.skeleton.utils.RestClient;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
