@@ -11,7 +11,6 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
 
@@ -23,7 +22,7 @@ public class UserTest extends HelperTest {
 
 	@Test
 	public void testReadUserWithNameFooAsJsonString() {
-		createUser("foo");
+		createUserWithAlias("foo");
 		String json = target("/user/foo").request().get(String.class);
 		assertTrue(json.contains("\"name\":\"foo\""));
 	}
@@ -36,13 +35,13 @@ public class UserTest extends HelperTest {
 	
 	@Test
 	public void testCreateUserMustReturnUserWithId() {
-		User savedUser = createUser("thomas");
+		User savedUser = createUserWithAlias("thomas");
 		assertTrue(savedUser.getId() > 0);
 	}
 
 	@Test
 	public void testUpdateUserName() {
-		User u = createUser("thomas");
+		User u = createUserWithAlias("thomas");
 		u.setName("yann");
 		Response rep = target("/user").path("" + u.getId()).request()
 				.put(Entity.entity(u, MediaType.APPLICATION_JSON));
@@ -65,8 +64,8 @@ public class UserTest extends HelperTest {
 	
 	@Test
 	public void tesListAllUsers() {
-		createUser("toto");
-		createUser("titi");
+		createUserWithAlias("toto");
+		createUserWithAlias("titi");
 		List<User> users = target("/user/").request().get(new GenericType<List<User>>() {
 		});
 		assertTrue(users.size() >= 2);
@@ -74,7 +73,7 @@ public class UserTest extends HelperTest {
 
 	@Test
 	public void after_delete_read_user_sould_return_202() {
-		User u = createUser("toto");
+		User u = createUserWithAlias("toto");
 		int status = target("/user/"+u.getId()).request().delete().getStatus();
         assertEquals(202, status);
         
@@ -82,7 +81,7 @@ public class UserTest extends HelperTest {
 
     @Test
     public void read_user_richard_should_return_good_alias() {
-        createUser("richard stallman", "rms");
+        createUserWithAlias("richard stallman", "rms");
         User user = target("/user/richard stallman").request().get(User.class);
         assertEquals("rms", user.getAlias());
     }

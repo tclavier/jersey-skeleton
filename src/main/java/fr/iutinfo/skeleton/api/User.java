@@ -4,6 +4,7 @@ public class User {
 	private String name;
 	private String alias;
 	private int id = 0;
+	private String email;
 
 	public User(int id, String name) {
 		this.id = id;
@@ -17,9 +18,17 @@ public class User {
     }
 
 	public User() {
-		
+
 	}
-	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -41,12 +50,12 @@ public class User {
         if (getClass() != arg.getClass())
             return false;
         User user = (User) arg;
-        return name.equals(user.name) && alias.equals(user.alias);
+        return name.equals(user.name) && alias.equals(user.alias) && email.equals(user.email);
 	}
 
 	@Override
     public String toString() {
-		return id + ": " + alias + ", " +name;
+		return id + ": " + alias + ", " +name + " <"+email+">";
 	}
 
 	public String getAlias() {

@@ -6,13 +6,19 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 
 public abstract class HelperTest extends JerseyTest {
-    protected User createUser(String name) {
+    protected User createUserWithAlias(String name) {
         User user = new User(0, name);
         return doPost(user);
     }
 
-    protected User createUser(String name, String alias) {
+    protected User createUserWithAlias(String name, String alias) {
         User user = new User(0, name, alias);
+        return doPost(user);
+    }
+
+    protected User createUserWithEmail(String name, String email) {
+        User user = new User(0, name);
+        user.setEmail(email);
         return doPost(user);
     }
 
@@ -21,5 +27,5 @@ public abstract class HelperTest extends JerseyTest {
         return target(getResouceUrl()).request().post(userEntity).readEntity(User.class);
     }
 
-    abstract String getResouceUrl() ;
+    abstract String getResouceUrl();
 }

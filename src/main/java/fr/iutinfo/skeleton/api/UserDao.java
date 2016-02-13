@@ -7,10 +7,10 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 import java.util.List;
 
 public interface UserDao {
-	@SqlUpdate("create table users (id integer primary key autoincrement, name varchar(100), alias varchar(100))")
+	@SqlUpdate("create table users (id integer primary key autoincrement, name varchar(100), alias varchar(100), email varchar(100))")
 	void createUserTable();
 
-	@SqlUpdate("insert into users (name,alias) values (:name, :alias)")
+	@SqlUpdate("insert into users (name,alias,email) values (:name, :alias, :email)")
 	@GetGeneratedKeys
 	int insert(@BindBean() User user);
 
