@@ -124,15 +124,56 @@ Pour lancer un serveur local
 
 # Informations diverses
 ## Point de cours
-- C'est quoi une architecture REST ?
-- Exemple d'un client JavaScript dans src/webapp/all.js et index.html
-- Exemple de template MVC :http://localhost:8080/html/user
-  - Construit depuis : 
-    - src/main/webapp/fr/iutinfo/skeleton/web/UserViews/index.jsp 
-    - src/main/java/fr/iutinfo/skeleton/web/UserViews.java
+
+Ce squelette d'application construit une API et 2 types d'interfaces :
+- L'api au centre permet de manipuler l'ensemble des données
+- Une interface graphique en javascript exploitant l'API
+- Une interface graphique en html généré par le serveur
+- Dans le projet android-skeleton, une interface graphique android.
+
+### REST
+
+Dans une architechture [REST](https://fr.wikipedia.org/wiki/Representational_State_Transfer) chaque ressource est accessible par une unique URL, ce sont les verbes HTTP qui définissent les actions à faire sur une ressource.
+
+Pour des ressources simples, le schéma est le suivant : 
+
+| Verbe | URL | Action |
+|-------|-----|--------|
+| POST  | /foo | création d'un Foo |
+| GET   | /foo | liste tous les Foo |
+| GET   | /foo/{id} | lecture du Foo {id} |
+| PUT   | /foo/{id} | met à jour le Foo identifié par {id} |
+| DELETE| /foo/{id} | supprime le Foo identifié par {id} |
+
+Pour des ressources composées, les URLs vont définir le contexte, par exemple : /user/{id_user}/tel/{id_tel} pour accéder au téléphone {id_tel} de l'utilisateur {id_user}
+
+### Api
+
+Dans le package fr.iutinfo.skeleton.api vous trouverez l'ensemble des classes de l'api
+- Api : le point d'entrée des requêtes vers les url commençant par http://localhost:8080/v1/ la directive `packages("fr.iutinfo.skeleton.api");` permet d'enregistrer toutes les classes de ressources du package.
+- UserResource : match les urls de la forme http://localhost:8080/v1/user et permet de manipuler des ressources en mémoire de type User
+- UserDBResource : match les urls de la forme http://localhost:8080/v1/userdb et permet de manipuler des ressources en base de données de type User
+- UserDao : permet de lire et d'écrire en base des "User"
+- User : la classe métier utilisé dans cet exemple
+- BDDFactory : permet d'obtenir un accès à la base de données.
+ 
+### Javascript
+
+Dans `src/webapp/all.js` et `src/webapp/index.html` vous trouverez un exemple d'interface grahique en javascript mis en forme avec bootstrap.
+    
+### Html
+
+Le plugin template MVC de jersey permet de générer du html depuis divers fichiers.
+Les pages http://localhost:8080/html/user sont construites depuis : 
+- src/main/webapp/fr/iutinfo/skeleton/web/UserViews/index.jsp
+- src/main/java/fr/iutinfo/skeleton/web/UserViews.java
+
+Notez l'include qui est fait vers `src/main/webapp/layout/head.jsp` afin de factoriser le code de présentation.
+
+### Todo 
 - Exemple Android : TODO
-- C'est quoi JDBI : TODO
-- C'est quoi SLF4J : TODO
+- JDBI : TODO
+- SLF4J : TODO
 
 ## Liens utiles
 - Documentation de Jersey :https://jersey.java.net/documentation/latest/index.html  
