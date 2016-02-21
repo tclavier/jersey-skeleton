@@ -3,11 +3,15 @@ package fr.iutinfo.skeleton.api;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.Principal;
 import java.security.SecureRandom;
 
 public class User implements Principal {
+    final static Logger logger = LoggerFactory.getLogger(User.class);
+
     private String name;
     private String alias;
     private int id = 0;

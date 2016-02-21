@@ -11,7 +11,6 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
 
@@ -22,23 +21,27 @@ public class AuthFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext containerRequest) throws WebApplicationException {
-        String auth = containerRequest.getHeaderString("authorization");
+        String auth = containerRequest.getHeaderString(HttpHeaders.AUTHORIZATION);
+        String scheme = containerRequest.getUriInfo().getRequestUri().getScheme();
         logger.debug("auth : " + auth);
-        User user = new User(0, "Anonymous");
+        User defaultUser = new User(0, "Anonymous");
 
         if (auth != null) {
             String[] loginPassword = BasicAuth.decode(auth);
+            logger.debug("login : " + loginPassword[0]);
+            logger.debug("password : " + loginPassword[1]);
             if (loginPassword == null || loginPassword.length != 2) {
                 throw new WebApplicationException(Status.NOT_ACCEPTABLE);
             }
 
             UserDao dao = BDDFactory.getDbi().open(UserDao.class);
-            user = dao.findByName(loginPassword[0]);
+            User user = dao.findByName(loginPassword[0]);
             if (!user.isGoodPassword(loginPassword[1])) {
                 throw new WebApplicationException(Status.UNAUTHORIZED);
             }
+            containerRequest.setSecurityContext(new AppSecurityContext(user, scheme));
+        } else {
+            containerRequest.setSecurityContext(new AppSecurityContext(defaultUser, scheme));
         }
-        String scheme = containerRequest.getUriInfo().getRequestUri().getScheme();
-        containerRequest.setSecurityContext(new AppSecurityContext(user, scheme));
     }
 }

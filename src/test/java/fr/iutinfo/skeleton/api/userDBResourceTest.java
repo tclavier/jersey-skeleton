@@ -50,9 +50,8 @@ public class userDBResourceTest extends HelperTest {
 
     @Test
     public void read_user_should_return_user_with_same_salt() {
-        User mark = new User(0,"Mark Shuttleworth");
-        String expectedSalt = mark.getSalt();
-        doPost(mark);
+        String expectedSalt = "graindesel";
+        createUserWithPassword("Mark Shuttleworth", "motdepasse", expectedSalt);
         User user = target("/userdb/Mark Shuttleworth").request().get(User.class);
         assertEquals(expectedSalt, user.getSalt());
     }
@@ -91,7 +90,7 @@ public class userDBResourceTest extends HelperTest {
     }
 
     @Override
-    String getResouceUrl() {
+    String getCreateUserResouceUrl() {
         return "/userdb";
     }
 }

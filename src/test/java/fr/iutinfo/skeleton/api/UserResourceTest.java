@@ -87,7 +87,7 @@ public class UserResourceTest extends HelperTest {
     }
 
 	@Override
-	String getResouceUrl() {
+	String getCreateUserResouceUrl() {
 		return "/user";
 	}
 }

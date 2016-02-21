@@ -36,8 +36,8 @@ public abstract class HelperTest extends JerseyTest {
 
     protected User doPost(User user) {
         Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
-        return target(getResouceUrl()).request().post(userEntity).readEntity(User.class);
+        return target(getCreateUserResouceUrl()).request().post(userEntity).readEntity(User.class);
     }
 
-    abstract String getResouceUrl();
+    abstract String getCreateUserResouceUrl();
 }
