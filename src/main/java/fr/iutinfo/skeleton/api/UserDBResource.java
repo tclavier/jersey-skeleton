@@ -22,7 +22,7 @@ public class UserDBResource {
 	@POST
 	public User createUser(User user) {
 		int id = dao.insert(user);
-		user.setId(id);
+        user.setId(id);
 		return user;
 	}
 
