@@ -7,6 +7,7 @@ import org.glassfish.jersey.server.mvc.Template;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/user")
@@ -27,7 +28,7 @@ public class UserViews {
     public User getDetail(@PathParam("id") String id) {
         User user = dao.findById(Integer.parseInt(id));
         if (user == null) {
-            throw new WebApplicationException(404);
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
         return user;
     }

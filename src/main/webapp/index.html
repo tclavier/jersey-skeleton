@@ -44,6 +44,7 @@
                 <label for="userdb">Utilisateur en base de données : </label>
                 <input type="text" name="userdb" id="userdb" placeholder="Nom ?" class="form-control"/>
                 <input type="text" name="user" id="aliasdb" placeholder="Surnom ?" class="form-control"/>
+                <input type="password" name="user" id="passwddb" class="form-control"/>
             </div>
             <div class="btn-group" role="group">
                 <button id="get-bdd" class="btn btn-default">Lire</button>
@@ -66,7 +67,7 @@
 				$("#post-ram").click(function () {postUser($('#user').val(), $('#alias').val())});
 				$("#list-ram").click(function () {listUsers()});
 				$("#get-bdd").click(function () {getUserBdd($('#userdb').val(), $('#aliasdb').val())});
-				$("#post-bdd").click(function () {postUserBdd($('#userdb').val(), $('#aliasdb').val())});
+				$("#post-bdd").click(function () {postUserBdd($('#userdb').val(), $('#aliasdb').val(), $('#passwddb').val())});
 				$("#list-bdd").click(function () {listUsersBdd()});
 			});
 

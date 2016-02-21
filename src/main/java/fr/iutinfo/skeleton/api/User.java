@@ -12,6 +12,7 @@ public class User implements Principal {
     private String alias;
     private int id = 0;
     private String email;
+    private String password;
     private String passwdHash;
     private String salt;
 
@@ -55,9 +56,24 @@ public class User implements Principal {
 
 
     public void setPassword(String password) {
+        String hash = buildHash(password, getSalt());
+        passwdHash = hash;
+        this.password = password;
+    }
+
+    public String getPassword () {
+        return this.password;
+    }
+
+    private String buildHash(String password, String s) {
         Hasher hasher = Hashing.md5().newHasher();
-        hasher.putString(password + getSalt(), Charsets.UTF_8);
-        passwdHash = hasher.hash().toString();
+        hasher.putString(password + s, Charsets.UTF_8);
+        return hasher.hash().toString();
+    }
+
+    public boolean isGoodPassword(String password) {
+        String hash = buildHash(password, getSalt());
+        return hash.equals(getPasswdHash());
     }
 
     public String getPasswdHash() {
@@ -105,5 +121,9 @@ public class User implements Principal {
         Hasher hasher = Hashing.md5().newHasher();
         hasher.putLong(random.nextLong());
         return hasher.hash().toString();
+    }
+
+    public void resetPasswordHash() {
+        setPassword(getPassword());
     }
 }

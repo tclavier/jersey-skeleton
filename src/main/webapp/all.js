@@ -13,14 +13,14 @@ function getUserGeneric(name, url) {
 }
 
 function postUser(name, alias) {
-    postUserGeneric(name, alias, "v1/user/");
+    postUserGeneric(name, alias, "", "v1/user/");
 }
 
-function postUserBdd(name, alias) {
-    postUserGeneric(name, alias, "v1/userdb/");
+function postUserBdd(name, alias, pwd) {
+    postUserGeneric(name, alias, pwd, "v1/userdb/");
 }
 
-function postUserGeneric(name, alias, url) {
+function postUserGeneric(name, alias, pwd, url) {
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -29,6 +29,7 @@ function postUserGeneric(name, alias, url) {
 		data : JSON.stringify({
 			"name" : name,
 			"alias" : alias,
+			"password" : pwd,
 			"id" : 0
 		}),
 		success : function(data, textStatus, jqXHR) {
