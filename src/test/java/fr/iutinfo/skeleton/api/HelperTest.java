@@ -1,12 +1,15 @@
 package fr.iutinfo.skeleton.api;
 
 import org.glassfish.jersey.test.JerseyTest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
-import java.security.NoSuchAlgorithmException;
 
 public abstract class HelperTest extends JerseyTest {
+    final static Logger logger = LoggerFactory.getLogger(HelperTest.class);
+
     protected User createUserWithName(String name) {
         User user = new User(0, name);
         return doPost(user);
@@ -27,8 +30,10 @@ public abstract class HelperTest extends JerseyTest {
         User user = new User(0, name);
         user.setSalt(salt);
         user.setPassword(passwd);
+        logger.debug("createUserWithPassword Hash : " + user.getPasswdHash());
         return doPost(user);
     }
+
     protected User doPost(User user) {
         Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
         return target(getResouceUrl()).request().post(userEntity).readEntity(User.class);

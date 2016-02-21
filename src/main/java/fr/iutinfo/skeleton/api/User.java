@@ -124,6 +124,8 @@ public class User implements Principal {
     }
 
     public void resetPasswordHash() {
-        setPassword(getPassword());
+        if (password != null && ! password.isEmpty()) {
+            setPassword(getPassword());
+        }
     }
 }

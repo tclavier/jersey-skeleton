@@ -1,5 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -9,8 +12,10 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserDBResource {
 	private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+    final static Logger logger = LoggerFactory.getLogger(UserDBResource.class);
 
-	public UserDBResource() {
+
+    public UserDBResource() {
 		try {
 			dao.createUserTable();
 			dao.insert(new User(0,"Margaret Thatcher", "la Dame de fer"));
@@ -21,7 +26,8 @@ public class UserDBResource {
 	
 	@POST
 	public User createUser(User user) {
-		int id = dao.insert(user);
+        user.resetPasswordHash();
+        int id = dao.insert(user);
         user.setId(id);
 		return user;
 	}
