@@ -13,16 +13,40 @@ function getUserGeneric(name, url) {
 }
 
 function getForAll() {
-	$.getJSON("v1/secure/forall", function(data) {
-		afficheUser(data);
-	});
+	getSecure("v1/secure/forall");
 }
 
 function getForLogged() {
-	$.getJSON("v1/secure/onlylogged", function(data) {
-		afficheUser(data);
-	});
+	getSecure("v1/secure/onlylogged");
 }
+
+function getByAnnotation() {
+	getSecure("v1/secure/byannotation");
+}
+
+ function getSecure(url) {
+ if($("#userlogin").val() != "") {
+     $.ajax
+     ({
+       type: "GET",
+       url: url,
+       dataType: 'json',
+       beforeSend : function(req) {
+        req.setRequestHeader("Authorization", "Basic " + btoa($("#userlogin").val() + ":" + $("#passwdlogin").val()));
+       },
+       success: function (data){
+        afficheUser(data)
+       },
+       error : function(jqXHR, textStatus, errorThrown) {
+       			alert('error: ' + textStatus);
+       		}
+     });
+     } else {
+     $.getJSON(url, function(data) {
+     	    afficheUser(data);
+        });
+     }
+ }
 
 function postUser(name, alias) {
     postUserGeneric(name, alias, "", "v1/user/");
