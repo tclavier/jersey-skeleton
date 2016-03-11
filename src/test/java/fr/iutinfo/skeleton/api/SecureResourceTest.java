@@ -27,17 +27,17 @@ public class SecureResourceTest extends HelperTest {
     }
 
     @Test
+    public void should_return_annonymous_user_without_header() {
+        User utilisateur = target("/secure/forall").request().get(User.class);
+        assertEquals("Anonymous", utilisateur.getName());
+    }
+
+    @Test
     public void should_return_current_user_with_authorization_header_for_only_logged_ressource() {
         createUserWithPassword("tclavier", "motdepasse", "graindesel");
         String authorization = "Basic " + Base64.encodeAsString("tclavier:motdepasse");
         User utilisateur = target("/secure/onlylogged").request().header(AUTHORIZATION, authorization).get(User.class);
         assertEquals("tclavier", utilisateur.getName());
-    }
-
-    @Test
-    public void should_return_annonymous_user_without_header() {
-        User utilisateur = target("/secure/forall").request().get(User.class);
-        assertEquals("Anonymous", utilisateur.getName());
     }
 
     @Test
@@ -47,6 +47,21 @@ public class SecureResourceTest extends HelperTest {
         String wwwHeader = response.getHeaderString(HttpHeaders.WWW_AUTHENTICATE);
         assertEquals(UNAUTHORIZED.getStatusCode(), status);
         assertEquals("Basic realm=\"Mon application\"", wwwHeader);
+    }
+
+    @Test
+    public void should_return_current_user_with_authorization_header_for_ressource_filter_by_annotation() {
+        createUserWithPassword("tclavier", "motdepasse", "graindesel");
+        String authorization = "Basic " + Base64.encodeAsString("tclavier:motdepasse");
+        User utilisateur = target("/secure/byannotation").request().header(AUTHORIZATION, authorization).get(User.class);
+        assertEquals("tclavier", utilisateur.getName());
+    }
+
+    @Test
+    public void should_return_forbiden_headers_without_header_for_ressource_filter_by_annotation() {
+        Response response = target("/secure/byannotation").request().get();
+        int status = response.getStatus();
+        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), status);
     }
 
     @Override

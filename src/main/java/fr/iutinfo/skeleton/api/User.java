@@ -132,4 +132,8 @@ public class User implements Principal {
             setPassword(getPassword());
         }
     }
+
+    public boolean isInUserGroup(){
+        return !getName().equals("Anonymous");
+    }
 }
