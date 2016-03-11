@@ -1,5 +1,6 @@
 package fr.iutinfo.skeleton.api;
 
+import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,38 +13,37 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class userDBResourceTest extends HelperTest {
-    private static UserDao dao;
+public class userDBResourceTest extends JerseyTest {
+    private Helper h;
 
     @Override
     protected Application configure() {
-        dao = BDDFactory.getDbi().open(UserDao.class);
         return new Api();
     }
 
     @Before
-    public void init() {
-        dao.dropUserTable();
-        dao.createUserTable();
+    public void init(){
+        h = new Helper(target("/userdb"));
+        h.initDb();
     }
 
     @Test
     public void read_should_return_a_user_as_object() {
-        createUserWithName("foo");
+        h.createUserWithName("foo");
         User utilisateur = target("/userdb/foo").request().get(User.class);
         assertEquals("foo", utilisateur.getName());
     }
 
     @Test
     public void read_user_should_return_good_alias() {
-        createUserWithAlias("richard stallman", "rms");
+        h.createUserWithAlias("richard stallman", "rms");
         User user = target("/userdb/richard stallman").request().get(User.class);
         assertEquals("rms", user.getAlias());
     }
 
     @Test
     public void read_user_should_return_good_email() {
-        createUserWithEmail("Ian Murdock", "ian@debian.org");
+        h.createUserWithEmail("Ian Murdock", "ian@debian.org");
         User user = target("/userdb/Ian Murdock").request().get(User.class);
         assertEquals("ian@debian.org", user.getEmail());
     }
@@ -51,14 +51,14 @@ public class userDBResourceTest extends HelperTest {
     @Test
     public void read_user_should_return_user_with_same_salt() {
         String expectedSalt = "graindesel";
-        createUserWithPassword("Mark Shuttleworth", "motdepasse", expectedSalt);
+        h.createUserWithPassword("Mark Shuttleworth", "motdepasse", expectedSalt);
         User user = target("/userdb/Mark Shuttleworth").request().get(User.class);
         assertEquals(expectedSalt, user.getSalt());
     }
 
     @Test
     public void read_user_should_return_hashed_password() throws NoSuchAlgorithmException {
-        createUserWithPassword("Loïc Dachary", "motdepasse", "grain de sable");
+        h.createUserWithPassword("Loïc Dachary", "motdepasse", "grain de sable");
         User user = target("/userdb/Loïc Dachary").request().get(User.class);
         assertEquals("5f8619bc1f0e23ef5851cf7070732089", user.getPasswdHash());
     }
@@ -73,8 +73,8 @@ public class userDBResourceTest extends HelperTest {
 
     @Test
     public void list_should_return_all_users() {
-        createUserWithName("foo");
-        createUserWithName("bar");
+        h.createUserWithName("foo");
+        h.createUserWithName("bar");
         List<User> users = target("/userdb/").request().get(new GenericType<List<User>>() {
         });
         assertEquals(2, users.size());
@@ -82,15 +82,11 @@ public class userDBResourceTest extends HelperTest {
 
     @Test
     public void list_all_must_be_ordered() {
-        createUserWithName("foo");
-        createUserWithName("bar");
+        h.createUserWithName("foo");
+        h.createUserWithName("bar");
         List<User> users = target("/userdb/").request().get(new GenericType<List<User>>() {
         });
         assertEquals("foo", users.get(0).getName());
     }
 
-    @Override
-    String getCreateUserResouceUrl() {
-        return "/userdb";
-    }
 }
