@@ -23,6 +23,8 @@ public class AuthFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext containerRequest) throws WebApplicationException {
         String auth = containerRequest.getHeaderString(HttpHeaders.AUTHORIZATION);
         String scheme = containerRequest.getUriInfo().getRequestUri().getScheme();
+        String uriAuth = containerRequest.getUriInfo().getRequestUri().getUserInfo();
+        logger.debug("uriAuth : " + uriAuth);
         logger.debug("auth : " + auth);
         User defaultUser = new User(0, "Anonymous");
 
