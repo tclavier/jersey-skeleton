@@ -53,6 +53,16 @@
             </div>
         </div>
     </div>
+    <div class="row">
+<div class="col-md-6">
+    <input type="text" name="userdb" id="userlogin" placeholder="Login ?" class="form-control"/>
+    <input type="password" name="user" id="passwdlogin" class="form-control"/>
+</div>
+        <div class="col-md-6">
+            <button id="read-forall" class="btn btn-default">Lire depuis /v1/secure/forall</button>
+            <button id="read-forlogged" class="btn btn-default">Lire depuis /v1/secure/onlylogged</button>
+        </div>
+    </div>
     <div class="row" style="margin-top: 1em;">
         <div class="panel panel-info">
             <div class="panel-heading">Réponse</div>
@@ -60,8 +70,7 @@
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript">
+    <script type="text/javascript">
 			$(document).ready(function() {
 				$("#get-ram").click(function () {getUser($('#user').val(), $('#alias').val())});
 				$("#post-ram").click(function () {postUser($('#user').val(), $('#alias').val())});
@@ -69,6 +78,8 @@
 				$("#get-bdd").click(function () {getUserBdd($('#userdb').val(), $('#aliasdb').val())});
 				$("#post-bdd").click(function () {postUserBdd($('#userdb').val(), $('#aliasdb').val(), $('#passwddb').val())});
 				$("#list-bdd").click(function () {listUsersBdd()});
+				$("#read-forall").click(function () {getForAll()});
+				$("#read-forlogged").click(function () {getForLogged()});
 			});
 
 

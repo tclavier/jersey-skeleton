@@ -12,6 +12,18 @@ function getUserGeneric(name, url) {
 	});
 }
 
+function getForAll() {
+	$.getJSON("v1/secure/forall", function(data) {
+		afficheUser(data);
+	});
+}
+
+function getForLogged() {
+	$.getJSON("v1/secure/onlylogged", function(data) {
+		afficheUser(data);
+	});
+}
+
 function postUser(name, alias) {
     postUserGeneric(name, alias, "", "v1/user/");
 }
