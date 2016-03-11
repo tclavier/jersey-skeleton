@@ -62,8 +62,7 @@ public class User implements Principal {
 
 
     public void setPassword(String password) {
-        String hash = buildHash(password, getSalt());
-        passwdHash = hash;
+        passwdHash = buildHash(password, getSalt());
         this.password = password;
     }
 
