@@ -20,6 +20,8 @@ public class User implements Principal {
     private String passwdHash;
     private String salt;
 
+    private static User anonymous = new User(-1, "Anonymous", "anonym");
+
     public User(int id, String name) {
         this.id = id;
         this.name = name;
@@ -134,6 +136,14 @@ public class User implements Principal {
     }
 
     public boolean isInUserGroup(){
-        return !getName().equals("Anonymous");
+        return ! (id == anonymous.getId());
+    }
+
+    public static User getAnonymousUser() {
+        return anonymous ;
+    }
+
+    public static boolean isAnonymous(User currentUser) {
+        return currentUser.getId() == getAnonymousUser().getId();
     }
 }
