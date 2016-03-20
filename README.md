@@ -69,13 +69,13 @@ Voilà, vous avez installé maven. Il faut maintenant configurer les variables d
       Panneau de Configuration > Système > Paramètres Avancés > Chercher Variable d'environnement
 
 Une fois sur cette fenètre :
-- Vérifiez que la variable "JAVA_HOME" existe et qu'elle pointe bien vers le java JDK installé sur votre ordinateur. Si elle n'existe pas, créez la.
-- Créez deux nouvelles variables "M2_HOME" et "MAVEN_HOME" qui pointe vers le dossier d'installation de maven. (C:\Program Files\Apache\Maven de vous suivez les conseils)
-- Et enfin, modifier la variable "PATH" en rajoutant ceci à la fin.
+- Vérifiez que la variable `JAVA_HOME` existe et qu'elle pointe bien vers le java JDK installé sur votre ordinateur. Si elle n'existe pas, créez la.
+- Créez deux nouvelles variables `M2_HOME` et `MAVEN_HOME` qui pointe vers le dossier d'installation de maven. (C:\Program Files\Apache\Maven de vous suivez les conseils)
+- Et enfin, modifier la variable `PATH` en rajoutant ceci à la fin.
 
       ;%M2_HOME%/bin
 
-Vérifiez en passant que la variable JAVA_HOME est présente dans la variable PATH. Si non, rajoutez ceci :
+Vérifiez en passant que la variable `JAVA_HOME` est présente dans la variable `PATH`. Si non, rajoutez ceci :
 
       ;%JAVA_HOME%/bin
 
@@ -147,8 +147,9 @@ Pour des ressources simples, le schéma est le suivant :
 | PUT   | /foo/{id} | met à jour le Foo identifié par {id} |
 | DELETE| /foo/{id} | supprime le Foo identifié par {id} |
 
-Pour des ressources composées, les URLs vont définir le contenant, par exemple : /user/{id_user}/tel/{id_tel} pour accéder au téléphone {id_tel} de l'utilisateur {id_user}.
- /!\ Attention, identifier le téléphone sous cette forme sous entend que dans notre application, il n'existe pas de téléphone sans propriétaire
+Pour des ressources composées, les URLs vont définir le contenant, par exemple : `/user/id_user/tel/id_tel` pour accéder au téléphone `id_tel` de l'utilisateur `id_user`.
+
+*/!\ Attention*, identifier le téléphone sous cette forme sous entend que dans notre application, il n'existe pas de téléphone sans propriétaire
 
 ### Api
 
@@ -162,22 +163,45 @@ Dans le package fr.iutinfo.skeleton.api vous trouverez l'ensemble des classes de
  
 ### Javascript
 
-Dans `src/webapp/all.js` et `src/webapp/index.html` vous trouverez un exemple d'interface grahique en javascript mis en forme avec bootstrap.
+Dans `src/webapp/all.js` et `src/webapp/index.html` vous trouverez un exemple d'interface graphique en javascript mis en forme avec [bootstrap](http://getbootstrap.com/).
     
 ### Html
 
 Le plugin template MVC de jersey permet de générer du html depuis divers fichiers.
 Les pages http://localhost:8080/html/user sont construites depuis : 
-- src/main/webapp/fr/iutinfo/skeleton/web/UserViews/index.jsp
-- src/main/java/fr/iutinfo/skeleton/web/UserViews.java
+- `src/main/webapp/fr/iutinfo/skeleton/web/UserViews/index.jsp`
+- `src/main/java/fr/iutinfo/skeleton/web/UserViews.java`
 
 Notez l'include qui est fait vers `src/main/webapp/layout/head.jsp` afin de factoriser le code de présentation.
 
 ### Authentification
 
-### Todo 
-- JDBI : TODO
-- SLF4J : TODO
+### JDBI
+
+### Slf4j
+
+### Docker
+
+[Docker](http://docker.com/) est un logiciel de gestion de conteneurs applicatifs, il permet d'empaqueter une application et ses dépendances dans un conteneur afin de l'exécuter sur n'importe quel serveur Linux.
+
+Le fichier `Dockerfile` est la recette de cuisine permettant de construire ce conteneur.
+
+Le [hub docker](https://hub.docker.com) est une gigantesque bibliothèque de conteneurs libre, vous pouvez y ajouter le votre, son nom sera alors de la forme : `utilisateur/application`. Vous pouvez aussi demander au hub docker de construire automatique votre conteneur à chaque commit.
+
+Pour lancer la construction sur les machines de l'IUT il faut spécifier le proxy sur la ligne de commande : 
+
+    docker build --build-arg http_proxy=http://cache.univ-lille1.fr:3128 -t utilisateur/application .
+
+Pour envoyer le conteneur sur le hub docker
+
+    docker push utilisateur/application
+
+Pour lancer le conteneur en local et visualiser le site sur http://localhost:8080/
+
+    docker run -it -p 8080:8080 utilisateur/application
+
+Pour déployer votre conteneur sur internet, vous pouvez utiliser la plateforme [Deliverous](http://deliverous.com). Pour ce faire, après avoir créé un compte sur la plateforme, vous pouvez ajouter à la racine de votre projet git un fichier `Deliverous` inspiré de celui présent dans ce dépos.
+
 
 ## Liens utiles
 - Documentation de Jersey :https://jersey.java.net/documentation/latest/index.html  
