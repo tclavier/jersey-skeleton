@@ -1,10 +1,8 @@
 package fr.iutinfo.resources;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -13,12 +11,10 @@ import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
-import fr.iutinfo.beans.FriendRelation;
 import fr.iutinfo.beans.User;
 import fr.iutinfo.dao.FriendsRelationsDao;
 import fr.iutinfo.dao.UserDao;
 import fr.iutinfo.utils.Session;
-import fr.iutinfo.utils.Utils;
 
 
 @Path("/friends")

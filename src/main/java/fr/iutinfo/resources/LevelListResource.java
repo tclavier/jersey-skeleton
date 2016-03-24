@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
-import fr.iutinfo.beans.Level;
 import fr.iutinfo.beans.LevelList;
 import fr.iutinfo.dao.LevelDao;
 import fr.iutinfo.dao.LevelListDao;
@@ -97,10 +96,8 @@ public class LevelListResource {
 	public Feedback createList(LevelList levelList, @PathParam("cookie") String cookie) {
 		if(Session.isLogged(cookie)) {
 			levelListDao.createList(levelList.getName(), Session.getUser(cookie).getId());
-
 			return new Feedback(true, "La liste a bien été créée !");
 		}
-
 		return new Feedback(false, "Vous n'êtes pas enregistré !");
 	}
 	
