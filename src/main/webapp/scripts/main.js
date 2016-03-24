@@ -15,6 +15,7 @@ requirejs.config({
 		"events" : "scripts/events",
 		"animation" : "scripts/animation",
 		"block_creator" : "scripts/block_creator",
+		"carte_creator" : "scripts/carte_creator",
 		"theme" : "scripts/theme",
 		"menu_bar_controller" : "scripts/page_controllers/menu_bar_controller",
 		"users_query" : "scripts/queries/users_query",
@@ -49,11 +50,12 @@ var level_type = sessionStorage.type;
 
 require(
 		[ "jquery", "libs/bootstrap", "game", "grid", "player", "interpreter",
-				"animation", "graphical_player", "events", "block_creator",
+				"animation", "graphical_player", "events", "block_creator", "carte_creator",
 				"theme" ],
 		function($) {
 			var Game = require("game");
 			var BlockCreator = require("block_creator");
+			var CarteCreator = require("carte_creator");
 			var Theme = require("theme");
 
 			game = new Game();
@@ -128,6 +130,34 @@ require(
 						
 						//Boucle jeu carte
 						
+						carteCreator = new CarteCreator(game);
+
+						var toolbox = carteCreator
+								.getToolbox(window.levelData.instructionsList);
+
+						// On crée la zone pour blockly
+						Blockly.inject(document.getElementById('carteDiv'), {
+							trashcan : true,
+							toolbox : toolbox,
+							maxBlocks : window.levelData.maxInstructions
+						});
+
+						// On met un message dynamique pour afficher le nombre
+						// de bloques restant
+						Blockly
+								.addChangeListener(function() {
+									if (runned)
+										execute("");
+									if (Blockly.maxBlocks == Infinity)
+										return;
+									var remainingBlocks = Blockly.maxBlocks
+											- Blockly.getMainWorkspace()
+													.getAllBlocks().length;
+									$("#max_instruction").text(remainingBlocks);
+									$("#max_instruction_s").text(
+											remainingBlocks > 1 ? "s" : "");
+								});
+						
 						
 						
 					}
@@ -189,7 +219,7 @@ $(document).ready(function() {
 			execute(Blockly.JavaScript.workspaceToCode());
 		} 
 		else if (level_type == "cartes"){
-			alert('Cartes')
+			execute(Blockly.JavaScript.workspaceToCode());
 		}
 		else {
 			alert("Not loaded yet :(");

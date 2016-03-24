@@ -28,6 +28,7 @@ $(document).ready(function() {
 			caption.append($('<p><a href="game.html?level=0&list=' + data[i].id + '" class="btn btn-primary level_preview" role="button">Jouer !</a></p>'));
 			thumbnail.append(caption);
 			$("#tutorial_lists").append(thumbnail);
+			
 		}
 	}
 	

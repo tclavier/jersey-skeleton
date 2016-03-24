@@ -86,7 +86,18 @@ define(["jquery"],  function(require) {
         this.hasArrived = function() {
             return this.game.grid.tiles[this.tileY()][this.tileX()] == 3;
         }
-
+        this.moveRight = function(){
+        	this.moveToTile(this.x +1,this.y);
+        }
+        this.moveLeft = function(){
+        	this.moveToTile(this.x-1,this.y);
+        }
+        this.moveUp = function(){
+        	this.moveToTile(this.x,y-1);
+        }
+        this.moveDown = function(){
+        	this.moveToTile(this.x,y+1);
+        }
 
 	}
 

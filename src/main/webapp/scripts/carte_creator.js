@@ -1,5 +1,5 @@
 define(["jquery"],  function($) {
-    return function BlockCreator(game) {
+    return function CarteCreator(game) {
         this.game = game;
         var instance = this;
 
@@ -91,7 +91,7 @@ define(["jquery"],  function($) {
          * Crée une instruction blockly
          * L'instruction a créer (instance d'un objet avec les attributs name et block)
          */
-        this.createBlocklyInstruction = function(instruction) {
+        this.createCarteInstruction = function(instruction) {
             Blockly.Blocks[instruction.name + instruction.block] = {
                 init: function() {
                     this.setColour(instruction.color);
@@ -134,9 +134,9 @@ define(["jquery"],  function($) {
         this.getToolbox = function(instructionsList) {
             // On crée les instructions
 			var toolbox = '<xml>';
-			for (var i = 4; i < instructionsList.length; ++i) {
+			for (var i = 0; i < 4; ++i) {
                 var instruction = instructionsList[i];
-				this.createBlocklyInstruction(instruction);
+				this.createCarteInstruction(instruction);
                 toolbox += '  <block type="' + instruction.name + instruction.block + '"></block>';
 			}
 			toolbox += '</xml>';
