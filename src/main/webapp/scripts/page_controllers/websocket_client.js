@@ -1,4 +1,4 @@
-var wsUri = "ws://92.222.218.92:8080/irc/";
+var wsUri = "ws://localhost:8080/irc/";
 var websocket;
 
 function init() {
