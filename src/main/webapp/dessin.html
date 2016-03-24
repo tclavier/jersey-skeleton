@@ -52,7 +52,7 @@
 	}
 	function run() {
 		var prog = python_editor.getValue();
-		
+
 		python_output.text('OUTPUT \n')
 		Sk.pre = "";
 		Sk.configure({
@@ -83,7 +83,7 @@
 			tabMode: "shift",
 			mode: "python",
 			theme: "dracula",
-			value:"import turtle\nt = turtle.Turtle()\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n"
+			value:"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n"
 		});
 
 		python_output = $("<pre></pre>")
