@@ -134,7 +134,7 @@ define(["jquery"],  function($) {
         this.getToolbox = function(instructionsList) {
             // On crée les instructions
 			var toolbox = '<xml>';
-			for (var i = 4; i < instructionsList.length; ++i) {
+			for (var i = 0; i < instructionsList.length; ++i) {
                 var instruction = instructionsList[i];
 				this.createBlocklyInstruction(instruction);
                 toolbox += '  <block type="' + instruction.name + instruction.block + '"></block>';

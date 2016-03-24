@@ -134,7 +134,7 @@ define(["jquery"],  function($) {
         this.getToolbox = function(instructionsList) {
             // On crée les instructions
 			var toolbox = '<xml>';
-			for (var i = 0; i < 4; ++i) {
+			for (var i = 0; i < instructionsList.length; ++i) {
                 var instruction = instructionsList[i];
 				this.createCarteInstruction(instruction);
                 toolbox += '  <block type="' + instruction.name + instruction.block + '"></block>';

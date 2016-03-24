@@ -97,7 +97,7 @@ require(
 					//LEVEL TYPE
 					
 					//Blocs
-					if (level_type == "blocs") {
+					//if (level_type == "blocs") {
 						blockCreator = new BlockCreator(game);
 
 						var toolbox = blockCreator
@@ -125,8 +125,8 @@ require(
 									$("#max_instruction_s").text(
 											remainingBlocks > 1 ? "s" : "");
 								});
-					}
-					else if (level_type == "cartes"){
+					//}
+					/*else if (level_type == "cartes"){
 						
 						//Boucle jeu carte
 						
@@ -160,7 +160,7 @@ require(
 						
 						
 						
-					}
+					}*/
 					
 					
 					window.levelData = null;

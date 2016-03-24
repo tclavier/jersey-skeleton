@@ -261,11 +261,11 @@ public class DbResetResource {
 
 		instructionsDao.createInstructionsTable();
 		
-		instructionsDao.insert("Aller a droite", "player.moveRight();", 65, 0, "images/doc/avancer.png", "images/doc/avancer.gif", "Le personnage se déplace d'une case vers la droite.", 0);					// ID 1
+		/*instructionsDao.insert("Aller a droite", "player.moveRight();", 65, 0, "images/doc/avancer.png", "images/doc/avancer.gif", "Le personnage se déplace d'une case vers la droite.", 0);					// ID 1
 		instructionsDao.insert("Aller a gauche", "player.moveLeft();", 65, 0, "images/doc/reculer.png", "images/doc/avancer.gif", "Le personnage se déplace d'une case vers la gauche.", 0);					// ID 2	
 		instructionsDao.insert("Aller en haut", "player.moveUp();", 65, 0, "images/doc/pivoter_gauche.png", "images/doc/avancer.gif", "Le personnage se déplace d'une case vers le haut.", 0);			// ID 3
 		instructionsDao.insert("Aller a bas", "player.moveDown();", 65, 0, "images/doc/pivoter_droite.png", "images/doc/avancer.gif", "Le personnage se déplace d'une case vers le bas.", 0);			// ID 4
-     
+     */
 
 		instructionsDao.insert("Avancer", "player.moveForward();", 65, 0, "images/doc/avancer.png", "images/doc/avancer.gif", "Le personnage se déplace d'une case vers avant.", 0);					// ID 1
 		instructionsDao.insert("Reculer", "player.moveBackward();", 65, 0, "images/doc/reculer.png", "images/doc/avancer.gif", "Le personnage se déplace d'une case vers l'arrière.", 0);					// ID 2	
