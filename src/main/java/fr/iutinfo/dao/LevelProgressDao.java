@@ -9,6 +9,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
 import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
 import fr.iutinfo.beans.LeaderboardRow;
+import fr.iutinfo.beans.Level;
 import fr.iutinfo.beans.LevelInfo;
 import fr.iutinfo.beans.LevelProgress;
 

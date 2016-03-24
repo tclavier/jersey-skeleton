@@ -69,46 +69,26 @@ $(document).ready(function() {
         return obj;
     }
 	
-	
 	// Charge toutes les instructions
 	function loadInstructions() {
 		$.getJSON("v1/instructions", function(instructionList) {
             handleLevel(createLevelData(instructionList));
 		});
 	}
-	
 
 
     if (sessionStorage.level != undefined) {
         loadInstructions();
     }
-    
-
 
     $("#saveLevelBtn").click(function() {
-        // On calcul les instructions utilisé
-        usedInstructions = [];
-        var blocks = Blockly.mainWorkspace.getAllBlocks();
-        // On parcours toutes les instructions existante
-        for (var i = 0; i < instructions.length; ++i) {
-            for (var j = 0; j < blocks.length; ++j) {
-                if (blocks[j].type == (instructions[i].name + instructions[i].block)) {
-                    usedInstructions.push(instructions[i].id);
-                    break;
-                }
-            }
-        }
-        sessionStorage.instructionsNumber = Blockly.mainWorkspace.getAllBlocks().length;
-        sessionStorage.usedInstructions = JSON.stringify(usedInstructions);
-        sessionStorage.solutionValidity = true;
-        window.location.assign("/instructionsSelection.html");
+       
     });
 
 
     $("#editLevelBtn").click(function() {
         window.location.assign("/editor.html");
     });
-
 	
 });
 

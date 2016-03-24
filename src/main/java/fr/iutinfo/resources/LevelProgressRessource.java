@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
 import fr.iutinfo.beans.LeaderboardRow;
+import fr.iutinfo.beans.Level;
 import fr.iutinfo.beans.LevelInfo;
 import fr.iutinfo.beans.LevelProgress;
 import fr.iutinfo.dao.LevelProgressDao;

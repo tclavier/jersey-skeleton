@@ -3,14 +3,14 @@
  */
 function isLoginRequiredPage() {
 	var page = location.pathname;
-
 	return page == "/options.html" 
 		|| page == "/profile.html"
 			|| page == "/editor.html"
 				|| page == "/chat.html"
 					|| page == "listsEditor.html"
 						|| page == "test.html"
-							|| page == "instructionsSelection.html";
+							|| page == "instructionsSelection.html" 
+						
 }
 
 
@@ -255,6 +255,7 @@ function logoutUser() {
 		$.getJSON("v1/users/logout/" + Cookies["id"], function(data) {
 			console.log(data);
 			setConnected(false);
+			window.location.href = "/";
 		});
 }
 

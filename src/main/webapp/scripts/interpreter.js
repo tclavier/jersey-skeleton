@@ -37,6 +37,11 @@ define(["jquery"],  function(require) {
             if (!this.exited)
                 this.stack.push([command, this.executedBlock]);
         }
+        
+        //Afficher les commandes
+        this.getCommands = function(){
+        	return this.stack;
+        }
 
         this.addExitCommand = function() {
             this.exited = true;

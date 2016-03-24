@@ -330,8 +330,14 @@ function saveLevel() {
 		sessionStorage.width = gridWidth;
 		sessionStorage.height = gridHeight;
 		sessionStorage.list = $('#levelList').val();
+		
+		var level_type = $("#levelTypes").val().toLowerCase();
+		sessionStorage.type = level_type;
+		
 
-		window.location.assign("/test.html");
+		
+			window.location.assign("/test_"+level_type+".html");
+		
 	}
 	else 
 		alert("Niveau invalide");
