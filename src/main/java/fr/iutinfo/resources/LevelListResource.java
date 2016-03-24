@@ -96,8 +96,10 @@ public class LevelListResource {
 	public Feedback createList(LevelList levelList, @PathParam("cookie") String cookie) {
 		if(Session.isLogged(cookie)) {
 			levelListDao.createList(levelList.getName(), Session.getUser(cookie).getId());
+
 			return new Feedback(true, "La liste a bien été créée !");
 		}
+
 		return new Feedback(false, "Vous n'êtes pas enregistré !");
 	}
 	

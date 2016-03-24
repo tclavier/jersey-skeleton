@@ -47,11 +47,11 @@ overflow: hidden;
 }
 .draw_container .draw_toolbox .toolbar .container{
 	margin: 15px 0 0 10px;
-	
+
 }
 .draw_container .draw_toolbox .CodeMirror{
 	width: 100% ;
-	height: 60% ;
+	height: 70% ;
 	resize: none;
 	border: none;
 }
