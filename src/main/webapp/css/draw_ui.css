@@ -1,0 +1,76 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+.draw_container{
+	display:block;
+	margin-top: 50px; 
+	display: block;
+	position: relative;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.4);
+	padding:20px;
+
+}
+.draw_container .title{
+	font-size: 17px;
+		text-align: center;
+	display: block;
+	margin-top: 10px;
+	padding-bottom: 25px;
+}
+
+.draw_container .centered{
+	display:block;
+	position:relative;
+	transform: translateX(-50%);
+	-webki-transform: translateX(-50%);
+	left: 50%;
+	width: 90%;
+}
+.draw_container .draw_toolbox{
+	border: 1px solid #cacaca;
+	height: 400px;
+	width: 50%;
+	max-width: 500px;
+	display: inline-block;
+overflow: hidden;
+
+}
+
+.draw_container .draw_toolbox .toolbar{
+	background: #fefefe;
+	height: 10%;
+	width: 100%;
+		font-family: 'Inconsolata', sans-serif ;
+	font-size: 15px;
+	margin-bottom: 5px;
+
+
+}
+.draw_container .draw_toolbox .toolbar .container{
+	margin: 15px 0 0 10px;
+
+}
+.draw_container .draw_toolbox .CodeMirror{
+	width: 100% ;
+	height: 70% ;
+	resize: none;
+	border: none;
+}
+
+.draw_container .draw_toolbox .output_bottom{
+	width: 100% ;
+	height: 20% ;
+	padding:10px;
+	font-size: 16px;
+	font-family: 'Inconsolata', sans-serif ;
+}
+
+.draw_container .draw_toolbox .toolbar .container .tlb_btn{
+	text-align: center;
+	color:#fff;
+	background: #282a36;
+	display:inline-block;
+	width: 25px;
+	height: auto;
+	border-radius: 25px;
+	margin-right: 5px;
+}

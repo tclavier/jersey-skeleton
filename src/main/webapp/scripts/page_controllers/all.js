@@ -167,7 +167,6 @@ function getNotifCount() {
 
 function setConnected(connected) {
 	sessionStorage.setItem("isConnected", connected);
-
 	if(sessionStorage.getItem("isConnected") == "true") {
 		$("#login_navbar").hide();
 		$("#info_profil_navbar").show();
@@ -177,10 +176,8 @@ function setConnected(connected) {
 		$("#editor_bar").hide();
 		$("#info_profil_navbar").hide();
 		$("#login_navbar").show();
-
-		if(isLoginRequiredPage()) {
+		if(isLoginRequiredPage()) 
 			location.replace("/");
-		}
 	}
 }
 

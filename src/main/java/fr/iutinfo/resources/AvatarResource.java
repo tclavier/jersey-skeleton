@@ -11,15 +11,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
-
 import fr.iutinfo.beans.Feedback;
-import fr.iutinfo.beans.LevelList;
 import fr.iutinfo.beans.User;
 import fr.iutinfo.utils.Session;
 
