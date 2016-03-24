@@ -46,7 +46,7 @@ requirejs.config({
 });
 
 var game;
-var level_type = sessionStorage.type;
+var level_type = sessionStorage.type;;
 
 require(
 		[ "jquery", "libs/bootstrap", "game", "grid", "player", "interpreter",
@@ -213,14 +213,14 @@ function execute(code) {
 }
 
 $(document).ready(function() {
-
+	
 	document.getElementById('execute').onclick = function() {
-		if (Blockly != null && level_type == "blocs") {
+		if (level_type == "cartes"){
+			execute(Blockly.JavaScript.workspaceToCode());
+		}else
+		if (Blockly != null) {
 			execute(Blockly.JavaScript.workspaceToCode());
 		} 
-		else if (level_type == "cartes"){
-			execute(Blockly.JavaScript.workspaceToCode());
-		}
 		else {
 			alert("Not loaded yet :(");
 		}
