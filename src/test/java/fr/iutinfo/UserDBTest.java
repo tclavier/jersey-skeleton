@@ -1,21 +1,7 @@
 package fr.iutinfo;
 
-import static org.junit.Assert.assertEquals;
-
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Before;
-import org.junit.Test;
-import org.skife.jdbi.v2.DBI;
-import org.sqlite.SQLiteDataSource;
 
-import fr.iutinfo.beans.User;
 import fr.iutinfo.dao.UserDao;
 
 public class UserDBTest extends JerseyTest {

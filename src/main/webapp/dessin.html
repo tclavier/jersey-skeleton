@@ -39,10 +39,10 @@
 
 
 	var python_editor = null;
+	var python_output = null;
 
 	function outf(text) {
-		var mypre = document.getElementById("output");
-		mypre.innerHTML = mypre.innerHTML + text;
+		python_output.html(python_output.html() + text);
 	}
 	function builtinRead(x) {
 		if (Sk.builtinFiles === undefined
@@ -52,9 +52,8 @@
 	}
 	function run() {
 		var prog = python_editor.getValue();
-		var mypre = document.getElementById("output");
-		mypre.innerHTML = '';
-		Sk.pre = "output";
+		python_output.text('OUTPUT \n')
+		Sk.pre = "";
 		Sk.configure({
 			output : outf,
 			read : builtinRead
@@ -86,9 +85,10 @@
 			value:"import turtle\nt = turtle.Turtle()\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n"
 		});
 
-		python_output = $(".output_bottom")
-		python_output.text("test")
-		$("#python_editor").append(python_output);
+		python_output = $("<pre></pre>")
+		python_output.addClass("output_bottom");
+		python_output.text("OUTPUT\n")
+		python_output.appendTo($("#python_editor"))
 
 
 	});
@@ -181,22 +181,26 @@
 				du code dans la fenêtre ci-dessous pour commencer à dessiner !
 			</div>
 
-			<div class="editor" id="python_editor">
-				
+			<div class="centered">
+				<div class="draw_toolbox" id="python_editor" sttyle="float:left;">
+					<div class="toolbar">
+						<div class="container">
+							<a href="#" onclick="run();"><div class="tlb_btn">►</div>Lancer votre programme </a>
+						</div>
+					</div>
+				</div>	
+
+				<div class="draw_toolbox" id="python_editor" style="float:right;">
+	<div id="mycanvas"></div>
+				</div>	
+
 			</div>
-
-
-
-
 		</div>
 	</div>
 
 	<br />
 
-	<div id="mycanvas"></div>
 
-
-	<input type="button" value="lancer" onclick="run();" />
 
 
 </div>

@@ -5,7 +5,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import ch.qos.logback.core.property.ResourceExistsPropertyDefiner;
 import fr.iutinfo.App;
 import fr.iutinfo.dao.FriendsRelationsDao;
 import fr.iutinfo.dao.InstructionsDao;

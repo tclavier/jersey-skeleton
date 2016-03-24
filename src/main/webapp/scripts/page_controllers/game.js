@@ -78,7 +78,7 @@ $(document).ready(function() {
 
 	function handleLevel(data) {
 		window.levelData = data;
-		console.log(data);
+
 		levelList = data.levelList;
 		levelId = data.id;
 		

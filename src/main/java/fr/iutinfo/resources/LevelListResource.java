@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 
 import fr.iutinfo.App;
 import fr.iutinfo.beans.Feedback;
-import fr.iutinfo.beans.Level;
 import fr.iutinfo.beans.LevelList;
 import fr.iutinfo.dao.LevelDao;
 import fr.iutinfo.dao.LevelListDao;

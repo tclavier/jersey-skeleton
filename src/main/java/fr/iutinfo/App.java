@@ -3,7 +3,6 @@ package fr.iutinfo;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.websocket.WebSocketContainer;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
@@ -18,7 +17,6 @@ import fr.iutinfo.resources.InstructionsResource;
 import fr.iutinfo.resources.LevelListResource;
 import fr.iutinfo.resources.LevelProgressRessource;
 import fr.iutinfo.resources.LevelResource;
-import fr.iutinfo.resources.MyServerEndpoint;
 import fr.iutinfo.resources.ProfileInfoResource;
 import fr.iutinfo.resources.UserResource;
 
