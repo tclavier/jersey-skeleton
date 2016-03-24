@@ -94,7 +94,7 @@ require(
 					
 					//LEVEL TYPE
 					
-					
+					//Blocs
 					if (level_type == "blocs") {
 						blockCreator = new BlockCreator(game);
 
@@ -124,6 +124,15 @@ require(
 											remainingBlocks > 1 ? "s" : "");
 								});
 					}
+					else if (level_type == "cartes"){
+						
+						//Boucle jeu carte
+						
+						
+						
+					}
+					
+					
 					window.levelData = null;
 				}
 
@@ -179,8 +188,8 @@ $(document).ready(function() {
 		if (Blockly != null && level_type == "blocs") {
 			execute(Blockly.JavaScript.workspaceToCode());
 		} 
-		else if (level_type == "textuel"){
-			alert('TEXTUEL')
+		else if (level_type == "cartes"){
+			alert('Cartes')
 		}
 		else {
 			alert("Not loaded yet :(");

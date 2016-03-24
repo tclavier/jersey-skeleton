@@ -336,7 +336,7 @@ function saveLevel() {
 		
 
 		
-			window.location.assign("/test_"+level_type+".html");
+		window.location.assign("/test_"+level_type+".html");
 		
 	}
 	else 
