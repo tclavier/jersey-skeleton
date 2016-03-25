@@ -190,7 +190,8 @@ Le [hub docker](https://hub.docker.com) est une gigantesque bibliothèque de con
 
 Pour lancer la construction sur les machines de l'IUT il faut spécifier le proxy sur la ligne de commande : 
 
-    docker build --build-arg http_proxy=http://cache.univ-lille1.fr:3128 -t utilisateur/application .
+    docker build --build-arg http_proxy=http://cache.univ-lille1.fr:3128 \
+    --build-arg https_proxy=http://cache.univ-lille1.fr:3128 -t utilisateur/application .
 
 Pour envoyer le conteneur sur le hub docker
 
