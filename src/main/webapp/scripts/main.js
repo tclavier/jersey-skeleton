@@ -106,7 +106,26 @@ require(
 
 						carteCreator = new CarteCreator(game);
 
-						alert('Jeu de carte chargé !')
+				
+						$("#carteDiv_dragndrop").append("<div id='leftd' draggable='true'> <img id='left' src='images/doc/left.png' alt='left' style='width:50px;height:50px;'></div>");
+						$("#carteDiv_dragndrop").append("<div id='upd' draggable='true'> <img id='up' src='images/doc/up.png' alt='up' style='width:50px;height:50px;'></div>");
+						$("#carteDiv_dragndrop").append("<div id='downd' draggable='true'> <img id='down' src='images/doc/down.png' alt='down' style='width:50px;height:50px;'></div>");
+						$("#carteDiv_dragndrop").append("<div id='rightd' draggable='true'> <img id='right' src='images/doc/right.png' alt='right' style='width:50px;height:50px;'></div>");
+
+						
+						var d = document.querySelector("#carteDiv_listeInstru");
+						
+						d.addEventListener('dragover', function(e) {
+						    e.preventDefault(); // Annule l'interdiction de drop
+						});
+						d.addEventListener('drop', function(e) {
+						    e.preventDefault(); // Annule l'interdiction de drop
+						    var data = e.dataTransfer.getData("text/html");//retrieves dropped images data.
+						    
+						   $(data).appendTo($(d))
+						});
+					
+						
 
 					} else if(level_type=="blocs") {
 						blockCreator = new BlockCreator(game);
