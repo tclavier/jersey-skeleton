@@ -168,7 +168,7 @@ function checkLevel() {
 function doSaveSuccessful() {
 	window.sessionStorage.clear();
 	$('#saveSuccessfulModal').modal('show');
-	console.log("leleelleleleleelellelelele");
+	console.log("doSaveSuccessful");
 }
 
 $(document).ready(function() {

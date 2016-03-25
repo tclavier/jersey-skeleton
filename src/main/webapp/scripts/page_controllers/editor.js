@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 var TILE_WIDTH = 42;
 var TILE_HEIGHT = 42;
@@ -267,6 +264,8 @@ function checkLevel() {
 
 function handleKeyPress(e) {
 	var key = e.keyCode || e.which;
+	
+	
 	if (key === 13) {
 		doChangeSizeClick();
 	} else {
@@ -319,22 +318,26 @@ function parseSessionLevel() {
 	}
 }
 
+/**
+ * enregistrement database
+ */
 function saveLevel() {
-	// TODO : enregistrement db
 	var validity = checkLevel();
+	
 	if (validity) {
 		var structuredContent = [];
 
 		var level_type = $("#levelTypes").val().toLowerCase();
 		sessionStorage.levelType = level_type;
 		
+		var level_orientation = $("#levelOrientation").val();
+		sessionStorage.orientation = level_orientation;
+		
 		sessionStorage.level = transpose(grid);
 		sessionStorage.name = $("#levelName").val();
 		sessionStorage.width = gridWidth;
 		sessionStorage.height = gridHeight;
 		sessionStorage.list = $('#levelList').val();
-		
-
 		
 
 		setTimeout(function(){
@@ -379,6 +382,7 @@ function createList() {
 
 function loadSessionInfo() {
 	var instrNum = parseInt(window.sessionStorage.instructionsNumber);
+	
 	if (window.sessionStorage.level !== undefined) {
 		gridWidth = parseInt(window.sessionStorage.width);
 		gridHeight = parseInt(window.sessionStorage.height);
@@ -480,9 +484,9 @@ $(document).ready(function() {
 
 	$('#newListName').keypress(function(e) {
 		var key = e.keyCode || e.which;
-		if (key === 13) {
+		
+		if (key === 13)
 			createList();
-		}
 	});
 
 	$('#levelList').change(function() {

@@ -56,12 +56,8 @@ require(
 			var BlockCreator = require("block_creator");
 			var CarteCreator = require("carte_creator");
 			var Theme = require("theme");
-
 			
 			game = new Game();
-			
-			
-
 			
 			var time;
 			function mainLoop() {
