@@ -11,7 +11,7 @@
 }
 .draw_container .title{
 	font-size: 17px;
-		text-align: center;
+	text-align: center;
 	display: block;
 	margin-top: 10px;
 	padding-bottom: 25px;
@@ -31,7 +31,7 @@
 	width: 50%;
 	max-width: 500px;
 	display: inline-block;
-overflow: hidden;
+	overflow: hidden;
 
 }
 
@@ -39,7 +39,7 @@ overflow: hidden;
 	background: #fefefe;
 	height: 10%;
 	width: 100%;
-		font-family: 'Inconsolata', sans-serif ;
+	font-family: 'Inconsolata', sans-serif ;
 	font-size: 15px;
 	margin-bottom: 5px;
 
@@ -65,6 +65,15 @@ overflow: hidden;
 	font-family: 'Inconsolata', sans-serif ;
 }
 
+.draw_container .draw_toolbox .output_bottom .err_status{
+	font-size: 18px;
+}
+.draw_container .draw_toolbox .output_bottom .err_status["status=success"]{
+	color: green;
+}
+.draw_container .draw_toolbox .output_bottom .err_status["status=error"]{
+	color: red;
+}
 .draw_container .draw_toolbox .toolbar .container .tlb_btn{
 	text-align: center;
 	color:#fff;

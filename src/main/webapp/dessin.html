@@ -38,35 +38,51 @@
 	<script type="text/javascript">
 
 
+	// Python editor runtime variables
 	var python_editor = null;
 	var python_output = null;
 
-	function outf(text) {
+	//Output handler
+	function output_handler(text) {
 		python_output.html(python_output.html() + text);
 	}
+
+	//Read function
 	function builtinRead(x) {
 		if (Sk.builtinFiles === undefined
 			|| Sk.builtinFiles["files"][x] === undefined)
 			throw "File not found: '" + x + "'";
 		return Sk.builtinFiles["files"][x];
 	}
-	function run() {
-		var prog = python_editor.getValue();
 
+	//Code execution function
+	function run() {
+		//Get python source
+		var prog = python_editor.getValue();
+		//Replacing tabs by spaces
+		prog.replace('/\t/g','    ');
+		//Preparing output
 		python_output.text('OUTPUT \n')
+		//Configuring skulpt
 		Sk.pre = "";
 		Sk.configure({
-			output : outf,
+			output : output_handler,
 			read : builtinRead
 		});
+		//External libraries
 		Sk.externalLibraries = {
 
 		};
+		//Turtle graphics
 		(Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
-		var myPromise = Sk.misceval.asyncToPromise(function() {
+		var ePromise = Sk.misceval.asyncToPromise(function() {
 			return Sk.importMainWithBody("<stdin>", false, prog, true);
 		});
-		myPromise.then(function(mod) {
+		e.then(function(mod) {
+
+
+
+
 			console.log('success');
 		}, function(err) {
 			console.log(err.toString());
@@ -86,10 +102,15 @@
 			value:"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n"
 		});
 
-		python_output = $("<pre></pre>")
+		python_output = $("<pre></pre>");
 		python_output.addClass("output_bottom");
-		python_output.text("OUTPUT\n")
-		python_output.appendTo($("#python_editor"))
+		python_output.text("OUTPUT\n");
+		python_output.appendTo($("#python_editor"));
+
+		python_output_error_status = $("<p></p>");
+		
+
+
 
 
 	});

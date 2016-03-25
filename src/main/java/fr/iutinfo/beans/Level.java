@@ -9,12 +9,12 @@ public class Level {
 	private String name;
 	private int authorId;
 	private String content;
+	private String levelType;
 	private String instructions;
 	private int maxInstructions;
 	private List<Instruction> instructionsList;
 	private LevelList levelList;
 	
-
 	public Level() {
 		this(0);
 	}
@@ -85,8 +85,17 @@ public class Level {
 		return name;
 	}
 
+	public String getlevelType(){
+		return levelType;
+	}
+	
+	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setlevelType(String type){
+		this.levelType = type;
 	}
 
 	public int getAuthorId() {

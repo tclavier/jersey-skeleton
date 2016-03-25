@@ -16,17 +16,17 @@ import fr.iutinfo.beans.NotifLevelCount;
 
 public interface LevelDao {
 
-	@SqlUpdate("create table levels (id integer primary key autoincrement, name varchar(100), content text, instructions text, maxInstructions integer, authorId integer, creationDate DATETIME DEFAULT CURRENT_TIMESTAMP)")
+	@SqlUpdate("create table levels (id integer primary key autoincrement, name varchar(100), content text, instructions text, maxInstructions integer, authorId integer, creationDate DATETIME DEFAULT CURRENT_TIMESTAMP, levelType char(10))")
 	void createLevelsTable();
 
-	@SqlUpdate("insert into levels (name, content, instructions, maxInstructions, authorId) "
-			+ "values (:name, :jsonContent, :instructions, :maxInstructions, :authorId)")
+	@SqlUpdate("insert into levels (name, content, instructions, maxInstructions, authorId, levelType) "
+			+ "values (:name, :jsonContent, :instructions, :maxInstructions, :authorId, :levelType)")
 	@GetGeneratedKeys
 	int insert(@Bind("name") String name, 
 			@Bind("jsonContent") String jsonContent, 
 			@Bind("instructions") String instructions, 
 			@Bind("maxInstructions") int maxInstructions, 
-			@Bind("authorId") int authorId);
+			@Bind("authorId") int authorId, @Bind("levelType") String levelType);
 
 	@SqlQuery("select * from levels where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)
@@ -40,15 +40,15 @@ public interface LevelDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<Level> getAllByAuthor(@Bind("authorId") int authorId);
 
-	@SqlQuery("select id, name, authorId from levels")
+	@SqlQuery("select id, name, authorId,levelType from levels")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<LevelInfo> getAllLevelInfo();
 	
-	@SqlQuery("select id, name, authorId from levels where authorId = :authorId")
+	@SqlQuery("select id, name, authorId, levelType from levels where authorId = :authorId")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	List<LevelInfo> getLevelInfoByAuthor(@Bind("authorId") int authorId);
 	
-	@SqlQuery("select id, name, authorId from levels where id = :id")
+	@SqlQuery("select id, name, authorId, levelType from levels where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	LevelInfo getLevelInfoById(@Bind("id") int id);
 	

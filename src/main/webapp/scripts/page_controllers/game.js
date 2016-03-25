@@ -78,7 +78,7 @@ $(document).ready(function() {
 
 	function handleLevel(data) {
 		window.levelData = data;
-
+		sessionStorage.levelType = data.levelType;
 		levelList = data.levelList;
 		levelId = data.id;
 		
