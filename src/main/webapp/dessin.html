@@ -41,62 +41,66 @@
 	<script src="libs/sweetalert/sweetalert.min.js"></script>
 
 
+	<link rel="stylesheet" href="libs/alertify/css/alertify.css" />
+	<link rel="stylesheet" href="libs/alertify/css/themes/default.css" />	
+	<script src="libs/alertify/alertify.min.js"></script>	
+
+
 	<script type="text/javascript">
 
+	var running = false;
+	var last_output = "";
 
-	// Python editor runtime variables
-	var python_editor = null;
-	var python_output = null;
 
-	//Output handler
-	function output_handler(text) {
-		python_output.html(python_output.html() + text);
-	}
 
 	//Read function
-	function builtinRead(x) {
+	function pythonEditorbuiltinRead(x) {
 		if (Sk.builtinFiles === undefined
 			|| Sk.builtinFiles["files"][x] === undefined)
 			throw "File not found: '" + x + "'";
 		return Sk.builtinFiles["files"][x];
 	}
 
-	//Code execution function
-	function run() {
-		$("#run_link").hide();
-		//Get python source
-		var prog = python_editor.getValue();
-		//Preparing output
-		python_output.text('OUTPUT \n')
-		//Configuring skulpt
-		Sk.pre = "";
-		Sk.configure({
-			output : output_handler,
-			read : builtinRead
-		});
-		//External libraries
-		Sk.externalLibraries = {
+	function pythonEditorOutputHandler(text){
+		last_output = (last_output + text);
+	}
 
-		};
+
+	function runPython(editor_elem, canvas_elem, run_callback, exec_callback){
+
+		if (running) return false;
+
+
+
+
 		//Turtle graphics
-		(Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
+		(Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = canvas_elem;
+
+		last_output = "";
+		running = true;
+		run_callback();
+
+
 		var ePromise = Sk.misceval.asyncToPromise(function() {
-			return Sk.importMainWithBody("<stdin>", false, prog, true);
+			return  Sk.importMainWithBody("<stdin>", false, editor_elem.getValue(), true);
 		});
+
+
 		ePromise.then(function(mod) {
-			$("#run_link").show();
-			swal("Bien joué !", "Le code a bien été executé", "success")
+			running = false;
+			exec_callback(last_output,"success");
 		}, function(err) {
-			$("#run_link").show();
-			swal("Oops", "Un problème est survenu dans le code ... \n\n" + err.toString(), "error");
+			running = false;
+			exec_callback(last_output, "error");
 		});
+
 
 	}
 
 
-	$(document).ready(function(){
 
-		python_editor = CodeMirror(document.getElementById("python_editor"), {
+	function initPythonEditor(editor_elem,canvas_elem, run_link, run_callback,execution_callback){
+		var python_editor = CodeMirror(editor_elem, {
 			lineNumbers: true,
 			indentUnit: 4,
 			tabMode: "shift",
@@ -111,17 +115,81 @@
 			}
 		});
 
+
 		python_output = $("<pre></pre>");
 		python_output.addClass("output_bottom");
 		python_output.text("OUTPUT\n");
-		python_output.appendTo($("#python_editor"));
+		python_output.appendTo($(editor_elem));
+
+		//Run
+
+		$(run_link).click(function(e){
+			runPython(python_editor, canvas_elem, run_callback, execution_callback);
+		});
+
+	}
+
+
+			//Configuring skulpt
+			Sk.pre = "";
+			Sk.configure({
+				output : pythonEditorOutputHandler,
+				read : pythonEditorbuiltinRead
+			});
+
+					//External libraries
+					Sk.externalLibraries = {
+
+					};
 
 
 
 
-	});
+					$(document).ready(function(){
 
-	</script>
+
+
+						//Demo
+						initPythonEditor(document.getElementById("python_eleve_editor"),"python_eleve_canvas",$("#python_eleve_run_link"),
+							function(){
+
+							},
+							function(output, status){
+								if(status == "success"){
+									$("#run_link").show();
+									alertify.success('Le code a bien été executé');
+								}
+								else{
+									$("#run_link").show();
+									swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
+
+								}
+							});
+
+
+
+						//Editeur
+						initPythonEditor(document.getElementById("python_enseignant_editor"),"python_enseignant_canvas",$("#python_enseignant_run_link"),
+							function(){
+
+							},
+							function(output, status){
+								if(status == "success"){
+									$("#run_link").show();
+									alertify.success('Le code a bien été executé');
+								}
+								else{
+									$("#run_link").show();
+									swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
+
+								}
+							});
+
+
+
+					});
+
+</script>
 
 
 </head>
@@ -202,28 +270,59 @@
 		<h1>Dessiner avec la programmation</h1>
 
 		<div class="draw_container">
-
-
 			<div class="title">
 				Ecrivez
 				du code dans la fenêtre ci-dessous pour commencer à dessiner !
 			</div>
 
 			<div class="centered">
-				<div class="draw_toolbox" id="python_editor" sttyle="float:left;">
+				<div class="draw_toolbox" id="python_eleve_editor" sttyle="float:left;">
 					<div class="toolbar">
 						<div class="container">
-							<a id="run_link" href="#" onclick="run();"><div class="tlb_btn">►</div>Lancer votre programme </a>
+							<div id="python_eleve_run_link" style="color: blue; text-decoration: underline; cursor:pointer"><div class="tlb_btn">►</div>Lancer votre programme </div>
 						</div>
 					</div>
 				</div>	
 
-				<div class="draw_toolbox" id="python_editor" style="float:right;">
-					<div id="mycanvas"></div>
+				<div class="draw_toolbox" style="float:right;">
+					<div id="python_eleve_canvas"></div>
 				</div>	
 
 			</div>
 		</div>
+
+		<br/>
+		<h1>Editeur - Prototype</h1>
+
+
+
+		<div class="draw_container">
+			<div class="title">
+				Programmer un niveau
+			</div>
+
+			<div class="centered">
+				<div class="draw_toolbox" id="python_enseignant_editor" sttyle="float:left;">
+					<div class="toolbar">
+						<div class="container">
+							<div id="python_enseignant_run_link" style="color: blue; text-decoration: underline; cursor:pointer" ><div class="tlb_btn">►</div>Lancer votre programme </div>
+						</div>
+					</div>
+				</div>	
+
+				<div class="draw_toolbox" style="float:right;">
+					<div id="python_enseignant_canvas"></div>
+				</div>	
+
+			</div>
+		</div>
+
+
+
+
+
+
+
 	</div>
 
 	<br />
