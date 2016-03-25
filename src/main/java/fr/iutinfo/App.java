@@ -23,7 +23,6 @@ import fr.iutinfo.resources.UserResource;
 @ApplicationPath("/v1/")
 public class App extends Application {
 	
-	
     @Override
     public Set<Class<?>> getClasses() {
     	Set<Class<?>> s = new HashSet<Class<?>>();
