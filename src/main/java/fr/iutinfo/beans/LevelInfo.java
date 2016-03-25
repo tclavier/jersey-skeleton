@@ -4,9 +4,18 @@ public class LevelInfo {
 	private int id;
 	private int idAuthor;
 	private String name;
+	private String levelType;
 	
 	public LevelInfo() {
 		
+	}
+	
+	public String getlevelType() {
+		return levelType;
+	}
+
+	public void setlevelType(String type) {
+		this.levelType = type;
 	}
 
 	public int getId() {

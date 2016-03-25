@@ -35,7 +35,6 @@ $(document).ready(function() {
 
 	function handleLevel(data) {
         window.levelData = data;
-        
         $("#max_instruction").html(window.levelData.maxInstructions);
 		setLevelTitle(window.levelData.name);
 	}

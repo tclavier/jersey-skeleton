@@ -325,14 +325,16 @@ function saveLevel() {
 	if (validity) {
 		var structuredContent = [];
 
+		var level_type = $("#levelTypes").val().toLowerCase();
+		sessionStorage.levelType = level_type;
+		alert(sessionStorage.levelType)
 		sessionStorage.level = transpose(grid);
 		sessionStorage.name = $("#levelName").val();
 		sessionStorage.width = gridWidth;
 		sessionStorage.height = gridHeight;
 		sessionStorage.list = $('#levelList').val();
 		
-		var level_type = $("#levelTypes").val().toLowerCase();
-		sessionStorage.type = level_type;
+
 		
 
 		

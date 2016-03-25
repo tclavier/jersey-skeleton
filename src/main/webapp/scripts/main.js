@@ -46,20 +46,24 @@ requirejs.config({
 });
 
 var game;
-var level_type = sessionStorage.type;;
 
 require(
 		[ "jquery", "libs/bootstrap", "game", "grid", "player", "interpreter",
-				"animation", "graphical_player", "events", "block_creator", "carte_creator",
-				"theme" ],
+				"animation", "graphical_player", "events", "block_creator",
+				"carte_creator", "theme" ],
 		function($) {
 			var Game = require("game");
 			var BlockCreator = require("block_creator");
 			var CarteCreator = require("carte_creator");
 			var Theme = require("theme");
 
+			
 			game = new Game();
-
+			
+			
+			var level_type = sessionStorage.levelType;
+		
+			
 			var time;
 			function mainLoop() {
 				requestAnimationFrame(mainLoop);
@@ -93,11 +97,18 @@ require(
 					}
 					game.setTiles(tiles);
 
-					
-					//LEVEL TYPE
-					
-					//Blocs
-					//if (level_type == "blocs") {
+					// LEVEL TYPE
+
+					// Cartes
+					if (level_type == "cartes") {
+
+						// Boucle jeu carte
+
+						carteCreator = new CarteCreator(game);
+
+						alert('Jeu de carte chargé !')
+
+					} else if(level_type=="blocs") {
 						blockCreator = new BlockCreator(game);
 
 						var toolbox = blockCreator
@@ -125,45 +136,10 @@ require(
 									$("#max_instruction_s").text(
 											remainingBlocks > 1 ? "s" : "");
 								});
-					//}
-					/*else if (level_type == "cartes"){
-						
-						//Boucle jeu carte
-						
-						carteCreator = new CarteCreator(game);
+					}
 
-						var toolbox = carteCreator
-								.getToolbox(window.levelData.instructionsList);
-
-						// On crée la zone pour blockly
-						Blockly.inject(document.getElementById('carteDiv'), {
-							trashcan : true,
-							toolbox : toolbox,
-							maxBlocks : window.levelData.maxInstructions
-						});
-
-						// On met un message dynamique pour afficher le nombre
-						// de bloques restant
-						Blockly
-								.addChangeListener(function() {
-									if (runned)
-										execute("");
-									if (Blockly.maxBlocks == Infinity)
-										return;
-									var remainingBlocks = Blockly.maxBlocks
-											- Blockly.getMainWorkspace()
-													.getAllBlocks().length;
-									$("#max_instruction").text(remainingBlocks);
-									$("#max_instruction_s").text(
-											remainingBlocks > 1 ? "s" : "");
-								});
-						
-						
-						
-					}*/
-					
-					
 					window.levelData = null;
+			
 				}
 
 				if (game)
@@ -213,15 +189,15 @@ function execute(code) {
 }
 
 $(document).ready(function() {
-	
+
 	document.getElementById('execute').onclick = function() {
-		if (level_type == "cartes"){
+		var level_type = sessionStorage.levelType;
+		if (level_type == "cartes") {
+			//Execute carte ....
+			alert('execution cartes');
+		} else if (level_type == "blocs" && Blockly != null) {
 			execute(Blockly.JavaScript.workspaceToCode());
-		}else
-		if (Blockly != null) {
-			execute(Blockly.JavaScript.workspaceToCode());
-		} 
-		else {
+		} else {
 			alert("Not loaded yet :(");
 		}
 	}

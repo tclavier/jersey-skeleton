@@ -115,7 +115,7 @@ public class DbResetResource {
 				"1 3 1", 			//
 				"1", 				// instructions id list
 				2,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 
 		levelDao.insert("Niveau 2", // name
 				"1 1 1," + 			//
@@ -123,7 +123,7 @@ public class DbResetResource {
 				"1 1 1", 			//
 				"1,3", 				// instructions id list
 				3,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		
 		levelDao.insert("Niveau 3", // name
@@ -133,7 +133,7 @@ public class DbResetResource {
 				"1 3 1", 			//
 				"1,10", 			// instructions id list
 				2,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		levelDao.insert("Niveau 4", // name
 				"2 1 3," + 			//
@@ -141,7 +141,7 @@ public class DbResetResource {
 				"0 0 0", 			//
 				"1,3,10", 			// instructions id list
 				4,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		levelDao.insert("Niveau 5", // name
 				"2 1 1 1," + 		//
@@ -150,7 +150,7 @@ public class DbResetResource {
 				"1 1 0 3", 			//
 				"1,3,4,10", 		// instructions id list
 				5,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		levelDao.insert("Niveau 1", // name
 				"2 1 1 1," + 		//
@@ -159,7 +159,7 @@ public class DbResetResource {
 				"0 0 0 3", 			//
 				"1,2,4,5", 			// instructions id list
 				5,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		levelDao.insert("Niveau 2", // name
 				"3 0 0," + 			//
@@ -168,7 +168,7 @@ public class DbResetResource {
 				"2 1 1", 			//
 				"1,2,3,5", 			// instructions id list
 				5,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		levelDao.insert("Niveau 3", // name
 				"2 1 1 1," + 		//
@@ -177,7 +177,7 @@ public class DbResetResource {
 				"0 0 0 3", 			//
 				"1,3,7,10", 		// instructions id list
 				4,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		levelDao.insert("Niveau 4", // name
 				"2 1 1 1," + 		//
@@ -188,7 +188,7 @@ public class DbResetResource {
 				"3 1 1 1", 			//
 				"1,3,4,7,8,10", 		// instructions id list
 				6,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		levelDao.insert("Niveau 5", // name
 				"1 1 1 1 2 1," + 		//
@@ -199,7 +199,7 @@ public class DbResetResource {
 				"1 1 1 0 1 1", 			//
 				"1,3,4,7,8,10", 		// instructions id list
 				4,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		levelDao.insert("Niveau 1", // name
 				"1 1 1 1 1 1," + 		//
@@ -210,7 +210,7 @@ public class DbResetResource {
 				"0 1 1 1 1 1", 			//
 				"1,4,6,11,10", 		// instructions id list
 				5,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		
 		levelDao.insert("Niveau 2", // name
@@ -222,7 +222,7 @@ public class DbResetResource {
 				"0 0 0 0 0 1", 		//
 				"1,3,4,7,8,10,11", 	// instructions id list
 				7,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		levelDao.insert("Niveau 3", // name
 				"0 0 0 0 0 2 1," + 	//
@@ -234,7 +234,7 @@ public class DbResetResource {
 				"1 0 0 0 1 1 1", 		//
 				"1,10,15,3,4,7", 	// instructions id list
 				6,					// max number of instructions
-				1);					// author id
+				1, "blocs");					// author id
 		
 		/*levelDao.insert("Niveau 2", // name
 				"2 1 0 0 0 0," + 	//
