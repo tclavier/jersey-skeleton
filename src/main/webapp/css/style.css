@@ -196,11 +196,26 @@ canvas {
 #avatar {
     height: 100%
     width: 100%;
-    max-width: 200px;
+    max-width: 400px;
     max-height: 200px;
 
 }
 
 ul {
 	list-style-type: none;
+}
+
+#shadowing
+{
+	position: fixed;
+	display:block;
+	width: 100%;
+	height: 100%;
+  	opacity:1;
+  	filter: alpha(opacity=50);
+}
+
+#vid
+{
+ 	display:none;	
 }

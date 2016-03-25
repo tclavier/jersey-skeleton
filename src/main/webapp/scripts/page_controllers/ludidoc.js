@@ -52,6 +52,7 @@ $(document).ready(function() {
 	toggleDoc(currentMenuElement);
 	*/
 	
+	
 	$.getJSON("v1/instructions", function(data) {
 		for(var i = 0 ; i < data.length ; i++) {
 			createInput(data[i], i);
