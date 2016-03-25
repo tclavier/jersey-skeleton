@@ -204,3 +204,23 @@ canvas {
 ul {
 	list-style-type: none;
 }
+.dropCarte {
+    margin: 50px 10px 10px 50px;
+    width: 400px;
+    height: 250px;
+    background-color: #babdb6;
+    border: 1px solid #111;
+    
+    border-radius: 10px;
+    transition: all 200ms linear;
+}
+.dragCarte {
+    margin: 50px 10px 10px 50px;
+    width: 400px;
+    height: 250px;
+    background-color: #ffffff;
+    border: 1px solid #111;
+    
+    border-radius: 10px;
+    transition: all 200ms linear;
+}
