@@ -61,8 +61,7 @@ require(
 			game = new Game();
 			
 			
-			var level_type = sessionStorage.levelType;
-		
+
 			
 			var time;
 			function mainLoop() {
@@ -98,7 +97,8 @@ require(
 					game.setTiles(tiles);
 
 					// LEVEL TYPE
-
+					var level_type = sessionStorage.levelType;
+					
 					// Cartes
 					if (level_type == "cartes") {
 
