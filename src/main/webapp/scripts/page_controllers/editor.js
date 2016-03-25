@@ -327,7 +327,7 @@ function saveLevel() {
 
 		var level_type = $("#levelTypes").val().toLowerCase();
 		sessionStorage.levelType = level_type;
-		alert(sessionStorage.levelType)
+		
 		sessionStorage.level = transpose(grid);
 		sessionStorage.name = $("#levelName").val();
 		sessionStorage.width = gridWidth;
@@ -337,8 +337,9 @@ function saveLevel() {
 
 		
 
-		
+		setTimeout(function(){
 		window.location.assign("/test_"+level_type+".html");
+		},50);
 		
 	}
 	else 

@@ -7,8 +7,6 @@ function levelFinished() {
 	
 	if(levelList == undefined) {
 		
-		
-		
 		// le niveau n'appartient pas à une liste
 		// On ne redirige pas et on affiche un message 
 		$("#congratsModal .modal-body").html("Vous avez fini le niveau avec succés !");
@@ -79,6 +77,7 @@ $(document).ready(function() {
 	function handleLevel(data) {
 		window.levelData = data;
 		sessionStorage.levelType = data.levelType;
+		
 		levelList = data.levelList;
 		levelId = data.id;
 		
