@@ -35,6 +35,12 @@
 
 	<script src="libs/code_mirror/codemirror.js"></script>
 	<script src="libs/code_mirror/parsepython.js"></script>
+
+
+	<link rel="stylesheet" href="libs/sweetalert/sweetalert.css" />
+	<script src="libs/sweetalert/sweetalert.min.js"></script>
+
+
 	<script type="text/javascript">
 
 
@@ -57,10 +63,9 @@
 
 	//Code execution function
 	function run() {
+		$("#run_link").hide();
 		//Get python source
 		var prog = python_editor.getValue();
-		//Replacing tabs by spaces
-		prog.replace('/\t/g','    ');
 		//Preparing output
 		python_output.text('OUTPUT \n')
 		//Configuring skulpt
@@ -78,14 +83,12 @@
 		var ePromise = Sk.misceval.asyncToPromise(function() {
 			return Sk.importMainWithBody("<stdin>", false, prog, true);
 		});
-		e.then(function(mod) {
-
-
-
-
-			console.log('success');
+		ePromise.then(function(mod) {
+			$("#run_link").show();
+			swal("Bien joué !", "Le code a bien été executé", "success")
 		}, function(err) {
-			console.log(err.toString());
+			$("#run_link").show();
+			swal("Oops", "Un problème est survenu dans le code ... \n\n" + err.toString(), "error");
 		});
 
 	}
@@ -99,16 +102,19 @@
 			tabMode: "shift",
 			mode: "python",
 			theme: "dracula",
-			value:"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n"
+			value:"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n",
+			extraKeys: {
+				Tab: function(cm) {
+					var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+					cm.replaceSelection(spaces, "end", "+input");
+				}
+			}
 		});
 
 		python_output = $("<pre></pre>");
 		python_output.addClass("output_bottom");
 		python_output.text("OUTPUT\n");
 		python_output.appendTo($("#python_editor"));
-
-		python_output_error_status = $("<p></p>");
-		
 
 
 
@@ -207,13 +213,13 @@
 				<div class="draw_toolbox" id="python_editor" sttyle="float:left;">
 					<div class="toolbar">
 						<div class="container">
-							<a href="#" onclick="run();"><div class="tlb_btn">►</div>Lancer votre programme </a>
+							<a id="run_link" href="#" onclick="run();"><div class="tlb_btn">►</div>Lancer votre programme </a>
 						</div>
 					</div>
 				</div>	
 
 				<div class="draw_toolbox" id="python_editor" style="float:right;">
-	<div id="mycanvas"></div>
+					<div id="mycanvas"></div>
 				</div>	
 
 			</div>
