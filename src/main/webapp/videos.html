@@ -88,22 +88,57 @@
 
 	<div class="container main_panel" id="home_pane">
 		<div class="row">
-			<h1>Retrouvez ici tous nos tutoriels vidéos.</h1>
+			<h1>Bienvenue sur Ludicode !</h1>
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="embed-responsive embed-responsive-16by9">
-							<video width="400" height="222" controls src="videos/tuto_python.mp4"> </video>
-						</div>
-						<div class="embed-responsive embed-responsive-16by9">
-							<video width="400" height="222" controls src="videos/tuto_python.mp4"> </video>
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Pv45P_SYhVQ"></iframe>
 						</div>
 					</div>
 				</div>
 			</div>
+						
+			<div class="col-md-6">
+				<div class="panel panel-default">
+				  <div class="panel-body">
+				  	<h2>Votre avis nous intéresse !</h2>
+				  	<p>
+				  		Ce projet est encore en développement, 
+				  		nous avons besoin de vos suggestions pour 
+				  		continuer à l'améliorer. Veuillez nous accorder une
+				  		minute de votre temps pour remplir <a href="https://docs.google.com/forms/d/1hmrhXCK2fJ_nWNz3LHYgUXemEx199oRapPRhqhw1vaA/viewform">ce questionnaire.</a>
+				  		
+				  		<br /><br />
+				  		Merci d'avance, 
+				  		<br /><br />
+				  		Les développeurs de Ludicode.
+				  	</p>
+				  </div>
+				</div>
+			</div>
+			
+			<div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
 		</div>
 	</div>
-	
+
+	<h1>Videos</h1>
+	<div class="container" id="videos">
+  			<ul class="nav nav-pills nav-stacked">
+    			<li class="active"><a href="#">Videos</a></li>
+
+  			</ul>
+	</div>
+
+
+
+	<script type="text/javascript">
+		for(var i = 0; i < 10; i++) {
+			$("videos").append("<li><a>Test</a></li>");
+
+		}
+	</script>
+
 	<footer class="container">
 		<div class="row">
 			<hr />
