@@ -91,7 +91,7 @@
 			exec_callback(last_output,"success");
 		}, function(err) {
 			running = false;
-			exec_callback(last_output, "error");
+			exec_callback(err, "error");
 		});
 
 
