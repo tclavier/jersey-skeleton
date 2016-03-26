@@ -3,6 +3,9 @@ package fr.iutinfo.skeleton.api;
 import org.skife.jdbi.v2.DBI;
 import org.sqlite.SQLiteDataSource;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class BDDFactory {
     private static DBI dbi = null;
 

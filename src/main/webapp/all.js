@@ -12,15 +12,51 @@ function getUserGeneric(name, url) {
 	});
 }
 
+function getForAll() {
+	getSecure("v1/secure/forall");
+}
+
+function getForLogged() {
+	getSecure("v1/secure/onlylogged");
+}
+
+function getByAnnotation() {
+	getSecure("v1/secure/byannotation");
+}
+
+ function getSecure(url) {
+ if($("#userlogin").val() != "") {
+     $.ajax
+     ({
+       type: "GET",
+       url: url,
+       dataType: 'json',
+       beforeSend : function(req) {
+        req.setRequestHeader("Authorization", "Basic " + btoa($("#userlogin").val() + ":" + $("#passwdlogin").val()));
+       },
+       success: function (data){
+        afficheUser(data)
+       },
+       error : function(jqXHR, textStatus, errorThrown) {
+       			alert('error: ' + textStatus);
+       		}
+     });
+     } else {
+     $.getJSON(url, function(data) {
+     	    afficheUser(data);
+        });
+     }
+ }
+
 function postUser(name, alias) {
-    postUserGeneric(name, alias, "v1/user/");
+    postUserGeneric(name, alias, "", "v1/user/");
 }
 
-function postUserBdd(name, alias) {
-    postUserGeneric(name, alias, "v1/userdb/");
+function postUserBdd(name, alias, pwd) {
+    postUserGeneric(name, alias, pwd, "v1/userdb/");
 }
 
-function postUserGeneric(name, alias, url) {
+function postUserGeneric(name, alias, pwd, url) {
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -29,6 +65,7 @@ function postUserGeneric(name, alias, url) {
 		data : JSON.stringify({
 			"name" : name,
 			"alias" : alias,
+			"password" : pwd,
 			"id" : 0
 		}),
 		success : function(data, textStatus, jqXHR) {

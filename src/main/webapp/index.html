@@ -44,12 +44,26 @@
                 <label for="userdb">Utilisateur en base de données : </label>
                 <input type="text" name="userdb" id="userdb" placeholder="Nom ?" class="form-control"/>
                 <input type="text" name="user" id="aliasdb" placeholder="Surnom ?" class="form-control"/>
+                <input type="password" name="user" id="passwddb" class="form-control"/>
             </div>
             <div class="btn-group" role="group">
                 <button id="get-bdd" class="btn btn-default">Lire</button>
                 <button id="post-bdd" class="btn btn-primary">Sauver</button>
                 <button id="list-bdd" class="btn btn-warning">Lister</button>
             </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-12">
+            <label for="user">S'identifier : </label>
+            <input type="text" name="userdb" id="userlogin" placeholder="Login" class="form-control"/>
+            <input type="password" name="user" id="passwdlogin" class="form-control"/>
+            <br/>
+            <button id="read-forall" class="btn btn-default">Lire depuis /v1/secure/forall</button>
+            <br/>
+            <button id="read-forlogged" class="btn btn-default">Lire depuis /v1/secure/onlylogged</button>
+            <br/>
+            <button id="read-byannotation" class="btn btn-default">Lire depuis /v1/secure/byannotation</button>
         </div>
     </div>
     <div class="row" style="margin-top: 1em;">
@@ -59,18 +73,21 @@
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript">
+    <script type="text/javascript">
 			$(document).ready(function() {
 				$("#get-ram").click(function () {getUser($('#user').val(), $('#alias').val())});
 				$("#post-ram").click(function () {postUser($('#user').val(), $('#alias').val())});
 				$("#list-ram").click(function () {listUsers()});
 				$("#get-bdd").click(function () {getUserBdd($('#userdb').val(), $('#aliasdb').val())});
-				$("#post-bdd").click(function () {postUserBdd($('#userdb').val(), $('#aliasdb').val())});
+				$("#post-bdd").click(function () {postUserBdd($('#userdb').val(), $('#aliasdb').val(), $('#passwddb').val())});
 				$("#list-bdd").click(function () {listUsersBdd()});
+				$("#read-forall").click(function () {getForAll()});
+				$("#read-forlogged").click(function () {getForLogged()});
+				$("#read-byannotation").click(function () {getByAnnotation()});
 			});
 
 
-</script>
+
+    </script>
 </body>
 </html>

@@ -21,6 +21,8 @@
                 Nom : ${it.name}<br/>
                 Id : ${it.id}<br/>
                 alias : ${it.alias} <br/>
+                email : ${it.email} <br/>
+                mot de passe : ${it.passwdHash} <br/>
               </div>
             </div>
         </div>
