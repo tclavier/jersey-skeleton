@@ -77,6 +77,9 @@ public class User implements Principal {
     }
 
     public boolean isGoodPassword(String password) {
+        if (isAnonymous()) {
+            return false;
+        }
         String hash = buildHash(password, getSalt());
         return hash.equals(getPasswdHash());
     }
@@ -142,7 +145,7 @@ public class User implements Principal {
         return anonymous ;
     }
 
-    public static boolean isAnonymous(User currentUser) {
-        return currentUser.getId() == getAnonymousUser().getId();
+    public boolean isAnonymous() {
+        return this.getId() == getAnonymousUser().getId();
     }
 }

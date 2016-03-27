@@ -17,33 +17,44 @@ import javax.ws.rs.ext.Provider;
 @Provider
 @PreMatching
 public class AuthFilter implements ContainerRequestFilter {
-    final static Logger logger = LoggerFactory.getLogger(AuthFilter.class);
+    private final static Logger logger = LoggerFactory.getLogger(AuthFilter.class);
 
     @Override
     public void filter(ContainerRequestContext containerRequest) throws WebApplicationException {
-        String auth = containerRequest.getHeaderString(HttpHeaders.AUTHORIZATION);
+        String authorizationHeader = containerRequest.getHeaderString(HttpHeaders.AUTHORIZATION);
         String scheme = containerRequest.getUriInfo().getRequestUri().getScheme();
-        String uriAuth = containerRequest.getUriInfo().getRequestUri().getUserInfo();
-        logger.debug("uriAuth : " + uriAuth);
-        logger.debug("auth : " + auth);
+        logger.debug("authorizationHeader : " + authorizationHeader);
 
-        if (auth != null) {
-            String[] loginPassword = BasicAuth.decode(auth);
-            logger.debug("login : " + loginPassword[0]);
-            logger.debug("password : " + loginPassword[1]);
-            if (loginPassword == null || loginPassword.length != 2) {
-                throw new WebApplicationException(Status.NOT_ACCEPTABLE);
+        if (authorizationHeader != null) {
+            String[] loginPassword = BasicAuth.decode(authorizationHeader);
+            checkLoginPassword(loginPassword);
+            String login = loginPassword[0];
+            String password = loginPassword[1];
+            logger.debug("login : " + login + ", password : " + password);
+            User user = loadUserFromLogin(login);
+            if (user.isGoodPassword(password)) {
+                logger.debug("good password !");
+                containerRequest.setSecurityContext(new AppSecurityContext(user, scheme));
+            } else {
+                containerRequest.setSecurityContext(new AppSecurityContext(User.getAnonymousUser(), scheme));
             }
-
-            UserDao dao = BDDFactory.getDbi().open(UserDao.class);
-            User user = dao.findByName(loginPassword[0]);
-            if(user != null && !user.isGoodPassword(loginPassword[1]) || user == null) {
-                throw new WebApplicationException(Status.UNAUTHORIZED);
-            }
-
-            containerRequest.setSecurityContext(new AppSecurityContext(user, scheme));
         } else {
             containerRequest.setSecurityContext(new AppSecurityContext(User.getAnonymousUser(), scheme));
+        }
+    }
+
+    private User loadUserFromLogin(String login) {
+        UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+        User user = dao.findByName(login);
+        if (user == null) {
+            user = User.getAnonymousUser();
+        }
+        return user;
+    }
+
+    private void checkLoginPassword(String[] loginPassword) {
+        if (loginPassword == null || loginPassword.length != 2) {
+            throw new WebApplicationException(Status.NOT_ACCEPTABLE);
         }
     }
 }
