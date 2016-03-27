@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/iut-lille/jersey-skeleton.svg?branch=master)](https://travis-ci.org/iut-lille/jersey-skeleton)
+
 # Création d'un projet en mode étudiant
 Sur Github :
 - faire un fork du projet 
