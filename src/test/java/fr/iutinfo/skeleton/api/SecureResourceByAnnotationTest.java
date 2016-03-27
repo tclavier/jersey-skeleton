@@ -10,6 +10,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
+import static javax.ws.rs.core.Response.Status.FORBIDDEN;
 import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 import static org.junit.Assert.assertEquals;
 
@@ -33,16 +34,7 @@ public class SecureResourceByAnnotationTest extends JerseyTest {
     public void should_return_forbiden_headers_without_authorization_header() {
         Response response = target(path).request().get();
         int status = response.getStatus();
-        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), status);
-    }
-
-    @Test
-    public void should_return_unauthorized_headers_without_authorization_header() {
-        Response response = target("/secure/onlylogged").request().get();
-        int status = response.getStatus();
-        String wwwHeader = response.getHeaderString(HttpHeaders.WWW_AUTHENTICATE);
-        assertEquals(UNAUTHORIZED.getStatusCode(), status);
-        assertEquals("Basic realm=\"Mon application\"", wwwHeader);
+        assertEquals(FORBIDDEN.getStatusCode(), status);
     }
 
     @Test

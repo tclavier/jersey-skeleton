@@ -5,6 +5,7 @@ import fr.iutinfo.skeleton.api.BDDFactory;
 import fr.iutinfo.skeleton.api.*;
 import org.glassfish.jersey.server.mvc.Template;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -26,7 +27,12 @@ public class UserViews {
     @Template(name = "detail")
     @Path("/{id}")
     public User getDetail(@PathParam("id") String id) {
-        User user = dao.findById(Integer.parseInt(id));
+        User user = null;
+        if ("-1".equals(id)) {
+            user = User.getAnonymousUser();
+        } else {
+            user = dao.findById(Integer.parseInt(id));
+        }
         if (user == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }

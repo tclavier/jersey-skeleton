@@ -8,9 +8,9 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 public class Helper {
-    final static Logger logger = LoggerFactory.getLogger(Helper.class);
+    private final static Logger logger = LoggerFactory.getLogger(Helper.class);
     private static UserDao dao;
-    public WebTarget target;
+    private WebTarget target;
 
 
     public Helper(WebTarget target) {
@@ -18,7 +18,7 @@ public class Helper {
         dao = BDDFactory.getDbi().open(UserDao.class);
     }
 
-    void initDb() {
+    public void initDb() {
         dao.dropUserTable();
         dao.createUserTable();
     }
@@ -40,7 +40,7 @@ public class Helper {
         return doPost(user);
     }
 
-    User createUserWithPassword(String name, String passwd, String salt) {
+    public User createUserWithPassword(String name, String passwd, String salt) {
         User user = new User(0, name);
         user.setSalt(salt);
         user.setPassword(passwd);
@@ -48,9 +48,10 @@ public class Helper {
         return doPost(user);
     }
 
-    User doPost(User user) {
-        Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
-        return target.request().post(userEntity).readEntity(User.class);
+    private User doPost(User user) {
+        int id = dao.insert(user);
+        user.setId(id);
+        return user;
     }
 
 }
