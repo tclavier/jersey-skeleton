@@ -1,305 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
 
-<title>Ludicode</title>
+        <title>Ludicode</title>
 
 
-<!-- bootstrap -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="css/bootstrap-toggle.min.css">
-<link rel="stylesheet" href="css/style.css">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+        <link rel="stylesheet" href="css/style.css">
 
-<!-- Code local -->
-<script type="text/javascript" src="libs/jquery.js"></script>
-<script type="text/javascript" src="libs/bootstrap.js"></script>
-<script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
-<script type="text/javascript" src="scripts/page_controllers/all.js"></script>
-<script type="text/javascript" src="scripts/page_controllers/options.js"></script>
+        <!-- Code local -->
+        <script type="text/javascript" src="libs/jquery.js"></script>
+        <script type="text/javascript" src="libs/bootstrap.js"></script>
+        <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
+        <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
+        <script type="text/javascript" src="scripts/page_controllers/options.js"></script>
 
-<style>
-.panel-heading {
-	text-align: center;
-}
+        <style>
+            .panel-heading {
+                text-align: center;
+            }
 
-#info_player {
-	margin-top: 20px;
-}
-</style>
+            #info_player {
+                margin-top: 20px;
+            }
+        </style>
 
-</head>
+    </head>
 
-<body>
-	<div id="fb-root"></div>
-	<nav class="navbar navbar-inverse">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand menu_bar_element" id="home_bar"
-					href="index.html">Ludicode</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
+    <body>
+        <div id="fb-root"></div>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed"
+                            data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                            aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span> <span
+                            class="icon-bar"></span> <span class="icon-bar"></span> <span
+                            class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand menu_bar_element" id="home_bar"
+                       href="index.html">Ludicode</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
 
-				<ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
 
-					<li class="menu_bar_element" id="levels_bar"><a
-						href="levels.html">Jouer</a></li>
-						<li class="menu_bar_element" id="levels_bar"><a href="dessin.html">Dessiner</a></li>
-					<li class="menu_bar_element" id="editor_bar"><a
-						href="editor.html">Editeur</a></li>
-					<li class="menu_bar_element" id="ludidoc_bar"><a
-						href="ludidoc.html">Ludidoc</a></li>
-					<li class="menu_bar_element" id="leaderboard_bar"><a
-						href="leaderboard.html">Classement</a></li>
-					<li class="menu_bar_element" id="video_bar"><a href="videos.html">Vidéos</a></li>
-					
-				</ul>
+                        <li class="menu_bar_element" id="levels_bar"><a
+                                href="levels.html">Jouer</a></li>
+                        <li class="menu_bar_element" id="levels_bar"><a href="dessin.html">Dessiner</a></li>
+                        <li class="menu_bar_element" id="editor_bar"><a
+                                href="editor.html">Editeur</a></li>
+                        <li class="menu_bar_element" id="ludidoc_bar"><a
+                                href="ludidoc.html">Ludidoc</a></li>
+                        <li class="menu_bar_element" id="leaderboard_bar"><a
+                                href="leaderboard.html">Classement</a></li>
+                        <li class="menu_bar_element" id="video_bar"><a href="videos.html">Vidéos</a></li>
 
-				<div class="navbar-form navbar-right">
-					<div id="login_navbar">
-						<div class="form-group">
-							<input id="name_login" type="text" placeholder="Pseudo"
-								class="form-control" /> <input id="password_login"
-								type="password" placeholder="Mot de passe" class="form-control" />
-							<button id="login_send" type="submit" class="btn btn-success"
-								data-toggle="popover">Envoyer</button>
-						</div>
-						<div class="form-group">
-							<a href="register.html" type="button"
-								class="menu_bar_element btn btn-info">M'enregistrer</a>
-						</div>
-					</div>
-					<div id="info_profil_navbar">
-						<a id="user_icon" href="profile.html" class="menu_bar_element"
-							data-toogle="tooltip" title="Mon profil"> <span
-							class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a> <a href="chat.html" data-toogle="tooltip" title="Mes messages">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true">
-						</span>
-						</a> <a id="notif_icon" href="#" data-toogle="tooltip" title="Mes notifications">
-							<span class="glyphicon glyphicon-exclamation-sign"
-							aria-hidden="true"></span>
-						</a> <a id="options_icon" class="menu_bar_element" href="options.html"
-							data-toogle="tooltip" title="Paramètres"> <span
-							class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a> <a id="logout_icon" href="#" data-toogle="tooltip"
-							title="Deconnéxion"> <span class="glyphicon glyphicon-off"
-							aria-hidden="true"></span>
-						</a>
-					</div>
-				</div>
-			</div>
-			<!--/.navbar-collapse -->
-		</div>
-	</nav>
+                    </ul>
 
-
-	<div class="container main_panel" id="options_pane">
-		<div class="row">
-
-			<div id="info_player_panel" class="col-md-5 panel panel-primary"
-				style="padding: 0px; margin-right: 30px">
-				<div class="panel-heading">
-					<h3>Modifier mes informations</h3>
-				</div>
-				<div class="row panel-body">
-
-                    <div id="image_panel" class="col-md-5">
-                        <img id="avatar" src="images/profil.png" align="middle" alt="profil"
-                        class="img-circle text-center" onerror="if (this.src != 'images/profil.png') this.src = 'images/profil.png';">
-
-                        <br> 
-
-                        <p>
-                        <input type="file" id="updateAvatar" style="display: none;" name="file"/>
-                        <input type="button" class="btn btn-primary" value="Choisissez un fichier" onclick="document.getElementById('updateAvatar').click();" />
-
-
-                        </p>
+                    <div class="navbar-form navbar-right">
+                        <div id="login_navbar">
+                            <div class="form-group">
+                                <input id="name_login" type="text" placeholder="Pseudo"
+                                       class="form-control" /> <input id="password_login"
+                                       type="password" placeholder="Mot de passe" class="form-control" />
+                                <button id="login_send" type="submit" class="btn btn-success"
+                                        data-toggle="popover">Envoyer</button>
+                            </div>
+                            <div class="form-group">
+                                <a href="register.html" type="button"
+                                   class="menu_bar_element btn btn-info">M'enregistrer</a>
+                            </div>
+                        </div>
+                        <div id="info_profil_navbar">
+                            <a id="user_icon" href="profile.html" class="menu_bar_element"
+                               data-toogle="tooltip" title="Mon profil"> <span
+                                    class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </a> <a href="chat.html" data-toogle="tooltip" title="Mes messages">
+                                <span class="glyphicon glyphicon-comment" aria-hidden="true">
+                                </span>
+                            </a> <a id="notif_icon" href="#" data-toogle="tooltip" title="Mes notifications">
+                                <span class="glyphicon glyphicon-exclamation-sign"
+                                      aria-hidden="true"></span>
+                            </a> <a id="options_icon" class="menu_bar_element" href="options.html"
+                                    data-toogle="tooltip" title="Paramètres"> <span
+                                    class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a> <a id="logout_icon" href="#" data-toogle="tooltip"
+                                    title="Deconnéxion"> <span class="glyphicon glyphicon-off"
+                                                       aria-hidden="true"></span>
+                            </a>
+                        </div>
                     </div>
-
-					<div id="info_player" class="col-md-7"></div>
-
-				</div>
-			</div>
-
-			<div id="facebook_panel" class="col-md-5 panel panel-primary"
-				style="padding: 0px">
-				<div class="panel-heading">
-					<h3>Options Facebook</h3>
-				</div>
-				<div id="info_facebook" class="panel-body">
-					<a href="#" id="login_fb">connexion fb</a>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<!--  Modal pour le changement de pseudo -->
-	<div class="modal fade" id="pseudo_modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Modifier le pseudo</h4>
-				</div>
-				<div class="modal-body">
-
-					<div id="errorPseudo" class="alert alert-danger"></div>
-					<form class="form-horizontal">
-
-						<div class="form-group">
-							<label for="newPseudo" class="col-sm-6 control-label">Nouveau
-								pseudo</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="newPseudo"
-									placeholder="Nouveau pseudo">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="newPseudoConfirmation" class="col-sm-6 control-label">Confirmer
-								le nouveau pseudo</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control"
-									id="newPseudoConfirmation" placeholder="Nouveau pseudo">
-							</div>
-						</div>
-					</form>
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-					<button id="updateNameButton" type="button" class="btn btn-primary"
-						onclick="updateName">Sauvegarder</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!--  Modal pour le changement de mail -->
-	<div class="modal fade" id="email_modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Modifier le mail</h4>
-				</div>
-				<div class="modal-body">
-					<div id="errorEmail" class="alert alert-danger"></div>
-					<form class="form-horizontal">
-
-						<div class="form-group">
-							<label for="newMail" class="col-sm-6 control-label">Nouveau
-								mail</label>
-							<div class="col-sm-6">
-								<input type="email" class="form-control" id="newMail"
-									placeholder="Nouveau mail">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="newMailConfirmation" class="col-sm-6 control-label">Confirmer
-								le nouveau mail </label>
-							<div class="col-sm-6">
-								<input type="email" class="form-control"
-									id="newMailConfirmation" placeholder="Nouveau mail">
-							</div>
-						</div>
-					</form>
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-					<button id="updateMailButton" type="button" class="btn btn-primary">Sauvegarder</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+                <!--/.navbar-collapse -->
+            </div>
+        </nav>
 
 
-	<!--  Modal pour le changement de mot de passe -->
-	<div class="modal fade" id="password_modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Modifier mon mot de
-						passe</h4>
-				</div>
-				<div class="modal-body">
-					<div id="errorPassword" class="alert alert-danger"></div>
+        <div class="container main_panel" id="options_pane">
+            <div class="row">
 
-					<form class="form-horizontal">
-						<div class="form-group">
-							<label for="oldPassword" class="col-sm-6 control-label">Ancien
-								mot de passe</label>
-							<div class="col-sm-6">
-								<input type="password" class="form-control" id="oldPassword"
-									placeholder="Ancien mot de passe">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="newPassword" class="col-sm-6 control-label">Nouveau
-								mot de passe</label>
-							<div class="col-sm-6">
-								<input type="password" class="form-control" id="newPassword"
-									placeholder="Nouveau mot de passe">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="newPasswordConfirmation"
-								class="col-sm-6 control-label">Confirmer le nouveau mot
-								de passe</label>
-							<div class="col-sm-6">
-								<input type="password" class="form-control"
-									id="newPasswordConfirmation" placeholder="Nouveau mot de passe">
-							</div>
-						</div>
-					</form>
+                <div id="info_player_panel" class="col-md-5 panel panel-primary"
+                     style="padding: 0px; margin-right: 30px">
+                    <div class="panel-heading">
+                        <h3>Modifier mes informations</h3>
+                    </div>
+                    <div class="row panel-body">
+
+                        <div id="image_panel" class="col-md-5">
+                            <img id="avatar" src="images/profil.png" align="middle" alt="profil"
+                                 class="img-circle text-center" onerror="if (this.src != 'images/profil.png') this.src = 'images/profil.png';">
+
+                            <br> 
+
+                            <p>
+                                <input type="file" id="updateAvatar" style="display: none;" name="file"/>
+                                <input type="button" class="btn btn-primary" value="Choisissez un fichier" onclick="document.getElementById('updateAvatar').click();" />
 
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-					<button id="updatePasswordButton" type="button"
-						class="btn btn-primary">Sauvegarder</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                            </p>
+                        </div>
+
+                        <div id="info_player" class="col-md-7"></div>
+
+                    </div>
+                </div>
+
+                <div id="facebook_panel" class="col-md-5 panel panel-primary"
+                     style="padding: 0px">
+                    <div class="panel-heading">
+                        <h3>Options Facebook</h3>
+                    </div>
+                    <div id="info_facebook" class="panel-body">
+                        <a href="#" id="login_fb">connexion fb</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--  Modal pour le changement de pseudo -->
+        <div class="modal fade" id="pseudo_modal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier le pseudo</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div id="errorPseudo" class="alert alert-danger"></div>
+                        <form class="form-horizontal">
+
+                            <div class="form-group">
+                                <label for="newPseudo" class="col-sm-6 control-label">Nouveau
+                                    pseudo</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="newPseudo"
+                                           placeholder="Nouveau pseudo">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPseudoConfirmation" class="col-sm-6 control-label">Confirmer
+                                    le nouveau pseudo</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control"
+                                           id="newPseudoConfirmation" placeholder="Nouveau pseudo">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        <button id="updateNameButton" type="button" class="btn btn-primary"
+                                onclick="updateName">Sauvegarder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Modal pour le changement de mail -->
+        <div class="modal fade" id="email_modal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier le mail</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="errorEmail" class="alert alert-danger"></div>
+                        <form class="form-horizontal">
+
+                            <div class="form-group">
+                                <label for="newMail" class="col-sm-6 control-label">Nouveau
+                                    mail</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" id="newMail"
+                                           placeholder="Nouveau mail">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newMailConfirmation" class="col-sm-6 control-label">Confirmer
+                                    le nouveau mail </label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control"
+                                           id="newMailConfirmation" placeholder="Nouveau mail">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        <button id="updateMailButton" type="button" class="btn btn-primary">Sauvegarder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-	<footer class="container">
-		<div class="row">
-			<hr />
-			<p>&copy; Dashin Games 2015</p>
-		</div>
-	</footer>
-</body>
+        <!--  Modal pour le changement de mot de passe -->
+        <div class="modal fade" id="password_modal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Modifier mon mot de
+                            passe</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="errorPassword" class="alert alert-danger"></div>
+
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="oldPassword" class="col-sm-6 control-label">Ancien
+                                    mot de passe</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="oldPassword"
+                                           placeholder="Ancien mot de passe">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword" class="col-sm-6 control-label">Nouveau
+                                    mot de passe</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="newPassword"
+                                           placeholder="Nouveau mot de passe">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPasswordConfirmation"
+                                       class="col-sm-6 control-label">Confirmer le nouveau mot
+                                    de passe</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control"
+                                           id="newPasswordConfirmation" placeholder="Nouveau mot de passe">
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        <button id="updatePasswordButton" type="button"
+                                class="btn btn-primary">Sauvegarder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="container">
+            <div class="row">
+                <hr />
+                <p>&copy; Dashin Games 2015</p>
+            </div>
+        </footer>
+    </body>
 </html>
 

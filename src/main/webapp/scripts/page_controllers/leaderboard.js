@@ -1,3 +1,7 @@
+/**
+ * Start of a javascript control of the leaderboard for a suer profile
+ */
+
 function loadLeaderboard() {
 	$.getJSON("v1/levelProgress/rankings", function(data) {
 		for(var i = 0 ; i < data.length ; i++) {

@@ -335,468 +335,604 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <association id="38">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="39" name="levelsAssociation"/>      
-      <multiplicity id="40" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="41">    
-    <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="42" name="friendDao"/>      
-      <multiplicity id="43" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="44">    
+  <dependency id="38">    
     <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="12"/>  
+    <end type="TARGET" refId="15"/>  
   </dependency>  
-  <dependency id="45">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="36"/>  
-  </dependency>  
-  <association id="46">    
-    <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="47" name="levelDao"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="49">    
-    <end type="SOURCE" refId="21"/>    
+  <dependency id="39">    
+    <end type="SOURCE" refId="35"/>    
     <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <dependency id="50">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="17"/>  
   </dependency>  
-  <association id="51">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="52" name="userDao"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="54">    
-    <end type="SOURCE" refId="30"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <dependency id="55">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="37"/>  
-  </dependency>  
-  <dependency id="56">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="37"/>  
-  </dependency>  
-  <dependency id="57">    
-    <end type="SOURCE" refId="31"/>    
+  <dependency id="40">    
+    <end type="SOURCE" refId="28"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
-  <dependency id="58">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="18"/>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="33"/>  
   </dependency>  
-  <dependency id="59">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="18"/>  
+  <dependency id="42">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
   </dependency>  
-  <association id="60">    
-    <end type="SOURCE" refId="34" navigable="false">      
-      <attribute id="61" name="instructionsDao"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
+  <dependency id="43">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="44">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="45" name="instructionsDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="46" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="63">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="7"/>  
+  <dependency id="47">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="10"/>  
   </dependency>  
-  <generalization id="64">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="65">    
-    <end type="SOURCE" refId="34" navigable="false">      
-      <attribute id="66" name="levelListDao"/>      
-      <multiplicity id="67" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="68">    
-    <end type="SOURCE" refId="32"/>    
+  <dependency id="48">    
+    <end type="SOURCE" refId="27"/>    
     <end type="TARGET" refId="23"/>  
   </dependency>  
-  <dependency id="69">    
-    <end type="SOURCE" refId="32"/>    
-    <end type="TARGET" refId="36"/>  
+  <association id="49">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="50" name="levelsAssociation">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="51" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="52">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="22"/>  
   </dependency>  
-  <association id="70">    
-    <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="71" name="userDao"/>      
-      <multiplicity id="72" minimum="0" maximum="1"/>    
+  <association id="53">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="54" name="levels">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="55" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="73">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="37"/>  
-  </dependency>  
-  <association id="74">    
-    <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="75" name="levelDao"/>      
-      <multiplicity id="76" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="77">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="78" name="users"/>      
-      <multiplicity id="79" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="80">    
+  <dependency id="56">    
     <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="57">    
+    <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
-  <dependency id="81">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="17"/>  
+  <association id="58">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="59" name="friendDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="60" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="61">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="14"/>  
   </dependency>  
-  <dependency id="82">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="16"/>  
+  <dependency id="62">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="19"/>  
   </dependency>  
-  <association id="83">    
+  <association id="63">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="84" name="levelsInfo"/>      
-      <multiplicity id="85" minimum="0" maximum="2147483647"/>    
+      <attribute id="64" name="levelsInfo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="65" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="86">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <dependency id="87">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="21"/>  
-  </dependency>  
-  <dependency id="88">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <dependency id="89">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <association id="90">    
-    <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="91" name="levelProgressDAO"/>      
-      <multiplicity id="92" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="93">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
-  <dependency id="94">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="95">    
+  <dependency id="66">    
     <end type="SOURCE" refId="26"/>    
     <end type="TARGET" refId="20"/>  
   </dependency>  
-  <dependency id="96">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="23"/>  
+  <dependency id="67">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="37"/>  
   </dependency>  
-  <association id="97">    
-    <end type="SOURCE" refId="27" navigable="false">      
-      <attribute id="98" name="dao"/>      
-      <multiplicity id="99" minimum="0" maximum="1"/>    
+  <dependency id="68">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <association id="69">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="70" name="instructionsDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="71" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="72">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="73">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <association id="74">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="75" name="userDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="77">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <dependency id="78">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="79">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="80">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="81" name="levelDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="82" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="83">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="84">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="85" name="instructionsDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="86" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="87">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="88">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <dependency id="89">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="36"/>  
+  </dependency>  
+  <association id="90">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="91" name="levelDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="92" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="94" name="levelListDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="95" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="97" name="dao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="98" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="99">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
   <dependency id="100">    
     <end type="SOURCE" refId="29"/>    
     <end type="TARGET" refId="23"/>  
   </dependency>  
   <dependency id="101">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="102">    
     <end type="SOURCE" refId="24"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
+  <dependency id="102">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
   <dependency id="103">    
-    <end type="SOURCE" refId="35"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <association id="104">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="105" name="user">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="106" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="107">    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
-  <dependency id="104">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <association id="105">    
-    <end type="SOURCE" refId="31" navigable="false">      
-      <attribute id="106" name="dao"/>      
-      <multiplicity id="107" minimum="0" maximum="1"/>    
+  <generalization id="108">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="109">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="110" name="userDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="111" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="108">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
-  <dependency id="109">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="110">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <dependency id="111">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
   <association id="112">    
-    <end type="SOURCE" refId="34" navigable="false">      
-      <attribute id="113" name="levelDao"/>      
-      <multiplicity id="114" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="113" name="levelDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="114" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <dependency id="115">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="20"/>  
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="27"/>  
   </dependency>  
-  <dependency id="116">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="117">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <association id="118">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="119" name="levels"/>      
-      <multiplicity id="120" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="121">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="122" name="friendDao"/>      
-      <multiplicity id="123" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="124">    
+  <association id="116">    
     <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="125" name="instructionsList"/>      
-      <multiplicity id="126" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="127">    
-    <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="128" name="levelListDao"/>      
-      <multiplicity id="129" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="130">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <association id="131">    
-    <end type="SOURCE" refId="37" navigable="false">      
-      <attribute id="132" name="loggedUsers"/>      
-      <multiplicity id="133" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="134">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="135" name="levelList"/>      
-      <multiplicity id="136" minimum="0" maximum="1"/>    
+      <attribute id="117" name="levelList">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="118" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="137">    
-    <end type="SOURCE" refId="29" navigable="false">      
-      <attribute id="138" name="levelDao"/>      
-      <multiplicity id="139" minimum="0" maximum="1"/>    
+  <dependency id="119">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <association id="120">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="121" name="levelDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="122" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="140">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <dependency id="141">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="37"/>  
-  </dependency>  
-  <dependency id="142">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="143">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="14"/>  
-  </dependency>  
-  <dependency id="144">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="22"/>  
-  </dependency>  
-  <dependency id="145">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="146">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="22"/>  
-  </dependency>  
-  <dependency id="147">    
+  <dependency id="123">    
     <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="12"/>  
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <dependency id="148">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="23"/>  
+  <dependency id="124">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="11"/>  
   </dependency>  
-  <association id="149">    
+  <association id="125">    
     <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="150" name="levelListDao"/>      
-      <multiplicity id="151" minimum="0" maximum="1"/>    
+      <attribute id="126" name="levelListDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="127" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="152">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="16"/>  
-  </dependency>  
-  <dependency id="153">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="19"/>  
-  </dependency>  
-  <dependency id="154">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <dependency id="155">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="37"/>  
-  </dependency>  
-  <dependency id="156">    
-    <end type="SOURCE" refId="30"/>    
+  <generalization id="128">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <dependency id="129">    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="14"/>  
   </dependency>  
-  <dependency id="157">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <dependency id="158">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="16"/>  
-  </dependency>  
-  <dependency id="159">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="19"/>  
-  </dependency>  
-  <association id="160">    
-    <end type="SOURCE" refId="29" navigable="false">      
-      <attribute id="161" name="userDao"/>      
-      <multiplicity id="162" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="163">    
+  <dependency id="130">    
     <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="28"/>  
+    <end type="TARGET" refId="34"/>  
   </dependency>  
-  <dependency id="164">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <association id="165">    
-    <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="166" name="instructionsDao"/>      
-      <multiplicity id="167" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="168">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <dependency id="169">    
+  <dependency id="131">    
     <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="37"/>  
+    <end type="TARGET" refId="17"/>  
   </dependency>  
-  <dependency id="170">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="37"/>  
-  </dependency>  
-  <dependency id="171">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <association id="172">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="173" name="user"/>      
-      <multiplicity id="174" minimum="0" maximum="1"/>    
+  <association id="132">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="133" name="loggedUsers">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="134" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="175">    
-    <end type="SOURCE" refId="30" navigable="false">      
-      <attribute id="176" name="instructionsDao"/>      
-      <multiplicity id="177" minimum="0" maximum="1"/>    
+  <dependency id="135">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="136">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <dependency id="137">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="36"/>  
+  </dependency>  
+  <association id="138">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="139" name="dao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="140" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="178">    
-    <end type="SOURCE" refId="27"/>    
+  <dependency id="141">    
+    <end type="SOURCE" refId="28"/>    
     <end type="TARGET" refId="15"/>  
   </dependency>  
-  <dependency id="179">    
+  <dependency id="142">    
     <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <dependency id="143">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <dependency id="144">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="145">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="146">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <dependency id="147">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="148">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="149" name="instructionsList">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="150" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="151">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="152" name="users">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="153" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="154">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="155" name="levelListDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="156" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="157">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="158">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="159">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="160">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="161">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <association id="162">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="163" name="userDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="164" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="165">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="166">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="167">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="168">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="31"/>  
+  </dependency>  
+  <dependency id="169">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="170">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="171">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="172">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="173">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="174">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="175">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="26"/>  
+  </dependency>  
+  <dependency id="176">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="37"/>  
+  </dependency>  
+  <association id="177">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="178" name="friendDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="179" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="180">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="181">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="182" name="levelProgressDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="183" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="184">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="185">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <dependency id="186">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="187">    
+    <end type="SOURCE" refId="28"/>    
     <end type="TARGET" refId="37"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="false" 

@@ -1,4 +1,4 @@
-define(["jquery"],  function($) {
+define(["jquery"], function ($) {
     return function BlockCreator(game) {
         this.game = game;
         var instance = this;
@@ -11,18 +11,19 @@ define(["jquery"],  function($) {
          * block : Instance d'un bloc blockly
          * param : Parametre du spinner (min,max)
          */
-        this.appendSpinner = function(block, param) {
+        this.appendSpinner = function (block, param) {
             var minMax = param.split(",");
-            if (minMax.length != 2) return;
+            if (minMax.length != 2)
+                return;
             var min = parseInt(minMax[0]);
             var max = parseInt(minMax[1]);
 
-            block.appendField(new Blockly.FieldTextInput(min+"", function validator(text) {
+            block.appendField(new Blockly.FieldTextInput(min + "", function validator(text) {
                 // D'abord on s'assure que c'est bien un entier
                 if (Blockly.FieldTextInput.numberValidator(text) == null)
-                return null;
+                    return null;
 
-            return (parseInt(text) >= min && parseInt(text) <= max) ? text : null;
+                return (parseInt(text) >= min && parseInt(text) <= max) ? text : null;
             }), "vField");
         }
 
@@ -31,7 +32,7 @@ define(["jquery"],  function($) {
          * block : Instance d'un bloc blockly
          * param : Parametre de la liste deroulante (element1:val1,element2:val2)
          */
-        this.appendCombobox = function(block, param) {
+        this.appendCombobox = function (block, param) {
             var list = [];
             var elements = param.split(",");
             for (var i = 0; i < elements.length; ++i) {
@@ -48,7 +49,7 @@ define(["jquery"],  function($) {
          * instructionName : Nom de l'instruction a analyser
          * block : L'instance du bloque blockly
          */
-        this.parseInstructionName = function(instructionName, block) {
+        this.parseInstructionName = function (instructionName, block) {
             var regexp = /(.*)%(.*)%(.*)/g;
             var match = regexp.exec(instructionName);
             if (match != null && match.length > 3) {
@@ -58,23 +59,23 @@ define(["jquery"],  function($) {
                 // Ensuite, on recupere la lettre de la commande pour savoir qu'elle est la balise
                 if (subMatch != null && subMatch.length > 3) {
                     var cmd = subMatch[1];
-                                      
+
                     if (cmd === "v") {
                         // Si c'est un spinner 
                         this.appendSpinner(block, subMatch[3]);
                     } else if (cmd === "c") {
                         // Si c'est une combobox
-                        this.appendCombobox(block, subMatch[3]); 
+                        this.appendCombobox(block, subMatch[3]);
                     }
                 }
                 block.appendField(match[3]);
             } else {
-                block.appendField(instructionName); 
+                block.appendField(instructionName);
             }
         }
 
 
-        this.parseCodeTags = function(block, code) {
+        this.parseCodeTags = function (block, code) {
             // Balise %line%
             code = code.replace(new RegExp("%line%", 'g'), block.id);
 
@@ -91,14 +92,14 @@ define(["jquery"],  function($) {
          * Crée une instruction blockly
          * L'instruction a créer (instance d'un objet avec les attributs name et block)
          */
-        this.createBlocklyInstruction = function(instruction) {
+        this.createBlocklyInstruction = function (instruction) {
             Blockly.Blocks[instruction.name + instruction.block] = {
-                init: function() {
+                init: function () {
                     this.setColour(instruction.color);
                     // Si l'instruction est un bloque
                     if (instruction.block == 1) {
                         instance.parseInstructionName(instruction.name, this.appendStatementInput("block"));
-                    } else if (instruction.block == 2) { 
+                    } else if (instruction.block == 2) {
                         instance.parseInstructionName(instruction.name, this.appendStatementInput("block"));
                         this.appendStatementInput("else").appendField("sinon");
                     } else {
@@ -109,16 +110,16 @@ define(["jquery"],  function($) {
                 }
             };
 
-            Blockly.JavaScript[instruction.name + instruction.block] = function(block) {
+            Blockly.JavaScript[instruction.name + instruction.block] = function (block) {
                 // Remplacement des balises
                 var code = instance.parseCodeTags(block, instruction.code);
-                    //
+                //
                 // Si c'est un bloque, on rajoute les {}
                 if (instruction.block >= 1) {
                     // On ajoute le comptage de bloque
-                    code =  code + " {\nif (!game.interpreter.increment(" + block.id + ")) return;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
+                    code = code + " {\nif (!game.interpreter.increment(" + block.id + ")) return;\n" + Blockly.JavaScript.statementToCode(block, "block") + "\n}";
                     if (instruction.block == 2) {
-                        code += "else {\n" +  Blockly.JavaScript.statementToCode(block, "else") + "\n}"; 
+                        code += "else {\n" + Blockly.JavaScript.statementToCode(block, "else") + "\n}";
                     }
                 }
                 return code + "\n";
@@ -131,15 +132,15 @@ define(["jquery"],  function($) {
          * Recupere la liste xml des instructions
          * instructionList : La liste des instructions a charger/creer et mettre dans la liste xml
          */
-        this.getToolbox = function(instructionsList) {
+        this.getToolbox = function (instructionsList) {
             // On crée les instructions
-			var toolbox = '<xml>';
-			for (var i = 0; i < instructionsList.length; ++i) {
+            var toolbox = '<xml>';
+            for (var i = 0; i < instructionsList.length; ++i) {
                 var instruction = instructionsList[i];
-				this.createBlocklyInstruction(instruction);
+                this.createBlocklyInstruction(instruction);
                 toolbox += '  <block type="' + instruction.name + instruction.block + '"></block>';
-			}
-			toolbox += '</xml>';
+            }
+            toolbox += '</xml>';
 
             return toolbox;
 

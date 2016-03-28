@@ -1,15 +1,15 @@
-define(["jquery"],  function(require) {
-	/**
-	   Classe representant une animation a partir d'une image
-	   
-	   game : Instance de Game correspondant au niveau
-       imagePath : Fichier de l'image contenant l'animation
-       widthInFrame : Nombre de frame sur la largeur de l'image
-       heightInFrame : Nombre de frame sur la hauteur de l'image
-       pattern : Tableau avec les identifiants representant l'animation
-	**/
-	return function Animation(game, imagePath, widthInFrame, heightInFrame, pattern, interval) {
-		this.game = game;
+define(["jquery"], function (require) {
+    /**
+     Classe representant une animation a partir d'une image
+     
+     game : Instance de Game correspondant au niveau
+     imagePath : Fichier de l'image contenant l'animation
+     widthInFrame : Nombre de frame sur la largeur de l'image
+     heightInFrame : Nombre de frame sur la hauteur de l'image
+     pattern : Tableau avec les identifiants representant l'animation
+     **/
+    return function Animation(game, imagePath, widthInFrame, heightInFrame, pattern, interval) {
+        this.game = game;
         if (imagePath.src) {
             this.image = imagePath;
             this.loaded = true;
@@ -37,14 +37,14 @@ define(["jquery"],  function(require) {
         var running = false;
         var loop = false;
         var paused = false;
-        
+
         this.visible = false;
 
         if (imagePath.src) {
             instance.width = Math.floor(instance.image.width / widthInFrame);
             instance.height = Math.floor(instance.image.height / heightInFrame);
         } else {
-            this.image.onload = function() {
+            this.image.onload = function () {
                 instance.loaded = true;
                 instance.width = Math.floor(instance.image.width / widthInFrame);
                 instance.height = Math.floor(instance.image.height / heightInFrame);
@@ -55,7 +55,7 @@ define(["jquery"],  function(require) {
          * Commence l'animation
          * looping : Vrai si l'animation doit boucler
          */
-        this.start = function(looping) {
+        this.start = function (looping) {
             running = true;
             loop = looping;
 
@@ -68,7 +68,7 @@ define(["jquery"],  function(require) {
             this.patternId = 0;
         }
 
-        this.pause = function(visible) {
+        this.pause = function (visible) {
             paused = true;
             running = false;
             this.visible = visible;
@@ -77,7 +77,7 @@ define(["jquery"],  function(require) {
          * Arrete l'animation
          * visible : Si vrai, l'animation reste visible stoppé
          */
-        this.stop = function(visible) {
+        this.stop = function (visible) {
             loop = false;
             timer = 0;
             running = false;
@@ -85,30 +85,33 @@ define(["jquery"],  function(require) {
             this.visible = visible;
         }
 
-		
-		// Dessine l'animation 
-		this.draw = function draw(context, x, y, width, height) {
-            if ((!this.loaded || !running) && !this.visible) return;
+
+        // Dessine l'animation 
+        this.draw = function draw(context, x, y, width, height) {
+            if ((!this.loaded || !running) && !this.visible)
+                return;
             context.save();
 
             // Rotation (translation pour l'origine, puis rotation)
             context.translate(x, y);
             context.rotate(this.angle);
-            
+
             // On dessine la bonne frame de l'animation
             var pId = this.patternId;
-            
-            if (paused) pId = 0;
+
+            if (paused)
+                pId = 0;
             var sx = this.width * (this.pattern[pId] % widthInFrame);
             var sy = this.height * Math.floor(this.pattern[pId] / widthInFrame);
-            
+
             context.drawImage(this.image, sx, sy, this.width, this.height, -this.ox * width, -this.oy * height, width, height);
             context.restore();
-		}
-		
-		// Met a jour l'animation 
-		this.update = function update(delta) {
-            if (!this.loaded || !running) return;
+        }
+
+        // Met a jour l'animation 
+        this.update = function update(delta) {
+            if (!this.loaded || !running)
+                return;
             timer += delta * this.game.getSpeed() * 0.1;
             if (timer >= interval) {
                 timer = 0;
@@ -118,13 +121,13 @@ define(["jquery"],  function(require) {
                 }
             }
 
-		}
+        }
 
         /**
          * Retourne vrai si l'animation est entrain de tourner
          */
-        this.running = function() {
+        this.running = function () {
             return running;
         }
-	}
+    }
 });
