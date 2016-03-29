@@ -38,7 +38,7 @@ public class UserResource {
 		Feedback fb = null;
 		try {
 			fb = isValidUser(user);
-			if(fb.getSuccessState()) {
+			if(fb.isSuccess()) {
 
 				// on hashe le mdp pour le protéger
 				String hashedPassword = Utils.hashMD5(user.getPassword());
@@ -65,17 +65,17 @@ public class UserResource {
 
 		// On test si le pseudo est correcte et disponible
 		Feedback f = isNameValid(user.getName());
-		if (!f.getSuccessState()) 
+		if (!f.isSuccess()) 
 			return f;
 
 		// test si le mail est correct 
 		f = isMailValid(user.getEmail());
-		if (!f.getSuccessState())
+		if (!f.isSuccess())
 			return f;
 
 		// test si le mdp est correct
 		f = isPasswordValid(user.getPassword());
-		if (!f.getSuccessState())
+		if (!f.isSuccess())
 			return f;
 
 
@@ -232,7 +232,7 @@ public class UserResource {
 
 			// Si le pseudo est valide on le met à jour
 			Feedback f = isNameValid(pseudo);
-			if (!f.getSuccessState())
+			if (!f.isSuccess())
 				return f;
 
 			dao.updateName(Session.getUser(cookie).getId(), pseudo);
@@ -251,7 +251,7 @@ public class UserResource {
 		if (Session.isLogged(cookie)) {
 			Feedback f = isMailValid(email);
 
-			if (!f.getSuccessState())
+			if (!f.isSuccess())
 				return f;
 
 			dao.updateEmail(Session.getUser(cookie).getId(), email);
@@ -276,7 +276,7 @@ public class UserResource {
 			
 			String hashedPassword = Utils.hashMD5(password);
 			Feedback f = isPasswordValid(hashedPassword);
-			if (!f.getSuccessState())
+			if (!f.isSuccess())
 				return f;
 
 			dao.updatePassword(Session.getUser(cookie).getId(), hashedPassword);
