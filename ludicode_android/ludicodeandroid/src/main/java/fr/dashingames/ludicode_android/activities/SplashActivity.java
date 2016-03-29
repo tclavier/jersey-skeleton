@@ -19,8 +19,10 @@ import android.view.MenuItem;
 public class SplashActivity extends Activity {
 
 //	public static final String SERVER_URL = "http://iut.azae.net/Ludicode/v1";
-	public static final String SERVER_URL = "http://92.222.218.92:8080/v1";
-	public static final String SERVER_URL_NO_PROTOCOL = "92.222.218.92:8080";
+	//public static final String SERVER_URL = "http://92.222.218.92:8080/v1";
+	//public static final String SERVER_URL_NO_PROTOCOL = "92.222.218.92:8080";
+	public static final String SERVER_URL = "http://localhost:8080/v1";
+	public static final String SERVER_URL_NO_PROTOCOL = "localhost:8080";
 	
 	public static final String USERS_RESOURCE = "/users";
 	public static final String CREATE_USER_RESOURCE = "/register";

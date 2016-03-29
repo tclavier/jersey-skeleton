@@ -19,15 +19,13 @@ import fr.dashingames.ludicode_android.network.ChatClient;
  */
 public class SuiviActivity extends Activity {
 
-    private User user;
     private ArrayList<String> connectedUsers = new ArrayList<String>();
+    private ArrayAdapter<String> usersAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suivi);
-
-        //user = getIntent().getExtras().getParcelable(MainActivity.USER);
 
         ajoutUsersSuivi();
 
@@ -35,31 +33,32 @@ public class SuiviActivity extends Activity {
 
     @Override
     public void onRestoreInstanceState(Bundle bundle) {
-        //user = bundle.getParcelable(MainActivity.USER);
     };
 
     @Override
     public void onSaveInstanceState(Bundle bundle) {
         super.onSaveInstanceState(bundle);
-        //bundle.putParcelable(MainActivity.USER, user);
     }
 
 
-    //ajout perso
+
     public void onRetourSuiviClick(View view) { setContentView(R.layout.activity_main); }
 
-
-    //ajout perso
     public void ajoutUsersSuivi(){
 
-        //UserList uList = new UserList();
-        ArrayList<User> searchResults = GetSearchResults();//uList.getUsersList();
+
+        ArrayList<User> userList = new ArrayList<User>();//GetSearchResults();
+        for(String s : connectedUsers){
+            User u = new User();
+            u.setName(s);
+            userList.add(u);
+        }
 
         final ListView lv1 = (ListView) findViewById(R.id.listViewSuivi);
-        lv1.setAdapter(new UserBaseAdapter(this, searchResults));
+        lv1.setAdapter(new UserBaseAdapter(this, userList));
 
     }
-    //ajout perso
+    /*
     private ArrayList<User> GetSearchResults(){
         ArrayList<User> results = new ArrayList<User>();
 
@@ -83,6 +82,19 @@ public class SuiviActivity extends Activity {
 
         return results;
     }
+    */
 
+    public void updateConnectedUsers(ArrayList<String> users) {
+        connectedUsers.clear();
+        connectedUsers.addAll(users);
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                usersAdapter.notifyDataSetChanged();
+            }
+
+        });
+    }
 
 }

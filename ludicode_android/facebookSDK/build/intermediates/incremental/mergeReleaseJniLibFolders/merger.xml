@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/src/main/jniLibs"/></dataSet><dataSet config="release"><source path="/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/src/release/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/Nico/Desktop/LC/Ludicode-v4.2/ludicode_android/facebookSDK/src/main/jniLibs"/></dataSet><dataSet config="release"><source path="/Users/Nico/Desktop/LC/Ludicode-v4.2/ludicode_android/facebookSDK/src/release/jniLibs"/></dataSet></merger>
