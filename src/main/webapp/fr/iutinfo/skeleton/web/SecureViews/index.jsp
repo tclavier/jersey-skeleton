@@ -11,21 +11,21 @@
   <body>
     <jsp:include page="/layout/navbar.jsp"/>
     <div class="container">
-    <div class="row">
+      <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            Bonjour ${it.currentUser.name}
+          Bonjour ${it.currentUser.name}
         </div>
-    </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h1>Liste sécurisée des "User"</h1>
-                <ul class="list-group">
-                <c:forEach var="user" items="${it.users}">
-                    <li class="list-group-item">${user.id} : <a href="user/${user.id}">${user.name}</a>
-                </c:forEach>
-                </ul>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h1>Liste sécurisée des "User"</h1>
+          <ul class="list-group">
+            <c:forEach var="user" items="${it.users}">
+            <li class="list-group-item">${user.id} : <a href="user/${user.id}">${user.name}</a>
+            </c:forEach>
+          </ul>
         </div>
+      </div>
     </div>
   </body>
 </html>
