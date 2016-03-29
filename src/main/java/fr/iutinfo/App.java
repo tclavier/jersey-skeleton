@@ -20,19 +20,9 @@ import fr.iutinfo.resources.LevelResource;
 import fr.iutinfo.resources.ProfileInfoResource;
 import fr.iutinfo.resources.UserResource;
 
-/**
- * Main classe for the Maven Application.
- * Initiate the connection with the the SQL database and the DBI.
- * Allows to add all the project resources to mvn.
- * @author Florent
- */
 @ApplicationPath("/v1/")
 public class App extends Application {
 	
-    /**
-     * Rewrite Application getClasses
-     * @return a Set with the project resource.class
-     */
     @Override
     public Set<Class<?>> getClasses() {
     	Set<Class<?>> s = new HashSet<Class<?>>();
@@ -50,12 +40,6 @@ public class App extends Application {
     }
     
     public static DBI dbi;
-    
-    /*
-    Initiate a new SQLDatabase named ludicode.db in the home
-        directory of the server
-    Instantiate the dbi based on the created database
-    */
 	static {
 		SQLiteDataSource ds = new SQLiteDataSource();
 		ds.setUrl("jdbc:sqlite:"+System.getProperty("user.home")+System.getProperty("file.separator")+"ludicode.db");

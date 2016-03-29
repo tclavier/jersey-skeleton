@@ -1,9 +1,5 @@
 package fr.iutinfo.beans;
 
-/**
- * Information about levels created by the user
- * @author Florent
- */
 public class LevelInfo {
 	private int id;
 	private int idAuthor;
