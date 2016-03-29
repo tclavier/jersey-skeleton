@@ -37,10 +37,10 @@ public class SecureResourceByAnnotationTest extends JerseyTest {
     }
 
     @Test
-    public void should_return_unauthorized_status_for_bad_user() {
+    public void should_return_forbiden_status_for_bad_user() {
         h.createUserWithPassword("tclavier", "motdepasse", "graindesel");
         String authorization = "Basic " + Base64.encodeAsString("tclavier:pasdemotdepasse");
-        int utilisateur = target(path).request().header(AUTHORIZATION, authorization).get().getStatus();
-        assertEquals(UNAUTHORIZED.getStatusCode(), utilisateur);
+        int status = target(path).request().header(AUTHORIZATION, authorization).get().getStatus();
+        assertEquals(FORBIDDEN.getStatusCode(), status);
     }
 }

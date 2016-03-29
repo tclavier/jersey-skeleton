@@ -43,7 +43,7 @@ public class SecureResourceForAllTest extends JerseyTest {
     public void should_return_anonymous_user_for_bad_user() {
         h.createUserWithPassword("tclavier", "motdepasse", "graindesel");
         String authorization = "Basic " + Base64.encodeAsString("tclavier:pasdemotdepasse");
-        User utilisateur = target(url).request().get(User.class);
+        User utilisateur = target(url).request().header(AUTHORIZATION, authorization).get(User.class);
         assertEquals("Anonymous", utilisateur.getName());
     }
 
