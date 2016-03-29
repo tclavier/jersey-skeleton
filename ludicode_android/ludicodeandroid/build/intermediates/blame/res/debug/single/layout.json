@@ -1,0 +1,514 @@
+[
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_list_section_header.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_list_section_header.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/custom_user_view.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/custom_user_view.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_content_include.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_title_bar.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_title_bar.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_usersettingsfragment.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_usersettingsfragment.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_tooltip_bubble.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_tooltip_bubble.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_list_row.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_list_row.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_title_bar.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_title_bar.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_login_activity_layout.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_login_activity_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_splash.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_splash.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_lines.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_login.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_level_chooser.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_level_chooser.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_register.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_register.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_image.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_image.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_search_bar_layout.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_search_bar_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_suivi.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_suivi.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_fb.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_fb.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_main_connected.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_main_connected.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_main_connected.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_main_connected.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_image.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_image.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_search_box.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_search_box.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_friendpickerfragment.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_friendpickerfragment.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_placepickerfragment_list_row.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_placepickerfragment_list_row.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_activity_circle_row.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_activity_circle_row.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_content_include.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_login.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_placepickerfragment.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_placepickerfragment.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_login_activity_layout.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_login_activity_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_game.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_game.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_game.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_game.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_checkbox.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_checkbox.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_splash.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_splash.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_placepickerfragment.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_placepickerfragment.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/custom_user_view.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/custom_user_view.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_activity_circle_row.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_activity_circle_row.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_tooltip_bubble.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_tooltip_bubble.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_checkbox.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_checkbox.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_lines.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_simple_dropdown_hint.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/layout/abc_simple_dropdown_hint.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_list_section_header.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_list_section_header.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_suivi.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_suivi.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_friendpickerfragment.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_friendpickerfragment.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_title_bar_stub.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_title_bar_stub.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_chat.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_chat.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_level_chooser.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_level_chooser.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_fb.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_fb.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_chat.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_chat.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_usersettingsfragment.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_usersettingsfragment.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_list_row.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_list_row.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_title_bar_stub.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_title_bar_stub.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_include.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/layout/abc_activity_chooser_view_include.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/algolist_row.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/algolist_row.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/algolist_row.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/layout/algolist_row.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_picker_search_box.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_picker_search_box.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_placepickerfragment_list_row.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_placepickerfragment_list_row.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/com_facebook_search_bar_layout.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/layout/com_facebook_search_bar_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/layout/activity_register.xml",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/res/layout/activity_register.xml"
+    }
+]

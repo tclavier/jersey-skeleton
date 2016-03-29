@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "fr.dashingames.ludicode_android"
+        minSdkVersion 13
+        targetSdkVersion 19
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_7
+            targetCompatibility JavaVersion.VERSION_1_7
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile project(':facebookSDK')
+    compile project(':facebookSDK')
+    //compile 'com.android.support:support-v4:21.0.3'
+    //compile 'com.android.support:appcompat-v7:21.0.3'
+    compile files('libs/java-json.jar')
+    compile files('libs/js.jar')
+    compile files('libs/tyrus-standalone-client-1.10.jar')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'//remove this line and sync again... worked for me
+    compile 'com.android.support:appcompat-v7:23.0.1'
+}
+
+android {
+    useLibrary 'org.apache.http.legacy'
+    repositories {
+        maven { url 'http://repo1.maven.org/maven2' }
+    }
+}
+dependencies {
+    compile 'junit:junit:4.12'
+}

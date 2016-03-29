@@ -1,0 +1,50 @@
+[
+    {
+        "outputFile": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/values-xhdpi-v4/values-xhdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 63,
+                    "endOffset": 114
+                },
+                "from": {
+                    "file": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/values-xhdpi-v4/values-xhdpi-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 63,
+                        "endOffset": 114
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/values-xhdpi-v4/values-xhdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 63,
+                    "endOffset": 114
+                },
+                "from": {
+                    "file": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/values-xhdpi-v4/values-xhdpi-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 63,
+                        "endOffset": 114
+                    }
+                }
+            }
+        ]
+    }
+]

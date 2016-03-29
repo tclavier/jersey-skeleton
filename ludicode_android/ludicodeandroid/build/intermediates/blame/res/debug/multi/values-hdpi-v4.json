@@ -1,0 +1,92 @@
+[
+    {
+        "outputFile": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/values-hdpi-v4/values-hdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 63,
+                    "endOffset": 114
+                },
+                "from": {
+                    "file": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 63,
+                        "endOffset": 114
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 119,
+                    "endLine": 7,
+                    "endColumn": 13,
+                    "endOffset": 391
+                },
+                "from": {
+                    "file": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-hdpi/values-hdpi.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 286,
+                        "endLine": 8,
+                        "endColumn": 13,
+                        "endOffset": 558
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/values-hdpi-v4/values-hdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 63,
+                    "endOffset": 114
+                },
+                "from": {
+                    "file": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 63,
+                        "endOffset": 114
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 119,
+                    "endLine": 7,
+                    "endColumn": 13,
+                    "endOffset": 391
+                },
+                "from": {
+                    "file": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-hdpi/values-hdpi.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 286,
+                        "endLine": 8,
+                        "endColumn": 13,
+                        "endOffset": 558
+                    }
+                }
+            }
+        ]
+    }
+]

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="tyrus-standalone-client-1.10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ludicodeandroid/libs/tyrus-standalone-client-1.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
