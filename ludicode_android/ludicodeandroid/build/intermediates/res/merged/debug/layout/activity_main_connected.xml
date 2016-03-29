@@ -13,6 +13,14 @@
         android:id="@+id/imageViewLogoMain" />
 
     <Button
+        android:id="@+id/buttonSuivi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onSuiviClick"
+        android:text="@string/str_suivi"/>
+
+    <Button
         android:id="@+id/PlayButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/facebookSDK/facebookSDK.iml" filepath="$PROJECT_DIR$/facebookSDK/facebookSDK.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ludicode-android1.iml" filepath="$PROJECT_DIR$/ludicode-android1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ludicode_android.iml" filepath="$PROJECT_DIR$/ludicode_android.iml" />
       <module fileurl="file://$PROJECT_DIR$/ludicodeandroid/ludicodeandroid.iml" filepath="$PROJECT_DIR$/ludicodeandroid/ludicodeandroid.iml" />
     </modules>
   </component>

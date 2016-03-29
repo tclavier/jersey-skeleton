@@ -1,5 +1,13 @@
 [
     {
+        "merged": "/Users/Nico/Desktop/LC/Ludicode-v4.2/ludicode_android/ludicodeandroid/build/intermediates/res/merged/debug/drawable-ldpi-v4/add_line.png",
+        "source": "/Users/Nico/Desktop/LC/Ludicode-v4.2/ludicode_android/ludicodeandroid/src/main/res/drawable-ldpi/add_line.png"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/Ludicode-v4.2/ludicode_android/ludicodeandroid/build/intermediates/res/merged/debug/drawable-ldpi-v4/com_facebook_close.png",
+        "source": "/Users/Nico/Desktop/LC/Ludicode-v4.2/ludicode_android/ludicodeandroid/build/intermediates/exploded-aar/ludicode_android/facebookSDK/unspecified/res/drawable-ldpi-v4/com_facebook_close.png"
+    },
+    {
         "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/build/intermediates/res/merged/debug/drawable-ldpi-v4/add_line.png",
         "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/ludicodeandroid/src/main/res/drawable-ldpi/add_line.png"
     },
