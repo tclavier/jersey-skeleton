@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_icon.png",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_icon.png"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_background.png",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_background.png"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_background_selected.png",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_background_selected.png"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_background.png",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_background.png"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_icon_selected.png",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_icon_selected.png"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_background_selected.png",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_background_selected.png"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_pressed.png",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_pressed.png"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_icon_selected.png",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_icon_selected.png"
+    },
+    {
+        "merged": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_pressed.png",
+        "source": "/Users/Nico/AndroidStudioProjects/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_pressed.png"
+    },
+    {
+        "merged": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/com_facebook_button_like_icon.png",
+        "source": "/Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/facebookSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/com_facebook_button_like_icon.png"
+    }
+]

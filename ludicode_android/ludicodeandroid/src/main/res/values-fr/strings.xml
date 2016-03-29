@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ludicode-android</string>
+    <string name="hello_world">Bonjour le monde!</string>
+    <string name="action_settings">Réglages</string>
+    <string name="str_play">Jouer</string>
+    <string name="str_backMenu">Retour</string>
+    <string name="str_connectToFb">Me connecter à FB</string>
+    <string name="clear">Effacer instructions</string>
+    <string name="connect">Connexion</string>
+    <string name="register">Inscription</string>
+    <string name="remaining">Instructions restantes</string>
+    <string name="execute">Exécuter</string>
+    <string name="login">Pseudo</string>
+    <string name="password">Mot de passe</string>
+    <string name="email">Adresse email</string>
+    <string name="passwordBis">Vérification de mot de passe</string>
+    <string name="invalidLogin">Erreur : votre login devrait faire au moins 3 caractères.</string>
+    <string name="invalidPassword">Erreur : votre mot de passe devrait faire au moins 6 caractères.</string>
+    <string name="invalidMail">Erreur : votre mail n\'est pas dans le bon format.</string>
+    <string name="differentPasswords">Erreur : vos mots de passe ne correspondent pas.</string>
+    <string name="serverConnectionFailed">Erreur : échec de communication avec le serveur. Veuillez vérifier votre connexion internet et réessayer.</string>
+    <string name="connectionSuccess">Connexion réussie !</string>
+    <string name="registrationSuccess">Inscription réussie !</string>
+    <string name="send">Envoyer</string>
+    <string name="refreshList">Actualiser la liste</string>
+    <string name="finishLevel">Vous avez terminé le niveau. Voulez-vous passer au niveau suivant ?</string>
+    <string name="congrats">Félicitations !</string>
+    <string name="nextLevel">Passer au niveau suivant</string>
+    <string name="leaveList">Retour au choix des listes</string>
+    <string name="bravo">Bravo !</string>
+    <string name="finishList">Vous avez terminé cette liste de niveaux. Bien joué !</string>
+    <string name="pickInstruction">Choisissez une instruction : </string>
+    <string name="hint">Cliquer ici pour ajouter une instruction</string>
+    <string name="available">disponible</string>
+    <string name="youHave">Il vous reste</string>
+    <string name="errorNotEnoughSpace">Il n\'y a pas assez de lignes pour mettre une instruction de ce type</string>
+    <string name="errorTooMuchInstructions">Vous ne pouvez pas ajouter plus d\'instructions.</string>
+    <string name="errorLooseData">Vous ne pouvez pas ajouter cette instruction sans perdre la dernière instruction. Veuillez la supprimer avant de réessayer</string>
+	<string name="levels">niveau(x)</string>
+    <string name="reset">Remise à zéro</string>
+</resources>

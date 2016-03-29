@@ -59,11 +59,11 @@ function canvasToB64(canvas) {
 }
 
 function skulptToImg(canvas_elem, rendered){
-	html2canvas($(canvas_elem),
+	html2canvas($(canvas_elem),{
 		onrendered: function(canvas) {
 		 	//Rendered function (base64)
 		 	rendered(canvasToB64(canvas));
-		 }
+		 }}
 		 );
 }
 
@@ -200,7 +200,12 @@ var last_output = "";
 								if(status == "success"){
 									$("#run_link").show();
 									
-									console.log(skulptToImg($("#python_enseignant_canvas")));
+									skulptToImg($("#python_enseignant_canvas"), function(base64){
+
+
+										alert(base64);
+
+									});
 
 
 

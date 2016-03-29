@@ -1,0 +1,133 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:2:1-75:12
+	package
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:3:5-46
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:5:5-30
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+	android:versionCode
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:4:5-28
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:2:11-69
+uses-sdk
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:7:5-9:41
+MERGED from [ludicode-android1:facebookSDK:unspecified] /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/AndroidManifest.xml:20:5-22:40
+MERGED from [com.android.support:support-v4:23.0.1] /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.1] /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+	android:targetSdkVersion
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:9:9-38
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:8:9-35
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+		INJECTED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:11:22-64
+application
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:13:5-73:19
+MERGED from [ludicode-android1:facebookSDK:unspecified] /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/ludicode-android1/facebookSDK/unspecified/AndroidManifest.xml:24:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+	android:label
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:16:9-41
+	android:allowBackup
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:14:9-35
+	android:icon
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:15:9-45
+	android:theme
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:17:9-40
+activity#fr.dashingames.ludicode_android.activities.MainActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:18:9-27:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:21:13-50
+	android:label
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:20:13-45
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:19:13-83
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:22:13-26:29
+action#android.intent.action.MAIN
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:23:17-69
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:23:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:25:17-77
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:25:27-74
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:29:9-31:55
+	android:value
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:31:13-52
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:30:13-58
+activity#fr.dashingames.ludicode_android.activities.SplashActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:33:9-36:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:35:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:34:13-54
+activity#fr.dashingames.ludicode_android.activities.RegisterActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:37:9-40:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:39:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:38:13-56
+activity#fr.dashingames.ludicode_android.activities.LoginActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:41:9-44:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:43:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:42:13-53
+activity#fr.dashingames.ludicode_android.activities.ChatActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:45:9-48:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:47:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:46:13-52
+activity#fr.dashingames.ludicode_android.activities.LevelChooserActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:49:9-52:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:51:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:50:13-60
+activity#fr.dashingames.ludicode_android.activities.GameActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:53:9-56:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:55:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:54:13-52
+activity#fr.dashingames.ludicode_android.activities.FBActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:57:9-60:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:59:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:58:13-50
+activity#fr.dashingames.ludicode_android.activities.InstructionsActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:61:9-64:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:63:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:62:13-60
+activity#fr.dashingames.ludicode_android.activities.SuiviActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:65:9-68:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:67:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:66:13-53
+activity#com.facebook.LoginActivity
+ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:69:9-72:20
+	android:screenOrientation
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:71:13-50
+	android:name
+		ADDED from /Users/Nico/Desktop/LC/RecupLudicode/ludicode-android1/ludicodeandroid/src/main/AndroidManifest.xml:70:13-54

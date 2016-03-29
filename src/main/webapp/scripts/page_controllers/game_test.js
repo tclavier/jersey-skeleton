@@ -1,43 +1,47 @@
+/**
+ * Test a game in the test_blocs.html
+ */
+
 var levelList;
 var currentLevel = urlParam("level");
 var currentList = urlParam("list");
 
 function levelFinished() {
-	$("#endLevelModal").modal("show");
+    $("#endLevelModal").modal("show");
 }
 
 function goToNextLevel() {
-	location.href = "game.html?list=" + currentList + "&level=" + (parseInt(currentLevel) + 1);
+    location.href = "game.html?list=" + currentList + "&level=" + (parseInt(currentLevel) + 1);
 }
 
-function urlParam(name){
+function urlParam(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null) {
-       return null;
+    if (results == null) {
+        return null;
     } else {
-       return results[1] || 0;
+        return results[1] || 0;
     }
 }
 
-$(document).ready(function() {
-	sessionStorage.solutionValidity = false;
+$(document).ready(function () {
+    sessionStorage.solutionValidity = false;
 
-	/******************************
-	 **** REQUETES AJAX LEVELS ****
-	 ******************************/
+    /******************************
+     **** REQUETES AJAX LEVELS ****
+     ******************************/
 
     var instructions;
 
-	function setLevelTitle(data) {
-		var listTitle = data == undefined ? "" : "[TEST] " + data;
-		$("#level_title").html(listTitle);
-	}
+    function setLevelTitle(data) {
+        var listTitle = data == undefined ? "" : "[TEST] " + data;
+        $("#level_title").html(listTitle);
+    }
 
-	function handleLevel(data) {
+    function handleLevel(data) {
         window.levelData = data;
         $("#max_instruction").html(window.levelData.maxInstructions);
-		setLevelTitle(window.levelData.name);
-	}
+        setLevelTitle(window.levelData.name);
+    }
 
     function createLevelData(instructionList) {
         var obj = {};
@@ -59,7 +63,7 @@ $(document).ready(function() {
                 structuredContent[y].item[x] = tileId;
             }
         }
-        
+
         obj.structuredContent = structuredContent;
         instructions = obj.instructionsList = instructionList;
         obj.maxInstructions = Infinity;
@@ -67,24 +71,24 @@ $(document).ready(function() {
 
         return obj;
     }
-	
-	
-	// Charge toutes les instructions
-	function loadInstructions() {
-		$.getJSON("v1/instructions", function(instructionList) {
+
+
+    // Charge toutes les instructions
+    function loadInstructions() {
+        $.getJSON("v1/instructions", function (instructionList) {
             handleLevel(createLevelData(instructionList));
-		});
-	}
-	
+        });
+    }
+
 
 
     if (sessionStorage.level != undefined) {
         loadInstructions();
     }
-    
 
 
-    $("#saveLevelBtn").click(function() {
+
+    $("#saveLevelBtn").click(function () {
         // On calcul les instructions utilisé
         usedInstructions = [];
         var blocks = Blockly.mainWorkspace.getAllBlocks();
@@ -104,10 +108,7 @@ $(document).ready(function() {
     });
 
 
-    $("#editLevelBtn").click(function() {
+    $("#editLevelBtn").click(function () {
         window.location.assign("/editor.html");
     });
-
-	
 });
-

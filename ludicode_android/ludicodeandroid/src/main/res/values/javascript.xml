@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="js_interpreter">
+<![CDATA[
+    function Interpreter(game) {
+        var MAX_NUMBER_INSTRUCTIONS = 1000;
+        this.game = game;
+        this.stack = [];
+        this.exited = false;
+        this.executedBlock = 0;
+        this.numberInstructions = 0;
+
+        this.setup = function() {
+            this.stack = [];
+            this.exited = false;
+            this.numberInstructions = 0;
+        };
+
+        this.increment = function(blockId) {
+            if (this.exited) return false;
+
+            ++this.numberInstructions;
+            if (this.numberInstructions > MAX_NUMBER_INSTRUCTIONS) {
+            	this.game.showMessage(\"Boucle infinie !!\");
+                this.addExitCommand();
+                return false;
+            }
+            return true;
+        };
+
+        this.addCommand = function(command) {
+            if (!this.exited)
+                this.stack.push([command, this.executedBlock]);
+        };
+
+        this.addExitCommand = function() {
+            this.exited = true;
+        };
+
+        this.hasSteps = function() {
+            return this.stack.length > 0;
+        };
+
+        this.nextStep = function() {
+            if (this.stack.length > 0) {
+                var command = this.stack.shift();
+                this.game.highlightLine(command[1]);
+                
+                return command[0];
+            }
+
+            return false;
+        };
+    };
+    ]]>
+    </string>
+    <string name="js_game">
+<![CDATA[
+    function Game() {
+    	
+        this.generate = function generate(grid, gplayer) {
+        	this.grid = grid;
+        	this.gplayer = gplayer;
+        	this.player = new Player(this, gplayer.getX(), gplayer.getY(), gplayer.getDirectionX(),
+        		gplayer.getDirectionY());
+        };
+        
+        this.showMessage = function showMessage(message) {
+        	gameView.showMessage(message);
+        };
+        
+        this.highlightLine = function highlightLine(position) {
+        	gameView.highlightLine(position);
+        };
+        
+		this.update = function update(delta) {
+            if (!this.gplayer.isDoingSomething() && this.interpreter.hasSteps()) {
+                var player = this.gplayer;
+                eval(this.interpreter.nextStep());
+            }
+		};
+		
+        this.interpreter = new Interpreter(this);
+	};
+    ]]>
+    </string>
+    <string name="js_player">
+<![CDATA[
+    function Player(game, x, y, directionX, directionY) {
+		this.x = x;
+		this.y = y;
+		this.game = game;
+		var dirX = directionX;
+		var dirY = directionY;
+
+		this.moveTo = function moveTo(x, y) {
+			this.x = x;
+			this.y = y;
+		};
+
+		this.moveToTile = function moveToTile(x, y) {
+			if (!this.game.grid.isTileSolid(x, y)) {
+				this.moveTo(x * this.game.grid.getTileSize(), y * this.game.grid.getTileSize());
+                this.game.interpreter.addCommand(\"player.moveToTile(\" + x + \", \" + y + \");\");
+				return true;
+			}
+            this.game.interpreter.addCommand(\"game.showMessage(\\\"Collision avec un mur !\\\");\");
+            this.game.interpreter.addExitCommand();
+			return false;
+		};
+
+		this.tileX = function tileX() {
+			return Math.round(this.x/this.game.grid.getTileSize());
+		};
+
+		this.tileY = function tileY() {
+			return Math.round(this.y/this.game.grid.getTileSize());
+		};
+		
+		this.turnLeft = function turnLeft() {
+			if (dirX == 0) {
+				dirX = dirY;
+				dirY = 0;
+			} else {
+				dirY = -dirX;
+				dirX = 0;
+			}
+            this.game.interpreter.addCommand(\"player.turnLeft();\");
+		};
+		
+		this.turnRight = function turnRight() {
+			if (dirX == 0) {
+				dirX = -dirY;
+				dirY = 0;
+			} else {
+				dirY = dirX;
+				dirX = 0;
+			}
+            this.game.interpreter.addCommand(\"player.turnRight();\");
+		};
+		
+		this.moveForward = function moveForward() {
+			this.moveToTile(this.tileX() + dirX, this.tileY() + dirY);
+		};
+		
+		this.moveBackward = function moveBackward() {
+			this.moveToTile(this.tileX() - dirX, this.tileY() - dirY);
+		};
+        this.hasArrived = function hasArrived() {
+            return this.game.grid.tiles[this.tileY()][this.tileX()] == 3;
+        };
+         this.canGoForward = function canGoForward() {
+            this.game.interpreter.addCommand(\"player.scanForward();\");
+            return !this.game.grid.isTileSolid(this.tileX() + dirX, this.tileY() + dirY);
+        };
+
+        this.canGoBackward = function canGoBackward() {
+            this.game.interpreter.addCommand(\"player.scanBackward();\");
+            return !this.game.grid.isTileSolid(this.tileX() - dirX, this.tileY() - dirY);
+        };
+		
+        this.canGoLeft = function canGoLeft() {
+            this.game.interpreter.addCommand(\"player.scanLeft();\");
+            return !this.game.grid.isTileSolid(this.tileX() + dirY, this.tileY() - dirX);
+        };
+
+        this.canGoRight = function canGoRight() {
+            this.game.interpreter.addCommand(\"player.scanRight();\");
+            return !this.game.grid.isTileSolid(this.tileX() - dirY, this.tileY() + dirX);
+        };
+
+	};
+    ]]>
+    </string>
+
+</resources>

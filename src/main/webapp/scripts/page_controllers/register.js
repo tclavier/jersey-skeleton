@@ -1,7 +1,10 @@
+/**
+ * Handle the creation of a new user in the base
+ */
+
 $(document).ready(function() {
 
 	$("#error").hide();
-
 
 	// Enregistrer un utilisateur
 	$("#button_register").click(function() {

@@ -1,216 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-<style>
+        <style>
 
-</style>
-<title>Ludicode</title>
+        </style>
+        <title>Ludicode</title>
 
-<!-- bootstrap -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="css/bootstrap-toggle.min.css">
-<link rel="stylesheet" href="css/style.css">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+        <link rel="stylesheet" href="css/style.css">
 
-<!-- Code local -->
-<script type="text/javascript" src="libs/jquery.js"></script>
-<script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
-<script type="text/javascript" src="scripts/page_controllers/all.js"></script>
-<script type="text/javascript" src="scripts/page_controllers/editor.js"></script>
-<script type="text/javascript" src="libs/bootstrap.js"></script>
-<script type="text/javascript" src="libs/jquery-ui.js"></script>
+        <!-- Code local -->
+        <script type="text/javascript" src="libs/jquery.js"></script>
+        <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
+        <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
+        <script type="text/javascript" src="scripts/page_controllers/editor.js"></script>
+        <script type="text/javascript" src="libs/bootstrap.js"></script>
+        <script type="text/javascript" src="libs/jquery-ui.js"></script>
 
-</head>
+    </head>
 
-<body>
-	<div id="fb-root"></div>
-	<nav class="navbar navbar-inverse">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand menu_bar_element" id="home_bar"
-					href="index.html">Ludicode</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
+    <body>
+        <div id="fb-root"></div>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed"
+                            data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                            aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span> <span
+                            class="icon-bar"></span> <span class="icon-bar"></span> <span
+                            class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand menu_bar_element" id="home_bar"
+                       href="index.html">Ludicode</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
 
-				<ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
 
-					<li class="menu_bar_element" id="levels_bar"><a
-						href="levels.html">Jouer</a></li>
-						<li class="menu_bar_element" id="levels_bar"><a href="dessin.html">Dessiner</a></li>
-					<li class="menu_bar_element active" id="editor_bar"><a
-						href="editor.html">Editeur</a></li>
-					<li class="menu_bar_element" id="ludidoc_bar"><a
-						href="ludidoc.html">Ludidoc</a></li>
-					<li class="menu_bar_element" id="leaderboard_bar"><a
-						href="leaderboard.html">Classement</a></li>
+                        <li class="menu_bar_element" id="levels_bar"><a
+                                href="levels.html">Jouer</a></li>
+                        <li class="menu_bar_element" id="levels_bar"><a href="dessin.html">Dessiner</a></li>
+                        <li class="menu_bar_element active" id="editor_bar"><a
+                                href="editor.html">Editeur</a></li>
+                        <li class="menu_bar_element" id="ludidoc_bar"><a
+                                href="ludidoc.html">Ludidoc</a></li>
+                        <li class="menu_bar_element" id="leaderboard_bar"><a
+                                href="leaderboard.html">Classement</a></li>
+                        <li class="menu_bar_element" id="video_bar"><a href="videos.html">Vidéos</a></li>
 
-				</ul>
+                    </ul>
 
-				<div class="navbar-form navbar-right">
-					<div id="login_navbar">
-						<div class="form-group">
-							<input id="name_login" type="text" placeholder="Pseudo"
-								class="form-control" /> <input id="password_login"
-								type="password" placeholder="Mot de passe" class="form-control" />
-							<button id="login_send" type="submit" class="btn btn-success"
-								data-toggle="popover">Envoyer</button>
-						</div>
-						<div class="form-group">
-							<a href="register.html" type="button"
-								class="menu_bar_element btn btn-info">M'enregistrer</a>
-						</div>
-					</div>
-					<div id="info_profil_navbar">
-						<a id="user_icon" href="profile.html" class="menu_bar_element">
-							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</a> <a href="chat.html"> <span
-							class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
-						</a> <a id="notif_icon" href="#"> <span
-							class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-						</a> <a id="options_icon" class="menu_bar_element" href="options.html">
-							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a> <a id="logout_icon" href="#"> <span
-							class="glyphicon glyphicon-off" aria-hidden="true"></span>
-						</a>
-					</div>
-				</div>
-			</div>
-			<!--/.navbar-collapse -->
-		</div>
-	</nav>
-
-
-	<div class="container main_panel row" id="home_pane"
-		style="width: 100%">
-		<div class="col-md-6 col-md-offset-2">
-			<form class="form-horizontal text-left">
-				<div class="form-group">
-					<label for="levelName"
-						class="col-sm-4 control-label col-md-offset-2">Nom du
-						niveau: </label>
-					<div class="col-sm-4">
-						<input type="text" id="levelName" class="form-control"
-							placeholder="Mon niveau" />
-					</div>
-				</div>
+                    <div class="navbar-form navbar-right">
+                        <div id="login_navbar">
+                            <div class="form-group">
+                                <input id="name_login" type="text" placeholder="Pseudo"
+                                       class="form-control" /> <input id="password_login"
+                                       type="password" placeholder="Mot de passe" class="form-control" />
+                                <button id="login_send" type="submit" class="btn btn-success"
+                                        data-toggle="popover">Envoyer</button>
+                            </div>
+                            <div class="form-group">
+                                <a href="register.html" type="button"
+                                   class="menu_bar_element btn btn-info">M'enregistrer</a>
+                            </div>
+                        </div>
+                        <div id="info_profil_navbar">
+                            <a id="user_icon" href="profile.html" class="menu_bar_element">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </a> <a href="chat.html"> <span
+                                    class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
+                            </a> <a id="notif_icon" href="#"> <span
+                                    class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            </a> <a id="options_icon" class="menu_bar_element" href="options.html">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a> <a id="logout_icon" href="#"> <span
+                                    class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--/.navbar-collapse -->
+            </div>
+        </nav>
 
 
-				<div class="form-group">
-					<label for="levelList"
-						class="col-sm-4 control-label col-md-offset-2">Liste: </label>
-					<div class="col-sm-4">
-						<select id="levelList" class="form-control">
-							<option>volvo</option>
-							<option>rito</option>
-							<option>blizrad</option>
-						</select>
-					</div>
-					<button class="btn btn-warning" id="addNewList" style="display:inline-block">+</button>
-				</div>
-				
-				<div class="form-group">
-					<label for="levelTypes"
-						class="col-sm-4 control-label col-md-offset-2">Type : </label>
-					<div class="col-sm-4">
-						<select id="levelTypes" class="form-control">
-							<option>Blocs</option>
-							<option>Cartes</option>
-						</select>
-					</div>
-				</div>
-			</form>
-			<div id="canvasContainer">
-				<canvas id="pickerCanvas" width="0" height="0">
-				</canvas>
+        <div class="container main_panel row" id="home_pane"
+             style="width: 100%">
+            <div class="col-md-6 col-md-offset-2">
+                <form class="form-horizontal text-left">
+                    <div class="form-group">
+                        <label for="levelName"
+                               class="col-sm-4 control-label col-md-offset-2">Nom du
+                            niveau : </label>
+                        <div class="col-sm-4">
+                            <input type="text" id="levelName" class="form-control"
+                                   placeholder="Mon niveau" />
+                        </div>
+                    </div>
 
-				<canvas id="editorCanvas" width="500" height="500">
-				</canvas>
-				<form class="form-inline">
-					<div class="form-group">
-						<label for="gridWidth" class="control-label">Dimensions:</label> <input
-							type="number" id="gridWidth" class="form-control"> <label
-							for="gridHeight" class="control-label"> x </label> <input
-							type="number" id="gridHeight" class="form-control">
-						<button id="change_size" type="button" class="btn btn-info">Redimensionner</button>
-						<button id="save_button" class="btn btn-success">Enregistrer
-							niveau</button>
-					</div>
-				</form>
-			</div>
-		</div>
+                    <div class="form-group">
+                        <label for="levelList"
+                               class="col-sm-4 control-label col-md-offset-2">Liste : </label>
+                        <div class="col-sm-4">
+                            <select id="levelList" class="form-control">
+                                <option>volvo</option>
+                                <option>rito</option>
+                                <option>blizrad</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-warning" id="addNewList" style="display:inline-block">+</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="levelTypes"
+                               class="col-sm-4 control-label col-md-offset-2">Type : </label>
+                        <div class="col-sm-4">
+                            <select id="levelTypes" class="form-control">
+                                <option>Blocs</option>
+                                <option>Cartes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="levelOrientation"
+                               class="col-sm-4 control-label col-md-offset-2">Orientation personnage : </label>
+                        <div class="col-sm-4">
+                            <select id="levelOrientation" class="form-control">
+                                <option>Oui</option>
+                                <option>Non</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="canvasContainer">
+                    <canvas id="pickerCanvas" width="0" height="0">
+                    </canvas>
+
+                    <canvas id="editorCanvas" width="500" height="500">
+                    </canvas>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="gridWidth" class="control-label">Dimensions:</label> <input
+                                type="number" id="gridWidth" class="form-control"> <label
+                                for="gridHeight" class="control-label"> x </label> <input
+                                type="number" id="gridHeight" class="form-control">
+                            <button id="change_size" type="button" class="btn btn-info">Redimensionner</button>
+                            <button id="save_button" class="btn btn-success">Enregistrer niveau</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <ul id="errors" style="color: #FF0000;" class="col-md-2">
+            </ul>
+        </div>
+        <!-- container Editor page -->
 
 
-		<ul id="errors" style="color: #FF0000;" class="col-md-2">
-		</ul>
-	</div>
-	<!-- container Editor page -->
+        <div class="modal fade" id="changeSizeModal" tabindex="-1"
+             role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Redimensionnement</h4>
+                    </div>
+                    <div class="modal-body">Vos modifications vont être écrasées.
+                        Voulez-vous continuer?</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" onclick="changeSize"id="changeSizeConfirmation">Continuer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="modal fade" id="addListModal" tabindex="-1"
+             role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Nouvelle liste</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="newListName" class="control-label">Liste: </label> <input
+                                type="text" id="newListName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" onclick="createList"
+                                id="createListConfirmation">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	<div class="modal fade" id="changeSizeModal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Redimensionnement</h4>
-				</div>
-				<div class="modal-body">Vos modifications vont être écrasées.
-					Voulez-vous continuer?</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-					<button type="button" class="btn btn-primary" onclick="changeSize"
-						id="changeSizeConfirmation">Continuer</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="addListModal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Nouvelle liste</h4>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="newListName" class="control-label">Liste: </label> <input
-							type="text" id="newListName" class="form-control">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-					<button type="button" class="btn btn-primary" onclick="createList"
-						id="createListConfirmation">Enregistrer</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<footer class="container">
-		<div class="row">
-			<hr />
-			<p>&copy; Dashin Games 2015</p>
-		</div>
-	</footer>
-</body>
+        <footer class="container">
+            <div class="row">
+                <hr />
+                <p>&copy; Dashin Games 2015</p>
+            </div>
+        </footer>
+    </body>

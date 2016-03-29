@@ -11,26 +11,36 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 import fr.iutinfo.beans.FriendRelation;
 import fr.iutinfo.beans.User;
 
+/**
+ * Data Access Object relative to the relationship between users
+ * Table friendsRelations
+ * @author Florent
+ */
 public interface FriendsRelationsDao {
 
-	
-	@SqlUpdate("create table friendsRelations (idUser integer, idFriend integer)")
-	void createFriendsRelationsTable();
+    @SqlUpdate("create table friendsRelations (idUser integer, idFriend integer)")
+    void createFriendsRelationsTable();
 
-	@SqlUpdate("insert into friendsRelations (idUser, idFriend) values (:idUser, :idFriend)")
-	void createRelation(@Bind("idUser") int idUser, @Bind("idFriend") int idFriend);
+    @SqlUpdate("insert into friendsRelations (idUser, idFriend) "
+            + "values (:idUser, :idFriend)")
+    void createRelation(@Bind("idUser") int idUser, @Bind("idFriend") int idFriend);
 
-	@SqlQuery("select id, name from users where id in (select idFriend from friendsRelations where idUser = :idUser)")
+    @SqlQuery("select id, name "
+            + "from users "
+            + "where id in (select idFriend "
+                            + "from friendsRelations "
+                            + "where idUser = :idUser)")
     @RegisterMapperFactory(BeanMapperFactory.class)
-	List<User> findFriendsOf(@Bind("idUser") int idUser);
-	
-	
-	@SqlQuery("select * from friendsRelations where idUser = :idUser AND idFriend = :idFriend")
-    @RegisterMapperFactory(BeanMapperFactory.class)
-	FriendRelation isRelationExist(@Bind("idUser") int idUser, @Bind("idFriend") int idFriend);
+    List<User> findFriendsOf(@Bind("idUser") int idUser);
 
-	@SqlUpdate("drop table if exists friendsRelations")
-	void dropFriendsRelationsTable();
-	
-	void close();
+    @SqlQuery("select * "
+            + "from friendsRelations "
+            + "where idUser = :idUser AND idFriend = :idFriend")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+    FriendRelation isRelationExist(@Bind("idUser") int idUser, @Bind("idFriend") int idFriend);
+
+    @SqlUpdate("drop table if exists friendsRelations")
+    void dropFriendsRelationsTable();
+
+    void close();
 }

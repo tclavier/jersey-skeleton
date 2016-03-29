@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Hugo Alder"
+        android:id="@+id/textViewCustom" />
+
+    <CheckBox
+        android:layout_width="43dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox1Custom"
+        android:checked="false"
+        android:layout_weight="2" />
+
+    <CheckBox
+        android:layout_weight="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox2Custom"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_weight="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox3Custom"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_weight="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox4Custom"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_weight="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox5Custom"
+        android:checked="false" />
+
+    <ImageView
+        android:layout_weight="3"
+        android:src="@drawable/ic_progression_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewCustom" />
+
+</LinearLayout>

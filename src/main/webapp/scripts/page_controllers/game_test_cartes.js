@@ -1,3 +1,7 @@
+/*
+ * Supposed to check a game with card in the test_cartes.html, but not sure it fully works or is used
+ */
+
 var levelList;
 var currentLevel = urlParam("level");
 var currentList = urlParam("list");

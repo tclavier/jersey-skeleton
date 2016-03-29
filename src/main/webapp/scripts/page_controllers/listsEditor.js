@@ -1,3 +1,8 @@
+/**
+ * List association of levels created and reached by a user
+ *  Create, display and handle new and old list of level
+ */
+
 var listArr = [];
 
 var canvas;
@@ -13,207 +18,207 @@ var TILE_WIDTH = 10;
 var BORDER_OFFSET = 3;
 
 function loadLists() {
-	$.getJSON("v1/levelLists/me/full/" + Cookies['id'], function(data) {
-		var listIds = "#list-" + data[0].id;
-		for (var i = 0; i < data.length; i++) {
-			if ($.inArray(data[i].id, listArr) == -1) {
-				displayList(data[i]);				
-				listArr.push(data[i].id);
-			}
-			listIds += ", #list-" + data[i].id;	
-		}
-		connectLists(listIds);
-	});
+    $.getJSON("v1/levelLists/me/full/" + Cookies['id'], function (data) {
+        var listIds = "#list-" + data[0].id;
+        for (var i = 0; i < data.length; i++) {
+            if ($.inArray(data[i].id, listArr) == -1) {
+                displayList(data[i]);
+                listArr.push(data[i].id);
+            }
+            listIds += ", #list-" + data[i].id;
+        }
+        connectLists(listIds);
+    });
 }
 
 function displayList(list) {
-	var listDiv = $('<div class="panel panel-warning col-md-2 text-center col-md-offset-3"' +
-	'style="padding: 0px;">');
-	var header = $('<div class="panel-heading">' + list.name + 
-	'<div class="info">Cliquez pour afficher/masquer les niveaux</div></div>');	
+    var listDiv = $('<div class="panel panel-warning col-md-2 text-center col-md-offset-3"' +
+            'style="padding: 0px;">');
+    var header = $('<div class="panel-heading">' + list.name +
+            '<div class="info">Cliquez pour afficher/masquer les niveaux</div></div>');
 
-	var ul = $('<ul class="connectedList list-group panel-body"' +
-			'id="list-' + list.id + '"></ul>');	
+    var ul = $('<ul class="connectedList list-group panel-body"' +
+            'id="list-' + list.id + '"></ul>');
 
-	var item = $('<li class="list-group-item list-group-item-danger" style="margin: 5px; " value="' 
-			+ list.id + '">' + list.name + '</li>');
+    var item = $('<li class="list-group-item list-group-item-danger" style="margin: 5px; " value="'
+            + list.id + '">' + list.name + '</li>');
 
-	header.click(function() {
-		ul.toggle();
-	});
+    header.click(function () {
+        ul.toggle();
+    });
 
-	for (var i = 0; i < list.levels.length; i++) {
-		var level = createLevelNode(list.levels[i]);
+    for (var i = 0; i < list.levels.length; i++) {
+        var level = createLevelNode(list.levels[i]);
 
-		level.appendTo(ul);
-	}
+        level.appendTo(ul);
+    }
 
-	header.appendTo(listDiv);
-	ul.appendTo(listDiv);
-	listDiv.appendTo("#container");
-	ul.hide();
+    header.appendTo(listDiv);
+    ul.appendTo(listDiv);
+    listDiv.appendTo("#container");
+    ul.hide();
 }
 
 function createLevelNode(level) {
-	var node = $('<li class="list-group-item list-group-item-danger" style="margin: 5px; " value="' 
-			+ level.id + '">' + level.name + '</li>');
+    var node = $('<li class="list-group-item list-group-item-danger" style="margin: 5px; " value="'
+            + level.id + '">' + level.name + '</li>');
 
-	node.hover(
-			function(e) {
-				var el = $('#preview');
-				el.show();
-				movePreview(e);
+    node.hover(
+            function (e) {
+                var el = $('#preview');
+                el.show();
+                movePreview(e);
 
-				drawPreview(level);
-				window.addEventListener("mousemove", movePreview, true);
-			},function(e) {
-				var el = $('#preview');
-				el.hide();
-				window.removeEventListener("mousemove", movePreview, true);
-			});
+                drawPreview(level);
+                window.addEventListener("mousemove", movePreview, true);
+            }, function (e) {
+        var el = $('#preview');
+        el.hide();
+        window.removeEventListener("mousemove", movePreview, true);
+    });
 
-	node.click(function() {
-		$('#preview').hide();
-	});
+    node.click(function () {
+        $('#preview').hide();
+    });
 
-	return node;
+    return node;
 }
 
 function movePreview(e) {
-	var el = $('#preview');
-	el.css("top", e.clientY + 12);
-	el.css("left", e.clientX - (canvasWidth / 2));
+    var el = $('#preview');
+    el.css("top", e.clientY + 12);
+    el.css("left", e.clientX - (canvasWidth / 2));
 }
 
 function connectLists(lists) {
-	$( lists ).sortable({
-		connectWith: ".connectedList"
-	}).disableSelection();
+    $(lists).sortable({
+        connectWith: ".connectedList"
+    }).disableSelection();
 }
 
 function drawPreview(level) {
-	var grid = level.structuredContent;
-	canvasHeight = grid.length * TILE_HEIGHT + 2 * BORDER_OFFSET;
-	canvasWidth = grid[0].item.length * TILE_WIDTH + 2 * BORDER_OFFSET;
+    var grid = level.structuredContent;
+    canvasHeight = grid.length * TILE_HEIGHT + 2 * BORDER_OFFSET;
+    canvasWidth = grid[0].item.length * TILE_WIDTH + 2 * BORDER_OFFSET;
 
-	console.log(grid[0]);
+    console.log(grid[0]);
 
-	canvas.height = canvasHeight;
-	canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    canvas.width = canvasWidth;
 
-	ctx.fillStyle = "#FF00FF";
-	ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    ctx.fillStyle = "#FF00FF";
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-	for (var i = 0; i < grid.length; i++) {
-		for (var j = 0; j < grid[0].item.length; j++) {
-			ctx.fillStyle = COLORS[grid[i].item[j]];
-			ctx.fillRect(j * TILE_WIDTH + BORDER_OFFSET, i * TILE_HEIGHT + BORDER_OFFSET
-					, TILE_WIDTH, TILE_HEIGHT);
-		}
-	}
+    for (var i = 0; i < grid.length; i++) {
+        for (var j = 0; j < grid[0].item.length; j++) {
+            ctx.fillStyle = COLORS[grid[i].item[j]];
+            ctx.fillRect(j * TILE_WIDTH + BORDER_OFFSET, i * TILE_HEIGHT + BORDER_OFFSET
+                    , TILE_WIDTH, TILE_HEIGHT);
+        }
+    }
 }
 
 function createList() {
-	var json = JSON.stringify({
-		"name": $("#newListName").val(),
-	});
+    var json = JSON.stringify({
+        "name": $("#newListName").val(),
+    });
 
-	console.log(json);
+    console.log(json);
 
-	$.ajax({
-		type : 'POST',
-		contentType : 'application/json',
-		url : "v1/levelLists/create/" + Cookies["id"],
-		dataType : "json",
-		data : json ,
-		success : function(data, textStatus, jqXHR) {
-			if (data.success) {
-				console.log("Success!");
-			} else {
-				alert("Zut alors!");
-			}
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: "v1/levelLists/create/" + Cookies["id"],
+        dataType: "json",
+        data: json,
+        success: function (data, textStatus, jqXHR) {
+            if (data.success) {
+                console.log("Success!");
+            } else {
+                alert("Zut alors!");
+            }
 
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert('postUser error: ' + textStatus);
-		}
-	});
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('postUser error: ' + textStatus);
+        }
+    });
 
 
-	$('#addListModal').modal('hide');
-	loadLists();
+    $('#addListModal').modal('hide');
+    loadLists();
 }
 
 function sendLists() {
-	var lists = [];
+    var lists = [];
 
-	for (var i = 0; i < listArr.length; i++) {
-		var id = listArr[i];
-		var list = {id: id, levelsAssociation: []};
-		var children = $("#list-" + id).children();
+    for (var i = 0; i < listArr.length; i++) {
+        var id = listArr[i];
+        var list = {id: id, levelsAssociation: []};
+        var children = $("#list-" + id).children();
 
-		for (var j = 0; j < children.length; j++) {
-			console.log(id + "." + j);
-			list.levelsAssociation.push({idList: id, idLevel: children[j].value});
-		}
+        for (var j = 0; j < children.length; j++) {
+            console.log(id + "." + j);
+            list.levelsAssociation.push({idList: id, idLevel: children[j].value});
+        }
 
-		lists.push(list);
-	}
+        lists.push(list);
+    }
 
-	var json = JSON.stringify(lists);
+    var json = JSON.stringify(lists);
 
-	console.log(json);
+    console.log(json);
 
-	$.ajax({
-		type : 'PUT',
-		contentType : 'application/json',
-		url : "v1/levelLists/me/" + Cookies["id"],
-		dataType : "json",
-		data : json ,
-		success : function(data, textStatus, jqXHR) {
-			console.log(data);
-			if(data.success) {
-				console.log("success");
-			} else {
-				// TODO : Afficher mesage d'erreur
-				alert("Oh mince...");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert('postUser error: ' + textStatus);
-		}
-	});
+    $.ajax({
+        type: 'PUT',
+        contentType: 'application/json',
+        url: "v1/levelLists/me/" + Cookies["id"],
+        dataType: "json",
+        data: json,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            if (data.success) {
+                console.log("success");
+            } else {
+                // TODO : Afficher mesage d'erreur
+                alert("Oh mince...");
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('postUser error: ' + textStatus);
+        }
+    });
 }
 
-$(document).ready(function() {
-	canvas = document.getElementById("preview");
-	ctx = canvas.getContext("2d");
+$(document).ready(function () {
+    canvas = document.getElementById("preview");
+    ctx = canvas.getContext("2d");
 
-	ctx.fillStyle = "#00FF00";
-	ctx.fillRect(0, 0, 100, 100);
+    ctx.fillStyle = "#00FF00";
+    ctx.fillRect(0, 0, 100, 100);
 
-	$('#preview').hide();
+    $('#preview').hide();
 
-	loadLists();
+    loadLists();
 
-	$('#sendLists').click(function() {
-		sendLists();
-	});	
-	
-	$('#addNewList').click(function(e) {
-		e.preventDefault();
-		$('#addListModal').modal('show');
-	});
+    $('#sendLists').click(function () {
+        sendLists();
+    });
 
-	$("#createListConfirmation").click(function(e) {
-		e.preventDefault();
-		createList();
-	});
+    $('#addNewList').click(function (e) {
+        e.preventDefault();
+        $('#addListModal').modal('show');
+    });
 
-	$('#newListName').keypress(function(e) {
-		var key = e.keyCode || e.which;
-		if (key === 13) {
-			createList();
-		}
-	});
+    $("#createListConfirmation").click(function (e) {
+        e.preventDefault();
+        createList();
+    });
+
+    $('#newListName').keypress(function (e) {
+        var key = e.keyCode || e.which;
+        if (key === 13) {
+            createList();
+        }
+    });
 });
