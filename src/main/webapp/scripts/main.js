@@ -164,6 +164,8 @@ require(
 		});
 
 var runned = false;
+var carteRunned = false;
+
 // Fonction pour executer le code de l'algo
 function execute(code) {
 	// On cache le message
@@ -210,33 +212,61 @@ $(document).ready(function() {
 		if (level_type == "cartes") {
 			//Execute carte ....
 			
-			var d = document.querySelector("#carteDiv_listeInstru");
-			var imgs = d.getElementsByTagName('img');
-			
-			var x = game.player.x;
-			var y = game.player.y;
-			
-			
-			for(i = 0; i < imgs.length; i++){
+			game.grid.generate()
+			game.theme.reset();
+			if (!carteRunned) {
+				// On modifie le design du bouton
+				$("#execute").attr("class", "btn btn-danger");
+				$("#execute")
+						.html(
+								"<span class=\"glyphicon glyphicon-remove\"></span> Réinitialiser");
+
+				// On execute le code
+				carteRunned = true;
+
+				var d = document.querySelector("#carteDiv_listeInstru");
+				var imgs = d.getElementsByTagName('img');
 				
-				console.log(imgs[i]);
+				var x = game.player.x;
+				var y = game.player.y;
 				
-				if(imgs[i].id == "right")
-					x ++;
-				if(imgs[i].id == "left")
-					x -- ;
-				if(imgs[i].id == "down")
-					y ++;
-				if(imgs[i].id == "up")
-					y --;
 				
-				game.gplayer.moveToTile(x,y);
+				for(i = 0; i < imgs.length; i++){
+					
+					console.log(imgs[i]);
+					
+					if(imgs[i].id == "right")
+						x ++;
+					if(imgs[i].id == "left")
+						x -- ;
+					if(imgs[i].id == "down")
+						y ++;
+					if(imgs[i].id == "up")
+						y --;
+					
+					game.gplayer.moveToTile(x,y);
+					
+					if(x <0 || y <0 || x >5 || y>6)
+						alert("sorti !");
+					if(game.tiles[y][x]==1 ) alert("mur ! "+x+","+y);
+					if(game.tiles[y][x]==3 ) alert("gagné");
+				}
 				
-				if(x <0 || y <0 || x >5 || y>6)
-					alert("sorti !");
-				if(game.tiles[y][x]==1 ) alert("mur ! "+x+","+y);
-				if(game.tiles[y][x]==3 ) alert("gagné");
-			}	
+				
+				
+				// Si tous c'est bien passé, l'interpreteur devrait etre rempli de
+				// commande qui vont maintenant pouvoir etre affiché graphiquement
+
+				carteRunned = true;
+
+			} else {
+				// On modifie le design du bouton
+				$("#execute").attr("class", "btn btn-success");
+				$("#execute").html(
+						"<span class=\"glyphicon glyphicon-play\"></span> Executer");
+				carteRunned = false;
+			}
+				
 			
 		} else if (level_type == "blocs" && Blockly != null) {
 			execute(Blockly.JavaScript.workspaceToCode());
