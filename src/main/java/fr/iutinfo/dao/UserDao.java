@@ -67,6 +67,12 @@ public interface UserDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
     List<User> getAll();
 
+    @SqlQuery("select id, name, email "
+            + "from users "
+            + "order by name asc")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+    List<User> getAllNameSort();
+
     @SqlUpdate("UPDATE users "
             + "SET lastNotifChecking = CURRENT_TIMESTAMP "
             + "WHERE id = :id")

@@ -298,4 +298,10 @@ public class UserResource {
 		return out;
 	}
 
+	@GET
+	@Path("/sortByName")
+	public List<User> getSortUsers() {
+		return dao.getAllNameSort();
+	}
+
 }

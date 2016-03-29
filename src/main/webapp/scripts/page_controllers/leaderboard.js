@@ -1,5 +1,5 @@
 /**
- * Start of a javascript control of the leaderboard for a suer profile
+ * Start of a javascript control of the leaderboard for a user profile
  */
 
 function loadLeaderboard() {
