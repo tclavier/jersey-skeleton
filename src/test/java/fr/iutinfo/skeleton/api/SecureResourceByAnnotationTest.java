@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.ws.rs.core.Application;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
@@ -26,7 +25,7 @@ public class SecureResourceByAnnotationTest extends JerseyTest {
 
     @Before
     public void init() {
-        h = new Helper(target("/userdb"));
+        h = new Helper();
         h.initDb();
     }
 

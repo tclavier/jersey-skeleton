@@ -16,10 +16,6 @@ function getForAll() {
 	getSecure("v1/secure/forall");
 }
 
-function getForLogged() {
-	getSecure("v1/secure/onlylogged");
-}
-
 function getByAnnotation() {
 	getSecure("v1/secure/byannotation");
 }
@@ -34,8 +30,8 @@ function getByAnnotation() {
        beforeSend : function(req) {
         req.setRequestHeader("Authorization", "Basic " + btoa($("#userlogin").val() + ":" + $("#passwdlogin").val()));
        },
-       success: function (data){
-        afficheUser(data)
+       success: function (data) {
+        afficheUser(data);
        },
        error : function(jqXHR, textStatus, errorThrown) {
        			alert('error: ' + textStatus);

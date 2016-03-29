@@ -23,7 +23,7 @@ public class userDBResourceTest extends JerseyTest {
 
     @Before
     public void init(){
-        h = new Helper(target("/userdb"));
+        h = new Helper();
         h.initDb();
     }
 

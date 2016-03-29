@@ -3,18 +3,13 @@ package fr.iutinfo.skeleton.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 
 public class Helper {
     private final static Logger logger = LoggerFactory.getLogger(Helper.class);
     private static UserDao dao;
-    private WebTarget target;
 
-
-    public Helper(WebTarget target) {
-        this.target = target;
+    public Helper() {
         dao = BDDFactory.getDbi().open(UserDao.class);
     }
 
@@ -25,19 +20,19 @@ public class Helper {
 
     User createUserWithName(String name) {
         User user = new User(0, name);
-        return doPost(user);
+        return createUser(user);
     }
 
     User createUserWithAlias(String name, String alias) {
         User user = new User(0, name, alias);
-        return doPost(user);
+        return createUser(user);
     }
 
 
     User createUserWithEmail(String name, String email) {
         User user = new User(0, name);
         user.setEmail(email);
-        return doPost(user);
+        return createUser(user);
     }
 
     public User createUserWithPassword(String name, String passwd, String salt) {
@@ -45,10 +40,10 @@ public class Helper {
         user.setSalt(salt);
         user.setPassword(passwd);
         logger.debug("createUserWithPassword Hash : " + user.getPasswdHash());
-        return doPost(user);
+        return createUser(user);
     }
 
-    private User doPost(User user) {
+    private User createUser(User user) {
         int id = dao.insert(user);
         user.setId(id);
         return user;

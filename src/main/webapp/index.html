@@ -59,11 +59,9 @@
             <input type="text" name="userdb" id="userlogin" placeholder="Login" class="form-control"/>
             <input type="password" name="user" id="passwdlogin" class="form-control"/>
             <br/>
-            <button id="read-forall" class="btn btn-default">Lire depuis /v1/secure/forall</button>
+            <button id="read-forall" class="btn btn-default">Lire /v1/secure/forall</button>
             <br/>
-            <button id="read-forlogged" class="btn btn-default">Lire depuis /v1/secure/onlylogged</button>
-            <br/>
-            <button id="read-byannotation" class="btn btn-default">Lire depuis /v1/secure/byannotation</button>
+            <button id="read-byannotation" class="btn btn-default">Lire /v1/secure/byannotation</button>
         </div>
     </div>
     <div class="row" style="margin-top: 1em;">
@@ -82,7 +80,6 @@
 				$("#post-bdd").click(function () {postUserBdd($('#userdb').val(), $('#aliasdb').val(), $('#passwddb').val())});
 				$("#list-bdd").click(function () {listUsersBdd()});
 				$("#read-forall").click(function () {getForAll()});
-				$("#read-forlogged").click(function () {getForLogged()});
 				$("#read-byannotation").click(function () {getByAnnotation()});
 			});
 

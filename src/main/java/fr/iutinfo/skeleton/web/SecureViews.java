@@ -34,7 +34,7 @@ public class SecureViews {
 
     @GET
     @Path("/login")
-    public User login(@Context SecurityContext context, @QueryParam("user") String oldLogin) throws URISyntaxException {
+    public User login(@Context SecurityContext context, @QueryParam("user") String oldLogin, @Context UriInfo uriInfo) throws URISyntaxException {
         User currentUser = (User) context.getUserPrincipal();
         User oldUser = dao.findByName(oldLogin);
         if (oldUser == null) {
@@ -44,7 +44,7 @@ public class SecureViews {
         if (currentUser.getId() == oldUser.getId()) {
             requestLoginForm();
         } else {
-            setCookieAndRedirectToUserDetail(currentUser);
+            setCookieAndRedirectToUserDetail(currentUser, uriInfo);
         }
         return null;
     }
@@ -56,8 +56,9 @@ public class SecureViews {
                 .entity("Ressouce requires login.").build());
     }
 
-    private void setCookieAndRedirectToUserDetail(User currentUser) throws URISyntaxException {
-        URI location = new URI("/html/user/" + currentUser.getId());
+    private void setCookieAndRedirectToUserDetail(User currentUser, UriInfo uriInfo) throws URISyntaxException {
+        URI location = UriBuilder.fromResource(UserViews.class).path("/" + currentUser.getId()).build();
+        logger.debug("Redirect to " + location);
         throw new WebApplicationException(Response
                 .temporaryRedirect(location)
                 .cookie(new NewCookie("user", currentUser.getName()))

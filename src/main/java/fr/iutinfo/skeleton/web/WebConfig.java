@@ -17,7 +17,7 @@ public class WebConfig extends ResourceConfig {
         register(JspMvcFeature.class);
         registerSecurity();
         // Tracing support.
-        //property(ServerProperties.TRACING, TracingConfig.ON_DEMAND.name());
+        property(ServerProperties.TRACING, TracingConfig.ON_DEMAND.name());
     }
 
     private void registerSecurity() {

@@ -22,7 +22,7 @@ public class SecureResourceForAllTest extends JerseyTest {
 
     @Before
     public void init() {
-        h = new Helper(target("/userdb"));
+        h = new Helper();
         h.initDb();
     }
     @Test
@@ -34,17 +34,17 @@ public class SecureResourceForAllTest extends JerseyTest {
     }
 
     @Test
-    public void should_return_annonymous_user_without_authorization_header() {
+    public void should_return_anonymous_user_without_authorization_header() {
         User utilisateur = target(url).request().get(User.class);
         assertEquals("Anonymous", utilisateur.getName());
     }
 
     @Test
-    public void should_return_unauthorized_status_for_bad_user() {
+    public void should_return_anonymous_user_for_bad_user() {
         h.createUserWithPassword("tclavier", "motdepasse", "graindesel");
         String authorization = "Basic " + Base64.encodeAsString("tclavier:pasdemotdepasse");
-        int utilisateur = target(url).request().header(AUTHORIZATION, authorization).get().getStatus();
-        assertEquals(UNAUTHORIZED.getStatusCode(), utilisateur);
+        User utilisateur = target(url).request().get(User.class);
+        assertEquals("Anonymous", utilisateur.getName());
     }
 
 }

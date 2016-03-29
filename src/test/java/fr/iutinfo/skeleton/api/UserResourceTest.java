@@ -25,7 +25,7 @@ public class UserResourceTest extends JerseyTest {
 
     @Before
     public void init(){
-        h = new Helper(target("/user"));
+        h = new Helper();
     }
 
     @Test
