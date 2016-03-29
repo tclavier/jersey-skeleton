@@ -7,7 +7,7 @@
 	width: 100%;
 	border: 1px solid rgba(0, 0, 0, 0.4);
 	padding:20px;
-
+	text-align: left;
 }
 .draw_container .title{
 	font-size: 17px;
@@ -81,4 +81,38 @@
 	height: auto;
 	border-radius: 25px;
 	margin-right: 5px;
+}
+
+
+.blur{
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
+
+}
+
+
+
+
+ .status_text{
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	top: 350px;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	width: 80%;
+	z-index: 100;
+	font-size: 24px;
+	background: rgba(33,33,33,0.6);
+	color:white;
+	padding: 10px;
+}
+
+.canvas_fill{
+	width: 100%;
+	height: 100%;
 }

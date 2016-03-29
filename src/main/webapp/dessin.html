@@ -53,25 +53,65 @@
 	<script type="text/javascript">
 
 
-// Converts canvas to an image
-function canvasToB64(canvas) {
-	return canvas.toDataURL("image/png");
-}
 
-function skulptToImg(canvas_elem, rendered){
-	html2canvas($(canvas_elem),{
-		onrendered: function(canvas) {
+	//Level vars
+	var level_playable = false;
+	var level_teacher_image_result = null; //Student objective (base64 encoded)
+
+	var level_player_image_result = null; //Student result (base64 encoded)
+
+
+	function previewStudent(base64){
+		$("#python_eleve_canvas").css('background-image','url('+base64+')')
+	}
+
+	function switchPlayable(state){
+		level_playable = state;
+		var playable_container = $("#playable_container");
+		var status_text = $("#playable_status");
+		if(state){
+			playable_container.removeClass("blur");
+			status_text.hide();
+			previewStudent(level_teacher_image_result);
+		}else{
+			level_playable = false;
+			level_teacher_image_result = null;
+			level_player_image_result = null;
+			playable_container.addClass("blur");
+			status_text.show();
+		}
+
+
+	}
+
+	function compareB64_imgs(b1,b2){
+		return (b1 == b2);
+	}
+
+	function canvasToB64(canvas) {
+		return canvas.toDataURL("image/png");
+	}
+
+
+
+	function canvasToBW(){
+		
+	}
+
+	function skulptToImg(canvas_elem, rendered){
+		html2canvas($(canvas_elem),{
+			onrendered: function(canvas) {
 		 	//Rendered function (base64)
 		 	rendered(canvasToB64(canvas));
 		 }}
 		 );
-}
+	}
 
 
 
 
-var running = false;
-var last_output = "";
+	var running = false;
+	var last_output = "";
 
 
 	//Read function
@@ -96,9 +136,10 @@ var last_output = "";
 		//Turtle graphics
 		(Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = canvas_elem;
 
+
+		if (run_callback() == false) return false;
 		last_output = "";
 		running = true;
-		run_callback();
 
 
 		var ePromise = Sk.misceval.asyncToPromise(function() {
@@ -121,7 +162,7 @@ var last_output = "";
 
 	function initPythonEditor(editor_elem,canvas_elem, run_link, run_callback,execution_callback, default_code){
 		if (default_code == null){
-			default_code = "import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n";
+			default_code = "import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nt.color('red')\n\n#A toi de continuer le code ...\n";
 		}
 		var python_editor = CodeMirror(editor_elem, {
 			lineNumbers: true,
@@ -170,57 +211,74 @@ var last_output = "";
 
 					$(document).ready(function(){
 
+						//Level is not playable by default
+						switchPlayable(false);
 
-
-						//Demo
-						initPythonEditor(document.getElementById("python_eleve_editor"),"python_eleve_canvas",$("#python_eleve_run_link"),
-							function(){
-
-							},
-							function(output, status){
-								if(status == "success"){
-									$("#run_link").show();
-									alertify.success('Le code a bien été executé');
-								}
-								else{
-									$("#run_link").show();
-									swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
-
-								}
-							});
-
-
-
-						//Editeur
+						//Editeur enseignant
 						initPythonEditor(document.getElementById("python_enseignant_editor"),"python_enseignant_canvas",$("#python_enseignant_run_link"),
 							function(){
-
+								return true;
 							},
 							function(output, status){
 								if(status == "success"){
 									$("#run_link").show();
 									
 									skulptToImg($("#python_enseignant_canvas"), function(base64){
+										level_teacher_image_result = base64;
+										switchPlayable(true);		
+									});							
+
+									alertify.success('[EDITEUR] Le code a bien été executé ! <br/><br/> Chargement du niveau');
+								}
+								else{
+									$("#run_link").show();
+									swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
+									switchPlayable(false);
+								}
+							},"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nt.color('gray')\nfor c in range(0,4):\n    t.forward(75)\n    t.left(90)");
 
 
-										alert(base64);
+
+						//Editeur joueur
+						initPythonEditor(document.getElementById("python_eleve_editor"),"python_eleve_canvas",$("#python_eleve_run_link"),
+							function(){
+								return level_playable;
+							},
+							function(output, status){
+								if(status == "success"){
+									$("#run_link").show();
+									//Disable preview (to compare images)
+									previewStudent("none");
+									skulptToImg($("#python_eleve_canvas"), function(base64){
+										level_player_image_result = base64;
+										if (compareB64_imgs(level_teacher_image_result, level_player_image_result)){
+											swal("Bravo !", "Tu as bien dessiné le niveau !", "success");
+										}else{
+											var good_img_html = "<img width=200 style='border: 1px solid black; display:inline-block; ' src='" + level_teacher_image_result +"' />"
+											var bad_img_html = "<img width=200 style='border: 1px solid black; display:inline-block;' src='" + level_player_image_result +"' />"
+											swal({ html:true, title:'Oops', text:"Ton dessin n'est pas le même ! Essayes de réécrire ton code <br/><br/>"+good_img_html+bad_img_html, type:"error"});
+										}
+										//Enable preview again
+										previewStudent(level_teacher_image_result);
 
 									});
 
 
 
-									alertify.success('[EDITEUR] Le code a bien été executé');
 								}
 								else{
 									$("#run_link").show();
 									swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
 
 								}
-							},"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nt.color('gray')\nfor c in range(0,4):\n    t.forward(75)\n    t.left(90)");
+
+
+
+
+
+							});
 
 					});
-
-
 
 
 </script>
@@ -303,30 +361,10 @@ var last_output = "";
 	<div class="row">
 		<h1>Dessiner avec la programmation</h1>
 
-		<div class="draw_container">
-			<div class="title">
-				Ecrivez
-				du code dans la fenêtre ci-dessous pour commencer à dessiner !
-			</div>
 
-			<div class="centered">
-				<div class="draw_toolbox" id="python_eleve_editor" sttyle="float:left;">
-					<div class="toolbar">
-						<div class="container">
-							<div id="python_eleve_run_link" style="color: blue; text-decoration: underline; cursor:pointer"><div class="tlb_btn">►</div>Lancer votre programme </div>
-						</div>
-					</div>
-				</div>	
-
-				<div class="draw_toolbox" style="float:right;">
-					<div id="python_eleve_canvas"></div>
-				</div>	
-
-			</div>
-		</div>
 
 		<br/>
-		<h1>Editeur - Prototype</h1>
+		<h3>Editeur - Prototype</h3>
 
 
 
@@ -345,13 +383,54 @@ var last_output = "";
 				</div>	
 
 				<div class="draw_toolbox" style="float:right;">
-					<div id="python_enseignant_canvas"></div>
+					<div id="python_enseignant_canvas"  class="canvas_fill"></div>
 				</div>	
 
 			</div>
 		</div>
 
 
+		<br/><br/>
+
+
+		<div class="play_container">
+
+
+
+			<div class="status_text" id="playable_status">
+				Programmez un niveau avant de le jouer !
+			</div>
+
+			<div class="play_overlay blur" id="playable_container">
+
+
+				<div class="draw_container">
+					<div class="title">
+						Ecrivez
+						du code dans la fenêtre ci-dessous pour jouer le niveau !
+					</div>
+
+					<div class="centered">
+						<div class="draw_toolbox" id="python_eleve_editor" sttyle="float:left;">
+							<div class="toolbar">
+								<div class="container">
+									<div id="python_eleve_run_link" style="color: blue; text-decoration: underline; cursor:pointer"><div class="tlb_btn">►</div>Lancer votre programme </div>
+								</div>
+							</div>
+						</div>	
+
+						<div class="draw_toolbox" style="float:right;">
+							<div id="python_eleve_canvas" class="canvas_fill">
+
+
+							</div>
+						</div>	
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
 
 
 
