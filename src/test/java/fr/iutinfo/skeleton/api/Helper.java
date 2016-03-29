@@ -3,8 +3,6 @@ package fr.iutinfo.skeleton.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.client.WebTarget;
-
 public class Helper {
     private final static Logger logger = LoggerFactory.getLogger(Helper.class);
     private static UserDao dao;
@@ -28,7 +26,6 @@ public class Helper {
         return createUser(user);
     }
 
-
     User createUserWithEmail(String name, String email) {
         User user = new User(0, name);
         user.setEmail(email);
@@ -48,5 +45,6 @@ public class Helper {
         user.setId(id);
         return user;
     }
+
 
 }

@@ -22,7 +22,7 @@ public class userDBResourceTest extends JerseyTest {
     }
 
     @Before
-    public void init(){
+    public void init() {
         h = new Helper();
         h.initDb();
     }

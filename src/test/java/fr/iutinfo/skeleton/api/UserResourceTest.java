@@ -1,7 +1,6 @@
 package fr.iutinfo.skeleton.api;
 
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Before;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
@@ -11,26 +10,21 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+import static javax.ws.rs.core.Response.Status.ACCEPTED;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
 public class UserResourceTest extends JerseyTest {
-    private Helper h;
 
     @Override
     protected Application configure() {
         return new Api();
     }
 
-    @Before
-    public void init(){
-        h = new Helper();
-    }
-
     @Test
     public void testReadUserWithNameFooAsJsonString() {
-        h.createUserWithName("foo");
+        User user = createUserWithName("foo");
         String json = target("/user/foo").request().get(String.class);
         assertTrue(json.contains("\"name\":\"foo\""));
     }
@@ -42,14 +36,14 @@ public class UserResourceTest extends JerseyTest {
     }
 
     @Test
-    public void testCreateUserMustReturnUserWithId() {
-        User savedUser = h.createUserWithName("thomas");
+    public void create_user_should_return_testCreateUserMustReturnUserWithId() {
+        User savedUser = createUserWithName("thomas");
         assertTrue(savedUser.getId() > 0);
     }
 
     @Test
     public void testUpdateUserName() {
-        User u = h.createUserWithName("thomas");
+        User u = createUserWithName("thomas");
         u.setName("yann");
         Response rep = target("/user").path("" + u.getId()).request()
                 .put(Entity.entity(u, MediaType.APPLICATION_JSON));
@@ -72,8 +66,8 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void tesListAllUsers() {
-        h.createUserWithName("toto");
-        h.createUserWithName("titi");
+        createUserWithName("toto");
+        createUserWithName("titi");
         List<User> users = target("/user/").request().get(new GenericType<List<User>>() {
         });
         assertTrue(users.size() >= 2);
@@ -81,17 +75,28 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void after_delete_read_user_sould_return_202() {
-        User u = h.createUserWithName("toto");
+        User u = createUserWithName("toto");
         int status = target("/user/" + u.getId()).request().delete().getStatus();
-        assertEquals(202, status);
+        assertEquals(ACCEPTED.getStatusCode(), status);
 
     }
 
     @Test
     public void read_user_richard_should_return_good_alias() {
-        h.createUserWithAlias("richard stallman", "rms");
+        createUserWithAlias("richard stallman", "rms");
         User user = target("/user/richard stallman").request().get(User.class);
         assertEquals("rms", user.getAlias());
     }
 
+    private User createUserWithName(String name) {
+        User user = new User(0, name);
+        Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
+        return target("/user").request().post(userEntity).readEntity(User.class);
+    }
+
+    private User createUserWithAlias(String name, String alias) {
+        User user = new User(0, name, alias);
+        Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
+        return target("/user").request().post(userEntity).readEntity(User.class);
+    }
 }
