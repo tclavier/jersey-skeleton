@@ -179,6 +179,7 @@ function execute(code) {
 	// On execute les actions sur le joueur invisible permettant juste de
 	// remplir l'interpreteur
 	var player = game.player;
+	
 
 	if (!runned) {
 		// On modifie le design du bouton
@@ -198,12 +199,40 @@ function execute(code) {
 
 	} else {
 		// On modifie le design du bouton
+		
+		
 		$("#execute").attr("class", "btn btn-success");
 		$("#execute").html(
 				"<span class=\"glyphicon glyphicon-play\"></span> Executer");
 		runned = false;
 	}
 }
+
+
+function executeCartes(){
+	var d = document.querySelector("#carteDiv_listeInstru");
+	var imgs = d.getElementsByTagName('img');
+	
+	var x = game.player.x;
+	var y = game.player.y;
+	
+	for(i = 0; i < imgs.length; i++){
+		if(imgs[i].id == "right")
+			x ++;
+		if(imgs[i].id == "left")
+			x -- ;
+		if(imgs[i].id == "down")
+			y ++;
+		if(imgs[i].id == "up")
+			y --;
+		game.gplayer.moveToTile(x,y);
+		/*if(x <0 || y <0 || x >5 || y>6)
+			alert("sorti !");
+		if(game.tiles[y][x]==1 ) alert("mur ! "+x+","+y);
+		if(game.tiles[y][x]==3 ) alert("gagné");*/
+	}
+}
+
 
 $(document).ready(function() {
 
@@ -223,40 +252,9 @@ $(document).ready(function() {
 
 				// On execute le code
 				carteRunned = true;
-
-				var d = document.querySelector("#carteDiv_listeInstru");
-				var imgs = d.getElementsByTagName('img');
 				
-				var x = game.player.x;
-				var y = game.player.y;
+				executeCartes();
 				
-				
-				for(i = 0; i < imgs.length; i++){
-					
-					console.log(imgs[i]);
-					
-					if(imgs[i].id == "right")
-						x ++;
-					if(imgs[i].id == "left")
-						x -- ;
-					if(imgs[i].id == "down")
-						y ++;
-					if(imgs[i].id == "up")
-						y --;
-					
-					game.gplayer.moveToTile(x,y);
-					
-					if(x <0 || y <0 || x >5 || y>6)
-						alert("sorti !");
-					if(game.tiles[y][x]==1 ) alert("mur ! "+x+","+y);
-					if(game.tiles[y][x]==3 ) alert("gagné");
-				}
-				
-				
-				
-				// Si tous c'est bien passé, l'interpreteur devrait etre rempli de
-				// commande qui vont maintenant pouvoir etre affiché graphiquement
-
 				carteRunned = true;
 
 			} else {
