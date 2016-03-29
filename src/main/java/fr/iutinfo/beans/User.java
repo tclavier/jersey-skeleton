@@ -49,6 +49,6 @@ public class User {
     @Override
     public String toString() { return id + ": " + name; }
 
-    @Override
+    
     public boolean equals(Object other) { return this.id == ((User) other).id; }
 }
