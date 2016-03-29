@@ -46,11 +46,32 @@
 	<script src="libs/alertify/alertify.min.js"></script>	
 
 
+
+	<script src="libs/html2canvas/html2canvas.js"></script>
+
+
 	<script type="text/javascript">
 
-	var running = false;
-	var last_output = "";
 
+// Converts canvas to an image
+function canvasToB64(canvas) {
+	return canvas.toDataURL("image/png");
+}
+
+function skulptToImg(canvas_elem, rendered){
+	html2canvas($(canvas_elem),
+		onrendered: function(canvas) {
+		 	//Rendered function (base64)
+		 	rendered(canvasToB64(canvas));
+		 }
+		 );
+}
+
+
+
+
+var running = false;
+var last_output = "";
 
 
 	//Read function
@@ -69,7 +90,6 @@
 	function runPython(editor_elem, canvas_elem, run_callback, exec_callback){
 
 		if (running) return false;
-
 
 
 
@@ -99,14 +119,17 @@
 
 
 
-	function initPythonEditor(editor_elem,canvas_elem, run_link, run_callback,execution_callback){
+	function initPythonEditor(editor_elem,canvas_elem, run_link, run_callback,execution_callback, default_code){
+		if (default_code == null){
+			default_code = "import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n";
+		}
 		var python_editor = CodeMirror(editor_elem, {
 			lineNumbers: true,
 			indentUnit: 4,
 			tabMode: "shift",
 			mode: "python",
 			theme: "dracula",
-			value:"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n",
+			value:default_code,
 			extraKeys: {
 				Tab: function(cm) {
 					var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
@@ -176,18 +199,24 @@
 							function(output, status){
 								if(status == "success"){
 									$("#run_link").show();
-									alertify.success('Le code a bien été executé');
+									
+									console.log(skulptToImg($("#python_enseignant_canvas")));
+
+
+
+									alertify.success('[EDITEUR] Le code a bien été executé');
 								}
 								else{
 									$("#run_link").show();
 									swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
 
 								}
-							});
-
-
+							},"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nt.color('gray')\nfor c in range(0,4):\n    t.forward(75)\n    t.left(90)");
 
 					});
+
+
+
 
 </script>
 
