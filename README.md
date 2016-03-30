@@ -3,9 +3,9 @@
 Voir le [WIKI](https://github.com/Zavydiel/Ludicode-v4.2/wiki) pour plus d'info sur les ressources du serveur
 
 ## Lancement du projet
-chmod o+x update.sh
-./update.sh
-Option 4
+* chmod o+x update.sh
+* ./update.sh
+* Option 4
 
 
 ## BUGs
