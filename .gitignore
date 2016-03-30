@@ -9,3 +9,4 @@ data.db
 /bin/
 hs*
 src/main/webapp/images/avatars/
+.nfs*
