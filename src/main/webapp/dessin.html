@@ -1,80 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>Ludicode</title>
-
-        <!-- bootstrap -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
-        <link rel="stylesheet" href="css/style.css">
-
-        <!-- Code local -->
-        <script type="text/javascript" src="libs/jquery.js"></script>
-        <script type="text/javascript" src="libs/bootstrap.js"></script>
-        <script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
-        <script type="text/javascript" src="scripts/page_controllers/all.js"></script>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
 
-        <!-- Code dessin -->
-        <link rel="stylesheet" href="css/draw_ui.css" />
-        <script src="libs/skulpt/skulpt.js"></script>
-        <script src="libs/skulpt/skulpt-stdlib.js" type="text/javascript"></script>
-
-        <link rel="stylesheet" href="libs/code_mirror/codemirror.css">
-        <link rel="stylesheet" href="libs/code_mirror/theme.css">
-
-        <script src="libs/code_mirror/codemirror.js"></script>
-        <script src="libs/code_mirror/parsepython.js"></script>
-
-        <link rel="stylesheet" href="libs/sweetalert/sweetalert.css" />
-        <script src="libs/sweetalert/sweetalert.min.js"></script>
-
-        <link rel="stylesheet" href="libs/alertify/css/alertify.css" />
-        <link rel="stylesheet" href="libs/alertify/css/themes/default.css" />	
-        <script src="libs/alertify/alertify.min.js"></script>	
-
-        <script type="text/javascript">
-
-            var running = false;
-            var last_output = "";
-
-            //Read function
-            function pythonEditorbuiltinRead(x) {
-                if (Sk.builtinFiles === undefined
-                        || Sk.builtinFiles["files"][x] === undefined)
-                    throw "File not found: '" + x + "'";
-                return Sk.builtinFiles["files"][x];
-            }
-
-            function pythonEditorOutputHandler(text) {
-                last_output = (last_output + text);
-            }
+	<title>Ludicode</title>
 
 
-            function runPython(editor_elem, canvas_elem, run_callback, exec_callback) {
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+	<link rel="stylesheet" href="css/style.css">
 
-                if (running)
-                    return false;
+	<!-- Code local -->
+	<script type="text/javascript" src="libs/jquery.js"></script>
+	<script type="text/javascript" src="libs/bootstrap.js"></script>
+	<script type="text/javascript" src="libs/bootstrap-toggle.min.js"></script>
+	<script type="text/javascript" src="scripts/page_controllers/all.js"></script>
 
-                //Turtle graphics
-                (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = canvas_elem;
 
-                last_output = "";
-                running = true;
-                run_callback();
+	<!-- Code dessin -->
+	<link rel="stylesheet" href="css/draw_ui.css" />
+	<script src="libs/skulpt/skulpt.js"></script>
+	<script src="libs/skulpt/skulpt-stdlib.js" type="text/javascript"></script>
 
-                var ePromise = Sk.misceval.asyncToPromise(function () {
-                    return  Sk.importMainWithBody("<stdin>", false, editor_elem.getValue(), true);
-                });
+	<link rel="stylesheet" href="libs/code_mirror/codemirror.css">
+	<link rel="stylesheet" href="libs/code_mirror/theme.css">
 
-<<<<<<< HEAD
+
+	<script src="libs/code_mirror/codemirror.js"></script>
+	<script src="libs/code_mirror/parsepython.js"></script>
+
+
 	<link rel="stylesheet" href="libs/sweetalert/sweetalert.css" />
 	<script src="libs/sweetalert/sweetalert.min.js"></script>
 
@@ -86,237 +48,300 @@
 
 
 	<script src="libs/html2canvas/html2canvas.js"></script>
+	<script src="libs/html2canvas/fix_canvas_smoothing.js"></script>
 
+	<script src="libs/html5lightbox.js"></script>
 
 	<script type="text/javascript">
 
 
-
-	//Level vars
-	var level_playable = false;
-	var level_teacher_image_result = null; //Student objective (base64 encoded)
-
-	var level_player_image_result = null; //Student result (base64 encoded)
+//Python editors vars
+var running = false;
+var last_output = "", editor_output_element = null;
 
 
-	function previewStudent(base64){
-		$("#python_eleve_canvas").css('background-image','url('+base64+')')
+//Level vars
+var level_playable = false;
+var level_teacher_image_result = null; //Student objective (base64 encoded)
+var level_player_image_result = null; //Student result (base64 encoded)
+
+var level_teacher_cimage_result = null; //Student objective (canvas)
+var level_player_cimage_result = null; //Student result (canvas)
+
+
+function previewStudent(base64){
+	$("#python_eleve_canvas").css('background-image','url('+base64+')')
+}
+
+function switchPlayable(state){
+	level_playable = state;
+	var playable_container = $("#playable_container");
+	var status_text = $("#playable_status");
+	if(state){
+		playable_container.removeClass("blur");
+		status_text.hide();
+		previewStudent(level_teacher_image_result);
+	}else{
+		level_playable = false;
+		level_teacher_image_result = null;
+		level_player_image_result = null;
+		level_teacher_cimage_result = null;
+		level_player_cimage_result = null;
+		playable_container.addClass("blur");
+		status_text.show();
 	}
 
-	function switchPlayable(state){
-		level_playable = state;
-		var playable_container = $("#playable_container");
-		var status_text = $("#playable_status");
-		if(state){
-			playable_container.removeClass("blur");
-			status_text.hide();
-			previewStudent(level_teacher_image_result);
-		}else{
-			level_playable = false;
-			level_teacher_image_result = null;
-			level_player_image_result = null;
-			playable_container.addClass("blur");
-			status_text.show();
+
+}
+
+function rmsDiff(data1,data2){
+	var squares = 0;
+	for(var i = 0; i<data1.length; i++){
+		squares += (data1[i]-data2[i])*(data1[i]-data2[i]);
+	}
+	var rms = Math.sqrt(squares/data1.length);
+	return rms;
+}
+
+function getCanvasPix(canvas) {
+	return canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+}
+
+
+
+function compareCanvas(c1,c2){
+	var pix1 = getCanvasPix(c1);
+	var pix2 = getCanvasPix(c2);
+	return rmsDiff(pix1,pix2);
+}
+
+
+function compareB64_imgs(b1,b2){
+	return (b1 == b2);
+}
+
+
+
+function canvasToB64(canvas) {
+	return canvas.toDataURL("image/png");
+}
+
+
+
+function canvasToBW(canvas){
+	var canvas_copy = canvas;
+	var context = canvas_copy.getContext('2d');
+
+	var imgd = context.getImageData(0, 0, canvas_copy.width, canvas_copy.height);
+	var pix = imgd.data;
+
+
+	for (var i = 0, n = pix.length; i < n; i += 4) {
+		if(!(pix[i] == 255 && pix[i+1] == 255 && pix[i+2] == 255)){
+			pix[i] = 0; // red
+			pix[i+1] = 0; // green
+			pix[i+2] = 0; // blue
 		}
-
-
 	}
+	context.putImageData(imgd, 0, 0);
+	return canvas_copy;
 
-	function compareB64_imgs(b1,b2){
-		return (b1 == b2);
+}
+
+function skulptToImg(canvas_elem, rendered){
+	html2canvas($(canvas_elem),{
+		onrendered: function(canvas) {
+			//Rendered function (base64)
+			rendered(canvas,canvasToB64(canvas), canvasToB64(canvasToBW(canvas)));
+		}}
+		);
+}
+
+
+
+
+//Read function
+function pythonEditorbuiltinRead(x) {
+	if (Sk.builtinFiles === undefined
+		|| Sk.builtinFiles["files"][x] === undefined)
+		throw "File not found: '" + x + "'";
+	return Sk.builtinFiles["files"][x];
+}
+
+function pythonEditorOutputHandler(text){
+	last_output = (last_output + text);
+	$(editor_output_element).text($(editor_output_element).text() + text);
+	$(editor_output_element).animate({ scrollTop: $(editor_output_element).prop("scrollHeight") }, 100);
+}
+
+
+function runPython(editor_elem, canvas_elem, run_callback, exec_callback, output_element){
+
+	if (running) return false;
+
+
+	//Turtle graphics
+	(Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = canvas_elem;
+
+
+	if (run_callback() == false) return false;
+	
+	last_output = "";
+	editor_output_element =  output_element;
+	editor_output_element.text("OUTPUT\n")
+	
+	running = true;
+
+
+	var ePromise = Sk.misceval.asyncToPromise(function() {
+		return  Sk.importMainWithBody("<stdin>", false, editor_elem.getValue(), true);
+	});
+
+
+	ePromise.then(function(mod) {
+		running = false;
+		exec_callback(last_output,"success");
+	}, function(err) {
+		running = false;
+		exec_callback(err, "error");
+	});
+
+
+}
+
+
+
+function initPythonEditor(editor_elem,canvas_elem, run_link, run_callback,execution_callback, default_code){
+	if (default_code == null){
+		default_code = "import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nt.color('red')\n\n#A toi de continuer le code ...\n";
 	}
-
-	function canvasToB64(canvas) {
-		return canvas.toDataURL("image/png");
-	}
-
-
-
-	function canvasToBW(){
-		
-	}
-
-	function skulptToImg(canvas_elem, rendered){
-		html2canvas($(canvas_elem),{
-			onrendered: function(canvas) {
-		 	//Rendered function (base64)
-		 	rendered(canvasToB64(canvas));
-		 }}
-		 );
-	}
-
-
-
-
-	var running = false;
-	var last_output = "";
-
-
-	//Read function
-	function pythonEditorbuiltinRead(x) {
-		if (Sk.builtinFiles === undefined
-			|| Sk.builtinFiles["files"][x] === undefined)
-			throw "File not found: '" + x + "'";
-		return Sk.builtinFiles["files"][x];
-	}
-
-	function pythonEditorOutputHandler(text){
-		last_output = (last_output + text);
-	}
-
-
-	function runPython(editor_elem, canvas_elem, run_callback, exec_callback){
-
-		if (running) return false;
-
-
-
-		//Turtle graphics
-		(Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = canvas_elem;
-
-
-		if (run_callback() == false) return false;
-		last_output = "";
-		running = true;
-
-
-		var ePromise = Sk.misceval.asyncToPromise(function() {
-			return  Sk.importMainWithBody("<stdin>", false, editor_elem.getValue(), true);
-		});
-
-
-		ePromise.then(function(mod) {
-			running = false;
-			exec_callback(last_output,"success");
-		}, function(err) {
-			running = false;
-			exec_callback(err, "error");
-		});
-
-
-	}
-
-
-
-	function initPythonEditor(editor_elem,canvas_elem, run_link, run_callback,execution_callback, default_code){
-		if (default_code == null){
-			default_code = "import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nt.color('red')\n\n#A toi de continuer le code ...\n";
-		}
-		var python_editor = CodeMirror(editor_elem, {
-			lineNumbers: true,
-			indentUnit: 4,
-			tabMode: "shift",
-			mode: "python",
-			theme: "dracula",
-			value:default_code,
-			extraKeys: {
-				Tab: function(cm) {
-					var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
-					cm.replaceSelection(spaces, "end", "+input");
-				}
+	var python_editor = CodeMirror(editor_elem, {
+		lineNumbers: true,
+		indentUnit: 4,
+		tabMode: "shift",
+		mode: "python",
+		theme: "dracula",
+		value:default_code,
+		extraKeys: {
+			Tab: function(cm) {
+				var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+				cm.replaceSelection(spaces, "end", "+input");
 			}
+		}
+	});
+
+
+	var python_output = $("<pre></pre>");
+	python_output.addClass("output_bottom");
+	python_output.text("OUTPUT\n");
+	python_output.appendTo($(editor_elem));
+
+	//Run
+
+	$(run_link).click(function(e){
+		runPython(python_editor, canvas_elem, run_callback, execution_callback, python_output);
+	});
+
+}
+
+
+		//Configuring skulpt
+		Sk.pre = "";
+		Sk.configure({
+			output : pythonEditorOutputHandler,
+			read : pythonEditorbuiltinRead
 		});
 
+				//External libraries
+				Sk.externalLibraries = {
 
-		python_output = $("<pre></pre>");
-		python_output.addClass("output_bottom");
-		python_output.text("OUTPUT\n");
-		python_output.appendTo($(editor_elem));
-
-		//Run
-
-		$(run_link).click(function(e){
-			runPython(python_editor, canvas_elem, run_callback, execution_callback);
-		});
-
-	}
-
-
-			//Configuring skulpt
-			Sk.pre = "";
-			Sk.configure({
-				output : pythonEditorOutputHandler,
-				read : pythonEditorbuiltinRead
-			});
-
-					//External libraries
-					Sk.externalLibraries = {
-
-					};
+				};
 
 
 
+				function popup_video(){
+					html5Lightbox.showLightbox(2, 'videos/tuto_python.mp4', 'Tutoriel', 480, 270, '');
+				}
 
-					$(document).ready(function(){
+				$(document).ready(function(){
 
-						//Level is not playable by default
-						switchPlayable(false);
+					//Level is not playable by default
+					switchPlayable(false);
 
-						//Editeur enseignant
-						initPythonEditor(document.getElementById("python_enseignant_editor"),"python_enseignant_canvas",$("#python_enseignant_run_link"),
-							function(){
-								return true;
-							},
-							function(output, status){
-								if(status == "success"){
-									$("#run_link").show();
-									
-									skulptToImg($("#python_enseignant_canvas"), function(base64){
-										level_teacher_image_result = base64;
-										switchPlayable(true);		
-									});							
+					//Editeur enseignant
+					initPythonEditor(document.getElementById("python_enseignant_editor"),"python_enseignant_canvas",$("#python_enseignant_run_link"),
+						function(){
+							return true;
+						},
+						function(output, status){
+							if(status == "success"){
+								$("#run_link").show();
+								
+								skulptToImg($("#python_enseignant_canvas"), function(canvas,base64_colored, base64_monochrome){
+									level_teacher_image_result = base64_monochrome;
+									level_teacher_cimage_result = canvas;
+									switchPlayable(true);		
+								});							
 
-									alertify.success('[EDITEUR] Le code a bien été executé ! <br/><br/> Chargement du niveau');
-								}
-								else{
-									$("#run_link").show();
-									swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
-									switchPlayable(false);
-								}
-							},"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nt.color('gray')\nfor c in range(0,4):\n    t.forward(75)\n    t.left(90)");
-
-
-
-						//Editeur joueur
-						initPythonEditor(document.getElementById("python_eleve_editor"),"python_eleve_canvas",$("#python_eleve_run_link"),
-							function(){
-								return level_playable;
-							},
-							function(output, status){
-								if(status == "success"){
-									$("#run_link").show();
-									//Disable preview (to compare images)
-									previewStudent("none");
-									skulptToImg($("#python_eleve_canvas"), function(base64){
-										level_player_image_result = base64;
-										if (compareB64_imgs(level_teacher_image_result, level_player_image_result)){
-											swal("Bravo !", "Tu as bien dessiné le niveau !", "success");
-										}else{
-											var good_img_html = "<img width=200 style='border: 1px solid black; display:inline-block; ' src='" + level_teacher_image_result +"' />"
-											var bad_img_html = "<img width=200 style='border: 1px solid black; display:inline-block;' src='" + level_player_image_result +"' />"
-											swal({ html:true, title:'Oops', text:"Ton dessin n'est pas le même ! Essayes de réécrire ton code <br/><br/>"+good_img_html+bad_img_html, type:"error"});
-										}
-										//Enable preview again
-										previewStudent(level_teacher_image_result);
-
-									});
+								alertify.success('[EDITEUR] Le code a bien été executé ! <br/><br/> Chargement du niveau');
+							}
+							else{
+								$("#run_link").show();
+								swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
+								switchPlayable(false);
+							}
+						},"import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nt.color('gray')\nfor c in range(0,4):\n    t.forward(75)\n    t.left(90)");
 
 
 
-								}
-								else{
-									$("#run_link").show();
-									swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
+					//Editeur joueur
+					initPythonEditor(document.getElementById("python_eleve_editor"),"python_eleve_canvas",$("#python_eleve_run_link"),
+						function(){
+							return level_playable;
+						},
+						function(output, status){
+							if(status == "success"){
+								$("#run_link").show();
+								//Disable preview (to compare images)
+								previewStudent("none");
+								skulptToImg($("#python_eleve_canvas"), function(canvas,base64_colored, base64_monochrome){
+									level_player_image_result = base64_monochrome;
+									level_player_cimage_result = canvas;
 
-								}
+
+									var diff_perc = compareCanvas(level_player_cimage_result, level_teacher_cimage_result) ;
+									console.log(" DIFF " + diff_perc)
+
+									if ( (diff_perc >= 0 && diff_perc <= 1.7)  ) {
+										swal("Bravo !", "Tu as bien dessiné le niveau !", "success");
+									}else{
+										var good_img_html = "<img width=200 height=200 style='margin: 10px; border: 1px solid black; display:inline-block; ' src='" + level_teacher_image_result +"' />"
+										var bad_img_html = "<img width=200 height=200 style='margin:10px; border: 1px solid black; display:inline-block;' src='" + base64_colored +"' />"
+										swal({ html:true, title:'Oops', text:"Ton dessin n'est pas le même ! Essayes de réécrire ton code <br/><br/>"+good_img_html+bad_img_html, type:"error"});
+									}
+									//Enable preview again
+									previewStudent(level_teacher_image_result);
+
+								});
+
+
+
+							}
+							else{
+								$("#run_link").show();
+								swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
+
+							}
 
 
 
 
+							
+						});
 
-							});
+popup_video();
 
-					});
+});
 
 
 </script>
@@ -325,6 +350,11 @@
 </head>
 
 <body>
+
+
+
+
+
 	<div id="fb-root"></div>
 	<nav class="navbar navbar-inverse">
 		<div class="container">
@@ -493,240 +523,5 @@
 		<p>&copy; Dashin Games 2015</p>
 	</div>
 </footer>
-=======
-                ePromise.then(function (mod) {
-                    running = false;
-                    exec_callback(last_output, "success");
-                }, function (err) {
-                    running = false;
-                    exec_callback(err, "error");
-                });
-
-
-            }
-
-
-
-            function initPythonEditor(editor_elem, canvas_elem, run_link, run_callback, execution_callback) {
-                var python_editor = CodeMirror(editor_elem, {
-                    lineNumbers: true,
-                    indentUnit: 4,
-                    tabMode: "shift",
-                    mode: "python",
-                    theme: "dracula",
-                    value: "import turtle\nt = turtle.Turtle()\nt.shape('turtle')\nfor c in ['red', 'green', 'yellow', 'blue']:\n    t.color(c)\n    t.forward(75)\n    t.left(90)\n\n",
-                    extraKeys: {
-                        Tab: function (cm) {
-                            var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
-                            cm.replaceSelection(spaces, "end", "+input");
-                        }
-                    }
-                });
-
-
-                python_output = $("<pre></pre>");
-                python_output.addClass("output_bottom");
-                python_output.text("OUTPUT\n");
-                python_output.appendTo($(editor_elem));
-
-                //Run
-
-                $(run_link).click(function (e) {
-                    runPython(python_editor, canvas_elem, run_callback, execution_callback);
-                });
-            }
-
-            //Configuring skulpt
-            Sk.pre = "";
-            Sk.configure({
-                output: pythonEditorOutputHandler,
-                read: pythonEditorbuiltinRead
-            });
-
-            //External libraries
-            Sk.externalLibraries = {
-            };
-
-            $(document).ready(function () {
-
-                //Demo
-                initPythonEditor(document.getElementById("python_eleve_editor"), "python_eleve_canvas", $("#python_eleve_run_link"),
-                        function () {
-
-                        },
-                        function (output, status) {
-                            if (status == "success") {
-                                $("#run_link").show();
-                                alertify.success('Le code a bien été executé');
-                            }
-                            else {
-                                $("#run_link").show();
-                                swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
-
-                            }
-                        });
-
-                //Editeur
-                initPythonEditor(document.getElementById("python_enseignant_editor"), "python_enseignant_canvas", $("#python_enseignant_run_link"),
-                        function () {
-
-                        },
-                        function (output, status) {
-                            if (status == "success") {
-                                $("#run_link").show();
-                                alertify.success('Le code a bien été executé');
-                            }
-                            else {
-                                $("#run_link").show();
-                                swal("Oops", "Un problème est survenu dans le code ... \n\n" + output.toString(), "error");
-
-                            }
-                        });
-
-            });
-
-        </script>
-
-
-    </head>
-
-    <body>
-        <div id="fb-root"></div>
-        <nav class="navbar navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed"
-                            data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                            aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span> <span
-                            class="icon-bar"></span> <span class="icon-bar"></span> <span
-                            class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand menu_bar_element" id="home_bar"
-                       href="index.html">Ludicode</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-
-                    <ul class="nav navbar-nav">
-
-                        <li class="menu_bar_element" id="levels_bar"><a
-                                href="levels.html">Jouer</a></li>
-                        <li class="menu_bar_element" id="levels_bar"><a
-                                href="dessin.html">Dessiner</a></li>
-                        <li class="menu_bar_element" id="editor_bar"><a
-                                href="editor.html">Editeur</a></li>
-                        <li class="menu_bar_element" id="ludidoc_bar"><a
-                                href="ludidoc.html">Ludidoc</a></li>
-                        <li class="menu_bar_element" id="leaderboard_bar"><a
-                                href="leaderboard.html">Classement</a></li>
-                        <li class="menu_bar_element" id="groupes_bar"><a href="groupes.html">Groupes</a></li>
-                        <li class="menu_bar_element" id="video_bar"><a href="videos.html">Vidéos</a></li>
-
-                    </ul>
-
-                    <div class="navbar-form navbar-right">
-                        <div id="login_navbar">
-                            <div class="form-group">
-                                <input id="name_login" type="text" placeholder="Pseudo"
-                                       class="form-control" /> <input id="password_login"
-                                       type="password" placeholder="Mot de passe" class="form-control" />
-                                <button id="login_send" type="submit" class="btn btn-success"
-                                        data-toggle="popover">Envoyer</button>
-                            </div>
-                            <div class="form-group">
-                                <a href="register.html" type="button"
-                                   class="menu_bar_element btn btn-info">M'enregistrer</a>
-                            </div>
-                        </div>
-                        <div id="info_profil_navbar">
-                            <a id="user_icon" href="profile.html" class="menu_bar_element"
-                               data-toogle="tooltip" title="Mon profil"> <span
-                                    class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            </a> <a href="chat.html" data-toogle="tooltip" title="Mes messages">
-                                <span class="glyphicon glyphicon-comment" aria-hidden="true">
-                                </span>
-                            </a> <a id="notif_icon" href="#" data-toogle="tooltip"
-                                    data-title="Mes notifications"> <span
-                                    class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                            </a> <a id="options_icon" class="menu_bar_element" href="options.html"
-                                    data-toogle="tooltip" title="Paramètres"> <span
-                                    class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            </a> <a id="logout_icon" href="#" data-toogle="tooltip"
-                                    title="Deconnéxion"> <span class="glyphicon glyphicon-off"
-                                                       aria-hidden="true"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--/.navbar-collapse -->
-            </div>
-        </nav>
-
-
-        <div class="container main_panel" id="home_pane">
-            <div class="row">
-                <h1>Dessiner avec la programmation</h1>
-
-                <div class="draw_container">
-                    <div class="title">
-                        Ecrivez
-                        du code dans la fenêtre ci-dessous pour commencer à dessiner !
-                    </div>
-
-                    <div class="centered">
-                        <div class="draw_toolbox" id="python_eleve_editor" sttyle="float:left;">
-                            <div class="toolbar">
-                                <div class="container">
-                                    <div id="python_eleve_run_link" style="color: blue; text-decoration: underline; cursor:pointer"><div class="tlb_btn">►</div>Lancer votre programme </div>
-                                </div>
-                            </div>
-                        </div>	
-
-                        <div class="draw_toolbox" style="float:right;">
-                            <div id="python_eleve_canvas"></div>
-                        </div>	
-
-                    </div>
-                </div>
-
-                <br/>
-                <h1>Editeur - Prototype</h1>
-
-                <div class="draw_container">
-                    <div class="title">
-                        Programmer un niveau
-                    </div>
-
-                    <div class="centered">
-                        <div class="draw_toolbox" id="python_enseignant_editor" sttyle="float:left;">
-                            <div class="toolbar">
-                                <div class="container">
-                                    <div id="python_enseignant_run_link" style="color: blue; text-decoration: underline; cursor:pointer" ><div class="tlb_btn">►</div>Lancer votre programme </div>
-                                </div>
-                            </div>
-                        </div>	
-
-                        <div class="draw_toolbox" style="float:right;">
-                            <div id="python_enseignant_canvas"></div>
-                        </div>	
-
-                    </div>
-                </div>
-
-            </div>
-
-            <br />
-
-        </div>
-    </div>
-    <!-- container home page -->
-
-    <footer class="container">
-        <div class="row">
-            <hr />
-            <p>&copy; Dashin Games 2015</p>
-        </div>
-    </footer>
->>>>>>> 70d9c12ef44b625040f64b801e42b1c2c0e41a6a
 </body>
 </html>
