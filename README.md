@@ -1,13 +1,20 @@
 [![Build Status](https://travis-ci.org/iut-lille/jersey-skeleton.svg?branch=master)](https://travis-ci.org/iut-lille/jersey-skeleton)
 
 # Création d'un projet en mode étudiant
+
 Sur Github :
+
 - faire un fork du projet 
 - ajouter ses camarades dans le projet
-- cloner le projet dans /tmp/$USER/workspace
-- modifier le nom du projet dans le pom.xml
 
-# Installation de Maven
+Sur votre machine :
+
+- cloner le projet dans `~/workspace/`
+- modifier le nom du projet dans le pom.xml
+- configurer le proxy pour maven
+- importer le projet dans eclipse en tant que projet maven déjà existant
+
+# Installation de maven sur une machine perso
 ## Prérequis
 ### Java 1.7
 Vous devez avoir un Java 1.7 minimum d'installer sur votre ordinateur.
@@ -18,47 +25,13 @@ Pour ubuntu ou debian :
 
 Pour Windows : https://www.java.com/fr/download/
 
-### Maven
-#### Linux
+## Maven
+### Linux
 Pour installer maven depuis ubuntu ou debian, vous pouvez installer le paquet mvn directement depuis les dépots officiels :
 
     sudo apt-get install mvn
 
-Créer ensuite un dossier ".m2" dans votre répertoire personnel. Il contiendra le fichier de configuration de maven :
-
-```
-mkdir $HOME/.m2
-touch $HOME/.m2/settings.xml
-```
-
-Modifier ce fichier settings.xml avec votre éditeur préféré (Emacs / vim) et copiez cette configuration :
-
-```xml
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                          http://maven.apache.org/xsd/settings-1.0.0.xsd">
-    <localRepository>/tmp/$USER/mvn/repository</localRepository>
-    <proxies>
-      <proxy>
-        <id>proxy</id>
-        <active>true</active>
-        <protocol>http</protocol>
-        <host>cache.univ-lille1.fr</host>
-        <port>3128</port>
-      </proxy>
-    </proxies>
-</settings>
-```
-
-Pour vérifier votre installation, ouvrez un terminal et taper :
-  
-      mvn -version
-
-
-**/!\ Si vous n'êtes pas sur les ordinateurs de l'IUT, ou sur le réseau WIFI de Lille1, passer le paramètre proxy.active à "false" !**
-
-#### Windows
+### Windows
 Télécharger l'archive maven sur le site officiel : http://maven.apache.org/download.cgi
 
 Décompressez l'archive dans le répertoire où vous souhaitez installer maven.
@@ -88,41 +61,56 @@ Pour vérifier votre installation, ouvrez un terminal et taper :
 
 **/!\ Si vous êtes sur un ordinateur de l'IUT ou sur le réseau WIFI de Lille1, modifiez la configuration de Maven en rajoutant les lignes pour paramètrer le proxy selon l'exemple un peu au dessus. Le fichier de configuration devrait se trouver dans le répertoire "conf" du dossier d'installation de maven.**
 
-# Configuration d'Eclipse
-Un plugin maven "m2e" existe dans les dépots d'Eclipse.
-Rajoutez le dépot "http://download.eclipse.org/releases/indigo/" dans votre Eclipse et installer le plugin "m2e"
+# Configuration
+## Maven
+
+Créer ensuite un dossier ".m2" dans votre répertoire personnel s'il n'existe pas déjà. Il contiendra le fichier de configuration de maven :
+
+    mkdir $HOME/.m2
+    touch $HOME/.m2/settings.xml
+
+Modifier ou créer le fichier `settings.xml` avec votre éditeur préféré (Emacs / vim) et copiez cette configuration :
+
+```xml
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <localRepository>/tmp/USER/mvn/repository</localRepository>
+    <proxies>
+      <proxy>
+        <id>proxy</id>
+        <active>true</active>
+        <protocol>http</protocol>
+        <host>cache.univ-lille1.fr</host>
+        <port>3128</port>
+      </proxy>
+    </proxies>
+</settings>
+```
+
+Pour vérifier votre installation, ouvrez un terminal et taper :
+  
+      mvn -version
+
+
+**/!\ Si vous n'êtes pas sur les ordinateurs de l'IUT, ou sur le réseau WIFI de Lille1, passer le paramètre proxy.active à "false" !**
+
+## Eclipse
+Un plugin maven "m2e" existe dans les dépots d'Eclipse indigo, Rajoutez le dépot "http://download.eclipse.org/releases/indigo/" dans votre Eclipse et installer le plugin "m2e"
 
 Des plugins de développement web sont aussi disponibles sur le dépot "http://download.eclipse.org/webtools/repository/indigo/". Installez "Web Tools Plateform"
 
 Une fois les plugins installer, vous pouvez importer le projet maven en faisaint un "Import > Import existing maven project"
 
+**/!\ Avec Éclipse Mars, le plugin étant installé de base, l'import peut se faire directement !**
+
 # Test du projet en local 
 Pour lancer le projet sur la machine du développeur et visiter les pages web sur http://localhost:8080/
 
-modifier le pom pour ajouter jetty-maven-plugin :
-
-    <project>
-      ...
-      <build>
-        ...
-        <plugins>
-          ...
-          <plugin>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
-            <version>9.3.0.M1</version>
-          </plugin>
-          ...
-        </plugins>
-        ...
-      </build>
-      ...
-    </project>
-
-Pour lancer un serveur local
-
     mvn jetty:run
 
+Ce qui lance un serveur local
 
 # Informations diverses
 ## Point de cours
@@ -194,10 +182,6 @@ Pour lancer la construction sur les machines de l'IUT il faut spécifier le prox
 
     docker build --build-arg http_proxy=http://cache.univ-lille1.fr:3128 \
     --build-arg https_proxy=http://cache.univ-lille1.fr:3128 -t utilisateur/application .
-
-Pour envoyer le conteneur sur le hub docker
-
-    docker push utilisateur/application
 
 Pour lancer le conteneur en local et visualiser le site sur http://localhost:8080/
 
