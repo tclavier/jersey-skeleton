@@ -2,7 +2,7 @@ package utils;
 
 import fr.iutinfo.skeleton.api.BDDFactory;
 import fr.iutinfo.skeleton.api.User;
-import fr.iutinfo.skeleton.api.UserDBResource;
+import fr.iutinfo.skeleton.api.UserResource;
 import fr.iutinfo.skeleton.api.UserDao;
 import fr.iutinfo.skeleton.utils.RestClient;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -22,7 +22,7 @@ public class RestClientTest extends JerseyTest {
     protected Application configure() {
         userDao = BDDFactory.getDbi().open(UserDao.class);
         //return new Api();
-        return new ResourceConfig(UserDBResource.class);
+        return new ResourceConfig(UserResource.class);
     }
 
     @Before

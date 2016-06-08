@@ -1,9 +1,5 @@
-function getUser(name) {
-	getUserGeneric(name, "v1/user/");
-}
-
 function getUserBdd(name) {
-	getUserGeneric(name, "v1/userdb/");
+	getUserGeneric(name, "v1/user/");
 }
 
 function getUserGeneric(name, url) {
@@ -44,12 +40,8 @@ function getByAnnotation() {
      }
  }
 
-function postUser(name, alias) {
-    postUserGeneric(name, alias, "", "v1/user/");
-}
-
 function postUserBdd(name, alias, pwd) {
-    postUserGeneric(name, alias, pwd, "v1/userdb/");
+    postUserGeneric(name, alias, pwd, "v1/user/");
 }
 
 function postUserGeneric(name, alias, pwd, url) {
@@ -73,12 +65,8 @@ function postUserGeneric(name, alias, pwd, url) {
 	});
 }
 
-function listUsers() {
-    listUsersGeneric("v1/user/");
-}
-
 function listUsersBdd() {
-    listUsersGeneric("v1/userdb/");
+    listUsersGeneric("v1/user/");
 }
 
 function listUsersGeneric(url) {

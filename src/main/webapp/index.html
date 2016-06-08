@@ -29,18 +29,6 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="user">Utilisateur en mémoire : </label>
-                <input type="text" name="user" id="user" placeholder="Nom ?" class="form-control"/>
-                <input type="text" name="user" id="alias" placeholder="Surnom ?" class="form-control"/>
-            </div>
-            <div class="btn-group" role="group">
-                <button id="get-ram" class="btn btn-default">Lire</button>
-                <button id="post-ram" class="btn btn-primary">Sauver</button>
-                <button id="list-ram" class="btn btn-warning">Lister</button>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
                 <label for="userdb">Utilisateur en base de données : </label>
                 <input type="text" name="userdb" id="userdb" placeholder="Nom ?" class="form-control"/>
                 <input type="text" name="user" id="aliasdb" placeholder="Surnom ?" class="form-control"/>
@@ -55,8 +43,8 @@
     </div>
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-12">
-            <label for="user">S'identifier : </label>
-            <input type="text" name="userdb" id="userlogin" placeholder="Login" class="form-control"/>
+            <label for="userlogin">S'identifier : </label>
+            <input type="text" name="userlogin" id="userlogin" placeholder="Login" class="form-control"/>
             <input type="password" name="user" id="passwdlogin" class="form-control"/>
             <br/>
             <button id="read-forall" class="btn btn-default">Lire /v1/secure/forall</button>
