@@ -5,10 +5,12 @@ import fr.iutinfo.skeleton.api.BDDFactory;
 import fr.iutinfo.skeleton.api.User;
 import fr.iutinfo.skeleton.api.UserDao;
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Assert;
 import org.junit.Test;
 
+import javax.validation.constraints.AssertFalse;
 import javax.ws.rs.core.Application;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,6 +31,16 @@ public class RestClientIntegrationTest extends JerseyTest {
         RestClient restClient = new RestClient(getBaseUri().toString());
         User user = restClient.readUser("Thomas");
         assertEquals("Thomas", user.getName());
+    }
+
+    @Test
+    public void should_read_all_remote_user() {
+        initDatabase();
+        createUser("Thomas");
+
+        RestClient restClient = new RestClient(getBaseUri().toString());
+        List<User> users = restClient.readAllUsers();
+        assertEquals(1, users.size());
     }
 
     private void createUser(String name) {

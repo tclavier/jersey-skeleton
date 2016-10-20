@@ -19,24 +19,21 @@ public class RestClient {
         this.baseUrl = baseUrl;
     }
 
-    public RestClient() {
-    
-    }
 
-    public List<User> getUrlAsUsers(String url) {
+    public List<User> readAllUsers() {
         return ClientBuilder.newClient()//
-                .target(url)
+                .target(baseUrl+"user/")
                 .request()
                 .get(new GenericType<List<User>>() {
                 });
     }
 
-    public User addUser(User user, String url) {
-        logger.debug("Create user : " + user.getName() + " on : " + url);
+    public User addUser(User user) {
+        logger.debug("Create user : " + user.getName() );
         Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
 
         return ClientBuilder.newClient()
-                .target(url)
+                .target(baseUrl + "user/")
                 .request()
                 .post(userEntity)
                 .readEntity(User.class);

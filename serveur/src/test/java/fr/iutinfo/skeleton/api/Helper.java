@@ -17,18 +17,18 @@ public class Helper {
         return createUser(user);
     }
 
-    User createUserWithAlias(String name, String alias) {
+    static User createUserWithAlias(String name, String alias) {
         User user = new User(0, name, alias);
         return createUser(user);
     }
 
-    User createUserWithEmail(String name, String email) {
+    static User createUserWithEmail(String name, String email) {
         User user = new User(0, name);
         user.setEmail(email);
         return createUser(user);
     }
 
-    public User createUserWithPassword(String name, String passwd, String salt) {
+    public static User createUserWithPassword(String name, String passwd, String salt) {
         User user = new User(0, name);
         user.setSalt(salt);
         user.setPassword(passwd);

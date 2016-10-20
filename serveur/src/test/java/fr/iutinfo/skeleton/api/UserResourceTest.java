@@ -26,12 +26,12 @@ public class UserResourceTest extends JerseyTest {
     @Before
     public void init() {
         h = new Helper();
-        h.initDb();
+        Helper.initDb();
     }
 
     @Test
     public void read_should_return_a_user_as_object() {
-        h.createUserWithName("foo");
+        Helper.createUserWithName("foo");
         User utilisateur = target(PATH + "/foo").request().get(User.class);
         assertEquals("foo", utilisateur.getName());
     }
@@ -75,8 +75,8 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void list_should_return_all_users() {
-        h.createUserWithName("foo");
-        h.createUserWithName("bar");
+        Helper.createUserWithName("foo");
+        Helper.createUserWithName("bar");
         List<User> users = target(PATH + "/").request().get(new GenericType<List<User>>() {
         });
         assertEquals(2, users.size());
