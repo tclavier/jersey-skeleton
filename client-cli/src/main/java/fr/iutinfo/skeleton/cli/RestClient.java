@@ -1,6 +1,5 @@
 package fr.iutinfo.skeleton.cli;
 
-import fr.iutinfo.skeleton.api.BDDFactory;
 import fr.iutinfo.skeleton.api.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,15 +13,17 @@ import java.util.List;
 public class RestClient {
 
     final static Logger logger = LoggerFactory.getLogger(RestClient.class);
+    private String baseUrl;
 
-    public String getUrlAsString(String url) {
-        return ClientBuilder.newClient()//
-                .target(url)
-                .request()
-                .get(String.class);
+    public RestClient(String baseUrl) {
+        this.baseUrl = baseUrl;
     }
 
-    public List<User> getUrlAsUser(String url) {
+    public RestClient() {
+    
+    }
+
+    public List<User> getUrlAsUsers(String url) {
         return ClientBuilder.newClient()//
                 .target(url)
                 .request()
@@ -39,5 +40,19 @@ public class RestClient {
                 .request()
                 .post(userEntity)
                 .readEntity(User.class);
+    }
+
+    public User readUser(String name) {
+        String url = baseUrl + "user/" + name;
+        logger.debug("Reade url : " + url);
+
+        return ClientBuilder.newClient()//
+                .target(url)
+                .request()
+                .get(User.class);
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
     }
 }

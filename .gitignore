@@ -10,3 +10,6 @@ target/
 *.iml
 # database file
 data.db
+
+# maven shade plugin
+dependency-reduced-pom.xml

@@ -17,7 +17,7 @@ Sur votre machine :
 # Installation de maven sur une machine perso
 ## Prérequis
 ### Java 1.7
-Vous devez avoir un Java 1.7 minimum d'installer sur votre ordinateur.
+Vous devez avoir un Java 1.7 minimum d'installé sur votre ordinateur.
 
 Pour ubuntu ou debian :
 
@@ -97,16 +97,12 @@ Pour vérifier votre installation, ouvrez un terminal et taper :
 **/!\ Si vous n'êtes pas sur les ordinateurs de l'IUT, ou sur le réseau WIFI de Lille1, passer le paramètre proxy.active à "false" !**
 
 ## Eclipse
-Un plugin maven "m2e" existe dans les dépots d'Eclipse indigo, Rajoutez le dépot "http://download.eclipse.org/releases/indigo/" dans votre Eclipse et installer le plugin "m2e"
 
-Des plugins de développement web sont aussi disponibles sur le dépot "http://download.eclipse.org/webtools/repository/indigo/". Installez "Web Tools Plateform"
+Avec Éclipse Mars, le plugin est installé de base, l'import peut se faire directement !**
 
-Une fois les plugins installer, vous pouvez importer le projet maven en faisaint un "Import > Import existing maven project"
+# Test du projet en local
 
-**/!\ Avec Éclipse Mars, le plugin étant installé de base, l'import peut se faire directement !**
-
-# Test du projet en local 
-Pour lancer le projet sur la machine du développeur et visiter les pages web sur http://localhost:8080/
+Dans le répertoire du serveur, pour lancer le projet sur la machine du développeur et visiter les pages web sur http://localhost:8080/
 
     mvn jetty:run
 
