@@ -7,9 +7,7 @@ import fr.iutinfo.skeleton.api.UserDao;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
-import javax.validation.constraints.AssertFalse;
 import javax.ws.rs.core.Application;
-
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -17,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class RestClientIntegrationTest extends JerseyTest {
 
     private UserDao userDao = BDDFactory.getDbi().open(UserDao.class);
+    private RestClient restClient = new RestClient(getBaseUri().toString());
 
     @Override
     protected Application configure() {
@@ -28,7 +27,6 @@ public class RestClientIntegrationTest extends JerseyTest {
         initDatabase();
         createUser("Thomas");
 
-        RestClient restClient = new RestClient(getBaseUri().toString());
         User user = restClient.readUser("Thomas");
         assertEquals("Thomas", user.getName());
     }
@@ -37,11 +35,24 @@ public class RestClientIntegrationTest extends JerseyTest {
     public void should_read_all_remote_user() {
         initDatabase();
         createUser("Thomas");
+        createUser("Olivier");
 
-        RestClient restClient = new RestClient(getBaseUri().toString());
         List<User> users = restClient.readAllUsers();
-        assertEquals(1, users.size());
+        assertEquals(2, users.size());
     }
+
+    @Test
+    public void should_add_remote_user() {
+        initDatabase();
+        User olivier = new User();
+        olivier.setName("Olivier");
+
+        User remoteUser = restClient.addUser(olivier);
+        User bddUser = userDao.findById(remoteUser.getId());
+
+        assertEquals("Olivier", bddUser.getName());
+    }
+
 
     private void createUser(String name) {
         User thomas = new User();
