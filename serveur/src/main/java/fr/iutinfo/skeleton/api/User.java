@@ -11,7 +11,7 @@ import java.security.SecureRandom;
 
 public class User implements Principal {
     final static Logger logger = LoggerFactory.getLogger(User.class);
-
+    private static User anonymous = new User(-1, "Anonymous", "anonym");
     private String name;
     private String alias;
     private int id = 0;
@@ -19,8 +19,6 @@ public class User implements Principal {
     private String password;
     private String passwdHash;
     private String salt;
-
-    private static User anonymous = new User(-1, "Anonymous", "anonym");
 
     public User(int id, String name) {
         this.id = id;
@@ -34,6 +32,10 @@ public class User implements Principal {
     }
 
     public User() {
+    }
+
+    public static User getAnonymousUser() {
+        return anonymous;
     }
 
     public String getEmail() {
@@ -60,14 +62,13 @@ public class User implements Principal {
         this.name = name;
     }
 
+    public String getPassword() {
+        return this.password;
+    }
 
     public void setPassword(String password) {
         passwdHash = buildHash(password, getSalt());
         this.password = password;
-    }
-
-    public String getPassword () {
-        return this.password;
     }
 
     private String buildHash(String password, String s) {
@@ -132,20 +133,17 @@ public class User implements Principal {
     }
 
     public void resetPasswordHash() {
-        if (password != null && ! password.isEmpty()) {
+        if (password != null && !password.isEmpty()) {
             setPassword(getPassword());
         }
     }
 
-    public boolean isInUserGroup(){
-        return ! (id == anonymous.getId());
-    }
-
-    public static User getAnonymousUser() {
-        return anonymous ;
+    public boolean isInUserGroup() {
+        return !(id == anonymous.getId());
     }
 
     public boolean isAnonymous() {
         return this.getId() == getAnonymousUser().getId();
     }
+
 }

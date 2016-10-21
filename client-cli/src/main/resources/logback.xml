@@ -1,0 +1,18 @@
+<configuration scan="true">
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>cli.log</file>
+        <append>true</append>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="info">
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <logger name="fr.iutinfo.skeleton" level="debug"/>
+
+</configuration>

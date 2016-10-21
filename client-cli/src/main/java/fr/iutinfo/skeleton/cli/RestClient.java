@@ -22,14 +22,14 @@ public class RestClient {
 
     public List<User> readAllUsers() {
         return ClientBuilder.newClient()//
-                .target(baseUrl+"user/")
+                .target(baseUrl + "user/")
                 .request()
                 .get(new GenericType<List<User>>() {
                 });
     }
 
     public User addUser(User user) {
-        logger.debug("Create user : " + user.getName() );
+        logger.debug("Create user : " + user.getName());
         Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
 
         return ClientBuilder.newClient()
