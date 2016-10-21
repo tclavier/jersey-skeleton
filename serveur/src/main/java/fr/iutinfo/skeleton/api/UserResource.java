@@ -43,8 +43,13 @@ public class UserResource {
 	}
 
 	@GET
-	public List<User> getAllUsers() {
-		return dao.all();
+	public List<User> getAllUsers(@QueryParam("q") String query) {
+		if (query == null) {
+			return dao.all();
+		} else {
+			logger.debug("Search users with query: " + query);
+			return dao.search("%"+query+"%");
+		}
 	}
 
 }

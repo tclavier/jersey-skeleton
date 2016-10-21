@@ -91,10 +91,20 @@ public class UserResourceTest extends JerseyTest {
         assertEquals("foo", users.get(0).getName());
     }
 
-    @Test @Ignore
+    @Test
+    @Ignore
     public void after_delete_read_user_sould_return_202() {
         User u = h.createUserWithName("toto");
         int status = target(PATH + "/" + u.getId()).request().delete().getStatus();
         assertEquals(202, status);
+    }
+
+    @Test
+    public void list_should_filter_with_query_param() {
+        h.createUserWithName("foo");
+        h.createUserWithName("bar");
+        List<User> users = target(PATH + "/").queryParam("q","ba").request().get(new GenericType<List<User>>() {
+        });
+        assertEquals("bar", users.get(0).getName());
     }
 }
