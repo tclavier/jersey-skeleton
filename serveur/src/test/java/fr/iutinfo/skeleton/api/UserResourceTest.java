@@ -101,11 +101,34 @@ public class UserResourceTest extends JerseyTest {
     }
 
     @Test
-    public void list_should_filter_with_query_param() {
+    public void list_should_search_in_name_field() {
         createUserWithName("foo");
         createUserWithName("bar");
         List<User> users = target(PATH + "/").queryParam("q","ba").request().get(new GenericType<List<User>>() {
         });
         assertEquals("bar", users.get(0).getName());
+    }
+
+    @Test
+    public void list_should_search_in_alias_field() {
+        createFullUSer("Richard Stallman", "RMS", "rms@fsf.org", "gnuPaswword");
+        createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
+        createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
+
+        List<User> users = target(PATH + "/").queryParam("q","RMS").request().get(new GenericType<List<User>>() {
+        });
+        assertEquals("Richard Stallman", users.get(0).getName());
+    }
+
+
+    @Test
+    public void list_should_search_in_email_field() {
+        createFullUSer("Richard Stallman", "RMS", "rms@fsf.org", "gnuPaswword");
+        createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
+        createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
+
+        List<User> users = target(PATH + "/").queryParam("q","fsf").request().get(new GenericType<List<User>>() {
+        });
+        assertEquals(2, users.size());
     }
 }

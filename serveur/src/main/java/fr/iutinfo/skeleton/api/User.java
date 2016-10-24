@@ -19,6 +19,7 @@ public class User implements Principal {
     private String password;
     private String passwdHash;
     private String salt;
+    private String search;
 
     public User(int id, String name) {
         this.id = id;
@@ -146,4 +147,12 @@ public class User implements Principal {
         return this.getId() == getAnonymousUser().getId();
     }
 
+    public String getSearch() {
+        search = name + " " + alias + " " + email;
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
+    }
 }

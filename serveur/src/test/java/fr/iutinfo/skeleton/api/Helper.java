@@ -43,4 +43,13 @@ public class Helper {
     }
 
 
+    static User createFullUSer(String name, String alias, String email, String paswword) {
+        User user = new User(0, name);
+        user.setAlias(alias);
+        user.setEmail(email);
+        user.setPassword(paswword);
+        int id = dao.insert(user);
+        user.setId(id);
+        return user;
+    }
 }
