@@ -10,22 +10,32 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-public class RestClient {
+public class RemoteUsersProvider implements UsersProvider{
 
-    final static Logger logger = LoggerFactory.getLogger(RestClient.class);
+    final static Logger logger = LoggerFactory.getLogger(RemoteUsersProvider.class);
     private String baseUrl;
 
-    public RestClient(String baseUrl) {
+    public RemoteUsersProvider(String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
 
     public List<User> readAllUsers() {
-        return ClientBuilder.newClient()//
-                .target(baseUrl + "user/")
-                .request()
-                .get(new GenericType<List<User>>() {
-                });
+        try {
+            return ClientBuilder.newClient()//
+                    .target(baseUrl + "user/")
+                    .request()
+                    .get(new GenericType<List<User>>() {
+                    });
+        } catch ( Exception e) {
+            String message = ClientBuilder.newClient()
+                    .target(baseUrl + "user/")
+                    .request()
+                    .get(String.class);
+
+            logger.error(e.getMessage());
+            throw new RuntimeException(message);
+        }
     }
 
     public User addUser(User user) {

@@ -24,6 +24,5 @@ public class WebConfig extends ResourceConfig {
         register(AuthFilter.class);
         register(RolesAllowedDynamicFeature.class);
     }
-
-
+    
 }

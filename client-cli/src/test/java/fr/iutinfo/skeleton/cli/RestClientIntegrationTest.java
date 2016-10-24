@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class RestClientIntegrationTest extends JerseyTest {
 
     private UserDao userDao = BDDFactory.getDbi().open(UserDao.class);
-    private RestClient restClient = new RestClient(getBaseUri().toString());
+    private RemoteUsersProvider remoteUsersProvider = new RemoteUsersProvider(getBaseUri().toString());
 
     @Override
     protected Application configure() {
@@ -27,7 +27,7 @@ public class RestClientIntegrationTest extends JerseyTest {
         initDatabase();
         createUser("Thomas");
 
-        User user = restClient.readUser("Thomas");
+        User user = remoteUsersProvider.readUser("Thomas");
         assertEquals("Thomas", user.getName());
     }
 
@@ -37,7 +37,7 @@ public class RestClientIntegrationTest extends JerseyTest {
         createUser("Thomas");
         createUser("Olivier");
 
-        List<User> users = restClient.readAllUsers();
+        List<User> users = remoteUsersProvider.readAllUsers();
         assertEquals(2, users.size());
     }
 
@@ -47,7 +47,7 @@ public class RestClientIntegrationTest extends JerseyTest {
         User olivier = new User();
         olivier.setName("Olivier");
 
-        User remoteUser = restClient.addUser(olivier);
+        User remoteUser = remoteUsersProvider.addUser(olivier);
         User bddUser = userDao.findById(remoteUser.getId());
 
         assertEquals("Olivier", bddUser.getName());
