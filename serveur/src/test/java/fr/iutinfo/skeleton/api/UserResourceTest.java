@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -17,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 
 public class UserResourceTest extends JerseyTest {
     private static final String PATH = "/user";
-    private Helper h;
 
     @Override
     protected Application configure() {
@@ -26,7 +24,6 @@ public class UserResourceTest extends JerseyTest {
 
     @Before
     public void init() {
-        h = new Helper();
         Helper.initDb();
     }
 
@@ -39,14 +36,14 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void read_user_should_return_good_alias() {
-        createUserWithAlias("Richard Stallman", "rms");
+        createRms();
         User user = target(PATH + "/Richard Stallman").request().get(User.class);
-        assertEquals("rms", user.getAlias());
+        assertEquals("RMS", user.getAlias());
     }
 
     @Test
     public void read_user_should_return_good_email() {
-        createUserWithEmail("Ian Murdock", "ian@debian.org");
+        createIan();
         User user = target(PATH + "/Ian Murdock").request().get(User.class);
         assertEquals("ian@debian.org", user.getEmail());
     }
@@ -78,8 +75,7 @@ public class UserResourceTest extends JerseyTest {
     public void list_should_return_all_users() {
         createUserWithName("foo");
         createUserWithName("bar");
-        List<User> users = target(PATH + "/").request().get(new GenericType<List<User>>() {
-        });
+        List<User> users = target(PATH + "/").request().get(listUserResponseType);
         assertEquals(2, users.size());
     }
 
@@ -87,8 +83,7 @@ public class UserResourceTest extends JerseyTest {
     public void list_all_must_be_ordered() {
         createUserWithName("foo");
         createUserWithName("bar");
-        List<User> users = target(PATH + "/").request().get(new GenericType<List<User>>() {
-        });
+        List<User> users = target(PATH + "/").request().get(listUserResponseType);
         assertEquals("foo", users.get(0).getName());
     }
 
@@ -110,40 +105,36 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void delete_unexisting_should_return_404() {
-        int status = target(PATH + "/unexisting" ).request().delete().getStatus();
+        int status = target(PATH + "/unexisting").request().delete().getStatus();
         assertEquals(404, status);
     }
-
 
     @Test
     public void list_should_search_in_name_field() {
         createUserWithName("foo");
         createUserWithName("bar");
-        List<User> users = target(PATH + "/").queryParam("q", "ba").request().get(new GenericType<List<User>>() {
-        });
+
+        List<User> users = target(PATH + "/").queryParam("q", "ba").request().get(listUserResponseType);
         assertEquals("bar", users.get(0).getName());
     }
 
     @Test
     public void list_should_search_in_alias_field() {
-        createFullUSer("Richard Stallman", "RMS", "rms@fsf.org", "gnuPaswword");
-        createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
-        createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
+        createRms();
+        createLinus();
+        createRob();
 
-        List<User> users = target(PATH + "/").queryParam("q", "RMS").request().get(new GenericType<List<User>>() {
-        });
+        List<User> users = target(PATH + "/").queryParam("q", "RMS").request().get(listUserResponseType);
         assertEquals("Richard Stallman", users.get(0).getName());
     }
 
-
     @Test
     public void list_should_search_in_email_field() {
-        createFullUSer("Richard Stallman", "RMS", "rms@fsf.org", "gnuPaswword");
-        createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
-        createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
+        createRms();
+        createLinus();
+        createRob();
 
-        List<User> users = target(PATH + "/").queryParam("q", "fsf").request().get(new GenericType<List<User>>() {
-        });
+        List<User> users = target(PATH + "/").queryParam("q", "fsf").request().get(listUserResponseType);
         assertEquals(2, users.size());
     }
 }

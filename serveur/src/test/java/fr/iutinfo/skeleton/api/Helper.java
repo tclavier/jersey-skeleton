@@ -3,16 +3,21 @@ package fr.iutinfo.skeleton.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ws.rs.core.GenericType;
+import java.util.List;
+
 public class Helper {
     private final static Logger logger = LoggerFactory.getLogger(Helper.class);
     private static final UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+    static GenericType<List<User>> listUserResponseType = new GenericType<List<User>>() {
+   };
 
     public static void initDb() {
         dao.dropUserTable();
         dao.createUserTable();
     }
 
-    public static User createUserWithName(String name) {
+    static User createUserWithName(String name) {
         User user = new User(0, name);
         return createUser(user);
     }
@@ -43,7 +48,7 @@ public class Helper {
     }
 
 
-    static User createFullUSer(String name, String alias, String email, String paswword) {
+    private static User createFullUSer(String name, String alias, String email, String paswword) {
         User user = new User(0, name);
         user.setAlias(alias);
         user.setEmail(email);
@@ -51,5 +56,21 @@ public class Helper {
         int id = dao.insert(user);
         user.setId(id);
         return user;
+    }
+
+    static void createRms() {
+        createFullUSer("Richard Stallman", "RMS", "rms@fsf.org", "gnuPaswword");
+    }
+
+    static User createRob() {
+        return createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
+    }
+
+    static User createLinus() {
+        return createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
+    }
+
+    static User createIan() {
+        return createFullUSer("Ian Murdock", "debian", "ian@debian.org", "mot de passe");
     }
 }
