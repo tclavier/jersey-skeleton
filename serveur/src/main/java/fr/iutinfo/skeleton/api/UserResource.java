@@ -54,4 +54,10 @@ public class UserResource {
         }
     }
 
+    @DELETE
+    @Path("/{id}")
+    public void deleteUser(@PathParam("id") int id) {
+        dao.delete(id);
+    }
+
 }

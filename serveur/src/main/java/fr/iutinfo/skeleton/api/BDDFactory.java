@@ -26,7 +26,7 @@ public class BDDFactory {
         return dbi;
     }
 
-    public static boolean tableExist(String tableName) throws SQLException {
+    static boolean tableExist(String tableName) throws SQLException {
         DatabaseMetaData dbm = getDbi().open().getConnection().getMetaData();
         ResultSet tables = dbm.getTables(null, null, tableName, null);
         boolean exist = tables.next();

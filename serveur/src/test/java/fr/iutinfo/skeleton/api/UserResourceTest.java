@@ -1,8 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
 import org.glassfish.jersey.test.JerseyTest;
+import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
@@ -39,8 +39,8 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void read_user_should_return_good_alias() {
-        createUserWithAlias("richard stallman", "rms");
-        User user = target(PATH + "/richard stallman").request().get(User.class);
+        createUserWithAlias("Richard Stallman", "rms");
+        User user = target(PATH + "/Richard Stallman").request().get(User.class);
         assertEquals("rms", user.getAlias());
     }
 
@@ -93,18 +93,33 @@ public class UserResourceTest extends JerseyTest {
     }
 
     @Test
-    @Ignore
-    public void after_delete_read_user_sould_return_202() {
+    public void after_delete_read_user_sould_return_204() {
         User u = createUserWithName("toto");
         int status = target(PATH + "/" + u.getId()).request().delete().getStatus();
-        assertEquals(202, status);
+        assertEquals(204, status);
     }
+
+    @Test
+    public void should_delete_user() {
+        User u = createUserWithName("toto");
+        target(PATH + "/" + u.getId()).request().delete();
+        UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+        User user = dao.findById(u.getId());
+        Assert.assertEquals(null, user);
+    }
+
+    @Test
+    public void delete_unexisting_should_return_404() {
+        int status = target(PATH + "/unexisting" ).request().delete().getStatus();
+        assertEquals(404, status);
+    }
+
 
     @Test
     public void list_should_search_in_name_field() {
         createUserWithName("foo");
         createUserWithName("bar");
-        List<User> users = target(PATH + "/").queryParam("q","ba").request().get(new GenericType<List<User>>() {
+        List<User> users = target(PATH + "/").queryParam("q", "ba").request().get(new GenericType<List<User>>() {
         });
         assertEquals("bar", users.get(0).getName());
     }
@@ -115,7 +130,7 @@ public class UserResourceTest extends JerseyTest {
         createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
         createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
 
-        List<User> users = target(PATH + "/").queryParam("q","RMS").request().get(new GenericType<List<User>>() {
+        List<User> users = target(PATH + "/").queryParam("q", "RMS").request().get(new GenericType<List<User>>() {
         });
         assertEquals("Richard Stallman", users.get(0).getName());
     }
@@ -127,7 +142,7 @@ public class UserResourceTest extends JerseyTest {
         createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
         createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
 
-        List<User> users = target(PATH + "/").queryParam("q","fsf").request().get(new GenericType<List<User>>() {
+        List<User> users = target(PATH + "/").queryParam("q", "fsf").request().get(new GenericType<List<User>>() {
         });
         assertEquals(2, users.size());
     }
