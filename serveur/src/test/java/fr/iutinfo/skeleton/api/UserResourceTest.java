@@ -12,10 +12,11 @@ import javax.ws.rs.core.MediaType;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import static fr.iutinfo.skeleton.api.Helper.*;
 import static org.junit.Assert.assertEquals;
 
 public class UserResourceTest extends JerseyTest {
-    public static final String PATH = "/user";
+    private static final String PATH = "/user";
     private Helper h;
 
     @Override
@@ -31,21 +32,21 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void read_should_return_a_user_as_object() {
-        Helper.createUserWithName("foo");
+        createUserWithName("foo");
         User utilisateur = target(PATH + "/foo").request().get(User.class);
         assertEquals("foo", utilisateur.getName());
     }
 
     @Test
     public void read_user_should_return_good_alias() {
-        h.createUserWithAlias("richard stallman", "rms");
+        createUserWithAlias("richard stallman", "rms");
         User user = target(PATH + "/richard stallman").request().get(User.class);
         assertEquals("rms", user.getAlias());
     }
 
     @Test
     public void read_user_should_return_good_email() {
-        h.createUserWithEmail("Ian Murdock", "ian@debian.org");
+        createUserWithEmail("Ian Murdock", "ian@debian.org");
         User user = target(PATH + "/Ian Murdock").request().get(User.class);
         assertEquals("ian@debian.org", user.getEmail());
     }
@@ -53,14 +54,14 @@ public class UserResourceTest extends JerseyTest {
     @Test
     public void read_user_should_return_user_with_same_salt() {
         String expectedSalt = "graindesel";
-        h.createUserWithPassword("Mark Shuttleworth", "motdepasse", expectedSalt);
+        createUserWithPassword("Mark Shuttleworth", "motdepasse", expectedSalt);
         User user = target(PATH + "/Mark Shuttleworth").request().get(User.class);
         assertEquals(expectedSalt, user.getSalt());
     }
 
     @Test
     public void read_user_should_return_hashed_password() throws NoSuchAlgorithmException {
-        h.createUserWithPassword("Loïc Dachary", "motdepasse", "grain de sable");
+        createUserWithPassword("Loïc Dachary", "motdepasse", "grain de sable");
         User user = target(PATH + "/Loïc Dachary").request().get(User.class);
         assertEquals("5f8619bc1f0e23ef5851cf7070732089", user.getPasswdHash());
     }
@@ -75,8 +76,8 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void list_should_return_all_users() {
-        Helper.createUserWithName("foo");
-        Helper.createUserWithName("bar");
+        createUserWithName("foo");
+        createUserWithName("bar");
         List<User> users = target(PATH + "/").request().get(new GenericType<List<User>>() {
         });
         assertEquals(2, users.size());
@@ -84,8 +85,8 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void list_all_must_be_ordered() {
-        h.createUserWithName("foo");
-        h.createUserWithName("bar");
+        createUserWithName("foo");
+        createUserWithName("bar");
         List<User> users = target(PATH + "/").request().get(new GenericType<List<User>>() {
         });
         assertEquals("foo", users.get(0).getName());
@@ -94,15 +95,15 @@ public class UserResourceTest extends JerseyTest {
     @Test
     @Ignore
     public void after_delete_read_user_sould_return_202() {
-        User u = h.createUserWithName("toto");
+        User u = createUserWithName("toto");
         int status = target(PATH + "/" + u.getId()).request().delete().getStatus();
         assertEquals(202, status);
     }
 
     @Test
     public void list_should_filter_with_query_param() {
-        h.createUserWithName("foo");
-        h.createUserWithName("bar");
+        createUserWithName("foo");
+        createUserWithName("bar");
         List<User> users = target(PATH + "/").queryParam("q","ba").request().get(new GenericType<List<User>>() {
         });
         assertEquals("bar", users.get(0).getName());
