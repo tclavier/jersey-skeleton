@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.sqlite.SQLiteDataSource;
 
 import javax.inject.Singleton;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Singleton
 public class BDDFactory {
@@ -21,5 +24,11 @@ public class BDDFactory {
             logger.debug("java.io.tmpdir : " + System.getProperty("java.io.tmpdir"));
         }
         return dbi;
+    }
+
+    public static boolean tableExist(String tableName) throws SQLException {
+        DatabaseMetaData dbm = getDbi().open().getConnection().getMetaData();
+        ResultSet tables = dbm.getTables(null, null, tableName, null);
+        return tables.next();
     }
 }

@@ -162,6 +162,8 @@ Notez l'include qui est fait vers `src/main/webapp/layout/head.jsp` afin de fact
 
 ### Authentification
 
+
+
 ### JDBI
 
 ### Slf4j
