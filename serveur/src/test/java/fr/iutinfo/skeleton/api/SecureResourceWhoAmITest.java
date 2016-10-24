@@ -10,8 +10,8 @@ import javax.ws.rs.core.Application;
 import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
 import static org.junit.Assert.assertEquals;
 
-public class SecureResourceForAllTest extends JerseyTest {
-    private String url = "/secure/forall";
+public class SecureResourceWhoAmITest extends JerseyTest {
+    private String url = "/secure/who";
     private Helper h;
 
     @Override

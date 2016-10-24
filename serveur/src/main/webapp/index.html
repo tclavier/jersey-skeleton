@@ -4,8 +4,7 @@
     <title>Jersey Skeleton</title>
     <meta charset='utf-8'>
     <!-- jQuery -->
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -29,28 +28,29 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="userdb">Utilisateur en base de données : </label>
+                <h1>Utilisateur :</h1>
                 <input type="text" name="userdb" id="userdb" placeholder="Nom ?" class="form-control"/>
                 <input type="text" name="user" id="aliasdb" placeholder="Surnom ?" class="form-control"/>
-                <input type="password" name="user" id="passwddb" class="form-control"/>
+                <input type="text" name="email" id="emaildb" placeholder="Email ?" class="form-control"/>
+                <input type="password" name="user" id="passwddb" placeholder="Mot de passe ?" class="form-control"/>
             </div>
             <div class="btn-group" role="group">
-                <button id="get-bdd" class="btn btn-default">Lire</button>
-                <button id="post-bdd" class="btn btn-primary">Sauver</button>
-                <button id="list-bdd" class="btn btn-warning">Lister</button>
+                <button type="button" id="get-bdd" class="btn btn-default">Lire</button>
+                <button type="button" id="post-bdd" class="btn btn-primary">Sauver</button>
+                <button type="button" id="list-bdd" class="btn btn-warning">Lister</button>
             </div>
         </div>
-    </div>
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-md-12">
-            <label for="userlogin">S'identifier : </label>
+        <div class="col-md-6">
+            <h1>S'identifier :</h1>
             <input type="text" name="userlogin" id="userlogin" placeholder="Login" class="form-control"/>
-            <input type="password" name="user" id="passwdlogin" class="form-control"/>
+            <input type="password" name="user" id="passwdlogin" placeholder="Password" class="form-control"/>
             <br/>
-            <button id="read-forall" class="btn btn-default">Lire /v1/secure/forall</button>
+            <button id="read-forall" class="btn btn-default">Lire /v1/secure/who</button>
             <br/>
             <button id="read-byannotation" class="btn btn-default">Lire /v1/secure/byannotation</button>
         </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
     </div>
     <div class="row" style="margin-top: 1em;">
         <div class="panel panel-info">
@@ -65,11 +65,16 @@
 				$("#post-ram").click(function () {postUser($('#user').val(), $('#alias').val())});
 				$("#list-ram").click(function () {listUsers()});
 				$("#get-bdd").click(function () {getUserBdd($('#userdb').val(), $('#aliasdb').val())});
-				$("#post-bdd").click(function () {postUserBdd($('#userdb').val(), $('#aliasdb').val(), $('#passwddb').val())});
+				$("#post-bdd").click(function () {postUserBdd(
+				    $('#userdb').val(),
+				    $('#aliasdb').val(),
+				    $('#emaildb').val(),
+				    $('#passwddb').val())});
 				$("#list-bdd").click(function () {listUsersBdd()});
 				$("#read-forall").click(function () {getForAll()});
 				$("#read-byannotation").click(function () {getByAnnotation()});
 			});
+
     </script>
 </body>
 </html>

@@ -15,8 +15,8 @@ public class SecureResource {
     final static Logger logger = LoggerFactory.getLogger(SecureResource.class);
 
     @GET
-    @Path("/forall")
-    public User secureForAll(@Context SecurityContext context) {
+    @Path("/who")
+    public User secureWhoAmI(@Context SecurityContext context) {
         return (User) context.getUserPrincipal();
     }
 

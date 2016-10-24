@@ -9,7 +9,7 @@ function getUserGeneric(name, url) {
 }
 
 function getForAll() {
-	getSecure("v1/secure/forall");
+	getSecure("v1/secure/who");
 }
 
 function getByAnnotation() {
@@ -40,11 +40,12 @@ function getByAnnotation() {
      }
  }
 
-function postUserBdd(name, alias, pwd) {
-    postUserGeneric(name, alias, pwd, "v1/user/");
+function postUserBdd(name, alias, email, pwd) {
+    postUserGeneric(name, alias, email, pwd, "v1/user/");
 }
 
-function postUserGeneric(name, alias, pwd, url) {
+function postUserGeneric(name, alias, email, pwd, url) {
+	console.log("postUserGeneric " + url)
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -53,6 +54,7 @@ function postUserGeneric(name, alias, pwd, url) {
 		data : JSON.stringify({
 			"name" : name,
 			"alias" : alias,
+			"email" : email,
 			"password" : pwd,
 			"id" : 0
 		}),
@@ -60,7 +62,7 @@ function postUserGeneric(name, alias, pwd, url) {
 			afficheUser(data);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert('postUser error: ' + textStatus);
+			console.log('postUser error: ' + textStatus);
 		}
 	});
 }
