@@ -1,5 +1,6 @@
 package fr.iutinfo.skeleton.api;
 
+import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static fr.iutinfo.skeleton.api.BDDFactory.getDbi;
 import static fr.iutinfo.skeleton.api.BDDFactory.tableExist;
@@ -27,31 +29,35 @@ public class UserResource {
     }
 
     @POST
-    public User createUser(User user) {
+    public UserDto createUser(UserDto dto) {
+        User user = new User();
+        user.initFromDto(dto);
         user.resetPasswordHash();
         int id = dao.insert(user);
-        user.setId(id);
-        return user;
+        dto.setId(id);
+        return dto;
     }
 
     @GET
     @Path("/{name}")
-    public User getUser(@PathParam("name") String name) {
+    public UserDto getUser(@PathParam("name") String name) {
         User user = dao.findByName(name);
         if (user == null) {
             throw new WebApplicationException(404);
         }
-        return user;
+        return user.convertToDto();
     }
 
     @GET
-    public List<User> getAllUsers(@QueryParam("q") String query) {
+    public List<UserDto> getAllUsers(@QueryParam("q") String query) {
+        List<User> users;
         if (query == null) {
-            return dao.all();
+            users = dao.all();
         } else {
             logger.debug("Search users with query: " + query);
-            return dao.search("%" + query + "%");
+            users = dao.search("%" + query + "%");
         }
+        return users.stream().map(User::convertToDto).collect(Collectors.toList());
     }
 
     @DELETE

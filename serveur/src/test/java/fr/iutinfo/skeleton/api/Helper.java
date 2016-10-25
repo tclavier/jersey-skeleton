@@ -1,5 +1,6 @@
 package fr.iutinfo.skeleton.api;
 
+import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,8 +10,8 @@ import java.util.List;
 public class Helper {
     private final static Logger logger = LoggerFactory.getLogger(Helper.class);
     private static final UserDao dao = BDDFactory.getDbi().open(UserDao.class);
-    static GenericType<List<User>> listUserResponseType = new GenericType<List<User>>() {
-   };
+    static GenericType<List<UserDto>> listUserResponseType = new GenericType<List<UserDto>>() {
+    };
 
     public static void initDb() {
         dao.dropUserTable();

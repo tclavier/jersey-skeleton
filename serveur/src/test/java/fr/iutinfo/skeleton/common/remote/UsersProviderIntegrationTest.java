@@ -1,10 +1,12 @@
-package fr.iutinfo.skeleton.cli;
+package fr.iutinfo.skeleton.common.remote;
 
 import fr.iutinfo.skeleton.api.Api;
 import fr.iutinfo.skeleton.api.BDDFactory;
 import fr.iutinfo.skeleton.api.User;
 import fr.iutinfo.skeleton.api.UserDao;
+import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.glassfish.jersey.test.JerseyTest;
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.ws.rs.core.Application;
@@ -12,10 +14,10 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class RestClientIntegrationTest extends JerseyTest {
+public class UsersProviderIntegrationTest extends JerseyTest {
 
     private UserDao userDao = BDDFactory.getDbi().open(UserDao.class);
-    private RemoteUsersProvider remoteUsersProvider = new RemoteUsersProvider(getBaseUri().toString());
+    private UsersProvider usersProvider = new UsersProvider(getBaseUri().toString());
 
     @Override
     protected Application configure() {
@@ -27,8 +29,8 @@ public class RestClientIntegrationTest extends JerseyTest {
         initDatabase();
         createUser("Thomas");
 
-        User user = remoteUsersProvider.readUser("Thomas");
-        assertEquals("Thomas", user.getName());
+        UserDto user = usersProvider.readUser("Thomas");
+        Assert.assertEquals("Thomas", user.getName());
     }
 
     @Test
@@ -37,20 +39,20 @@ public class RestClientIntegrationTest extends JerseyTest {
         createUser("Thomas");
         createUser("Olivier");
 
-        List<User> users = remoteUsersProvider.readAllUsers();
-        assertEquals(2, users.size());
+        List<UserDto> users = usersProvider.readAllUsers();
+        Assert.assertEquals(2, users.size());
     }
 
     @Test
     public void should_add_remote_user() {
         initDatabase();
-        User olivier = new User();
+        UserDto olivier = new UserDto();
         olivier.setName("Olivier");
 
-        User remoteUser = remoteUsersProvider.addUser(olivier);
+        UserDto remoteUser = usersProvider.addUser(olivier);
         User bddUser = userDao.findById(remoteUser.getId());
 
-        assertEquals("Olivier", bddUser.getName());
+        Assert.assertEquals("Olivier", bddUser.getName());
     }
 
 

@@ -1,6 +1,7 @@
 package fr.iutinfo.skeleton.cli;
 
-import fr.iutinfo.skeleton.api.User;
+import fr.iutinfo.skeleton.common.dto.UserDto;
+import fr.iutinfo.skeleton.common.remote.UsersProvider;
 
 import java.util.List;
 import java.util.Scanner;
@@ -32,14 +33,14 @@ public class Main {
     }
 
     private static void listUSer() {
-        List<User> users = usersProvider.readAllUsers();
-        for (User user : users) {
+        List<UserDto> users = usersProvider.readAllUsers();
+        for (UserDto user : users) {
             System.out.println(user);
         }
     }
 
     private static void addUser() {
-        User user = new User();
+        UserDto user = new UserDto();
         user.setName(queryAndReadLine("Quel est ton nom ?"));
         user.setEmail(queryAndReadLine("Quel est ton mail ?"));
         usersProvider.addUser(user);
@@ -67,7 +68,7 @@ public class Main {
     private static void initUrlAndProvider(String arg) {
         String url = arg + "/v1/";
         System.out.println("Api url : " + url);
-        usersProvider = new RemoteUsersProvider(url);
+        usersProvider = new UsersProvider(url);
     }
 
     private static void checkArgs(String[] args) {

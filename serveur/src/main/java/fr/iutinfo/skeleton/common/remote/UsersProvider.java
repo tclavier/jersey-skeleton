@@ -1,6 +1,6 @@
-package fr.iutinfo.skeleton.cli;
+package fr.iutinfo.skeleton.common.remote;
 
-import fr.iutinfo.skeleton.api.User;
+import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,24 +10,24 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-public class RemoteUsersProvider implements UsersProvider{
+public class UsersProvider {
 
-    final static Logger logger = LoggerFactory.getLogger(RemoteUsersProvider.class);
+    final static Logger logger = LoggerFactory.getLogger(UsersProvider.class);
     private String baseUrl;
 
-    public RemoteUsersProvider(String baseUrl) {
+    public UsersProvider(String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
 
-    public List<User> readAllUsers() {
+    public List<UserDto> readAllUsers() {
         try {
             return ClientBuilder.newClient()//
                     .target(baseUrl + "user/")
                     .request()
-                    .get(new GenericType<List<User>>() {
+                    .get(new GenericType<List<UserDto>>() {
                     });
-        } catch ( Exception e) {
+        } catch (Exception e) {
             String message = ClientBuilder.newClient()
                     .target(baseUrl + "user/")
                     .request()
@@ -38,25 +38,25 @@ public class RemoteUsersProvider implements UsersProvider{
         }
     }
 
-    public User addUser(User user) {
+    public UserDto addUser(UserDto user) {
         logger.debug("Create user : " + user.getName());
-        Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
+        Entity<UserDto> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
 
         return ClientBuilder.newClient()
                 .target(baseUrl + "user/")
                 .request()
                 .post(userEntity)
-                .readEntity(User.class);
+                .readEntity(UserDto.class);
     }
 
-    public User readUser(String name) {
+    public UserDto readUser(String name) {
         String url = baseUrl + "user/" + name;
         logger.debug("Reade url : " + url);
 
         return ClientBuilder.newClient()//
                 .target(url)
                 .request()
-                .get(User.class);
+                .get(UserDto.class);
     }
 
     public void setBaseUrl(String baseUrl) {

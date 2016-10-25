@@ -21,15 +21,6 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
             <!-- mvn jetty:run to debug -->
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
@@ -84,7 +75,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.2</version>
+            <version>${logback-classic.version}</version>
         </dependency>
 
         <!-- connection BDD -->
