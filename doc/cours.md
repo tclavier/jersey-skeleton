@@ -1,11 +1,5 @@
 # Point de cours
 
-Ce squelette d'application construit une API et 2 types d'interfaces :
-- L'api au centre permet de manipuler l'ensemble des données
-- Une interface graphique en javascript exploitant l'API
-- Une interface graphique en html généré par le serveur
-- Dans le projet android-skeleton, une interface graphique android.
-
 ## REST
 
 Dans une architechture [REST](https://fr.wikipedia.org/wiki/Representational_State_Transfer) chaque ressource est accessible par une unique URL, ce sont les verbes HTTP qui définissent les actions à faire sur une ressource.
