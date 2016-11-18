@@ -1,6 +1,4 @@
 before_script:
-  - export http_proxy=http://cache.univ-lille1.fr:3128
-  - export https_proxy=http://cache.univ-lille1.fr:3128
   - apt-get update -qq && apt-get install -y maven openjdk-7-jdk 
 
 test:

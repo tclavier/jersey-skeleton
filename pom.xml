@@ -32,7 +32,18 @@
 
     <modules>
         <module>client-cli</module>
-        <module>serveur</module>
+        <module>server</module>
+        <module>common</module>
+        <module>common-client</module>
+        <module>war</module>
     </modules>
 
+    <dependencies>
+        <!-- Activer les logs -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
+    </dependencies>
 </project>
