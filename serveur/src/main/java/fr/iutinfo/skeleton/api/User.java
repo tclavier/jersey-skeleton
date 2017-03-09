@@ -74,7 +74,7 @@ public class User implements Principal {
     }
 
     private String buildHash(String password, String s) {
-        Hasher hasher = Hashing.md5().newHasher();
+        Hasher hasher = Hashing.sha256().newHasher();
         hasher.putString(password + s, Charsets.UTF_8);
         return hasher.hash().toString();
     }
@@ -129,7 +129,7 @@ public class User implements Principal {
 
     private String generateSalt() {
         SecureRandom random = new SecureRandom();
-        Hasher hasher = Hashing.md5().newHasher();
+        Hasher hasher = Hashing.sha256().newHasher();
         hasher.putLong(random.nextLong());
         return hasher.hash().toString();
     }
