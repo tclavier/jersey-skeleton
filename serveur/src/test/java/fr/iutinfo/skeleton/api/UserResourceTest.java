@@ -62,7 +62,7 @@ public class UserResourceTest extends JerseyTest {
     public void read_user_should_return_hashed_password() throws NoSuchAlgorithmException {
         createUserWithPassword("Loïc Dachary", "motdepasse", "grain de sable");
         User user = dao.findByName("Loïc Dachary");
-        assertEquals("5f8619bc1f0e23ef5851cf7070732089", user.getPasswdHash());
+        assertEquals("dfeb21109fe5eab1b1db7369844921c44b87b44669b0742f3f73bd166b474779", user.getPasswdHash());
     }
 
     @Test
