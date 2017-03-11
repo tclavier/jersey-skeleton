@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-client</artifactId>
+    <artifactId>client-librairie</artifactId>
 
     <dependencies>
         <dependency>

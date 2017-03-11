@@ -2,7 +2,7 @@
 
 # Création d'un projet en mode étudiant
 
-Sur Github :
+Sur Gitlab :
 
 - faire un fork du projet 
 - ajouter ses camarades dans le projet
@@ -60,7 +60,7 @@ Pour vérifier votre installation, ouvrez un terminal et taper :
       mvn -version
 
 
-**/!\ Si vous êtes sur un ordinateur de l'IUT ou sur le réseau WIFI de Lille1, modifiez la configuration de Maven en rajoutant les lignes pour paramètrer le proxy selon l'exemple un peu au dessus. Le fichier de configuration devrait se trouver dans le répertoire "conf" du dossier d'installation de maven.**
+**/!\ Si vous êtes sur un ordinateur de l'IUT ou sur le réseau WIFI de Lille1, modifiez la configuration de Maven en rajoutant les lignes pour paramètrer le proxy selon l'exemple. Le fichier de configuration devrait se trouver dans le répertoire "conf" du dossier d'installation de maven.**
 
 # Configuration
 ## Maven
