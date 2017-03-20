@@ -1,5 +1,26 @@
 [![Build Status](https://travis-ci.org/iut-lille/jersey-skeleton.svg?branch=master)](https://travis-ci.org/iut-lille/jersey-skeleton)
 
+# Squelette d'application web pour la semaine agile @ Univ-Lille
+
+La semaine agile conclut la formation de DUT Informatique du département Informatique de l'IUT "A" de l'Université de Lille - Sciences & Technologies. L'objectif de cette semaine est l'initiation à la démarche agile via la conception d'une application web reposant sur un serveur `REST`, un client web (HTML, CSS et *JavaScript*) et un client mobile (*Androïd*).
+
+Ce projet implique plusieurs technologies permettant de mettre en oeuvre une intégration continue, c'est-à-dire une automatisation de la vérification (via des tests) et du déploiement du logiciel en production.
+
+Le squelette d'application web proposé ici repose sur l'exploitation de plusieurs technologies facilitant la conception, la compilation, l'éxecution des tests et le déploiement.
+
+Pour ce qui concerne la gestion du cycle de vie du logiciel, voici les principaux outils mobilisés :
+- [maven](https://maven.apache.org) pour décrire les dépendances et automatiser la construction, les tests et l'exécution d'un projet *Java*,
+- [Travis CI](https://travis-ci.org) pour la gestion de l'intégration continue (ie. l'exécution des tests et le déploiement en cas de succès)
+- [Docker](https://www.docker.com) pour la gestion du contexte applicatif permettant le déploiement de l'application créée (ie. un UNIX avec un serveur HTTP afin de déployer le serveur),
+
+Pour ce qui est des librairies utilisées pour le développement de l'application web, voici les principales technologies :
+- [Jersey](https://jersey.java.net) pour développer le serveur `REST` en *Java*, cette librairie étant l'implémentation du standard `JAX-RS` définissant l'API `REST` pour *Java*,
+- [jQuery](https://jquery.com) pour faciliter la manipulation de l'arbre `DOM` et les appels `AJAX`,
+- [Boostrap](http://getbootstrap.com) pour faciliter la gestion d'IHM adaptatives (ou *responsive* pour utiliser le terme à la mode ;)), 
+- [Java Database Binding Interface](http://jdbi.org) (JDBI) pour faciliter la transition entre objets et base de données,
+
+Le but de ce squelette est de fournir une base facilitant la prise en main de ces multiples techologies afin de pouvoir déployer votre projet dès le premier *sprint* :)
+
 # Création d'un projet en mode étudiant
 
 Sur ``Gitlab`` ou ``github`` :
