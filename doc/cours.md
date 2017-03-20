@@ -1,4 +1,10 @@
-# Point de cours
+# Documentation du projet agile
+
+- [Maven](doc/maven.md)
+- [Docker](doc/docker.md)
+- [REST](doc/rest.md)
+- [JDBI](doc/jdbi.md)
+- [HTML & JavaScript](doc/htmljs.md)
 
 ## REST
 
@@ -34,7 +40,7 @@ Dans le paquetage `fr.iutinfo.skeleton.api` vous trouverez l'ensemble des classe
 
 Dans `src/webapp/all.js` et `src/webapp/index.html` vous trouverez un exemple d'interface graphique en *JavaScript* mis en forme avec [bootstrap](http://getbootstrap.com/).
 
-## HTMl
+## HTML
 
 Le plugin `template MVC` de *jersey* permet de générer du HTML depuis divers fichiers.
 
