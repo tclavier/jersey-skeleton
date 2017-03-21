@@ -1,4 +1,4 @@
-## Docker
+# Docker
 
 [Docker](http://docker.com/) est un logiciel de gestion de conteneurs applicatifs, il permet d'empaqueter une application et ses dépendances dans un conteneur afin de l'exécuter sur n'importe quel serveur Linux. Le nom du projet correspond au concept des conteneurs utilisés dans le transport de marchandises qui a permis de standardiser la forme des conteneurs facilitant la logistique au niveau des ports répartis sur l'ensemble de la planète.
 
