@@ -105,9 +105,10 @@ Avec Éclipse Mars, le plugin est installé de base, l'import peut se faire dire
 
 Dans le répertoire du serveur, pour lancer le projet sur la machine du développeur et visiter les pages web sur http://localhost:8080/
 
+    cd server
     mvn jetty:run
 
-Ce qui lance un serveur local
+Ce qui lance un serveur local, visitez http://localhost:8080/
 
 # Liens utiles
 - [Points de cours](doc/cours.md)
