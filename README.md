@@ -84,7 +84,7 @@ Dans le répertoire du projet, vous pouvez lancer le serveur en local sur la mac
 
 Si tout se passe bien, vous devriez voir la page d'accueil du projet.
 
-# Test le déploiement sur `deliverous.com`
+# Test de déploiement sur `deliverous.com`
 
 Reportez vous [au document décrivant l'usage de Docker](doc/docker.md)
 

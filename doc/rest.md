@@ -18,12 +18,3 @@ Pour des ressources composées, les URLs vont définir le contenant, par exemple
 
 **/!\ Attention** : *identifier le téléphone sous cette forme sous entend que dans notre application, il n'existe pas de téléphone sans propriétaire.*
 
-## API
-
-Dans le paquetage `fr.iutinfo.skeleton.api` vous trouverez l'ensemble des classes de l'API (*Application Programming Interface*)
-- `Api` : le point d'entrée des requêtes vers les url commençant par `http://localhost:8080/v1/` la directive `packages("fr.iutinfo.skeleton.api");` permet d'enregistrer toutes les classes de ressources du package.
-- `UserResource` : match les URLs de la forme `http://localhost:8080/v1/user` et permet de manipuler des ressources en mémoire de type `User`
-- `UserDBResource` : match les urls de la forme `http://localhost:8080/v1/userdb` et permet de manipuler des ressources en base de données de type `User`
-- `UserDao` : permet de lire et d'écrire en base des `User`
-- `User` : la classe métier utilisée dans cet exemple
-- `BDDFactory` : permet d'obtenir un accès à la base de données.
