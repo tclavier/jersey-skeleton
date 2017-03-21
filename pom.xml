@@ -34,7 +34,7 @@
         <module>command-line-interface</module>
         <module>common</module>
         <module>server</module>
-        <module>client-librairie</module>
+        <module>client-library</module>
         <module>war</module>
     </modules>
 
