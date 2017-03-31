@@ -13,3 +13,6 @@ data.db
 
 # maven shade plugin
 dependency-reduced-pom.xml
+
+# cli log file
+cli.log
