@@ -8,7 +8,7 @@ run apt-get update \
 run rm -rf /var/lib/jetty9/webapps/root
 add . /srv/jersey-skeleton/
 workdir /srv/jersey-skeleton/
-run mvn -Djava.net.useSystemProxies=true install
+run mvn install
 run cp /srv/jersey-skeleton/war/target/war-1.0-SNAPSHOT.war /var/lib/jetty9/webapps/root.war
 expose 8080
 workdir /srv/jersey-skeleton/server
