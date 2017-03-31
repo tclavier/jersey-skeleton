@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.security.Principal;
 
-public class UserDto implements Principal {
+public class UserDto {
     final static Logger logger = LoggerFactory.getLogger(UserDto.class);
     private String name;
     private String alias;

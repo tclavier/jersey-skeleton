@@ -1,4 +1,4 @@
-function getUserBdd(name) {
+function getUser(name) {
 	getUserGeneric(name, "v1/user/");
 }
 
@@ -8,15 +8,18 @@ function getUserGeneric(name, url) {
 	});
 }
 
-function getForAll() {
-	getSecure("v1/secure/who");
+function login() {
+	getWithAuthorizationHeader("v1/login", function(data){
+	    $("#login_form").hide();
+	    afficheUser(data);
+	});
 }
 
-function getByAnnotation() {
-	getSecure("v1/secure/byannotation");
+function profile() {
+	getWithAuthorizationHeader("v1/profile", function (data) {afficheUser(data);});
 }
 
- function getSecure(url) {
+ function getWithAuthorizationHeader(url, callback) {
  if($("#userlogin").val() != "") {
      $.ajax
      ({
@@ -26,9 +29,7 @@ function getByAnnotation() {
        beforeSend : function(req) {
         req.setRequestHeader("Authorization", "Basic " + btoa($("#userlogin").val() + ":" + $("#passwdlogin").val()));
        },
-       success: function (data) {
-        afficheUser(data);
-       },
+       success: callback,
        error : function(jqXHR, textStatus, errorThrown) {
        			alert('error: ' + textStatus);
        		}
@@ -40,8 +41,8 @@ function getByAnnotation() {
      }
  }
 
-function postUserBdd(name, alias, email, pwd) {
-    postUserGeneric(name, alias, email, pwd, "v1/user/");
+function postUser(name, alias, email, pwd) {
+    postUserGeneric(name, alias, email, pwd, 'v1/user/')
 }
 
 function postUserGeneric(name, alias, email, pwd, url) {
@@ -67,7 +68,7 @@ function postUserGeneric(name, alias, email, pwd, url) {
 	});
 }
 
-function listUsersBdd() {
+function listUsers() {
     listUsersGeneric("v1/user/");
 }
 
@@ -79,15 +80,22 @@ function listUsersGeneric(url) {
 
 function afficheUser(data) {
 	console.log(data);
-	$("#reponse").html(data.id + " : <b>" + data.alias + "</b> (" + data.name + ")");
+	$("#reponse").html(userStringify(data));
 }
 
 function afficheListUsers(data) {
-	var html = '<ul>';
+	var ul = document.createElement('ul');
+	ul.className = "list-group";
 	var index = 0;
 	for (index = 0; index < data.length; ++index) {
-		html = html + "<li>"+ data[index].name + "</li>";
+	    var li = document.createElement('li');
+	    li.className = "list-group-item";
+		li.innerHTML = userStringify(data[index]);
+		ul.appendChild(li);
 	}
-	html = html + "</ul>";
-	$("#reponse").html(html);
+	$("#reponse").html(ul);
+}
+
+function userStringify(user) {
+    return user.id + ". " + user.name + " &lt;" + user.email + "&gt;" + " (" + user.alias + ")";
 }

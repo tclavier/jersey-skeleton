@@ -28,25 +28,27 @@
         <div class="col-md-6">
             <div class="form-group">
                 <h1>Utilisateur :</h1>
-                <input type="text" name="userdb" id="userdb" placeholder="Nom ?" class="form-control"/>
-                <input type="text" name="user" id="aliasdb" placeholder="Surnom ?" class="form-control"/>
-                <input type="text" name="email" id="emaildb" placeholder="Email ?" class="form-control"/>
-                <input type="password" name="user" id="passwddb" placeholder="Mot de passe ?" class="form-control"/>
+                <input type="text" name="userdb" id="user" placeholder="Nom ?" class="form-control"/>
+                <input type="text" name="user" id="alias" placeholder="Surnom ?" class="form-control"/>
+                <input type="text" name="email" id="email" placeholder="Email ?" class="form-control"/>
+                <input type="password" name="user" id="passwd" placeholder="Mot de passe ?" class="form-control"/>
             </div>
             <div class="btn-group" role="group">
-                <button type="button" id="get-bdd" class="btn btn-default">Lire</button>
-                <button type="button" id="post-bdd" class="btn btn-primary">Sauver</button>
-                <button type="button" id="list-bdd" class="btn btn-warning">Lister</button>
+                <button type="button" id="get" class="btn btn-default">Lire</button>
+                <button type="button" id="post" class="btn btn-primary">Sauver</button>
+                <button type="button" id="list" class="btn btn-warning">Lister</button>
             </div>
         </div>
         <div class="col-md-6">
             <h1>S'identifier :</h1>
-            <input type="text" name="userlogin" id="userlogin" placeholder="Login" class="form-control"/>
-            <input type="password" name="user" id="passwdlogin" placeholder="Password" class="form-control"/>
-            <br/>
-            <button id="read-forall" class="btn btn-default">Lire /v1/secure/who</button>
-            <br/>
-            <button id="read-byannotation" class="btn btn-default">Lire /v1/secure/byannotation</button>
+            <div id="login_form">
+                <input type="text" name="user" id="userlogin" placeholder="Login" class="form-control"/>
+                <input type="password" name="password" id="passwdlogin" placeholder="Password" class="form-control"/>
+                <br/>
+                <button id="login" class="btn btn-default">Login</button>
+                <br/>
+            </div>
+            <button id="profile" class="btn btn-default">Profile</button>
         </div>
     </div>
     <div class="row" style="margin-top: 20px;">
@@ -60,18 +62,24 @@
     </div>
     <script type="text/javascript">
 			$(document).ready(function() {
-				$("#get-ram").click(function () {getUser($('#user').val(), $('#alias').val())});
-				$("#post-ram").click(function () {postUser($('#user').val(), $('#alias').val())});
-				$("#list-ram").click(function () {listUsers()});
-				$("#get-bdd").click(function () {getUserBdd($('#userdb').val(), $('#aliasdb').val())});
-				$("#post-bdd").click(function () {postUserBdd(
-				    $('#userdb').val(),
-				    $('#aliasdb').val(),
-				    $('#emaildb').val(),
-				    $('#passwddb').val())});
-				$("#list-bdd").click(function () {listUsersBdd()});
-				$("#read-forall").click(function () {getForAll()});
-				$("#read-byannotation").click(function () {getByAnnotation()});
+				$("#get").click(function () {
+				    getUser($('#user').val(), $('#alias').val())
+				    });
+				$("#post").click(function () {
+                    postUser(
+                        $('#user').val(),
+                        $('#alias').val(),
+                        $('#email').val(),
+                        $('#passwd').val())});
+				$("#list").click(function () {
+				    listUsers()
+				    });
+				$("#login").click(function () {
+				    login();
+				    });
+				$("#profile").click(function () {
+				    profile()
+				    });
 			});
 
     </script>

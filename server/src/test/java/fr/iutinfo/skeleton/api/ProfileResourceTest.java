@@ -12,9 +12,9 @@ import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
 import static javax.ws.rs.core.Response.Status.FORBIDDEN;
 import static org.junit.Assert.assertEquals;
 
-public class SecureResourceByAnnotationTest extends JerseyTest {
+public class ProfileResourceTest extends JerseyTest {
     private Helper h;
-    private String path = "/secure/byannotation";
+    private String path = "/profile";
 
     @Override
     protected Application configure() {
