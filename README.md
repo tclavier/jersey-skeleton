@@ -79,8 +79,9 @@ Maintenant que les outils nécessaires sont installés :
 
 Dans le répertoire du projet, vous pouvez lancer le serveur en local sur la machine de développement:
 
-1. `mvn jetty:run`
-2. pointez ensuite votre navigateur sur : [http://localhost:8080](http://localhost:8080)
+1. `cd server`
+2. `mvn jetty:run`
+3. pointez ensuite votre navigateur sur : [http://localhost:8080](http://localhost:8080)
 
 Si tout se passe bien, vous devriez voir la page d'accueil du projet.
 
