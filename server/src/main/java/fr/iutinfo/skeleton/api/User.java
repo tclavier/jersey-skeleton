@@ -104,6 +104,18 @@ public class User implements Principal {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((alias == null) ? 0 : alias.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((passwdHash == null) ? 0 : passwdHash.hashCode());
+        result = prime * result + ((salt == null) ? 0 : salt.hashCode());
+        return result;
+    }
+    
+    @Override
     public String toString() {
         return id + ": " + alias + ", " + name + " <" + email + ">";
     }
