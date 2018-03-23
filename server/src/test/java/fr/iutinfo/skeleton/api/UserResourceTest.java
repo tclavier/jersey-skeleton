@@ -38,14 +38,14 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void read_user_should_return_good_alias() {
-        createRms();
+        rms();
         UserDto user = target(PATH + "/Richard Stallman").request().get(UserDto.class);
         assertEquals("RMS", user.getAlias());
     }
 
     @Test
     public void read_user_should_return_good_email() {
-        createIan();
+        ian();
         UserDto user = target(PATH + "/Ian Murdock").request().get(UserDto.class);
         assertEquals("ian@debian.org", user.getEmail());
     }
@@ -121,9 +121,9 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void list_should_search_in_alias_field() {
-        createRms();
-        createLinus();
-        createRob();
+        rms();
+        linus();
+        rob();
 
         List<UserDto> users = target(PATH + "/").queryParam("q", "RMS").request().get(listUserResponseType);
         assertEquals("Richard Stallman", users.get(0).getName());
@@ -131,9 +131,9 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void list_should_search_in_email_field() {
-        createRms();
-        createLinus();
-        createRob();
+        rms();
+        linus();
+        rob();
 
         List<UserDto> users = target(PATH + "/").queryParam("q", "fsf").request().get(listUserResponseType);
         assertEquals(2, users.size());

@@ -23,17 +23,6 @@ public class Helper {
         return createUser(user);
     }
 
-    static User createUserWithAlias(String name, String alias) {
-        User user = new User(0, name, alias);
-        return createUser(user);
-    }
-
-    static User createUserWithEmail(String name, String email) {
-        User user = new User(0, name);
-        user.setEmail(email);
-        return createUser(user);
-    }
-
     public static User createUserWithPassword(String name, String passwd, String salt) {
         User user = new User(0, name);
         user.setSalt(salt);
@@ -59,19 +48,19 @@ public class Helper {
         return user;
     }
 
-    static void createRms() {
+    static void rms() {
         createFullUSer("Richard Stallman", "RMS", "rms@fsf.org", "gnuPaswword");
     }
 
-    static User createRob() {
+    static User rob() {
         return createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
     }
 
-    static User createLinus() {
+    static User linus() {
         return createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
     }
 
-    static User createIan() {
+    static User ian() {
         return createFullUSer("Ian Murdock", "debian", "ian@debian.org", "mot de passe");
     }
 }
