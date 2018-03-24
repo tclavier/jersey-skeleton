@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 public class UsersProviderIntegrationTest extends JerseyTest {
 
-    private UserDao userDao = BDDFactory.getDbi().open(UserDao.class);
+    private UserDao userDao = BDDFactory.getJdbi().open(UserDao.class);
     private UsersProvider usersProvider = new UsersProvider(getBaseUri().toString());
 
     @Override

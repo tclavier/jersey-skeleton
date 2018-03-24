@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static fr.iutinfo.skeleton.api.BDDFactory.getDbi;
 import static fr.iutinfo.skeleton.api.BDDFactory.tableExist;
 
 @Path("/user")
@@ -18,7 +17,7 @@ import static fr.iutinfo.skeleton.api.BDDFactory.tableExist;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
     final static Logger logger = LoggerFactory.getLogger(UserResource.class);
-    private static UserDao dao = getDbi().onDemand(UserDao.class);
+    private static UserDao dao = BDDFactory.buildDao(UserDao.class);
 
     public UserResource() throws SQLException {
         if (!tableExist("users")) {
@@ -65,5 +64,4 @@ public class UserResource {
     public void deleteUser(@PathParam("id") int id) {
         dao.delete(id);
     }
-
 }

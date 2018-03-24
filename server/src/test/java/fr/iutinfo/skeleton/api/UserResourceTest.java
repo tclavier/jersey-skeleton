@@ -12,12 +12,13 @@ import javax.ws.rs.core.MediaType;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import static fr.iutinfo.skeleton.api.BDDFactory.buildDao;
 import static fr.iutinfo.skeleton.api.Helper.*;
 import static org.junit.Assert.assertEquals;
 
 public class UserResourceTest extends JerseyTest {
     private static final String PATH = "/user";
-    private UserDao dao = BDDFactory.getDbi().onDemand(UserDao.class);
+    private UserDao dao = buildDao(UserDao.class);
 
     @Override
     protected Application configure() {

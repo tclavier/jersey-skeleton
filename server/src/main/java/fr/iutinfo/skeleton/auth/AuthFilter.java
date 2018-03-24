@@ -14,6 +14,8 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
 
+import static fr.iutinfo.skeleton.api.BDDFactory.buildDao;
+
 @Provider
 @PreMatching
 public class AuthFilter implements ContainerRequestFilter {
@@ -44,7 +46,7 @@ public class AuthFilter implements ContainerRequestFilter {
     }
 
     private User loadUserFromLogin(String login) {
-        UserDao dao = BDDFactory.getDbi().onDemand(UserDao.class);
+        UserDao dao = buildDao(UserDao.class);
         User user = dao.findByName(login);
         if (user == null) {
             user = User.getAnonymousUser();
