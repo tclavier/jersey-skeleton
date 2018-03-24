@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 public class UserResourceTest extends JerseyTest {
     private static final String PATH = "/user";
-    private UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+    private UserDao dao = BDDFactory.getDbi().onDemand(UserDao.class);
 
     @Override
     protected Application configure() {

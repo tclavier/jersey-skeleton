@@ -1,8 +1,11 @@
 package fr.iutinfo.skeleton.api;
 
-import org.skife.jdbi.v2.sqlobject.*;
-import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
-import org.skife.jdbi.v2.tweak.BeanMapperFactory;
+import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
+import org.jdbi.v3.sqlobject.customizer.Bind;
+import org.jdbi.v3.sqlobject.customizer.BindBean;
+import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
+import org.jdbi.v3.sqlobject.statement.SqlQuery;
+import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import java.util.List;
 
@@ -15,11 +18,11 @@ public interface UserDao {
     int insert(@BindBean() User user);
 
     @SqlQuery("select * from users where name = :name")
-    @RegisterMapperFactory(BeanMapperFactory.class)
+    @RegisterBeanMapper(User.class)
     User findByName(@Bind("name") String name);
 
     @SqlQuery("select * from users where search like :name")
-    @RegisterMapperFactory(BeanMapperFactory.class)
+    @RegisterBeanMapper(User.class)
     List<User> search(@Bind("name") String name);
 
     @SqlUpdate("drop table if exists users")
@@ -29,12 +32,11 @@ public interface UserDao {
     void delete(@Bind("id") int id);
 
     @SqlQuery("select * from users order by id")
-    @RegisterMapperFactory(BeanMapperFactory.class)
+    @RegisterBeanMapper(User.class)
     List<User> all();
 
     @SqlQuery("select * from users where id = :id")
-    @RegisterMapperFactory(BeanMapperFactory.class)
+    @RegisterBeanMapper(User.class)
     User findById(@Bind("id") int id);
 
-    void close();
 }

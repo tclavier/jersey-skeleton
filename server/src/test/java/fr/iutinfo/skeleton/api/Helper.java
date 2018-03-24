@@ -7,9 +7,11 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.core.GenericType;
 import java.util.List;
 
+import static fr.iutinfo.skeleton.api.BDDFactory.getDbi;
+
 public class Helper {
     private final static Logger logger = LoggerFactory.getLogger(Helper.class);
-    private static final UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+    private static final UserDao dao = getDbi().onDemand(UserDao.class);
     static GenericType<List<UserDto>> listUserResponseType = new GenericType<List<UserDto>>() {
     };
 
