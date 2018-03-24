@@ -14,7 +14,7 @@ import java.sql.SQLException;
 @Singleton
 public class BDDFactory {
     private static Jdbi jdbi = null;
-    final static Logger logger = LoggerFactory.getLogger(BDDFactory.class);
+    private final static Logger logger = LoggerFactory.getLogger(BDDFactory.class);
 
     private static Jdbi getJdbi() {
         if(jdbi == null) {

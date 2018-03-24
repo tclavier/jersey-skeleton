@@ -68,8 +68,9 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void create_should_return_the_user_with_valid_id() {
-        User user = new User(0, "thomas");
-        Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
+        UserDto user = new UserDto();
+        user.setEmail("thomas");
+        Entity<UserDto> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
         String json = target(PATH).request().post(userEntity).readEntity(String.class);
         assertEquals("{\"id\":1,\"name\":\"thomas\"", json.substring(0, 23));
     }
