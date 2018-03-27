@@ -1,3 +1,9 @@
+# Attention
+
+Ce projet à migré sur gitlab : https://gitlab.com/tclavier/jersey-skeleton
+
+# Intro
+
 [![Build Status](https://travis-ci.org/iut-lille/jersey-skeleton.svg?branch=master)](https://travis-ci.org/iut-lille/jersey-skeleton)
 
 # Squelette d'application web pour la semaine agile @ Univ-Lille
